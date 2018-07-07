@@ -6,7 +6,7 @@ Hello everyone!
 
 The goal of this mod is to make creating missions easier. It massively extends the features of the debug console, the 3den Editor,  and the Config Viewer while creating no dependency for the client.
 
-##Features:
+## Features:
 - **Extended debug console**: Adds way more features to the escape menu in the style of the vanilla A3 debug console. It contains the following options:
    - Draw grids: Display a few lines on screen to give make orientation easier
    - Enable teleport: Look at your destination and hit SHIFT+T to teleport
