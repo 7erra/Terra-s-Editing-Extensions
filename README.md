@@ -1,6 +1,5 @@
 # @Terra's Editing Extensions
 Improves the editing experience
-Steam description
 
 Hello everyone!
 
