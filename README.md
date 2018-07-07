@@ -1,12 +1,12 @@
 # @Terra's Editing Extensions
-Improves the editing experience
+Improves the editing experience  
 Steam description
 
 Hello everyone!
 
 The goal of this mod is to make creating missions easier. It massively extends the features of the debug console, the 3den Editor,  and the Config Viewer while creating no dependency for the client.
 
-##Features:
+## Features:
 - **Extended debug console**: Adds way more features to the escape menu in the style of the vanilla A3 debug console. It contains the following options:
    - Draw grids: Display a few lines on screen to give make orientation easier
    - Enable teleport: Look at your destination and hit SHIFT+T to teleport
@@ -30,9 +30,10 @@ The goal of this mod is to make creating missions easier. It massively extends t
    - Export button for the CfgViewer: Export the currently selected config with a single click!
    - Escape shortcuts: While in the escape menu you can press STRG+R to restart the mission or STRG+E to exit it.
 
-Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=1387934106 
-GitHub repository: https://github.com/7erra/-Terra-s-Editing-Extensions 
+Steam Workshop page:  https://steamcommunity.com/sharedfiles/filedetails/?id=1387934106  
+GitHub repository:  
+https://github.com/7erra/-Terra-s-Editing-Extensions  
 
-Greetings, 
-7erra
+Greetings,  
+7erra  
 
