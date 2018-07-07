@@ -30,9 +30,9 @@ The goal of this mod is to make creating missions easier. It massively extends t
    - Export button for the CfgViewer: Export the currently selected config with a single click!
    - Escape shortcuts: While in the escape menu you can press STRG+R to restart the mission or STRG+E to exit it.
 
-Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=1387934106
-GitHub repository: https://github.com/7erra/-Terra-s-Editing-Extensions
+Steam Workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=1387934106 
+GitHub repository: https://github.com/7erra/-Terra-s-Editing-Extensions 
 
-Greetings,
+Greetings, 
 7erra
 
