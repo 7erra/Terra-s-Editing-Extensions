@@ -31,7 +31,7 @@ The goal of this mod is to make creating missions easier. It massively extends t
    - Escape shortcuts: While in the escape menu you can press STRG+R to restart the mission or STRG+E to exit it.
 
 Steam Workshop page:  https://steamcommunity.com/sharedfiles/filedetails/?id=1387934106  
-GitHub repository:  
+GitHub repository: 
 https://github.com/7erra/-Terra-s-Editing-Extensions  
 
 Greetings,  
