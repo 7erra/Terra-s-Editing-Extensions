@@ -1,0 +1,1 @@
+Parameter can be 'left', 'center', 'right'

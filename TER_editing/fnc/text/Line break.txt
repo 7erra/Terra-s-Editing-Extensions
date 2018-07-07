@@ -1,0 +1,1 @@
+Line breaks can also be inserted via the composeText and lineBreak commands

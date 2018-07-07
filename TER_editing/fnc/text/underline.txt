@@ -1,0 +1,1 @@
+Using regular spaces might split the underline between words. To have a continuous underline, you must use non-breaking spaces, via Alt+255

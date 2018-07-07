@@ -1,0 +1,1 @@
+Begins the structured text commands. Everthing past this will be structured with the given arguments.

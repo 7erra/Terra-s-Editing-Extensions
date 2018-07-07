@@ -1,0 +1,1 @@
+Ends the structuring input. The following text will be structured.
