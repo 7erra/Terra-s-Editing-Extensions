@@ -163,8 +163,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};ADD_Y(0)
 				class txt_moreWatch: RscText
 				{
-					font="EtelkaMonospacePro";
-					sizeEx = 0.8 * GUI_GRID_H;
+					font="PuristaLight";
 					
 					text = "More watch fields:";
 					x = 0;
@@ -275,8 +274,8 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			{
 				class txt_sideplayer: RscText
 				{
-					font="EtelkaMonospacePro";
-					sizeEx = 0.8 * GUI_GRID_H;
+					font="PuristaLight";
+					//sizeEx = 0.8 * GUI_GRID_H;
 					x = 0;
 					w = W_BORDER;
 					h = GUI_GRID_H;
@@ -286,6 +285,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class combo_sideplayer: RscCombo
 				{
+					font="PuristaLight";
 					idc = 7404;
 					x = W_BORDER-(0.25 * DEBUG_W);
 					y = CUR_Y;
@@ -345,26 +345,26 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				class ed_targetDebug_command: TER_3den_RscEditCode
 				{
 					idc = 7406;
-					tooltip = "Write your command here and add it with the add button";
-					x = L_BORDER;
+					tooltip = "Write your command here and add it with the + button";
+					x = 0.1 * GUI_GRID_W;
 					y = CUR_Y;
-					w = R_BORDER - (4.1 * GUI_GRID_W);
+					w = W_BORDER - (1.2 * GUI_GRID_W);
 					h = 1 * GUI_GRID_H;
 				};
 				class btn_targetDebug_add: RscButtonMenu
 				{
 					idc = 7407;
-					text = "Add";
+					text = "+";
 					tooltip = "Add your command to the watch list";
-					x = R_BORDER -(3 * GUI_GRID_W);
+					x = W_BORDER -(1 * GUI_GRID_W);
 					y = CUR_Y;
-					w = 3 * GUI_GRID_W;
+					w = 1 * GUI_GRID_W;
 					h = ADD_HEIGHT(1);
 				};
 				class lb_targetDebug_commands: RscListbox
 				{
 					idc = 7408;
-					x = L_BORDER;
+					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
 					h = ADD_HEIGHT(3);
@@ -424,6 +424,42 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				{
 					y = CUR_Y;
 				};ADD_Y(0)
+				class txt_links: txt_sideplayer
+				{
+					text = "BIKI Links";
+					y = CUR_Y;
+				};ADD_Y(1)
+				class ed_link: ed_targetDebug_command
+				{
+					idc = 7420;
+					y = CUR_Y;
+				};
+				class btn_linkAdd: btn_targetDebug_add
+				{
+					idc = 7421;
+					tooltip = "Add Link";
+					y = CUR_Y;
+				};ADD_Y(1)
+				class grp_links: RscControlsGroup
+				{
+					idc = 7422;
+					x = 0;
+					y = CUR_Y;
+					w = W_BORDER;
+					h = ADD_HEIGHT(6);
+					class controls
+					{
+						class stxt_links: RscStructuredText
+						{
+							idc = 7423;
+							colorBackground[] = {0,0,0,0.8};
+							x = 0;
+							y = 0;
+							w = W_BORDER;
+							h = 6 * GUI_GRID_H;
+						};
+					};
+				};
 			};
 		};
 

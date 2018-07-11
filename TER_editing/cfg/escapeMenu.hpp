@@ -1,4 +1,4 @@
-#include "..\debug\RscDebug.hpp"
+#include "..\gui\RscDebug.hpp"
 class RscDisplayInterrupt
 {
 	onKeyDown = "_this call TER_fnc_escapeShortcuts;";

@@ -1,1 +1,0 @@
-Images can also be inserted via the composeText and image commands

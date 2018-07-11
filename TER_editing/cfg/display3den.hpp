@@ -42,7 +42,7 @@ class Display3DEN
 				class TER_3den_easyGUI
 				{
 					text = "Easy GUI creation"; // Item text
-					picture = "TER_editing_data\icons\ez.paa"; // Item picture
+					picture = "TER_editing\icons\ez.paa"; // Item picture
 					// Expression called upon clicking; ideally, it should call your custom function
 					action = "[0] call TER_fnc_createRscEzGUI";
 				};

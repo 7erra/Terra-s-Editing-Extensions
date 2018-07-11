@@ -1,1 +1,0 @@
-Parameter can be '0' (no shadow), '1' (classic shadow, can be colored), '2' outline (always black)

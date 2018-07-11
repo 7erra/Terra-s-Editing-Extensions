@@ -82,6 +82,10 @@
 #define CB_GRIDS PAGE_2_CTRL(7400)
 #define BTN_CLEARCHAT PAGE_2_CTRL(7418)
 #define COMBO_GUIGRID PAGE_2_CTRL(7419)
+#define ED_LINK PAGE_2_CTRL(7420)
+#define BTN_LINKADD PAGE_2_CTRL(7421)
+#define GRP_LINKS PAGE_2_CTRL(7422)
+#define STXT_LINKS PAGE_2_CTRL(7423)
 // debug related
 #define WATCH_GROUP_CONTROLS ((allControls ESC_DISPLAY) select {ctrlParentControlsGroup _x == GRP_WATCHFIELDS})
 #define CUR_CC_CONTROLS (allControls ESC_DISPLAY select {ctrlParentControlsGroup _x == GRP_CC_COMMANDS})

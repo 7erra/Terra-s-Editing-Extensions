@@ -33,6 +33,6 @@ class RscTitles
 		};
 	};
 	
-	#include "..\watch\RscLiveWatch.hpp"
-	#include "..\debug\RscGrids.hpp"
+	#include "..\gui\RscLiveWatch.hpp"
+	#include "..\gui\RscGrids.hpp"
 };

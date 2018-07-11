@@ -158,14 +158,14 @@ switch (_chapter) do {
 		_curTxt = "Next up are the files itself. Create three new files. To create a new file right click >> New >> Text document. Select the ENTIRE file name including the file extension (.txt) and rename them after the following list:";
 		"RscStructuredText" TFNC_NEW
 		_curTxt = "I can't see the file extension";
-		TFNC_TIP("To display file extensions you have to enable it in the Windows Explorer:<br/>Windows Explorer >> View >> File  name extensions<br/><t size='4.5' align='center'><img image='TER_Editing_data\data\fileextensions.jpg'/></t>")
+		TFNC_TIP("To display file extensions you have to enable it in the Windows Explorer:<br/>Windows Explorer >> View >> File  name extensions<br/><t size='4.5' align='center'><img image='TER_Editing\data\fileextensions.jpg'/></t>")
 
 		_curTxt = "- description.ext
 			- defines.hpp
 			- dialog.hpp
 
 			Your folder should now look like this:
-			<t size='15' align=center><img image='TER_Editing_data\data\c1_folders.jpg'/></t>
+			<t size='15' align=center><img image='TER_Editing\data\c1_folders.jpg'/></t>
 
 			The defines.hpp and the dialog.hpp can be named whatever you want as long as you keep track of the names and adjust the next steps accordingly.";
 		"RscStructuredText" TFNC_NEW
@@ -254,7 +254,7 @@ _curTxt = "class YOUR_DIALOG_CLASS
 		The difference between controlsBackground and controls isn't huge. You can also only use the controls class. Usually you put the controls you can interact with (eg RscEdit, RscButton,...) into the controls class. Everything else goes into the controlsBackground section.
 
 			Example:
-			<t size='8' align='center'><img image='TER_Editing_data\data\c4_example.JPG'/></t><br/>Don't worry about the suddenly increasing numbers. This is an already finished dialog. In fact, it is this one:";
+			<t size='8' align='center'><img image='TER_Editing\data\c4_example.JPG'/></t><br/>Don't worry about the suddenly increasing numbers. This is an already finished dialog. In fact, it is this one:";
 		TFNC_NEW
 		_curTxt = "Example dialog";
 		TFNC_TIP("---The title is acutally ""Title"" and this text shouldn't exist---")
@@ -282,7 +282,7 @@ _curTxt = "class YOUR_DIALOG_CLASS
 		When you are satisfied with the looks export it in the config format. Paste it below the actual dialog as you have to sort it. Move the non-interactable controls to the controlsBackground and the interactable ones to the class controls {};. You might want to save your dialog with STRG+S as well since you can quickly edit it then.
 
 		Here is the full example of what the dialog might look like:
-		<t size='30' align=center><img image='TER_Editing_data\data\c5_dialog.JPG'/></t>
+		<t size='30' align=center><img image='TER_Editing\data\c5_dialog.JPG'/></t>
 		Note: The IGUIBack class is not a standard class. You have to create it in the defines.hpp to use it.
 
 		Links:

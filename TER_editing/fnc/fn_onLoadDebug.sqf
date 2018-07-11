@@ -470,6 +470,50 @@ if (isClass (configfile >> "CfgPatches" >> "TER_guigridfix")) then {
 	COMBO_GUIGRID ctrlSetTooltip "Not compatible with @GUI_GRID Fix";
 }; // disable if the gui editor is already overwritten with the GUI_GRID fix
 
+// BIKI Links
+_prevLinkText = profileNamespace getVariable ["TER_3den_links",""];
+STXT_LINKS ctrlSetStructuredText parseText _prevLinkText;
+STXT_LINKS ctrlSetPosition [0,0,21 * GUI_GRID_W,(ctrlTextHeight STXT_LINKS) max (6 * GUI_GRID_H)];
+STXT_LINKS ctrlCommit 0;
+
+BTN_LINKADD ctrlAddEventHandler ["ButtonClick",{
+	params ["_button"];
+	_command = ctrlText ED_LINK;
+	if (_command == "#CLEAR") exitWith {
+		profileNamespace setVariable ["TER_3den_links",""];
+		saveProfileNamespace;
+		STXT_LINKS ctrlSetStructuredText parseText "";
+	};
+	_linkText = if (_command find "http" == -1) then {
+		format ["<a href='https://community.bistudio.com/wiki/%1'>%1</a><br/>",_command];
+	} else {
+		format ["<a href='%1'>%1</a><br/>",_command];
+	};
+	_prevLinkText = profileNamespace getVariable ["TER_3den_links",""];
+	if (_prevLinkText find _linkText != -1) then {
+		_prevLinkText = (_prevLinkText select [0,_prevLinkText find _linkText]) + (_prevLinkText select [(_prevLinkText find _linkText) +count _linkText, count _prevLinkText]);
+	};
+	_newLinkText = if (count _prevLinkText == count (profileNamespace getVariable ["TER_3den_links",""])) then {
+		 _linkText +_prevLinkText;
+	} else {
+		_prevLinkText;
+	};
+	profileNamespace setVariable ["TER_3den_links",_newLinkText];
+	saveProfileNamespace;
+	STXT_LINKS ctrlSetStructuredText parseText _newLinkText;
+	STXT_LINKS ctrlSetPosition [0,0,21 * GUI_GRID_W,(ctrlTextHeight STXT_LINKS) max (6 * GUI_GRID_H)];
+	STXT_LINKS ctrlCommit 0;
+}];
+
+_tooltipArray = [
+	"You can",
+	"a) Add a command (case sensitive)",
+	"b) Add a link",
+	"c) Use ""#CLEAR"" to wipe the history",
+	"d) Remove a link by adding the same link again"
+];
+ED_LINK ctrlSetTooltip (_tooltipArray joinString toString [10]);
+
 ////////////////////////END OF GROUP CONTROLS//////////////////////
 // pages listbox:
 #define XLB_PAGES ESC_CTRL(7399)
