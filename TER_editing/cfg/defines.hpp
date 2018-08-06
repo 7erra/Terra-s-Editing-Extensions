@@ -85,12 +85,13 @@
 #define TR_SHOWROOT       1
 #define TR_AUTOCOLLAPSE   2
 
-#include "..\fnc\ctrls.inc"
+#include "..\gui\scripts\ctrls.inc"
 
 #include "defaultControls.hpp"
 
 #define STRING(TEXT) #TEXT
-#define ONLOAD(SCRIPT) onLoad = STRING(_this spawn TER_fnc_onLoad##SCRIPT);
+#define SCRIPT_STR(FILE) TER_Editing\gui\scripts\Rsc##FILE##.sqf
+#define ONLOAD(SCRIPT) onLoad = STRING(_this execVM STRING(STRING(SCRIPT_STR(SCRIPT))));
 
 class TER_3den_RscEditMulti: RscEdit
 {

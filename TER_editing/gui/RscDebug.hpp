@@ -107,7 +107,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 	y = (22.5 * GUI_GRID_H + GUI_GRID_Y) - DEBUG_H;
 	w = DEBUG_W;
 	h = DEBUG_H;
-	onLoad = "_this spawn TER_fnc_onLoadDebug;";
+	ONLOAD(Debug)
 	class controls 
 	{
 		class background: RscText
@@ -164,7 +164,6 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				class txt_moreWatch: RscText
 				{
 					font="PuristaLight";
-					
 					text = "More watch fields:";
 					x = 0;
 					y = CUR_Y;

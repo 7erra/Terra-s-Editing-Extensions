@@ -4,29 +4,23 @@ class CfgFunctions
 	{
 		class 3den
 		{
-			file = "TER_editing\fnc";
+			file = "TER_Editing\fnc";
 			class exportCfg {};
 			class findHouseType {};
 			class showBuildingPos {};
-			class toggleLive {};
 			class escapeShortcuts {};
+			class clearInventory {};
 		};
 		class GUI
 		{
-			file = "TER_editing\fnc";
+			file = "TER_Editing\gui\scripts";
+			// general
+			class controlInfo {};
 			// ezGUI
 			class createRscEzGUI {};
-			class onLoadEzGUI {};
 			class loadChapter {};
 			// debug
 			class createWatchFields {};
-			class onLoadDebug {};
-			// stxt Editor
-			class onLoadStxtEditor {};
-			// color picker
-			class onLoadColorPicker {};
-			// font picker
-			class onLoadFontList {};
 		};
 		
 	};
@@ -34,7 +28,7 @@ class CfgFunctions
 	{
 		class config
 		{
-			class copyConfigClass {file = "TER_editing\fnc\fn_copyConfigClass.sqf";};
+			class copyConfigClass {file = "TER_Editing\fnc\fn_copyConfigClass.sqf";};
 		};
 	};
 };

@@ -4,7 +4,7 @@ class TER_RscDisplayGrids
 	duration = 1e+6;
 	fadeIn = 0;
 	fadeOut = 0;
-	onLoad = "uiNamespace setVariable [""TER_3den_RscGrids_display"",_this select 0];";
+	ONLOAD(Grids)
 	class controls 
 	{
 		class line_middleV: RscText
@@ -22,14 +22,6 @@ class TER_RscDisplayGrids
 			w = safeZoneW;
 			h = pixelh;
 			colorBackground[] = {0,1,1,1};
-		};
-		class frame_absolute: RscFrame
-		{
-			x = 0;
-			y = 0;
-			w = 1;
-			h = 1;
-			colorText[] = {0,1,1,1};
 		};
 	};
 };

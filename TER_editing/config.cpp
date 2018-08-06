@@ -13,3 +13,5 @@
 #include "gui\RscStructuredTextEditor.hpp"
 #include "gui\RscColorPicker.hpp"
 #include "gui\RscFontList.hpp"
+// v1.7
+#include "gui\RscAttachToFinder.hpp"

@@ -18,7 +18,8 @@ class Display3DEN
 						"TER_3den_stxtEditor",
 						"TER_3den_colorPicker",
 						"TER_3den_fontPicker",
-						"TER_3den_easyGUI"
+						"TER_3den_easyGUI",
+						"TER_3den_attachToFinder"
 					};
 				};
 				#define STR(ARG) #ARG
@@ -46,6 +47,12 @@ class Display3DEN
 					// Expression called upon clicking; ideally, it should call your custom function
 					action = "[0] call TER_fnc_createRscEzGUI";
 				};
+				class TER_3den_attachToFinder
+				{
+					text = "attachTo Finder";
+					picture = "TER_editing\icons\attachTo.paa";
+					action = "(findDisplay 313) ctrlCreate [""TER_3den_RscAttachToFinder"",73100];";
+				};
 			};
 		};
 	};
@@ -59,6 +66,7 @@ class Display3DEN
 				{
 					"TER_showTypes",
 					"TER_buildingPos"
+					//"TER_clearInv" todo, not working
 				};
 			};
 			class TER_showTypes//Now we need to define the entry itself which will be inside the '''Log''' folder '''(Level 2)'''
@@ -72,6 +80,12 @@ class Display3DEN
 				text = "Show Building Positions";
 				action = "call TER_fnc_showBuildingPos;";
 				conditionShow = "hoverObject";
+			};
+			class TER_clearInv
+			{
+				text = "Clear the inventory of selected objects";
+				action = "[] call TER_fnc_clearInventory";
+				conditionShow = "selectedObject";
 			};
 		};
 	};
