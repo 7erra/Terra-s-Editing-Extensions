@@ -3,6 +3,7 @@ disableSerialization;
 params ["_display"];
 uiNamespace setVariable ["TER_3den_chapterDisplay", _display];
 _chapter = uiNamespace getVariable ["TER_3den_chapter",0];
+TER_fnc_loadChapter = compile preprocessFileLineNumbers "TER_Editing\gui\scripts\fn_loadChapter.sqf";
 //-- Setting up the dialog
 // Populating the RscGroup
 [] call TER_fnc_loadChapter;

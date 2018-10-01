@@ -6,7 +6,7 @@
 #include "gui\RscEzGUI.hpp"
 #include "gui\RscEzGUITip.hpp"
 #include "cfg\cfg3den.hpp"
-#include "cfg\RscTitles.hpp"
+#include "gui\RscTitles.hpp"
 #include "cfg\escapeMenu.hpp"
 #include "gui\RscGUIEditor.hpp"
 // v1.5

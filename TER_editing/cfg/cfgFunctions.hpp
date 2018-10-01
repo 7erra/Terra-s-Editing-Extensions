@@ -8,7 +8,6 @@ class CfgFunctions
 			class exportCfg {};
 			class findHouseType {};
 			class showBuildingPos {};
-			class escapeShortcuts {};
 			class clearInventory {};
 		};
 		class GUI
@@ -18,9 +17,6 @@ class CfgFunctions
 			class controlInfo {};
 			// ezGUI
 			class createRscEzGUI {};
-			class loadChapter {};
-			// debug
-			class createWatchFields {};
 		};
 		
 	};
