@@ -11,8 +11,10 @@
 	nothing
 */
 collect3DENHistory {
-	clear3DENInventory (get3DENSelected "object");
+	_selObj = get3DENSelected "object";
+	clear3DENInventory _selObj;
 	{
 		_x setUnitLoadout [[],[],[],[],[],[],"","",[],["","","","","",""]];
-	} foreach (get3DENSelected "object")
+	} foreach _selObj;
+	save3DENInventory _selObj;
 };

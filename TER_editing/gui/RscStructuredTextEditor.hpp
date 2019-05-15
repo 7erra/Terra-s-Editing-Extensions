@@ -1,6 +1,6 @@
 class TER_3den_RscStxtEditor
 {
-	idd = 73070;
+	idd = IDD_DISPLAY_STRUCTUREDTEXTEDITOR;
 	enableSimulation = false;
 	ONLOAD(StxtEditor)
 	class controlsBackground

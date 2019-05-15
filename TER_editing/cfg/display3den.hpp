@@ -18,40 +18,38 @@ class Display3DEN
 						"TER_3den_stxtEditor",
 						"TER_3den_colorPicker",
 						"TER_3den_fontPicker",
-						"TER_3den_easyGUI",
-						"TER_3den_attachToFinder"
+						"TER_3den_attachToFinder",
+						"TER_3den_dikCodes"
 					};
 				};
 				#define STR(ARG) #ARG
-				#define ACT_DISPLAY(DISPLAY) action = STR((findDisplay 313) createDisplay STR(STR(TER_3den_Rsc##DISPLAY)));
+				#define ACT_DISPLAY(DISPLAY) action = STR((findDisplay 313) createDisplay STR(STR(TER_3den_Rsc##DISPLAY)))
 				class TER_3den_stxtEditor
 				{
 					text = "Structured Text Editor";
 					picture = "";
-					ACT_DISPLAY(StxtEditor)
+					ACT_DISPLAY(StxtEditor);
 				};
 				class TER_3den_colorPicker: TER_3den_stxtEditor
 				{
 					text = "Color Picker";
-					ACT_DISPLAY(ColorPicker)
+					ACT_DISPLAY(ColorPicker);
 				};
 				class TER_3den_fontPicker: TER_3den_colorPicker
 				{
 					text = "Font Picker";
-					ACT_DISPLAY(FontList)
-				};
-				class TER_3den_easyGUI
-				{
-					text = "Easy GUI creation"; // Item text
-					picture = "TER_editing\icons\ez.paa"; // Item picture
-					// Expression called upon clicking; ideally, it should call your custom function
-					action = "[0] call TER_fnc_createRscEzGUI";
+					ACT_DISPLAY(FontList);
 				};
 				class TER_3den_attachToFinder
 				{
 					text = "attachTo Finder";
 					picture = "TER_editing\icons\attachTo.paa";
 					action = "(findDisplay 313) ctrlCreate [""TER_3den_RscAttachToFinder"",73100];";
+				};
+				class TER_3den_dikCodes
+				{
+					text = "Key Codes";
+					ACT_DISPLAY(DisplayKeyCodes);
 				};
 			};
 		};
@@ -65,8 +63,9 @@ class Display3DEN
 				items[] +=//Here we list all items we want to add to the '''Log''' class. 
 				{
 					"TER_showTypes",
-					"TER_buildingPos"
-					//"TER_clearInv" todo, not working
+					"TER_buildingPos",
+					"TER_exportMarker",
+					"TER_clearInventory"
 				};
 			};
 			class TER_showTypes//Now we need to define the entry itself which will be inside the '''Log''' folder '''(Level 2)'''
@@ -81,11 +80,17 @@ class Display3DEN
 				action = "call TER_fnc_showBuildingPos;";
 				conditionShow = "hoverObject";
 			};
-			class TER_clearInv
+			class TER_exportMarker
 			{
-				text = "Clear the inventory of selected objects";
-				action = "[] call TER_fnc_clearInventory";
-				conditionShow = "selectedObject";
+				text = "Export Marker As String";
+				action = "call TER_fnc_exportMarker";
+				conditionShow = "selectedMarker";
+			};
+			class TER_clearInventory
+			{
+				text = "Clear Inventory";
+				action = "call TER_fnc_clearInventory";
+				conditionShow = "hoverObjectBrain";
 			};
 		};
 	};

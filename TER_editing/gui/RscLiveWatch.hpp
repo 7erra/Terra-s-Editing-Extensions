@@ -1,6 +1,6 @@
 class TER_3den_RscLiveWatch
 {
-	idd = 73031;
+	idd = IDD_DISPLAY_LIVEWATCH;
 	duration = 1e+6;
 	fadeIn = 0;
 	fadeOut = 0;
@@ -55,7 +55,7 @@ class TER_3den_RscLiveWatch
 	{
 		class inputLive1: RscText
 		{
-			idc = 7301;
+			idc = IDC_LIVE_INPUT1;
 			shadow=0;
 			font="EtelkaMonospacePro";
 			canModify=0;
@@ -68,7 +68,7 @@ class TER_3den_RscLiveWatch
 		};
 		class outputLive1: inputLive1
 		{
-			idc = 7302;
+			idc = IDC_LIVE_OUTPUT1;
 			x = 31.7 * GUI_GRID_W + GUI_GRID_X;
 			y = -10 * GUI_GRID_H + GUI_GRID_Y;
 			w = 15.5 * GUI_GRID_W;
@@ -76,7 +76,7 @@ class TER_3den_RscLiveWatch
 		};
 		class inputLive2: inputLive1
 		{
-			idc = 7303;
+			idc = IDC_LIVE_INPUT2;
 			x = 16.2 * GUI_GRID_W + GUI_GRID_X;
 			y = -9 * GUI_GRID_H + GUI_GRID_Y;
 			w = 15.5 * GUI_GRID_W;
@@ -84,7 +84,7 @@ class TER_3den_RscLiveWatch
 		};
 		class outputLive2: inputLive1
 		{
-			idc = 7304;
+			idc = IDC_LIVE_OUTPUT2;
 			x = 31.7 * GUI_GRID_W + GUI_GRID_X;
 			y = -9 * GUI_GRID_H + GUI_GRID_Y;
 			w = 15.5 * GUI_GRID_W;
@@ -92,7 +92,7 @@ class TER_3den_RscLiveWatch
 		};
 		class inputLive3: inputLive1
 		{
-			idc = 7305;
+			idc = IDC_LIVE_INPUT3;
 			x = 16.2 * GUI_GRID_W + GUI_GRID_X;
 			y = -8 * GUI_GRID_H + GUI_GRID_Y;
 			w = 15.5 * GUI_GRID_W;
@@ -100,7 +100,7 @@ class TER_3den_RscLiveWatch
 		};
 		class outputLive3: inputLive1
 		{
-			idc = 7306;
+			idc = IDC_LIVE_OUTPUT3;
 			x = 31.7 * GUI_GRID_W + GUI_GRID_X;
 			y = -8 * GUI_GRID_H + GUI_GRID_Y;
 			w = 15.5 * GUI_GRID_W;
@@ -108,7 +108,7 @@ class TER_3den_RscLiveWatch
 		};
 		class inputLive4: inputLive1
 		{
-			idc = 7307;
+			idc = IDC_LIVE_INPUT4;
 			x = 16.2 * GUI_GRID_W + GUI_GRID_X;
 			y = -7 * GUI_GRID_H + GUI_GRID_Y;
 			w = 15.5 * GUI_GRID_W;
@@ -116,7 +116,7 @@ class TER_3den_RscLiveWatch
 		};
 		class outputLive4: inputLive1
 		{
-			idc = 7308;
+			idc = IDC_LIVE_OUTPUT4;
 			x = 31.7 * GUI_GRID_W + GUI_GRID_X;
 			y = -7 * GUI_GRID_H + GUI_GRID_Y;
 			w = 15.5 * GUI_GRID_W;

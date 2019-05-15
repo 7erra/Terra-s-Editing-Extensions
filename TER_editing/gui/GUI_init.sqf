@@ -526,4 +526,15 @@ titletext ["","plain"];
 clearradio;
 enableradio false;
 
+//TER_3den: Draw better grid
+if (uiNamespace getVariable ["TER_3den_drawGridGUIEditor",true]) then {
+	("TER_3den_RscGrids_layer" call BIS_fnc_rscLayer) cutRsc ["default", "PLAIN"];
+	("TER_3den_RscGrids_layer" call BIS_fnc_rscLayer) cutRsc ["TER_RscDisplayGrids", "PLAIN"];
+};
+GUI_DISPLAY displayAddEventHandler ["unLoad",{
+	params ["_display", "_exitCode"];
+	//close grid display
+	("TER_3den_RscGrids_layer" call BIS_fnc_rscLayer) cutRsc ["default", "PLAIN"];
+}];
+
 //endloadingscreen;

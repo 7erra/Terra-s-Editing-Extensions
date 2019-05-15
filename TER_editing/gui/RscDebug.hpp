@@ -1,5 +1,5 @@
 #define DEBUG_W (22 * GUI_GRID_W)
-#define DEBUG_H (32.2 * GUI_GRID_H)
+#define DEBUG_H (safeZoneH - (1 + (25-22.4)) * GUI_GRID_H)
 #define L_BORDER (0.5 * GUI_GRID_W)
 #define R_BORDER (21.5 * GUI_GRID_W)
 #define W_BORDER (R_BORDER - L_BORDER)
@@ -28,7 +28,7 @@ class TER_3den_RscWatchGroupControl: RscControlsGroupNoScrollBars
 	{
 		class ed_input: TER_3den_RscEditCode
 		{
-			idc = 7490;
+			idc = IDC_ED_WATCHIN;
 			x = 0.1 * GUI_GRID_W;
 			y = 0.1 * GUI_GRID_H;
 			w = W_BORDER-(1.2 * GUI_GRID_W);
@@ -36,7 +36,7 @@ class TER_3den_RscWatchGroupControl: RscControlsGroupNoScrollBars
 		};
 		class btn_delete: RscButtonMenu
 		{
-			idc = 7491;
+			idc = IDC_BTN_WATCHDELETE;
 			text = "X";
 			tooltip = "Delete";
 			style = ST_CENTER;
@@ -48,7 +48,7 @@ class TER_3den_RscWatchGroupControl: RscControlsGroupNoScrollBars
 		};
 		class ed_output: TER_3den_RscEditCodeOutput
 		{
-			idc = 7492;
+			idc = IDC_ED_WATCHOUT;
 			x = 0;
 			y = 1.2 * GUI_GRID_H;
 			w = W_BORDER;
@@ -66,7 +66,7 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
 	{
 		class btn_cc_exec: RscButtonMenu
 		{
-			idc = 7493;
+			idc = IDC_BTN_CCEXEC;
 			text = "Execute";
 			x = 0;
 			y = 0;
@@ -75,7 +75,7 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
 		};
 		class ed_cc_code: TER_3den_RscEditCode
 		{
-			idc = 7494;
+			idc = IDC_ED_CCCODE;
 			x = 2.6 * GUI_GRID_W;
 			y = 0;
 			w = W_BORDER - (3.7 * GUI_GRID_W);
@@ -83,7 +83,7 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
 		};
 		class btn_cc_delete: RscButtonMenu
 		{
-			idc = 7495;
+			idc = IDC_BTN_CCDELETE;
 			text = "X";
 			tooltip = "Delete";
 			style = ST_CENTER;
@@ -102,7 +102,6 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
 
 #define SEPERATOR_COUNT __EVAL(_seperatorCount)
 #define SEPERATOR_COUNT_ADD __EXEC(_seperatorCount = _seperatorCount +1)
-//#define GLUE(PART_ONE, PART_TWO) PART_ONE##PART_TWO
 #define SEPERATOR(NUMBER) class seperator##NUMBER: seperator1\
 				{\
 					y = CUR_Y;\
@@ -113,15 +112,17 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
  page 2: watch fields
  page 3: Custom commands
  page 4: BIKI links, target debug, recent watch entries
+ page 5: Unit live watch
+ page 6: KK Debug
  */
 class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 {
-	idc = 73040;
+	idc = IDC_DEBUG;
 	x = 40 * GUI_GRID_W + GUI_GRID_X;
 	y = safezoneY + 1 * GUI_GRID_H;
 	w = DEBUG_W;
 	h = DEBUG_H;
-	ONLOAD(Debug)
+	onLoad = "[""load"",_this] execVM ""\TER_Editing\gui\scripts\RscDebug.sqf"";";
 	class controls 
 	{
 		class background: RscText
@@ -148,11 +149,11 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			h = 1 * GUI_GRID_H;
 		};
 		// START PAGE 1
-		// page 1: everything
+		// page 1: everything else
 		__EXEC(_curY = 0.1)
 		class TER_3den_debugConsole_page1: RscControlsGroupNoScrollBars
 		{
-			idc = 73041;
+			idc = IDC_DEBUG_PAGE_1;
 			x = L_BORDER;
 			y = 1.1 * GUI_GRID_H;
 			w = W_BORDER;
@@ -161,11 +162,11 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			{
 				class btn_liveDebug: RscButtonMenu
 				{
-					idc = 7402;
+					idc = IDC_BTN_LIVEDEBUG;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 					text = "Live Debug";
 				};
 				class seperator1: RscText
@@ -191,11 +192,11 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				class combo_sideplayer: RscCombo
 				{
 					font="PuristaLight";
-					idc = 7404;
+					idc = IDC_COMBO_SIDEPLAYER;
 					x = W_BORDER-(0.25 * DEBUG_W);
 					y = CUR_Y;
 					w = 0.25 * DEBUG_W;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				SEPERATOR(2)
 				class txt_teleport: txt_sideplayer
@@ -205,11 +206,11 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class cb_teleport: RscCheckbox
 				{
-					idc = 7401;
+					idc = IDC_CB_TELEPORT;
 					x = W_BORDER-(1 * GUI_GRID_W);
 					y = CUR_Y;
 					w = GUI_GRID_W;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				SEPERATOR(3)
 				class txt_unitIcons: txt_sideplayer
@@ -219,7 +220,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class cb_unitIcons: cb_teleport
 				{
-					idc = 7403;
+					idc = IDC_CB_UNITICONS;
 					y = CUR_Y;
 				};ADD_Y(1)
 				SEPERATOR(4)
@@ -230,9 +231,15 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class cb_grids: cb_teleport
 				{
-					idc = 7400;
+					idc = IDC_CB_GRIDS;
 					y = CUR_Y;
-				};ADD_Y(1)
+				};
+				class cb_gridsGUIEditor: cb_teleport
+				{
+					idc = IDC_CB_GRIDSGUIEDITOR;
+					y = CUR_Y;
+					x = W_BORDER-(2.1 * GUI_GRID_W);
+				}; ADD_Y(1)
 				SEPERATOR(5)
 				class txt_guigrid: txt_sideplayer
 				{
@@ -241,38 +248,149 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class combo_guigrid: combo_sideplayer
 				{
-					idc = 7419;
+					idc = IDC_COMBO_GUIGRID;
 					x = 0.5 * W_BORDER;
 					y = CUR_Y;
 					w = 0.5 * W_BORDER;
 				};ADD_Y(1)
-				class txt_exportGrid: txt_sideplayer
+				class btn_gridAnchor: btn_liveDebug
 				{
-					text = "How to: Export Grid";
-					tooltip = "Press CTRL+SHIFT+P in the GUI Editor to export the current grid variables";
-					x = 0.5 * W_BORDER;
+					text = "ORIGIN";
+					idc = IDC_BTN_GRIDANCHOR;
+					x = 0;
 					y = CUR_Y;
-					w = 0.5 * W_BORDER;
-				};ADD_Y(1)
+					w = 1/3 * W_BORDER - 0.1 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class btn_gridSet: btn_gridAnchor
+				{
+					idc = IDC_BTN_GRIDSET;
+					text = "SET";
+					x = 1/3 * W_BORDER;
+				};
+				class btn_gridExport: btn_gridAnchor
+				{
+					idc = IDC_BTN_GRIDEXPORT;
+					text = "Export Grid";
+					x = 2/3 * W_BORDER;
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_gridXValue: txt_sideplayer
+				{
+					text = "X";
+					y = CUR_Y;
+					w = GUI_GRID_W;
+				};
+				class ed_gridXValue: RscEdit
+				{
+					idc = IDC_ED_GRIDXVALUE;
+					x = 1.2 * GUI_GRID_W;
+					y = CUR_Y;
+					w = W_BORDER - 1.2 * GUI_GRID_W;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_gridYValue: txt_gridXValue
+				{
+					text = "Y";
+					y = CUR_Y;
+				};
+				class ed_gridYValue: ed_gridXValue
+				{
+					idc = IDC_ED_GRIDYVALUE;
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_gridWValue: txt_gridXValue
+				{
+					text = "W";
+					y = CUR_Y;
+				};
+				class ed_gridWValue: ed_gridXValue
+				{
+					idc = IDC_ED_GRIDWVALUE;
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_gridHValue: txt_gridXValue
+				{
+					text = "H";
+					y = CUR_Y;
+				};
+				class ed_gridHValue: ed_gridXValue
+				{
+					idc = IDC_ED_GRIDHVALUE;
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_gridVariable: txt_gridXValue
+				{
+					text = "Variable";
+					y = CUR_Y;
+					w = 3 * GUI_GRID_W;
+				};
+				class ed_gridVariable: ed_gridXValue
+				{
+					idc = IDC_ED_GRIDVARIABLE;
+					x = 3.2 * GUI_GRID_W;
+					y = CUR_Y;
+					w = W_BORDER - 3.2 * GUI_GRID_W;
+					h = ADD_HEIGHT(1)
+				};
 				SEPERATOR(6)
 				class btn_clearChat: RscButtonMenu
 				{
-					idc = 7418;
+					idc = IDC_BTN_CLEARCHAT;
 					text = "Clear chat";
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				SEPERATOR(7)
 				class btn_switchUnit: RscButtonMenu
 				{
-					idc = 7424;
+					idc = IDC_BTN_SWITCHUNIT;
 					text = "Switch unit";
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
+				};
+				SEPERATOR(8)
+				class txt_changeTime: txt_sideplayer
+				{
+					text = "Set time:";
+					y = CUR_Y;
+				};
+				class btn_timeSunrise: RscPictureKeepAspect
+				{
+					idc = IDC_PIC_TIMESUNRISE;
+					text = "\a3\3den\data\attributes\slidertimeday\sun_ca.paa";
+					x = W_BORDER - 10.3 * GUI_GRID_W;
+					y = CUR_Y;
+					w = GUI_GRID_W;
+					h = GUI_GRID_H;
+				};
+				class btn_timeSunset: btn_timeSunrise
+				{
+					idc = IDC_PIC_TIMESUNSET;
+					text = "\a3\3den\data\attributes\date\moon_full_ca.paa";
+					x = W_BORDER - 9.2 * GUI_GRID_W;
+				};
+				class combo_timeHour: combo_sideplayer
+				{
+					idc = IDC_COMBO_TIMEHOUR;
+					x = W_BORDER - 8.1 * GUI_GRID_W;
+					y = CUR_Y;
+					w = 4 * GUI_GRID_W;
+					h = GUI_GRID_H;
+				};
+				class combo_timeMinute: combo_timeHour
+				{
+					idc = IDC_COMBO_TIMEMINUTE;
+					x = W_BORDER - 4 * GUI_GRID_W;
+					h = ADD_HEIGHT(1)
 				};
 			};
 		};
@@ -280,7 +398,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 		__EXEC(_curY = 0.1)
 		class TER_3den_debugConsole_page2: TER_3den_debugConsole_page1
 		{
-			idc = 73042;
+			idc = IDC_DEBUG_PAGE_2;
 			class controls 
 			{
 				class txt_moreWatch: RscText
@@ -294,18 +412,18 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class btn_addWatch: RscButtonMenu
 				{
-					idc = 7409;
+					idc = IDC_BTN_ADDWATCH;
 					text = "+";
 					style = ST_CENTER;
 					x = W_BORDER-(1 * GUI_GRID_W);
 					y = CUR_Y;
 					w = 1 * GUI_GRID_W;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 					tooltip = "Create new watch field";
 				};
 				class grp_watchFields: RscControlsGroupNoScrollBars
 				{
-					idc = 7410;
+					idc = IDC_GRP_WATCHFIELDS;
 					colorBackground[] = {1,0,0,1};
 					x = 0;
 					y = CUR_Y;
@@ -318,7 +436,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 		__EXEC(_curY = 0.1)
 		class TER_3den_debugConsole_page3: TER_3den_debugConsole_page1
 		{
-			idc = 73043;
+			idc = IDC_DEBUG_PAGE_3;
 			class controls 
 			{
 				class txt_customCommands: RscText
@@ -332,7 +450,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class combo_cc_locality: RscCombo
 				{
-					idc = 7416;
+					idc = IDC_COMBO_CCLOCALITY;
 					x = W_BORDER -((1.2 +3.5) * GUI_GRID_W);
 					y = CUR_Y;
 					w = 3.5 * GUI_GRID_W;
@@ -340,18 +458,18 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class btn_cc_add: RscButtonMenu
 				{
-					idc = 7411;
+					idc = IDC_BTN_CCADD;
 					text = "+";
 					style = ST_CENTER;
 					x = W_BORDER-(1 * GUI_GRID_W);
 					y = CUR_Y;
 					w = 1 * GUI_GRID_W;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 					tooltip = "Add custom command";
 				};
 				class grp_cc_commands: RscControlsGroupNoScrollBars
 				{
-					idc = 7412;
+					idc = IDC_GRP_CCCOMMANDS;
 					colorBackground[] = {1,0,0,1};
 					x = 0;
 					y = CUR_Y;
@@ -364,14 +482,13 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 		__EXEC(_curY = 0.1)
 		class TER_3den_debugConsole_page4: TER_3den_debugConsole_page1
 		{
-			idc = 73044;
+			idc = IDC_DEBUG_PAGE_4;
 			class controls 
 			{
 				class txt_watchHistory: RscText
 				{
 					font="PuristaLight";
-					tooltip = "Double click to activate. Press ""DEL"" to delete the selected entry";
-					text = "Recent Watch entries:";
+					text = "Saved Watch entries:";
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER/2;
@@ -379,29 +496,42 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class combo_watchIn: RscCombo
 				{
-					idc = 7414;
+					idc = IDC_COMBO_WATCHIN;
 					x = W_BORDER -(10 * GUI_GRID_W);
 					y = CUR_Y;
 					w = 10 * GUI_GRID_W;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				class lb_watchHistory: RscListbox
 				{
-					idc = 7413;
+					idc = IDC_LB_WATCHHISTORY;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = ADD_HEIGHT(4);
+					h = ADD_HEIGHT(4)
 				};
-				class btn_clearHistory: RscButtonMenu
+				class btn_historyMove: RscButtonMenu
 				{
-					idc = 7415;
-					text = "Clear history";
-					colorBackground[] = DEEP_RED;
-					x = (W_BORDER/2)+ (0.1 * GUI_GRID_W);
+					idc = IDC_BTN_HISTORYMOVE;
+					text = "Move to watch";
+					x = 0;
 					y = CUR_Y;
-					w = (W_BORDER/2)- (0.1 * GUI_GRID_W);
-					h = ADD_HEIGHT(1);
+					w = W_BORDER/3 - 0.1 * GUI_GRID_W;
+					h = GUI_GRID_H;
+				};
+				class btn_historyDeleteEntry: btn_historyMove
+				{
+					idc = IDC_BTN_HISTORYDELETEENTRY;
+					text = "DELETE ENTRY";
+					x = 1/3 * W_BORDER;
+				};
+				class btn_clearHistory: btn_historyMove
+				{
+					idc = IDC_BTN_CLEARHISTORY;
+					text = "Clear list";
+					colorBackground[] = DEEP_RED;
+					x = 2/3 * W_BORDER;
+					h = ADD_HEIGHT(1)
 				};
 				class seperator1: RscText
 				{
@@ -424,38 +554,46 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class cb_targetDebug: RscCheckbox
 				{
-					idc = 7405;
+					idc = IDC_CB_TARGETDEBUG;
 					x = W_BORDER-(1 * GUI_GRID_W);
 					y = CUR_Y;
 					w = GUI_GRID_W;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				class ed_targetDebug_command: TER_3den_RscEditCode
 				{
-					idc = 7406;
+					idc = IDC_ED_TDCOMMAND;
 					tooltip = "Write your command here and add it with the + button";
 					x = 0.1 * GUI_GRID_W;
 					y = CUR_Y;
-					w = W_BORDER - (1.2 * GUI_GRID_W);
+					w = W_BORDER - (2.3 * GUI_GRID_W);
 					h = 1 * GUI_GRID_H;
 				};
 				class btn_targetDebug_add: RscButtonMenu
 				{
-					idc = 7407;
+					idc = IDC_BTN_TDADD;
 					text = "+";
 					tooltip = "Add your command to the watch list";
-					x = W_BORDER -(1 * GUI_GRID_W);
+					x = W_BORDER -(2.1 * GUI_GRID_W);
 					y = CUR_Y;
 					w = 1 * GUI_GRID_W;
-					h = ADD_HEIGHT(1);
+					h = GUI_GRID_H;
+				};
+				class btn_targetDebug_remove: btn_targetDebug_add
+				{
+					idc = IDC_BTN_TDREMOVE;
+					text = "-";
+					tooltip = "Remove selected entry";
+					x = W_BORDER -(1 * GUI_GRID_W);
+					h = ADD_HEIGHT(1)
 				};
 				class lb_targetDebug_commands: RscListbox
 				{
-					idc = 7408;
+					idc = IDC_LB_TDCOMMANDS;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = ADD_HEIGHT(3);
+					h = ADD_HEIGHT(3)
 				};
 				SEPERATOR(2)
 				class txt_links: RscText
@@ -469,7 +607,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};ADD_Y(1)
 				class ed_link: TER_3den_RscEditCode
 				{
-					idc = 7420;
+					idc = IDC_ED_LINK;
 					tooltip = "Write your command here and add it with the + button";
 					x = 0.1 * GUI_GRID_W;
 					y = CUR_Y;
@@ -478,26 +616,26 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 				class btn_linkAdd: RscButtonMenu
 				{
-					idc = 7421;
+					idc = IDC_BTN_LINKADD;
 					text = "+";
 					tooltip = "Add Link";
 					x = W_BORDER -(1 * GUI_GRID_W);
 					y = CUR_Y;
 					w = 1 * GUI_GRID_W;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				class grp_links: RscControlsGroup
 				{
-					idc = 7422;
+					idc = IDC_GRP_LINKS;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = ADD_HEIGHT(6);
+					h = ADD_HEIGHT(6)
 					class controls
 					{
 						class stxt_links: RscStructuredText
 						{
-							idc = 7423;
+							idc = IDC_STXT_LINKS;
 							colorBackground[] = {0,0,0,0.8};
 							x = 0;
 							y = 0;
@@ -512,7 +650,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 		__EXEC(_curY = 0.1)
 		class TER_3den_debugConsole_page5: TER_3den_debugConsole_page1
 		{
-			idc = 73045;
+			idc = IDC_DEBUG_PAGE_5;
 			class controls
 			{
 				class txt_unitWatch: RscText
@@ -522,37 +660,36 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER/2;
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				class ed_unitWatch_search: RscEdit
 				{
-					idc = 7425;
+					idc = IDC_ED_UWSEARCH;
 					x = 0.1 * GUI_GRID_W;
 					y = CUR_Y;
 					w = W_BORDER -(0.3 * GUI_GRID_W);
-					h = ADD_HEIGHT(1);
+					h = ADD_HEIGHT(1)
 				};
 				class tv_unitWatch: RscTreeSearch
 				{
-					idc = 7426;
-					idcSearch = 7425;
+					idc = IDC_TV_UWTREE;
+					idcSearch = IDC_ED_UWSEARCH;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = ADD_HEIGHT(10);
+					h = ADD_HEIGHT(10)
 				};
 				class pic_liveFeed: RscPicture
 				{
-					idc = 7427;
+					idc = IDC_PIC_UWLIVEFEED;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
 					h = W_BORDER;
-					text = "#(argb,512,512,1)r2t(ter_3den_unitrtt,1.0)";
 				};
 				class cb_liveFeedLive: RscCheckbox
 				{
-					idc = 7428;
+					idc = IDC_CB_UWLIVEFEEDLIVE;
 					tooltip = "Keep feed open";
 					x = W_BORDER -(GUI_GRID_W);
 					y = CUR_Y;
@@ -561,13 +698,145 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 			};
 		};
-		class xlb_pages: RscCombo
+		// START PAGE 6
+		__EXEC(_curY = 0.1)
+		class TER_3den_debugConsole_page6: TER_3den_debugConsole_page1
 		{
-			idc = 7399;
+			idc = IDC_DEBUG_PAGE_6;
+			class controls
+			{
+				class txt_kkDebug: RscText
+				{
+					idc = -1;
+					text = "KK Debug";
+					x = 0;
+					y = CUR_Y;
+					w = W_BORDER/2;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_kkColor: txt_kkDebug
+				{
+					text = "Color:";
+					y = CUR_Y;
+				};
+				class cb_kkRed: RscCheckbox
+				{
+					idc = IDC_CB_KKRED;
+					x = W_BORDER - 4.4 * GUI_GRID_W;
+					y = CUR_Y;
+					w = GUI_GRID_W;
+					h = GUI_GRID_H;
+					checked = 1;
+				};
+				class cb_kkGreen: cb_kkRed
+				{
+					idc = IDC_CB_KKGREEN;
+					x = W_BORDER - 3.3 * GUI_GRID_W;
+				};
+				class cb_kkBlue: cb_kkRed
+				{
+					idc = IDC_CB_KKBLUE;
+					x = W_BORDER - 2.2 * GUI_GRID_W;
+				};
+				class pic_kkColor: RscPicture
+				{
+					idc = IDC_PIC_KKCOLOR;
+					text = "#(rgb,8,8,3)color(1,1,1,1)";
+					x = W_BORDER - 1.1 * GUI_GRID_W;
+					y = CUR_Y;
+					w = GUI_GRID_W;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_kkTime: txt_kkDebug
+				{
+					text = "Log time:";
+					y = CUR_Y;
+				};
+				class cb_kkTime: cb_kkRed
+				{
+					idc = IDC_CB_KKTIME;
+					x = W_BORDER - 1.1 * GUI_GRID_W;
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_kkLogInput: txt_kkDebug
+				{
+					text = "Log input:";
+					y = CUR_Y;
+				};
+				class cb_kkLogInput: cb_kkTime
+				{
+					idc = IDC_CB_KKLOGINPUT;
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+				class txt_kkFile: txt_kkDebug
+				{
+					text = "Log to file:";
+					y = CUR_Y;
+				};
+				class cb_kkFile: cb_kkTime
+				{
+					idc = IDC_CB_KKFILE;
+					checked = 0;
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+				class btn_kkBeep: RscButtonMenu
+				{
+					idc = IDC_BTN_KKBEEP;
+					text = "Beep";
+					x = 0;
+					y = CUR_Y;
+					w = 1/4 * W_BORDER - 0.3 * GUI_GRID_W;
+					h = GUI_GRID_H;
+				};
+				class btn_kkClear: btn_kkBeep
+				{
+					idc = IDC_BTN_KKCLEAR;
+					text = "Clear";
+					x = 1/4 * W_BORDER;
+				};
+				class btn_kkClose: btn_kkBeep
+				{
+					idc = IDC_BTN_KKCLOSE;
+					text = "Close";
+					x = 2/4 * W_BORDER;
+				};
+				class btn_kkLog: btn_kkBeep
+				{
+					idc = IDC_BTN_KKLOG;
+					text = "LOG";
+					x = 3/4 * W_BORDER;
+				};
+				ADD_Y(1)
+				class ed_kkInput: RscEdit
+				{
+					idc = IDC_ED_KKINPUT;
+					style = ST_MULTI;
+					autocomplete = "scripting";
+					x = 0.1 * GUI_GRID_W;
+					y = CUR_Y;
+					w = W_BORDER - 0.3 * GUI_GRID_W;
+					h = DEBUG_H - 10.4 * GUI_GRID_H;
+				};
+				class ed_kkOutput: ed_kkInput
+				{
+					idc = IDC_ED_KKOUTPUT;
+					y = DEBUG_H - 3.6 * GUI_GRID_H;
+					h = GUI_GRID_H;
+				};
+			};
+		};
+		class lb_pages: RscCombo
+		{
+			idc = IDC_LB_PAGES;
 			x = 0;
 			y = DEBUG_H - GUI_GRID_H;
 			w = DEBUG_W;
 			h = GUI_GRID_H;
+			arrowEmpty = "\a3\ui_f\data\gui\cfg\scrollbar\arrowempty_ca.paa";
+			arrowFull = "\a3\ui_f\data\gui\cfg\scrollbar\arrowfull_ca.paa";
 		};
 	};
 };

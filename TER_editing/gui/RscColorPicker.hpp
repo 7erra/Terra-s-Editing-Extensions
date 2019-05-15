@@ -1,6 +1,6 @@
 class TER_3den_RscColorPicker
 {
-	idd = 73080;
+	idd = IDD_DISPLAY_COLORPICKER;
 	enableSimulation = false;
 	ONLOAD(ColorPicker)
 	class controlsBackground
