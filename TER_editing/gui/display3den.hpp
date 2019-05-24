@@ -19,7 +19,8 @@ class Display3DEN
 						"TER_3den_colorPicker",
 						"TER_3den_fontPicker",
 						"TER_3den_attachToFinder",
-						"TER_3den_dikCodes"
+						"TER_3den_dikCodes",
+						"TER_3den_ctrlExplained"
 					};
 				};
 				#define STR(ARG) #ARG
@@ -50,6 +51,11 @@ class Display3DEN
 				{
 					text = "Key Codes";
 					ACT_DISPLAY(DisplayKeyCodes);
+				};
+				class TER_3den_ctrlExplained
+				{
+					text = "Control Types";
+					ACT_DISPLAY(DisplayCtrlsExplained);
 				};
 			};
 		};

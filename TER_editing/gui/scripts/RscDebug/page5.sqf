@@ -1,5 +1,5 @@
 #include "..\ctrls.inc"
-#define SELF TER_fnc_debugPage5
+#define SELF TER_fnc_debugPage5_script
 _mode = _this select 0;
 _this = _this select 1;
 //// CONTROLS

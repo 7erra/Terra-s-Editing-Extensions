@@ -1,6 +1,6 @@
 #include "..\ctrls.inc"
 #include "\A3\ui_f\hpp\defineDIKCodes.inc"
-#define SELF TER_fnc_debugPage4
+#define SELF TER_fnc_debugPage4_script
 _mode = _this select 0;
 _this = _this select 1;
 //--- CONTROLS

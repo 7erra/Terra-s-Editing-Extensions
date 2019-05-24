@@ -85,6 +85,7 @@ class RscButtonArsenal;
 class RscTextNoShadow;
 class RscButtonNoColor;
 class RscToolboxButton;
+class RscControlsTable;
 // 3den
 class ctrlCheckbox;
 class ctrlCheckboxBaseline;

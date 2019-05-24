@@ -1,79 +1,126 @@
+#include "\a3\ui_f\hpp\definedikcodes.inc"
 #include "..\ctrls.inc"
-#define SELF TER_fnc_debugPage3
+#define SELF TER_fnc_debugPage3_script
+#define PARAMSROW ["_btnExec","_edCommand","_actpicDelete"]
 _mode = _this select 0;
 _this = _this select 1;
-//// CONTROLS
+//--- CONTROLS
 _displayEscape = findDisplay 49;
 _page = _displayEscape displayCtrl IDC_DEBUG_PAGE_3;
-_btnAdd = _page controlsGroupCtrl IDC_BTN_CCADD;
-_comboLocality = _page controlsGroupCtrl IDC_COMBO_CCLOCALITY;
-_grpCommands = _page controlsGroupCtrl IDC_GRP_CCCOMMANDS;
+_comboLocality = _page controlsGroupCtrl IDC_DEBUG_CCLOCALITY;
+_btnAdd = _page controlsGroupCtrl IDC_DEBUG_CCADD;
+_ctCCTable = _page controlsGroupCtrl IDC_DEBUG_TABLECC;
+_edOutput = _page controlsGroupCtrl IDC_DEBUG_EDOUTPUTCC;
 
 switch (_mode) do {
 case "load":{
 	if (_page getVariable ["pageInitialized",false]) exitWith {};
 	_page setVariable ["pageInitialized",true];
-	// locality options:
-	{_comboLocality lbAdd _x} forEach ["Local","Global","Server"];
-	_comboLocality lbSetCurSel 0;
-	if (!isMultiplayer) then {_comboLocality ctrlEnable false};
-	// load previous
-	{
-		private ["_edCCCode"];
-		with uiNamespace do {["cccreate",[_x]] call SELF;};
-	} forEach (profileNamespace getVariable ["TER_3den_ccArray",[]]);
-
+	//--- Title text
+	_txtTitle ctrlSetStructuredText parseText "<t font='PuristaLight'>Custom Commands:</t>";
+	//--- Locality combo
+	if (isMultiplayer) then {
+		//--- Add general locality options and players
+		_targetPlayers = allPlayers apply {[name _x, owner _x]};
+		_targetPlayers = _targetPlayers select {_x#1 != 0};
+		_targets = [["Local",-1],["Global",0],["Server",2],["!Server",-2]] +_targetPlayers;
+		{
+			_x params ["_text","_value"];
+			_addText = format ["%1 (%2)",_text,_value];
+			if (_value == -1) then {
+				_addText = _text;
+			};
+			_ind = _comboLocality lbAdd _addText;
+			_comboLocality lbSetValue [_ind,_value];
+		} forEach _targets;
+		_comboLocality lbSetCurSel (uiNamespace getVariable ["TER_3den_ccLocalityInd",0]);
+		_comboLocality ctrlAddEventHandler ["LBSelChanged",{
+			with uiNamespace do {["localitychange",_this] call SELF};
+		}];
+	} else {
+		//--- Not MP, disable
+		_ind = _comboLocality lbAdd "Local";
+		_comboLocality lbSetValue [_ind, -1];
+		_comboLocality lbSetCurSel _ind;
+		_comboLocality ctrlEnable false;
+	};
+	//--- Add button
 	_btnAdd ctrlAddEventHandler ["ButtonClick",{
-		with uiNamespace do {["cccreate",[""]] call SELF;};
+		with uiNamespace do {["addcc",[]] call SELF};
 	}];
-};
-#define CCFORMULA  * 1.2 * GUI_GRID_H + 0.1 * GUI_GRID_H
-case "cccreate":{
-	_codeText = param[0,""];
-	_newControl = _displayEscape ctrlCreate ["TER_3den_RscCCGroup",-1,_grpCommands];
-	_yPos = (count (allControls _displayEscape select {ctrlParentControlsGroup _x == _grpCommands}) -1) CCFORMULA;
-	_newControl ctrlSetPositionY _yPos;
-	_newControl ctrlCommit 0;
-	_btnCCExec = _newControl controlsGroupCtrl IDC_BTN_CCEXEC;
-	_edCCCode = _newControl controlsGroupCtrl IDC_ED_CCCODE;
-	_edCCCode ctrlSetText _codeText;
-	_btnCCDelete = _newControl controlsGroupCtrl IDC_BTN_CCDELETE;
-
-	_btnCCExec setVariable ["TER_3den_codeControl",_edCCCode];
-	_btnCCExec ctrlAddEventHandler ["ButtonClick",{
-		with uiNamespace do {["ccexec",_this] call SELF;};
-	}];
-	_btnCCDelete ctrlAddEventHandler ["ButtonClick",{
-		with uiNamespace do {["ccdelete",_this] call SELF;};
-	}];
-};
-case "ccdelete":{
-	params ["_button"];
-	_thisGroup = ctrlParentControlsGroup _button;
-	_ccGroup = ctrlParentControlsGroup _thisGroup;
-	_allGroups = (allControls _displayEscape select {ctrlParentControlsGroup _x == _ccGroup});
-	_groupsLeft = _allGroups -[_thisGroup];
+	//--- Load previous
 	{
-		_yPos = _forEachIndex CCFORMULA;
-		_x ctrlSetPositionY _yPos;
-		_x ctrlCommit 0;
-	} forEach _groupsLeft;
-	ctrlDelete _thisGroup;
+		with uiNamespace do {["addcc",[_x]] call SELF};
+	} forEach (profileNamespace getVariable ["TER_3den_ccArray",[]]);
+};
+case "localitychange":{
+	params ["_comboLocality","_ind"];
+	uiNamespace setVariable ["TER_3den_ccLocalityInd",_ind];
+};
+case "addcc":{
+	_command = param [0,""];
+	_row = ctAddRow _ctCCTable;
+	_row#1 params PARAMSROW;
+	//--- Exec button
+	_btnExec ctrlSetText "EXEC";
+	_btnExec ctrlAddEventHandler ["ButtonClick",{
+		with uiNamespace do {["ccexec",[]] call SELF};
+	}];
+	//--- Code edit
+	_edCommand ctrlSetText _command;
+	_edCommand ctrlAddEventHandler ["KeyDown",{
+		with uiNamespace do {["edkey",_this] call SELF};
+	}];
+	//--- Delete actpic
+	_actpicDelete ctrlSetText "\a3\3den\data\displays\display3den\panelleft\entitylist_delete_ca.paa";
+	_actpicDelete ctrlSetTextColor [1,0,0,1];
+	_actpicDelete ctrlAddEventHandler ["ButtonClick",{
+		with uiNamespace do {["deletecc",[]] spawn SELF};
+	}];
 };
 case "ccexec":{
-	params ["_button"];
-	_codeCtrl = _button getVariable ["TER_3den_codeControl",controlNull];
-	[lbCurSel _comboLocality,compile ctrlText _codeCtrl] call BIS_fnc_debugConsoleExec;
+	_ind = ctCurSel _ctCCTable;
+	if (_ind < 0) exitWith {};
+	_row = _ctCCTable ctRowControls _ind;
+	_row params PARAMSROW;
+	_command = compile ctrlText _edCommand;
+	_locality = _comboLocality lbValue (lbCurSel _comboLocality);
+	if (_locality == -1) then {
+		//--- Local execution
+		_result = call _command;
+		if (isNil "_result") then {
+			_edOutput ctrlSetText "#NIL";
+		} else {
+			_edOutput ctrlSetText str _result;
+		};
+	} else {
+		//--- Remote execution
+		[[],_command] remoteExec ["call",_locality];
+		_edOutput ctrlSetText "";
+	};
+};
+case "deletecc":{
+	_ind = ctCurSel _ctCCTable;
+	if (_ind < 0) exitWith {};
+	_ctCCTable ctRemoveRows [_ind];
+};
+case "edkey":{
+	params ["_edCommand", "_key", "_shift", "_ctrl", "_alt"];
+	if (_key in [DIK_RETURN, DIK_NUMPADENTER]) then {
+		["ccexec",[]] call SELF;
+	};
 };
 case "unload":{
-	//--- save variables
-	if (_page getVariable ["pageInitialized",false]) then {
-		_curCCCtrls = (allControls _displayEscape select {ctrlParentControlsGroup _x == _grpCommands});
-		_allCCEdits = _curCCCtrls apply {_x controlsGroupCtrl IDC_ED_CCCODE};
-		_allCCEditsText = _allCCEdits apply {ctrlText _x};
-		_allCCEditsText = _allCCEditsText select {_x != ""};
-		profileNamespace setVariable ["TER_3den_ccArray",_allCCEditsText];
-		saveProfileNamespace;
+	if !(_page getVariable ["pageInitialized",false]) exitWith {};
+	//--- Save variables
+	_saveCommands = [];
+	for "_ind" from 0 to (ctRowCount _ctCCTable -1) do {
+		_row = _ctCCTable ctRowControls _ind;
+		_row params PARAMSROW;
+		_command = ctrlText _edCommand;
+		_saveCommands pushBack _command;
 	};
+	profileNamespace setVariable ["TER_3den_ccArray",_saveCommands];
+	saveProfileNamespace;
 };
 };

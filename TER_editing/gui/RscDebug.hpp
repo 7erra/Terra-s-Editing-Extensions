@@ -2,6 +2,7 @@
 #define DEBUG_H (safeZoneH - (1 + (25-22.4)) * GUI_GRID_H)
 #define L_BORDER (0.5 * GUI_GRID_W)
 #define R_BORDER (21.5 * GUI_GRID_W)
+#define H_BORDER (DEBUG_H - 2.4 * GUI_GRID_H)
 #define W_BORDER (R_BORDER - L_BORDER)
 #define DEEP_RED {0.5,0,0,1}
 class TER_3den_RscEditCode: RscEdit
@@ -26,21 +27,30 @@ class TER_3den_RscWatchGroupControl: RscControlsGroupNoScrollBars
 	h = 2.2 * GUI_GRID_H;
 	class controls 
 	{
+		class cb_liveOutput: RscCheckbox
+		{
+			idc = IDC_CB_WATCHLIVE;
+			tooltip = "Add to live watch";
+			x = 0.1 * GUI_GRID_W;
+			y = 0.1 * GUI_GRID_H;
+			w = GUI_GRID_W;
+			h = GUI_GRID_H;
+		};
 		class ed_input: TER_3den_RscEditCode
 		{
 			idc = IDC_ED_WATCHIN;
-			x = 0.1 * GUI_GRID_W;
+			x = 1.2 * GUI_GRID_W;
 			y = 0.1 * GUI_GRID_H;
-			w = W_BORDER-(1.2 * GUI_GRID_W);
+			w = W_BORDER-(2.3 * GUI_GRID_W);
 			h = GUI_GRID_H;
 		};
-		class btn_delete: RscButtonMenu
+		class btn_delete: RscActivePicture
 		{
 			idc = IDC_BTN_WATCHDELETE;
-			text = "X";
+			text = "\a3\3den\data\displays\display3den\panelleft\entitylist_delete_ca.paa";
 			tooltip = "Delete";
-			style = ST_CENTER;
-			colorBackground[] = DEEP_RED;
+			color[] = {1,0,0,0.5};
+			colorActive[] = {1,0,0,1};
 			x = W_BORDER-(1 * GUI_GRID_W);
 			y = 0.1 * GUI_GRID_H;
 			w = GUI_GRID_W;
@@ -154,30 +164,13 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 		class TER_3den_debugConsole_page1: RscControlsGroupNoScrollBars
 		{
 			idc = IDC_DEBUG_PAGE_1;
+			show = false;
 			x = L_BORDER;
 			y = 1.1 * GUI_GRID_H;
 			w = W_BORDER;
-			h = DEBUG_H -(2.3 * GUI_GRID_H);
+			h = H_BORDER;
 			class Controls
 			{
-				class btn_liveDebug: RscButtonMenu
-				{
-					idc = IDC_BTN_LIVEDEBUG;
-					x = 0;
-					y = CUR_Y;
-					w = W_BORDER;
-					h = ADD_HEIGHT(1)
-					text = "Live Debug";
-				};
-				class seperator1: RscText
-				{
-					x = 0;
-					y = CUR_Y;
-					w = W_BORDER;
-					h = pixelH;
-					colorBackground[] = {1,1,1,1};
-				};ADD_Y(0)
-				__EXEC(_seperatorCount = 1);
 				class txt_sideplayer: RscText
 				{
 					font="PuristaLight";
@@ -198,7 +191,15 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = 0.25 * DEBUG_W;
 					h = ADD_HEIGHT(1)
 				};
-				SEPERATOR(2)
+				class seperator1: RscText
+				{
+					x = 0;
+					y = CUR_Y;
+					w = W_BORDER;
+					h = pixelH;
+					colorBackground[] = {1,1,1,1};
+				};ADD_Y(0)
+				__EXEC(_seperatorCount = 1);
 				class txt_teleport: txt_sideplayer
 				{
 					text = "Enable teleport (SHIFT+T):"; //--- ToDo: Localize;
@@ -212,7 +213,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = GUI_GRID_W;
 					h = ADD_HEIGHT(1)
 				};
-				SEPERATOR(3)
+				SEPERATOR(2)
 				class txt_unitIcons: txt_sideplayer
 				{
 					text = "Show icons over units:";
@@ -223,7 +224,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					idc = IDC_CB_UNITICONS;
 					y = CUR_Y;
 				};ADD_Y(1)
-				SEPERATOR(4)
+				SEPERATOR(3)
 				class txt_grids: txt_sideplayer
 				{
 					text = "Draw grids:";
@@ -240,7 +241,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					y = CUR_Y;
 					x = W_BORDER-(2.1 * GUI_GRID_W);
 				}; ADD_Y(1)
-				SEPERATOR(5)
+				SEPERATOR(4)
 				class txt_guigrid: txt_sideplayer
 				{
 					text = "Change GUI Editor Grid:";
@@ -253,7 +254,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					y = CUR_Y;
 					w = 0.5 * W_BORDER;
 				};ADD_Y(1)
-				class btn_gridAnchor: btn_liveDebug
+				class btn_gridAnchor: RscButtonMenu
 				{
 					text = "ORIGIN";
 					idc = IDC_BTN_GRIDANCHOR;
@@ -337,7 +338,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = W_BORDER - 3.2 * GUI_GRID_W;
 					h = ADD_HEIGHT(1)
 				};
-				SEPERATOR(6)
+				SEPERATOR(5)
 				class btn_clearChat: RscButtonMenu
 				{
 					idc = IDC_BTN_CLEARCHAT;
@@ -347,7 +348,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = W_BORDER;
 					h = ADD_HEIGHT(1)
 				};
-				SEPERATOR(7)
+				SEPERATOR(6)
 				class btn_switchUnit: RscButtonMenu
 				{
 					idc = IDC_BTN_SWITCHUNIT;
@@ -357,7 +358,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = W_BORDER;
 					h = ADD_HEIGHT(1)
 				};
-				SEPERATOR(8)
+				SEPERATOR(7)
 				class txt_changeTime: txt_sideplayer
 				{
 					text = "Set time:";
@@ -401,34 +402,90 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			idc = IDC_DEBUG_PAGE_2;
 			class controls 
 			{
-				class txt_moreWatch: RscText
+				class table_watchfields: RscControlsTable
 				{
-					font="PuristaLight";
-					text = "More watch fields:";
-					x = 0;
-					y = CUR_Y;
-					w = W_BORDER/2;
-					h = 1 * GUI_GRID_H;
-				};
-				class btn_addWatch: RscButtonMenu
-				{
-					idc = IDC_BTN_ADDWATCH;
-					text = "+";
-					style = ST_CENTER;
-					x = W_BORDER-(1 * GUI_GRID_W);
-					y = CUR_Y;
-					w = 1 * GUI_GRID_W;
-					h = ADD_HEIGHT(1)
-					tooltip = "Create new watch field";
-				};
-				class grp_watchFields: RscControlsGroupNoScrollBars
-				{
-					idc = IDC_GRP_WATCHFIELDS;
-					colorBackground[] = {1,0,0,1};
+					idc = IDC_DEBUG_TABLEWATCHFIELDS;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = DEBUG_H - 3.5 * GUI_GRID_H;
+					h = H_BORDER - 0.1 * GUI_GRID_H;
+					firstIDC = IDC_DEBUG_WATCHFIELDSFIRSTIDC;
+					lastIDC = IDC_DEBUG_WATCHFIELDSLASTIDC;
+					lineSpacing = 0.2 * GUI_GRID_H;
+					rowHeight = 2.1 * GUI_GRID_H;
+					headerHeight = 1.1 * GUI_GRID_H;
+					selectedRowColorFrom[] = {0,0,0,0};
+					selectedRowColorTo[] = {0,0,0,0};
+					selectedRowAnimLength = 1e+6;
+					class VScrollBar
+					{
+						width = 0;
+					};
+					class HScrollBar
+					{
+						height = 0;
+					};
+					class HeaderTemplate
+					{
+						class HeaderBackground
+						{
+							controlBaseClassPath[] = {"RscStructuredText"};
+							columnX = 0;
+							controlOffsetY = 0;
+							columnW = W_BORDER;
+							controlH = 1 * GUI_GRID_H;
+						};
+						//--- Add field button
+						class Column1: HeaderBackground
+						{
+							controlBaseClassPath[] = {"RscButtonMenu"};
+							columnX = W_BORDER - GUI_GRID_W;
+							columnW = GUI_GRID_W;
+						};
+					};
+					class RowTemplate
+					{
+						class RowBackground
+						{
+							controlBaseClassPath[] = {"RscText"};
+							columnX = 0;
+							controlOffsetY = 0;
+							columnW = 0;
+							controlH = 0;
+						};
+						//--- Live checkbox
+						class Column1 
+						{
+							controlBaseClassPath[] = {"RscCheckbox"};
+							columnX = 0;
+							controlOffsetY = 0;
+							columnW = 1 * GUI_GRID_W;
+							controlH = GUI_GRID_H;
+						};
+						//--- Command edit
+						class Column2: Column1 
+						{
+							controlBaseClassPath[] = {"RscDebugConsole","controls","WatchInput1"};
+							columnX = 1.1 * GUI_GRID_W;
+							//controlOffsetY = 0.1 * GUI_GRID_H;
+							columnW = W_BORDER - 2.2 * GUI_GRID_W;
+						};
+						//--- ActPic delete
+						class Column3: Column1
+						{
+							controlBaseClassPath[] = {"RscActivePicture"};
+							columnX = W_BORDER - 1 * GUI_GRID_W;
+							columnW = 1 * GUI_GRID_W;
+						};
+						//--- Text output
+						class Column4: Column1
+						{
+							controlBaseClassPath[] = {"RscDebugConsole","controls","WatchOutput1"};
+							columnX = 0;
+							controlOffsetY = 1.1 * GUI_GRID_H;
+							columnW = W_BORDER;
+						};
+					};
 				};
 			};
 		};
@@ -439,26 +496,27 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			idc = IDC_DEBUG_PAGE_3;
 			class controls 
 			{
-				class txt_customCommands: RscText
+				class txt_cc: RscText
 				{
+					font="PuristaLight";
+					text = "Custom Commands:";
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER/2;
 					h = 1 * GUI_GRID_H;
-					font="PuristaLight";
-					text = "Custom commands:";
 				};
 				class combo_cc_locality: RscCombo
 				{
-					idc = IDC_COMBO_CCLOCALITY;
-					x = W_BORDER -((1.2 +3.5) * GUI_GRID_W);
+					idc = IDC_DEBUG_CCLOCALITY;
+					font="PuristaLight";
+					x = W_BORDER -((1.2 +8) * GUI_GRID_W);
 					y = CUR_Y;
-					w = 3.5 * GUI_GRID_W;
+					w = 8 * GUI_GRID_W;
 					h = GUI_GRID_H;
 				};
 				class btn_cc_add: RscButtonMenu
 				{
-					idc = IDC_BTN_CCADD;
+					idc = IDC_DEBUG_CCADD;
 					text = "+";
 					style = ST_CENTER;
 					x = W_BORDER-(1 * GUI_GRID_W);
@@ -467,14 +525,64 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					h = ADD_HEIGHT(1)
 					tooltip = "Add custom command";
 				};
-				class grp_cc_commands: RscControlsGroupNoScrollBars
+				class table_customcommands: RscControlsTable
 				{
-					idc = IDC_GRP_CCCOMMANDS;
-					colorBackground[] = {1,0,0,1};
+					idc = IDC_DEBUG_TABLECC;
 					x = 0;
 					y = CUR_Y;
 					w = W_BORDER;
-					h = DEBUG_H - 3.5 * GUI_GRID_H;
+					h = H_BORDER - 2.3 * GUI_GRID_H;
+					firstIDC = IDC_DEBUG_CCFIRSTIDC;
+					lastIDC = IDC_DEBUG_CCLASTIDC;
+					lineSpacing = 0.2 * GUI_GRID_H;
+					rowHeight = 1 * GUI_GRID_H;
+					headerHeight = 1.1 * GUI_GRID_H;
+					selectedRowColorFrom[] = {0,0,0,0};
+					selectedRowColorTo[] = {0,0,0,0};
+					selectedRowAnimLength = 1e+6;
+					class VScrollBar
+					{
+						width = 0;
+					};
+					class HScrollBar
+					{
+						height = 0;
+					};
+					class RowTemplate
+					{
+						//--- Exec button
+						class Column1 
+						{
+							controlBaseClassPath[] = {"RscButtonMenu"};
+							columnX = 0;
+							controlOffsetY = 0;
+							columnW = 2.5 * GUI_GRID_W;
+							controlH = GUI_GRID_H;
+						};
+						//--- Code edit
+						class Column2: Column1 
+						{
+							controlBaseClassPath[] = {"RscDebugConsole","controls","WatchInput1"};
+							columnX = 2.6 * GUI_GRID_W;
+							controlOffsetY = 0.1 * GUI_GRID_H;
+							columnW = W_BORDER - 3.7 * GUI_GRID_W;
+						};
+						//--- ActPic delete
+						class Column3: Column1
+						{
+							controlBaseClassPath[] = {"RscActivePicture"};
+							columnX = W_BORDER - 1 * GUI_GRID_W;
+							columnW = 1 * GUI_GRID_W;
+						};
+					};
+				};
+				class ed_ccoutput: TER_3den_RscEditCodeOutput
+				{
+					idc = IDC_DEBUG_EDOUTPUTCC;
+					x = 0;
+					y = H_BORDER - 1 * GUI_GRID_H;
+					w = W_BORDER;
+					h = GUI_GRID_H;
 				};
 			};
 		};

@@ -85,9 +85,7 @@
 #define TR_SHOWROOT       1
 #define TR_AUTOCOLLAPSE   2
 
-#include "..\gui\scripts\ctrls.inc"
-
-#include "defaultControls.hpp"
+#include "scripts\ctrls.inc"
 
 #define STRING(TEXT) #TEXT
 #define SCRIPT_STR(FILE) TER_Editing\gui\scripts\Rsc##FILE##.sqf
@@ -111,4 +109,11 @@ class TER_3den_RscTitleBackground: RscTitle
 class TER_3den_RscBackground: RscText
 {
 	colorBackground[] = {0,0,0,0.8};
+};
+class TER_3den_ctrlStructuredText: ctrlStructuredText
+{
+	class Attributes
+	{
+		colorLink="#5555ff";
+	};
 };
