@@ -1,6 +1,6 @@
 #include "..\ctrls.inc"
 #include "\a3\ui_f\hpp\definedikcodes.inc"
-#define SELF TER_fnc_debugPage1
+#define SELF TER_fnc_debugPage1_script
 #define PICDAY "\a3\3den\data\attributes\slidertimeday\sun_ca.paa"
 #define PICNIGHT "\a3\3den\data\attributes\date\moon_full_ca.paa"
 _mode = _this select 0;
@@ -35,15 +35,13 @@ case "load":{
 	if (_page1 getVariable ["pageInitialized",false]) exitWith {};
 	_page1 setVariable ["pageInitialized",true];
 	/* initalize controls */
-	//--- LIVE DEBUG BUTTON
-	_btnLiveDebug ctrlAddEventHandler ["ButtonClick",{
-		with uiNamespace do {["livedebug",[]] call SELF;};
-	}];
 	//--- PLAYER SIDE COMBO
 	_sideArray = ["west","east","independent","civilian"];
 	_sideSystemArray = _sideArray apply {call compile _x};
 	{
-		_comboSide lbAdd _x;
+		_ind = _comboSide lbAdd _x;
+		_color = [_sideSystemArray#_forEachIndex] call BIS_fnc_sideColor;
+		_comboSide lbSetColor [_ind, _color];
 	} forEach _sideArray;
 	_comboSide lbSetCurSel (_sideSystemArray find (side group player));
 	_comboSide ctrlAddEventHandler ["LBSelChanged",{
@@ -180,51 +178,6 @@ case "load":{
 			with uiNamespace do {["changetime",_this] call SELF;};
 		}];
 	} forEach [_comboTimeHour,_comboTimeMinute];
-};
-case "livedebug":{
-	_state = isNil "TER_3den_RscLiveWatch_display";
-	_ctrlIDCArray = [[IDC_LIVE_INPUT1,12285], [IDC_LIVE_INPUT2,12287], [IDC_LIVE_INPUT3,12289], [IDC_LIVE_INPUT4,12291]];
-	_textChanged = (_ctrlIDCArray findIf {
-			_textLiveIn = ctrlText (TER_3den_RscLiveWatch_display displayCtrl _x#0);
-			_textEscIn = ctrlText (_displayEscape displayCtrl _x#1);
-			_textLiveIn != _textEscIn
-		}) != -1;
-	if (_state OR _textChanged) then {
-		if (_state) then {
-			//--- Create live display
-			("TER_3den_RscWatchLive_layer" call BIS_fnc_rscLayer) cutRsc ["TER_3den_RscLiveWatch","PLAIN"];
-		};
-		//--- Update live display with texts from the watch fields
-		{
-			_escInCommand = ctrlText (_displayEscape displayCtrl (_x#1));
-			_txtLive = TER_3den_RscLiveWatch_display displayCtrl (_x#0);
-			if (_escInCommand != ctrlText _txtLive) then {
-				_txtLive ctrlSetText _escInCommand;
-				["liveloop",[_txtLive]] spawn SELF;
-			};
-		} forEach _ctrlIDCArray;
-	} else {
-		//--- Close live debug display
-		("TER_3den_RscWatchLive_layer" call BIS_fnc_rscLayer) cutRsc ["default","PLAIN"];
-		TER_3den_RscLiveWatch_display = nil;
-	};
-};
-case "liveloop":{
-	params ["_inctrl"];
-	_outCtrl = TER_3den_RscLiveWatch_display displayCtrl ((ctrlIDC _inctrl)+1);
-	_startCommand = ctrlText _inctrl;
-	while {_startCommand == ctrlText _inctrl} do {
-		if (_startCommand == "") exitWith {_outCtrl ctrlSetText ""};
-		if (isNil compile _startCommand) then {
-			_outCtrl ctrlSetText "#NIL";
-		} else {
-			_result = [] call compile _startCommand;
-			//if (isNil {_result}) exitWith {_outCtrl ctrlSetText ""};
-			_outCtrl ctrlSetText str _result;
-		};
-		_curFrame = diag_frameno;
-		waitUntil {diag_frameno != _curFrame};
-	};
 };
 case "sideplayer":{
 	params ["_ctrl","_index"];

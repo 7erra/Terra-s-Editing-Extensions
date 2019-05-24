@@ -68,7 +68,7 @@ case "anchorselect":{
 	};
 	_modGrid = [_xAnchor,_yAnchor,0,0];
 	TER_3den_GUIGrid set [0,_modGrid];
-	["gridupdate",[]] call TER_fnc_debugPage1;
+	["gridupdate",[]] call TER_fnc_debugPage1_script;
 	_display closeDisplay 1;
 };
 };

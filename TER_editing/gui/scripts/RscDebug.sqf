@@ -2,7 +2,7 @@
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 #include "\a3\ui_f\hpp\defineresincl.inc"
 #define SELF "\TER_Editing\gui\scripts\RscDebug.sqf"
-#define FNCSELF TER_fnc_RscDebug
+#define FNCSELF TER_fnc_RscDebug_script
 
 _mode = _this#0;
 _this = _this#1;
@@ -32,9 +32,9 @@ case "load":{
 	if (isNil {uiNamespace getVariable "TER_fnc_debugPage1"}) then {
 		// compile functions
 		for "_i" from 1 to _pageCount do {
-			uiNamespace setVariable [format ["TER_fnc_debugPage%1",_i], compile preprocessFileLineNumbers format ["\TER_Editing\gui\scripts\RscDebug\page%1.sqf",_i]];
+			uiNamespace setVariable [format ["TER_fnc_debugPage%1_script",_i], compile preprocessFileLineNumbers format ["\TER_Editing\gui\scripts\RscDebug\page%1.sqf",_i]];
 		};
-		uiNamespace setVariable ["TER_fnc_RscDebug",compile preprocessFileLineNumbers SELF];
+		uiNamespace setVariable ["TER_fnc_RscDebug_script",compile preprocessFileLineNumbers SELF];
 	};
 	// pages listbox:
 	_lbPages = _control controlsGroupCtrl IDC_LB_PAGES;
@@ -75,12 +75,13 @@ case "pagechange":{
 	_allPages = _allPages apply {_curCount = _curCount +1; _displayEscape displayCtrl (IDC_DEBUG_PAGE_1 -1 +_curCount)};
 	_loadPageCtrl = _displayEscape displayCtrl (IDC_DEBUG_PAGE_1 +_index);
 	{
-		_pagefnc = uiNamespace getVariable [format ["TER_fnc_debugPage%1",_foreachIndex+1],{}];
+		_pagefnc = uiNamespace getVariable [format ["TER_fnc_debugPage%1_script",_foreachIndex+1],{}];
 		_curCtrlPos = ctrlPosition _x;
 		if (_x == _loadPageCtrl) then { // appear
 			// load script
 			["load",[]] call _pagefnc;
 			_curCtrlPos set [0, 0.5 * GUI_GRID_W];
+			_x ctrlShow true;
 			_x ctrlSetPosition _curCtrlPos;
 			_x ctrlCommit 0;
 			_curCtrlPos set [0, 0.5 * GUI_GRID_W];
@@ -111,7 +112,7 @@ case "keydownesc":{
 case "unload":{
 	//--- Escpape menu closed, activate unload ehs for pages
 	for "_i" from 1 to _pageCount do {
-		["unload",[]] call (uiNamespace getVariable format ["TER_fnc_debugPage%1",_i]);
+		with uiNamespace do {["unload",[]] call call compile format ["TER_fnc_debugPage%1_script",_i]};
 	};
 };
 };
