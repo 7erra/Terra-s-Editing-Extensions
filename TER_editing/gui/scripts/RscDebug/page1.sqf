@@ -29,6 +29,7 @@ _picTimeSunset = _page1 controlsGroupCtrl IDC_PIC_TIMESUNSET;
 _comboTimeHour = _page1 controlsGroupCtrl IDC_COMBO_TIMEHOUR;
 _comboTimeMinute = _page1 controlsGroupCtrl IDC_COMBO_TIMEMINUTE;
 _btnGridSet = _page1 controlsGroupCtrl IDC_BTN_GRIDSET;
+_btnNamespaceVars = _page1 controlsgroupctrl IDC_BTN_NAMESPACEVARS;
 
 switch (_mode) do {
 case "load":{
@@ -178,6 +179,10 @@ case "load":{
 			with uiNamespace do {["changetime",_this] call SELF;};
 		}];
 	} forEach [_comboTimeHour,_comboTimeMinute];
+	//--- Namespace Variables button
+	_btnNamespaceVars ctrladdeventhandler ["ButtonClick",{
+		with uiNamespace do {["namespacevars",_this] call SELF;};
+	}];
 };
 case "sideplayer":{
 	params ["_ctrl","_index"];
@@ -322,6 +327,10 @@ case "changetime":{
 			_comboTimeMinute lbSetPicture [_i, [PICNIGHT,PICDAY] select _isDay];
 		};
 	};
+};
+case "namespacevars":{
+	params ["_control"];
+	ctrlparent _control createdisplay "TER_3den_RscDisplayNamespaceVars";
 };
 case "unload":{
 	//--- save variables

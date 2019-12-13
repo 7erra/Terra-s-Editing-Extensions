@@ -393,6 +393,16 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					x = W_BORDER - 4 * GUI_GRID_W;
 					h = ADD_HEIGHT(1)
 				};
+				SEPERATOR(8)
+				class btn_namespacevars: RscButtonMenu
+				{
+					idc = IDC_BTN_NAMESPACEVARS;
+					text = "Namespace Variables";
+					x = 0;
+					y = CUR_Y;
+					w = 1 * W_BORDER;
+					h = ADD_HEIGHT(1)
+				};
 			};
 		};
 		// START PAGE 2

@@ -1,17 +1,21 @@
 /*
-	Author: 7erra <https://forums.bohemia.net/profile/1139559-7erra/>
+	Author:
+	 7erra <https://forums.bohemia.net/profile/1139559-7erra/>
 
 	Description:
-	Converts a given number from a given base to the desired base
+	 Converts a given number from a given base to the desired base
 
 	Parameter(s):
-	0: "STRING" - Number to convert
-	1: "STRING" or NUMBER - Current number's base
-	2: "STRING" or NUMBER - New base
-	Possible bases: 2 ("binary"), 10 ("decimal"), 16 ("hexadecimal")
+	 0: "STRING" - Number to convert
+	 1: "STRING" or NUMBER - Current number's base
+	 2: "STRING" or NUMBER - New base
+	 Possible bases: 2 ("binary"), 10 ("decimal"), 16 ("hexadecimal")
 
 	Returns:
-	STRING - Number with new base
+	 STRING - Number with new base
+
+	Example:
+	 ["15",10,16] call TER_fnc_convertNumber; // result: 0x0F
 */
 
 params ["_number",["_base",10],["_toBase",2]];

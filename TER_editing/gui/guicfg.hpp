@@ -16,3 +16,5 @@
 #include "RscAnchor.hpp"
 //--- v2.1
 #include "RscCtrlsExplained.hpp"
+//--- v2.2
+#include "RscNamespaceVars.hpp"

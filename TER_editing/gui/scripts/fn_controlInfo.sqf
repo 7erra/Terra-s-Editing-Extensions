@@ -15,7 +15,7 @@
 	2 - Display IDD for specific display (NUMBER)
 		Default: -1
 
-	Example: [] spawn TER_fnc_findIDC;
+	Example: [] spawn TER_fnc_controlInfo;
 */
 if (!canSuspend) exitWith {_this spawn TER_fnc_controlInfo};
 disableSerialization;

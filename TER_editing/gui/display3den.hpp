@@ -20,6 +20,7 @@ class Display3DEN
 						"TER_3den_fontPicker",
 						"TER_3den_attachToFinder",
 						"TER_3den_dikCodes",
+						"TER_3den_namespaceVars",
 						"TER_3den_ctrlExplained"
 					};
 				};
@@ -51,6 +52,11 @@ class Display3DEN
 				{
 					text = "Key Codes";
 					ACT_DISPLAY(DisplayKeyCodes);
+				};
+				class TER_3den_namespaceVars
+				{
+					text = "Namespace Variables";
+					ACT_DISPLAY(DisplayNamespaceVars);
 				};
 				class TER_3den_ctrlExplained
 				{

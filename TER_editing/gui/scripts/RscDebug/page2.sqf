@@ -102,7 +102,7 @@ case "liveloop":{
 	_row = _tableWatch ctRowControls _ind;
 	_row params PARAMSROW;
 	while {!isNull _edCommand} do {
-		_result = call compile ctrlText _edCommand;
+		_result = with missionnamespace do {call compile ctrlText _edCommand};
 		if (isNil "_result") then {
 			_txtOut ctrlSetText "#NIL";
 			_txtOut ctrlSetBackgroundColor [1,0,0,0.33];
@@ -163,7 +163,7 @@ case "livedebug":{
 			params ["_txtOut","_command"];
 			_command = compile _command;
 			while {!isNull _txtOut} do {
-				_result = call _command;
+				_result = with missionnamespace do {call _command;};
 				if (isNil "_result") then {
 					_txtOut ctrlSetText "#NIL";
 					_txtOut ctrlSetBackgroundColor [1,0,0,0.5];

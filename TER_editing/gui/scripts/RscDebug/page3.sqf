@@ -87,7 +87,7 @@ case "ccexec":{
 	_locality = _comboLocality lbValue (lbCurSel _comboLocality);
 	if (_locality == -1) then {
 		//--- Local execution
-		_result = call _command;
+		_result = with missionnamespace do {call _command;};
 		if (isNil "_result") then {
 			_edOutput ctrlSetText "#NIL";
 		} else {
@@ -95,8 +95,8 @@ case "ccexec":{
 		};
 	} else {
 		//--- Remote execution
-		[[],_command] remoteExec ["call",_locality];
-		_edOutput ctrlSetText "";
+		with missionnamespace do {[[],_command] remoteExec ["call",_locality];};
+		_edOutput ctrlSetText "#REMOTE EXECUTION";
 	};
 };
 case "deletecc":{
