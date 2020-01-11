@@ -1,7 +1,7 @@
 class TER_3den_RscDisplayKeyCodes
 {
 	idd = IDD_DISPLAY_KEYCODES;
-	ONLOAD(KeyCodes)
+	ONLOAD(RscKeyCodes);
 	class controlsBackground
 	{
 		class backDisable: ctrlStaticBackgroundDisable 

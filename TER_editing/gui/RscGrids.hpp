@@ -4,7 +4,7 @@ class TER_RscDisplayGrids
 	duration = 1e+6;
 	fadeIn = 0;
 	fadeOut = 0;
-	ONLOAD(Grids)
+	ONLOAD(RscGrids);
 	class controls 
 	{
 		class background : RscText

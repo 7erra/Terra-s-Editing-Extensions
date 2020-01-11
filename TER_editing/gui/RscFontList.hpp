@@ -2,7 +2,7 @@ class TER_3den_RscFontList
 {
 	idd = IDD_DISPLAY_FONTLIST;
 	enableSimulation = false;
-	ONLOAD(FontList)
+	ONLOAD(RscFontList);
 	class controlsBackground
 	{
 		class backDisable: ctrlStaticBackgroundDisable 

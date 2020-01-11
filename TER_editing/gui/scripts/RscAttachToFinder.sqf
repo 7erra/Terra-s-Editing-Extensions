@@ -228,7 +228,6 @@ case "updateloop":{
 			] findIf {_x} != -1;
 		};
 	};
-	diag_log "LOOP EXTI";
 };
 case "3dmehobjects":{
 	params ["_drawObj"];

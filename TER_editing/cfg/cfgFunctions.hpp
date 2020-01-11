@@ -1,4 +1,8 @@
+#ifdef MOD
 #define FNC_PATH "\TER_Editing\fnc"
+#else
+#define FNC_PATH "fnc\"
+#endif
 class CfgFunctions
 {
 	class TER

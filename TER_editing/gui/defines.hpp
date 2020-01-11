@@ -85,12 +85,17 @@
 #define TR_SHOWROOT       1
 #define TR_AUTOCOLLAPSE   2
 
-#include "scripts\ctrls.inc"
+#define STR(TEXT) #TEXT
+#define ARGS [STR(STR(onLoad)), _this]
+#ifdef MOD
+#define SCRIPT_STR(FILE) STR(STR(TER_Editing\gui\scripts\FILE.sqf))
+#else
+#define SCRIPT_STR(FILE) STR(STR(gui\scripts\FILE.sqf))
+#endif
+#define ONLOAD(SCRIPT) onLoad = STR(ARGS execVM SCRIPT_STR(SCRIPT);)
 
-#define STRING(TEXT) #TEXT
-#define SCRIPT_STR(FILE) TER_Editing\gui\scripts\Rsc##FILE##.sqf
-#define ONLOAD(SCRIPT) onLoad = STRING(_this execVM STRING(STRING(SCRIPT_STR(SCRIPT))));
-
+#include "\a3\ui_f\hpp\definedikcodes.inc"
+#include "defaultControls.hpp"
 class TER_3den_RscEditMulti: RscEdit
 {
 	style = ST_MULTI;

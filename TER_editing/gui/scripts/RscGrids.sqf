@@ -1,4 +1,5 @@
 #include "ctrls.inc"
+params ["_mode", "_this"];
 params ["_display"];
 _prevDisplay = uiNamespace getVariable ["TER_3den_RscGrids_display",displayNull];
 if (!isNull _prevDisplay) then {

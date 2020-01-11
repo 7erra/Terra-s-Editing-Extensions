@@ -15,6 +15,7 @@ class Display3DEN
 					text = "7'3 Editing";
 					picture = "";
 					items[] = {
+						"TER_3den_ConfigViewer73",
 						"TER_3den_stxtEditor",
 						"TER_3den_colorPicker",
 						"TER_3den_fontPicker",
@@ -26,6 +27,12 @@ class Display3DEN
 				};
 				#define STR(ARG) #ARG
 				#define ACT_DISPLAY(DISPLAY) action = STR((findDisplay 313) createDisplay STR(STR(TER_3den_Rsc##DISPLAY)))
+				class TER_3den_ConfigViewer73
+				{
+					text = "Config Viewer 73";
+					picture = "";
+					ACT_DISPLAY(DisplayConfigViewer73);
+				};
 				class TER_3den_stxtEditor
 				{
 					text = "Structured Text Editor";
@@ -70,9 +77,9 @@ class Display3DEN
 	{
 	    class Items
 	    {
-			class Log//The easiest way to add an entry is to use one of the already available folders, here we use the class '''Log''' '''(Level 1)'''
+			class Log
 			{
-				items[] +=//Here we list all items we want to add to the '''Log''' class. 
+				items[] +=
 				{
 					"TER_showTypes",
 					"TER_buildingPos",

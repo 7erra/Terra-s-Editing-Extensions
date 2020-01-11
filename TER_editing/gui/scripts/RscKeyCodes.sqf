@@ -1,19 +1,28 @@
 #include "ctrls.inc"
+// TODO: ADD TER_Editing
 #define SELF "\TER_Editing\gui\scripts\RscKeyCodes.sqf";
-params ["_display",["_mode","onLoad"],["_eArgs",[]]];
-_lnbKeyCodes = _display displayCtrl IDC_KEYCODES_LISTKEYCODES;
+//params ["_display",["_mode","onLoad"],["_eArgs",[]]];
+params ["_mode","_this"];
+/* _lnbKeyCodes = _display displayCtrl IDC_KEYCODES_LISTKEYCODES;
 _lnbKeyCodesHeader = _display displayCtrl IDC_KEYCODES_LISTKEYCODESHEAD;
-_btnClear = _display displayCtrl IDC_KEYCODES_BTNCLEAR;
-
+_btnClear = _display displayCtrl IDC_KEYCODES_BTNCLEAR; */
 switch _mode do {
 	case "onLoad":{
-		_display displayAddEventHandler ["KeyDown",{ [_this#0,"displaykey",_this] execVM SELF; }];
+		params ["_display"];
+		_display displayAddEventHandler ["KeyDown",{ 
+			["displaykey",_this] execVM SELF; 
+		}];
+		_lnbKeyCodesHeader = _display displayCtrl IDC_KEYCODES_LISTKEYCODESHEAD;
 		_lnbKeyCodesHeader lnbAddRow ["DIK Code","Hexadecimal","DIK Define","Shift","CTRL","ALT"];
 		_lnbKeyCodesHeader ctrlEnable false;
-		_btnClear ctrlAddEventHandler ["ButtonDown",{ [ctrlParent (_this#0),"clearlist",_this] execVM SELF }];
+		_btnClear = _display displayCtrl IDC_KEYCODES_BTNCLEAR;
+		_btnClear ctrlAddEventHandler ["ButtonDown",{ 
+			["clearlist",_this] execVM SELF;
+		}];
 	};
 	case "displaykey":{
-		_eArgs params ["", "_key", "_shift", "_ctrl", "_alt"];
+		params ["_display", "_key", "_shift", "_ctrl", "_alt"];
+		_lnbKeyCodes = _display displayCtrl IDC_KEYCODES_LISTKEYCODES;
 		_lastKeys = _display getVariable ["_lastKeys",[]];
 		if (_key in _lastKeys) exitWith {
 			_lnbKeyCodes lnbSetCurSelRow (_lastKeys find _key);
@@ -206,6 +215,9 @@ switch _mode do {
 
 	};
 	case "clearlist":{
+		params ["_btnClear"];
+		_display = ctrlParent _btnClear;
+		_lnbKeyCodes = _display displayCtrl IDC_KEYCODES_LISTKEYCODES;
 		lnbClear _lnbKeyCodes;
 		_display setVariable ["_lastKeys",[]];
 		ctrlSetFocus _lnbKeyCodes;

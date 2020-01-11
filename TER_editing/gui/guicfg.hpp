@@ -1,10 +1,14 @@
-#include "defaultControls.hpp"
+#include "\a3\ui_f\hpp\definecommoncolors.inc"
+#include "scripts\ctrls.inc"
 #include "defines.hpp"
 #include "RscTitles.hpp"
-#include "RscConfigViewer.hpp"
-#include "display3den.hpp"
-#include "RscInterrupt.hpp"
-#include "RscGUIEditor.hpp"
+#ifdef MOD
+    #include "RscConfigViewer.hpp"
+    #include "display3den.hpp"
+    #include "RscInterrupt.hpp"
+    #include "RscGUIEditor.hpp"
+    //#include "RscDebugConsole.hpp"
+#endif
 //--- v1.5
 #include "RscStructuredTextEditor.hpp"
 #include "RscColorPicker.hpp"
@@ -18,3 +22,5 @@
 #include "RscCtrlsExplained.hpp"
 //--- v2.2
 #include "RscNamespaceVars.hpp"
+//--- v2.3
+#include "RscConfigViewer73.hpp"

@@ -2,7 +2,7 @@ class TER_3den_RscStxtEditor
 {
 	idd = IDD_DISPLAY_STRUCTUREDTEXTEDITOR;
 	enableSimulation = false;
-	ONLOAD(StxtEditor)
+	ONLOAD(RscStxtEditor);
 	class controlsBackground
 	{
 		class backDisable: ctrlStaticBackgroundDisable 
