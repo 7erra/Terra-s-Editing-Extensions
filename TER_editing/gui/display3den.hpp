@@ -13,7 +13,7 @@ class Display3DEN
 				class TER_3den_folder
 				{
 					text = "7'3 Editing";
-					picture = "";
+					picture = "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\open_ca.paa";
 					items[] = {
 						"TER_3den_ConfigViewer73",
 						"TER_3den_stxtEditor",
