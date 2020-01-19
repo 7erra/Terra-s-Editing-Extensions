@@ -13,8 +13,9 @@ _selObject = get3DENSelected "object";
 if (count _selObject > 1) exitWith {["TER_msg_tooManySelected"] call BIS_fnc_3DENNotification};
 _selObject = _selObject select 0;
 _type = typeOf _selObject;
-_centerPos = [worldSize/2,worldSize/2,0];
-_buildings = _centerPos nearObjects [_type, worldSize*1.5];
+_size = worldSize;
+_centerPos = [_size/2,_size/2,0];
+_buildings = _centerPos nearObjects [_type, sqrt(_size^2 + _size^2) / 2];
 _buildings = _buildings -[_selObject];
 if (!isNil {missionNamespace getVariable "TER_3den_fncHouseType"}) then {
 	// remove old vars
