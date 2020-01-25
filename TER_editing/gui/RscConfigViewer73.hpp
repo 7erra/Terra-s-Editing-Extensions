@@ -169,7 +169,6 @@ class TER_3den_RscDisplayConfigViewer73
 		{
 			idc = IDC_CONFIG_LBFAVORITES;
 			font = "EtelkaMonospacePro";
-			sizeEx = 1 * _H;
 			shadow=0;
 			x = _L + (MARGIN(2) + 1) * _W;
 			y = _B - (MARGIN(2) + 2) * _H;
