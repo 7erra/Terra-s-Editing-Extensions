@@ -117,7 +117,7 @@ class TER_3den_RscDisplayNamespaceVars
 		class LnbVars: ctrlListNBox
 		{
 			idc = IDC_NAMESPACE_LNBVARS;
-			columns[] = {-0.008,0.4,0.85};//Move first column a tat to the left to remove space. Add a third column to prevent content overlapping into scrollbar
+			columns[] = {-0.008,0.4,0.95};//Move first column a tat to the left to remove space. Add a third column to prevent content overlapping into scrollbar
 			disableOverflow = true;//Disable overflow of content into next column. Content is cut off and "..." is added. Tooltip automatically contains full content
 			x = -15.5 * UI_GRID_W + 0.5;
 			y = -8.7 * UI_GRID_H + 0.5;
