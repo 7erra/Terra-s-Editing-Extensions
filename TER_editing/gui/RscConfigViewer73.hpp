@@ -444,6 +444,15 @@ class TER_3den_RscDisplayConfigViewer73
 				};
 			};
 		};
+		class btn_print: ctrlButton
+		{
+			idc = IDC_CONFIG_BTNPRINTCONFIG
+			text = "PRINT CONFIG";
+			x =_R - (MARGIN(2) + 20) * _W;
+			y = _B - (1 + MARGIN(1)) * _H;
+			w = 10 * _W;
+			h = 1 * _H;
+		};
 		class btn_close: ctrlButtonCancel
 		{
 			text = "CLOSE";
@@ -456,7 +465,7 @@ class TER_3den_RscDisplayConfigViewer73
 		{
 			idc = IDC_CONFIG_BTNOPENINFO;
 			text = "?";
-			x = _R - (MARGIN(2) + 11) * _W;
+			x = _R - (MARGIN(3) + 21) * _W;
 			w = 1 * _W;
 			shortcuts[] = {DIK_F1};
 		};
