@@ -121,6 +121,12 @@ switch _mode do {
 		_btnInfoOk ctrlAddEventHandler ["ButtonClick",{
 			["infoClose",[ctrlParentControlsGroup (_this#0)]] call SELF;
 		}];
+		//--- Print config
+		_btnPrintConfig = _display displayCtrl IDC_CONFIG_BTNPRINTCONFIG;
+		_btnPrintConfig ctrlAddEventHandler ["ButtonClick",{
+			["printConfig",ctrlParent (_this#0)] spawn SELF;
+		}];
+
 		_stxtInfo = _display displayCtrl IDC_CONFIG_STXTINFO;
 		_stxtInfo ctrlSetStructuredText parseText call compile loadFile "\TER_Editing\gui\scripts\RscConfigViewer73\info.sqf";
 		//--- Load previous config
@@ -621,5 +627,27 @@ switch _mode do {
 		};
 		_cfgString = [_cfgArray, "STRING"] call BIS_fnc_configPath;
 		_edCfgPath ctrlSetText _cfgString;
+	};
+	case "printConfig":{
+		params ["_display"];
+		_edCfgPath = _display displayCtrl IDC_CONFIG_EDCFGPATH;
+		_btnPrintConfig = _display displayCtrl IDC_CONFIG_BTNPRINTCONFIG;
+
+		_cfg = call compile ctrlText _edCfgPath;
+
+		_dreadReturn = [_cfg] call DREAD_fnc_copyConfigClass;
+		
+		if (_dreadReturn == "noClass") then {
+			_btnPrintConfig ctrlSettext "CONFIG NOT FOUND!";
+			_btnPrintConfig ctrlSetBackgroundColor [1,0,0,0.8];
+		} else {
+			_btnPrintConfig ctrlSettext "CONFIG EXPORTED!";
+			_btnPrintConfig ctrlSetBackgroundColor [0,1,0,0.8];
+		};
+
+		uisleep 2;
+
+		_btnPrintConfig ctrlSettext "PRINT CONFIG";
+		_btnPrintConfig ctrlSetBackgroundColor [0,0,0,0.8];
 	};
 };
