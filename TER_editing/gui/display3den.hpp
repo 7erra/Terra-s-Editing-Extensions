@@ -111,6 +111,17 @@ class Display3DEN
 				action = "call TER_fnc_clearInventory";
 				conditionShow = "hoverObjectBrain";
 			};
+			//--- Overwrite old config viewer context menu entry
+			class FindConfig
+			{
+				text="$STR_3DEN_Display3DEN_EntityMenu_FindConfig_text";
+				data="FindConfig";
+				value=0;
+				conditionShow="hoverObject 	+ hoverWaypoint 	+ hoverLogic 	+ hoverMarker";
+				action="['findconfig'] call TER_fnc_configViewer73;";
+				picture="\a3\3DEN\Data\Displays\Display3DEN\EntityMenu\findConfig_ca.paa";
+				opensNewWindow=1;
+			};
 		};
 	};
 };

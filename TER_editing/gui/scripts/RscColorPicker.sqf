@@ -3,19 +3,31 @@
 #define SELF (uiNamespace getVariable ["TER_3den_RscColorPicker_script",{}])
 params ["_mode","_this"];
 switch _mode do {
+	case "loadColor":{
+		params ["_grpColorPicker", ["_rgba",[1,1,1,1]]];
+		{
+			_slider = _grpColorPicker controlsGroupCtrl _x;
+			private _c = _rgba param [_forEachIndex, 1];
+			_slider sliderSetRange [0,1];
+			_slider sliderSetSpeed [0.01, 1];
+			_slider sliderSetPosition _c;
+			["updateColor", [_slider,_c]] call SELF;
+		} forEach [
+			IDC_COLOR_SLIDERR, 
+			IDC_COLOR_SLIDERG, 
+			IDC_COLOR_SLIDERB, 
+			IDC_COLOR_SLIDERA
+		];
+	};
 	case "onLoad":{
 		params ["_grpColorPicker"];
 		if (isNil {uiNamespace getVariable "TER_3den_RscColorPicker_script"}) then {
 			uiNamespace setVariable ["TER_3den_RscColorPicker_script", compile preprocessFileLineNumbers "\TER_Editing\gui\scripts\RscColorPicker.sqf"];
 		};
 		_loadColor = uiNamespace getVariable ["TER_3den_RscColorPicker_loadColor",[1,1,1,1]];
+		["loadColor", [_grpColorPicker, _loadColor]] call SELF;
 		{
 			_slider = _grpColorPicker controlsGroupCtrl _x;
-			_c = _loadColor param [_forEachIndex, 1];
-			_slider sliderSetRange [0,1];
-			_slider sliderSetSpeed [0.01, 1];
-			_slider sliderSetPosition _c;
-			["updateColor", [_slider,_c]] call SELF;
 			_slider ctrlAddEventHandler ["SliderPosChanged",{
 				["updateColor",_this] call SELF;
 			}];
@@ -25,13 +37,13 @@ switch _mode do {
 			IDC_COLOR_SLIDERB, 
 			IDC_COLOR_SLIDERA
 		];
-		_btnClose = _grpColorPicker controlsGroupCtrl IDC_COLOR_BTNCLOSE;
+		/* _btnClose = _grpColorPicker controlsGroupCtrl IDC_COLOR_BTNCLOSE;
 		_btnClose ctrlAddEventHandler ["ButtonClick",{
 			["close",_this] call SELF;
 		}];
 		_grpColorPicker ctrlAddEventHandler ["KeyDown",{
 			["keyEH",_this] call SELF;
-		}];
+		}]; */
 	};
 	case "updateColor": {
 		params ["_slider", "_newValue"];
@@ -72,22 +84,22 @@ switch _mode do {
 	};
 	case "keyEH":{
 		params ["_grpColorPicker","_key"];
-		if (_key == DIK_ESCAPE) exitWith {
+		/* if (_key == DIK_ESCAPE) exitWith {
 			_btnClose = _grpColorPicker controlsGroupCtrl IDC_COLOR_BTNCLOSE;
 			["close",[_btnClose]] call SELF;
 			true
 		};
-		false
+		false */
 	};
 	case "close":{
 		params ["_btnClose"];
-		_display = ctrlParent _btnClose;
+		/* _display = ctrlParent _btnClose;
 		diag_log _display;
 		if (ctrlIDD ctrlParent _btnClose == IDC_COLOR_DISPLAYCTRL) exitWith {
 			_display closeDisplay 1;
 		};
 		_grpColorPicker = ctrlParentControlsGroup _btnClose;
-		ctrlDelete _grpColorPicker;
+		ctrlDelete _grpColorPicker; */
 	};
 };
 
