@@ -85,7 +85,7 @@ class Display3DEN
 	{
 	    class Items
 	    {
-			class Log
+			class Edit
 			{
 				items[] +=
 				{
