@@ -36,7 +36,7 @@ _3dMarkerMEH = addMissionEventHandler ["Draw3D",{
 	_buildings = _buildings select 1;
 	{
 		_alpha = 0 max (linearConversion [0,500,_x distance get3DENCamera,1,0]);
-		drawIcon3D ["", [1,0,0,_alpha], getPos _x, 1, 1, 0, typeOf _x, 2];
+		drawIcon3D ["", [1,0,0,_alpha], _x modelToWorldVisual [0,0,0], 1, 1, 0, typeOf _x, 2];
 	} forEach _buildings;
 }];
 // markers
