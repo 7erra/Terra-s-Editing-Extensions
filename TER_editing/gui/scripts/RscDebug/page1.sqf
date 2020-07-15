@@ -30,6 +30,8 @@ _comboTimeHour = _page1 controlsGroupCtrl IDC_COMBO_TIMEHOUR;
 _comboTimeMinute = _page1 controlsGroupCtrl IDC_COMBO_TIMEMINUTE;
 _btnGridSet = _page1 controlsGroupCtrl IDC_BTN_GRIDSET;
 _btnNamespaceVars = _page1 controlsgroupctrl IDC_BTN_NAMESPACEVARS;
+_btnConfigViewer73 = _page1 controlsGroupCtrl IDC_BTN_OPENCONFIGVIEWER73;
+
 
 switch (_mode) do {
 case "load":{
@@ -183,6 +185,10 @@ case "load":{
 	_btnNamespaceVars ctrladdeventhandler ["ButtonClick",{
 		with uiNamespace do {["namespacevars",_this] call SELF;};
 	}];
+	//--- Config viewer 73 button
+	_btnConfigViewer73 ctrlAddEventHandler ["ButtonClick",{
+		with uiNamespace do {["configviewer",_this] call SELF;};
+	}];
 };
 case "sideplayer":{
 	params ["_ctrl","_index"];
@@ -331,6 +337,12 @@ case "changetime":{
 case "namespacevars":{
 	params ["_control"];
 	ctrlparent _control createdisplay "TER_3den_RscDisplayNamespaceVars";
+};
+case "configviewer":{
+	params ["_btnConfigViewer73"];
+	with missionNamespace do {
+		[] call TER_fnc_configViewer73;
+	};
 };
 case "unload":{
 	//--- save variables

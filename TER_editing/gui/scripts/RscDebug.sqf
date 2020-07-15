@@ -10,7 +10,7 @@ _pageCount = 6;
 _displayEscape = findDisplay 49;
 
 switch _mode do {
-case "load":{
+case "onLoad":{
 	params ["_control"];
 	waitUntil {!isNull (findDisplay 49)};
 	_displayEscape = findDisplay 49;
@@ -60,10 +60,60 @@ case "load":{
 		with uiNamespace do {["keydownesc",_this] call FNCSELF;};
 	}];
 
+	// Make control movable along x axis
+	{
+		_x params ["_grpIDC","_idc"];
+		_grp = _displayEscape displayCtrl _grpIDC;
+		_title = _grp controlsGroupCtrl _idc;
+		_title ctrlAddEventHandler ["MouseButtonDown",{
+			with uiNamespace do {["moveMouseDown", _this] call FNCSELF;};
+		}];
+		_title ctrlAddEventHandler ["MouseButtonUp",{
+			with uiNamespace do {["moveMouseUp", _this] call FNCSELF;};
+		}];
+		_title ctrlAddEventHandler ["MouseMoving",{
+			with uiNamespace do {["moveMouseMoving", _this] call FNCSELF;};
+		}];
+	} forEach [
+		[IDC_DEBUG, IDC_BTN_TITLE], 
+		[IDC_ESC_DEBUGCONSOLE, IDC_ESC_DEBUGTITLE]
+	];
 	// unload eh
 	_displayEscape displayAddEventHandler ["unLoad",{
 		with uiNamespace do {["unload",_this] call FNCSELF;};
 	}];
+};
+case "moveMouseDown":{
+	params["_title","","_xP","_yP","_shift","_btnCtrl","_alt"];
+	_ctrl = ctrlParentControlsGroup _title;
+    _ctrl setVariable ["mousedown",true];
+    ctrlPosition _title params ["_xN","_yN"];
+    _startOffset = [_xP - _xN, _yP - _yN];
+    _ctrl setVariable ["mouseOffset", _startOffset];
+};
+case "moveMouseUp":{
+    params ["_title"];
+	_ctrl = ctrlParentControlsGroup _title;
+    _ctrl setVariable ["mousedown", false];
+};
+case "moveMouseMoving":{
+    params ["_title"];
+	_ctrl = ctrlParentControlsGroup _title;
+    if !(_ctrl getVariable ["mousedown",false]) exitWith {};
+    params ["", "_xR", "_yR", "_moving"];
+    _off = _ctrl getVariable ["mouseOffset", [0,0]];
+    (_ctrl getVariable ["mouseOffset",[0,0]]) params ["_xN", "_yN"];
+    _newX = (getMousePosition#0 - _xN) 
+        min (safezonex + safezonew - ctrlPosition _ctrl #2)
+        max (safezonex)
+    ;
+    _newY = ctrlPosition _ctrl #1;
+    _ctrl ctrlSetPosition [_newX, _newY];
+    _ctrl ctrlCommit 0;
+	_saveVar = ["TER_EDITING_VANILLADEBUG_X", "TER_EDITING_DEBUGCONSOLE_X"] select (ctrlIDC _title == IDC_BTN_TITLE);
+	_xp = ((ctrlPosition _ctrl # 0) - GUI_GRID_X) / GUI_GRID_W;
+	profileNamespace setVariable [_saveVar, _xp];
+    true
 };
 case "pagechange":{
 	params ["_ctrl","_index"];
@@ -110,9 +160,18 @@ case "keydownesc":{
 	};
 };
 case "unload":{
+	params ["_displayEscape"];
 	//--- Escpape menu closed, activate unload ehs for pages
 	for "_i" from 1 to _pageCount do {
 		with uiNamespace do {["unload",[]] call call compile format ["TER_fnc_debugPage%1_script",_i]};
 	};
+	//--- save position of the debug consoles
+	/* _control = _displayEscape displayCtrl IDC_DEBUG;
+	_xp = ((ctrlPosition _control # 0) - GUI_GRID_X) / GUI_GRID_W;
+	profileNamespace setVariable ["TER_EDITING_DEBUGCONSOLE_X", _xp];
+	_vanillaCtrl = _displayEscape displayCtrl IDC_ESC_DEBUGCONSOLE;
+	_xp = ((ctrlPosition _vanillaCtrl # 0) - GUI_GRID_X) / GUI_GRID_W;
+	profileNamespace setVariable ["TER_EDITING_VANILLADEBUG_X", _xp]; */
+	saveProfileNamespace;
 };
 };

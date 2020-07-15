@@ -2,12 +2,14 @@
 #include "scripts\ctrls.inc"
 #include "defines.hpp"
 #include "RscTitles.hpp"
-#ifdef MOD
+#ifndef NONMOD
     #include "RscConfigViewer.hpp"
     #include "display3den.hpp"
     #include "RscInterrupt.hpp"
     #include "RscGUIEditor.hpp"
     //#include "RscDebugConsole.hpp"
+#else
+    #include "RscDebug.hpp"
 #endif
 //--- v1.5
 #include "RscStructuredTextEditor.hpp"

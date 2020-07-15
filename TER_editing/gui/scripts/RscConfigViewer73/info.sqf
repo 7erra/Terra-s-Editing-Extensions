@@ -1,4 +1,4 @@
-"<t underline='1'>Shortcuts</t><br/>
+<t underline='1'>Shortcuts</t><br/>
 CTRL + F: Search configs<br/>
 CTRL + SHIFT + F: Search properties<br/>
 CTRL + Q: One config up<br/>
@@ -22,4 +22,4 @@ View mode: WIP<br/>
 Inheritance: When ON all properties from the parent class will be displayed.<br/>
 Show classes: ON shows subclasses in the property window.<br/>
 <br/>
-This config viewer shares all applicable settings with the vanilla one."
+This config viewer shares all applicable settings with the vanilla one.

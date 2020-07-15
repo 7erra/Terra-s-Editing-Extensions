@@ -19,6 +19,7 @@ class TER_3den_RscEditCodeOutput: TER_3den_RscEditCode
 	canModify = 0;
 	h = GUI_GRID_H;
 };
+/*
 class TER_3den_RscWatchGroupControl: RscControlsGroupNoScrollBars
 {
 	x = 0;
@@ -105,7 +106,7 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
 		};
 	};
 };
-
+*/
 #define ADD_Y(VAL) __EXEC(_curY = _curY +0.1 +VAL)
 #define CUR_Y __EVAL(_curY) * GUI_GRID_H
 #define ADD_HEIGHT(HEIGHT) HEIGHT * GUI_GRID_H; ADD_Y(HEIGHT)
@@ -128,11 +129,13 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
 class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 {
 	idc = IDC_DEBUG;
-	x = 40 * GUI_GRID_W + GUI_GRID_X;
+	//x = 40 * GUI_GRID_W + GUI_GRID_X;
+	x = GUI_GRID_X + (profileNamespace getVariable ["TER_EDITING_DEBUGCONSOLE_X", 40]) * GUI_GRID_W;
 	y = safezoneY + 1 * GUI_GRID_H;
 	w = DEBUG_W;
 	h = DEBUG_H;
-	onLoad = "[""load"",_this] execVM ""\TER_Editing\gui\scripts\RscDebug.sqf"";";
+	ONLOAD(RscDebug);
+	//onLoad = "[""load"",_this] execVM ""\TER_Editing\gui\scripts\RscDebug.sqf"";";
 	class controls 
 	{
 		class background: RscText
@@ -143,20 +146,30 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			h = DEBUG_H -(1.1 * GUI_GRID_H);
 			colorBackground[] = {0,0,0,0.8};
 		};
-		class title_debug: RscTitle
+		class title_debug: RscButton
 		{
-			text = "7erra's Editing Debug Console"; //--- ToDo: Localize;
-			colorBackground[]=
-			{
-				"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])",
-				"(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])",
-				"(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",
-				"(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"
-			};
+			idc = IDC_BTN_TITLE;
+			text = "7erra's Editing Debug Console";
+			font="PuristaMedium";
 			x = 0 * GUI_GRID_W;
 			y = 0 * GUI_GRID_H;
 			w = DEBUG_W;
 			h = 1 * GUI_GRID_H;
+			style = ST_LEFT;
+			colorText[] = {1,1,1,1};
+			period = -1;
+			//blinkingPeriod = 0;
+			colorDisabled[] = GUI_BCG_COLOR;
+			colorBackground[] = GUI_BCG_COLOR;
+			colorBackgroundDisabled[] = GUI_BCG_COLOR;
+			colorBackgroundActive[] = GUI_BCG_COLOR;
+			colorFocused[] = GUI_BCG_COLOR;
+			colorShadow[] = {0,0,0,0};
+			colorBorder[] = {0,0,0,1};
+			soundEnter[] = {"", 0.09, 1};
+			soundPush[] = {"", 0.09, 1};
+			soundClick[] = {"", 0.09, 1};
+			soundEscape[] = {"", 0.09, 1};
 		};
 		// START PAGE 1
 		// page 1: everything else
@@ -403,6 +416,15 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = 1 * W_BORDER;
 					h = ADD_HEIGHT(1)
 				};
+				SEPERATOR(9)
+				class btn_openConfigViewer73: btn_namespacevars
+				{
+					idc = IDC_BTN_OPENCONFIGVIEWER73;
+					text = "Open Config Viewer 73";
+					y = CUR_Y;
+					h = ADD_HEIGHT(1)
+				};
+
 			};
 		};
 		// START PAGE 2
