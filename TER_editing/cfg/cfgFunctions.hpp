@@ -1,7 +1,7 @@
 #ifndef NONMOD
-#define FNC_PATH(PATH) __EVAL("\TER_Editing\" + PATH)
+#define FNC_PATH(PATH) __EVAL("TER_Editing\" + PATH)
 #else
-#define FNC_PATH(PATH) PATH
+#define FNC_PATH(PATH) __EVAL("TER_Editing\" + PATH)
 #endif
 class CfgFunctions
 {
@@ -25,6 +25,7 @@ class CfgFunctions
 		class Debug
 		{
 			class configViewer73 {file= FNC_PATH("gui\scripts\RscConfigViewer73.sqf");};
+			class configToString {file = FNC_PATH("fnc\fn_configToString.sqf");};
 		};
 		class Numbers
 		{

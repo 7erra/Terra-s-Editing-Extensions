@@ -40,6 +40,7 @@ class TER_3den_RscDisplayConfigViewer73
 		class title: ctrlStaticTitle
 		{
 			text = "Config Viewer 73"; //--- ToDo: Localize;
+			moving = 0;
 			x = _L + MARGIN(1) * UI_GRID_W;
 			y = _T + MARGIN(1) * UI_GRID_H;
 			w = safeZoneW - MARGIN(2) * UI_GRID_W;
@@ -191,16 +192,13 @@ class TER_3den_RscDisplayConfigViewer73
 		class tool_toggleView: ctrlToolbox
 		{
 			idc = IDC_CONFIG_TOOLVIEW;
-			onLoad = "_this#0 ctrlEnable false;";
 			//TECH_FONT
 			x = _L + (MARGIN(2) + COLUMN_L_W + 3.3) * UI_GRID_W;
 			y = _T + (MARGIN(2) + 1) * UI_GRID_H;
 			w = W_TOOL * UI_GRID_W;
 			h = 1 * UI_GRID_H;
-			//strings[] = {"LIST","TEXT"};
-			strings[] = {"WIP","WIP"};
-			//tooltips[] = {"Displays the config entry as a list of properties", "Displays the config entry as text"};
-			tooltips[] = {"Nothing to see here","YET"};
+			strings[] = {"LIST","TEXT"};
+			tooltips[] = {"Displays the config entry as a list of properties", "Displays the config entry as text"};
 			columns = 2;
 			rows = 1;
 			//colorBackground[] = GUI_BCG_MENU;
@@ -240,6 +238,7 @@ class TER_3den_RscDisplayConfigViewer73
 			y = _T + (MARGIN(3) + 2) * UI_GRID_H;
 			w = W_CFGWINDOW;
 			h = safeZoneH - (MARGIN(8) + 6) * UI_GRID_H;
+			show = 0;
 			class controls
 			{
 				#define W_TXT_PROPERTYSEARCH 7.2
@@ -276,15 +275,24 @@ class TER_3den_RscDisplayConfigViewer73
 		{
 			idc = IDC_CONFIG_GRPTEXT;
 			show = 0;
+			class VScrollBar
+			{
+				width = 0.5 * UI_GRID_W;
+				height = 0;
+				autoScrollEnabled = 0;
+				autoScrollDelay = 1;
+				autoScrollRewind = 1;
+				autoScrollSpeed = 1;
+			};
 			class controls
 			{
 				class ed_properties: ed_configSearch
 				{
 					idc = IDC_CONFIG_EDPROPERTIES;
 					x = 0;
-					y = 0;
-					w = W_CFGWINDOW;
-					h = safeZoneH - (MARGIN(6) + 4) * UI_GRID_H;
+					y = 0.1 * UI_GRID_H;
+					w = W_CFGWINDOW - 0.5 * UI_GRID_W;
+					h = safeZoneH - (MARGIN(6) + 5) * UI_GRID_H;
 					canModify = 0;
 					style = ST_MULTI;
 				};
@@ -392,16 +400,23 @@ class TER_3den_RscDisplayConfigViewer73
 		class btn_close: ctrlButtonCancel
 		{
 			text = "CLOSE";
-			x =_R - (MARGIN(1) + 10) * UI_GRID_W;
+			x = _R - (MARGIN(1) + 10) * UI_GRID_W;
 			y = _B - (1 + MARGIN(1)) * UI_GRID_H;
 			w = 10 * UI_GRID_W;
 			h = 1 * UI_GRID_H;
+		};
+		class btn_export: btn_close
+		{
+			idc = IDC_CONFIG_BTNEXPORT;
+			text = "EXPORT";
+			tooltip = "Export the selected class to clipboard";
+			x = _R - (MARGIN(2) + 20) * UI_GRID_W;
 		};
 		class btn_openInfo: btn_close
 		{
 			idc = IDC_CONFIG_BTNOPENINFO;
 			text = "?";
-			x = _R - (MARGIN(2) + 11) * UI_GRID_W;
+			x = _R - (MARGIN(3) + 21) * UI_GRID_W;
 			w = 1 * UI_GRID_W;
 			shortcuts[] = {DIK_F1};
 		};
@@ -579,6 +594,186 @@ class TER_3den_RscDisplayConfigViewer73
 					x = X_HISTORY((W_HISTORY_MAX - 10.2));
 					y = Y_HISTORY((H_HISTORY_MAX - 1.2));
 					w = 10 * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+				};
+			};
+		};
+		class grp_export: ctrlControlsGroupNoScrollbars
+		{
+			idc = IDC_CONFIG_GRPEXPORT;
+			show = 0;
+			x = safeZoneX;
+			y = safeZoneY;
+			w = safeZoneW;
+			h = safeZoneH;
+			class controls
+			{
+				class backDisable: ctrlStaticBackgroundDisable
+				{
+					x = 0;
+					y = 0;
+					w = safeZoneW;
+					h = safeZoneH;
+				};
+				class backDisableTiles: ctrlStaticBackgroundDisableTiles
+				{
+					x = 0;
+					y = 0;
+					w = safeZoneW;
+					h = safeZoneH;
+				};
+				class title: ctrlStaticTitle
+				{
+					text = "Export";
+					x = X_PREVIEW - 0.1 * UI_GRID_W;
+					y = Y_PREVIEW - 1.1 * UI_GRID_H;
+					w = (W_PREVIEW + 0.2) * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+				};
+				class background: ctrlStaticBackground
+				{
+					x = X_PREVIEW - 0.1 * UI_GRID_W;
+					y = Y_PREVIEW - 0.1 * UI_GRID_H;
+					w = (W_PREVIEW + 0.2) * UI_GRID_W;
+					h = (H_PREVIEW + 1.5) * UI_GRID_H;
+				};
+				class txt_config: TER_3den_ctrlStructuredText
+				{
+					text = "Config:";
+					x = X_PREVIEW;
+					y = Y_PREVIEW;
+					w = 0.25 * W_PREVIEW * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+					class Attributes
+					{
+						align = "right";
+						color = "#ffffff";
+						colorLink = "#0000ff";
+						size = 1;
+						font = "RobotoCondensedLight";
+					};
+				};
+				class ed_config: ctrlEdit
+				{
+					idc = IDC_CONFIG_EXPORT_EDCONFIG;
+					x = X_PREVIEW + 0.25 * W_PREVIEW * UI_GRID_W;
+					y = Y_PREVIEW;
+					w = 0.75 * W_PREVIEW * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+				};
+				class txt_inherit: txt_config
+				{
+					text = "Include inherited properties:";
+					y = Y_PREVIEW + 1.1 * UI_GRID_H;
+				};
+				class cb_inherited: ctrlCheckbox
+				{
+					idc = IDC_CONFIG_EXPORT_CBINHERITED;
+					x = X_PREVIEW + 0.25 * W_PREVIEW * UI_GRID_W;
+					y = Y_PREVIEW + 1.1 * UI_GRID_H;
+					w = 1 * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+				};
+				class txt_newlinechar: txt_config
+				{
+					text = "New line character:";
+					y = Y_PREVIEW + 2.2 * UI_GRID_H;
+				};
+				class tool_newlinechar: ctrlToolbox
+				{
+					idc = IDC_CONFIG_EXPORT_TOOLNEWLINECHAR;
+					x = X_PREVIEW + 0.25 * W_PREVIEW * UI_GRID_W;
+					y = Y_PREVIEW + 2.2 * UI_GRID_H;
+					w = 0.75 * W_PREVIEW * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+					columns = 4;
+					strings[] = {"endl", "<br/>", "\n", "toString[10]"};
+				};
+				class txt_tabchar: txt_config
+				{
+					text = "Tab character:";
+					y = Y_PREVIEW + 3.3 * UI_GRID_H;
+				};
+				class tool_tabchar: tool_newlinechar
+				{
+					idc = IDC_CONFIG_EXPORT_TOOLTABCHAR;
+					y = Y_PREVIEW + 3.3 * UI_GRID_H;
+					columns = 2;
+					strings[] = {"Tab", "Spaces"};
+				};
+				class txt_indent: txt_config
+				{
+					text = "Tab size:";
+					y = Y_PREVIEW + 4.4 * UI_GRID_H;
+				};
+				class ed_indent: ed_config
+				{
+					idc = IDC_CONFIG_EXPORT_EDINDENT;
+					text = "1";
+					y = Y_PREVIEW + 4.4 * UI_GRID_H;
+				};
+				class txt_recursive: txt_config
+				{
+					text = "Include subclasses:";
+					y = Y_PREVIEW + 5.5 * UI_GRID_H;
+				};
+				class cb_recursive: cb_inherited
+				{
+					idc = IDC_CONFIG_EXPORT_CBRECURSIVE;
+					checked = 1;
+					y = Y_PREVIEW + 5.5 * UI_GRID_H;
+				};
+				class txt_tabcount: txt_config
+				{
+					text = "Initial tab count:";
+					y = Y_PREVIEW + 6.6 * UI_GRID_H;
+				};
+				class ed_tabcount: ed_config
+				{
+					idc = IDC_CONFIG_EXPORT_EDTABCOUNT;
+					text = "0";
+					y = Y_PREVIEW + 6.6 * UI_GRID_H;
+				};
+				class btn_copy: ctrlButton
+				{
+					idc = IDC_CONFIG_EXPORT_BTNCOPY;
+					text = "EXPORT TO CLIPBOARD";
+					x = X_PREVIEW + 0.25 * W_PREVIEW * UI_GRID_W;
+					y = Y_PREVIEW + 7.7 * UI_GRID_H;
+					w = 0.75 * W_PREVIEW * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+					shortcuts[] = {DIK_ENTER};
+				};
+				class txt_status: txt_config
+				{
+					text = "Status:";
+					y = Y_PREVIEW + 8.8 * UI_GRID_H;
+				};
+				class stxt_status: TER_3den_ctrlStructuredText
+				{
+					idc = IDC_CONFIG_EXPORT_TXTSTATUS;
+					text = "<t color='#00FF00'>Ready</t>";
+					x = X_PREVIEW + 0.25 * W_PREVIEW * UI_GRID_W;
+					y = Y_PREVIEW + 8.8 * UI_GRID_H;
+					w = 0.75 * W_PREVIEW * UI_GRID_W;
+					h = 1 * UI_GRID_H;
+					class Attributes
+					{
+						align = "center";
+						color = "#ffffff";
+						colorLink = "#0000ff";
+						size = 1;
+						font = "RobotoCondensedLight";
+					};
+				};
+
+				class btn_close: ctrlButton
+				{
+					idc = IDC_CONFIG_EXPORT_BTNCANCEL;
+					text = "Close";
+					x = X_PREVIEW + 0.5 * W_PREVIEW * UI_GRID_W;
+					y = Y_PREVIEW + (H_PREVIEW + 0.3) * UI_GRID_H;
+					w = 0.5 * W_PREVIEW * UI_GRID_W;
 					h = 1 * UI_GRID_H;
 				};
 			};

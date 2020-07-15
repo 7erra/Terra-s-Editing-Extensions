@@ -40,9 +40,9 @@ switch _mode do {
 	case "onLoad":{
 		params ["_display"];
 		//--- Init function
-		//if (isNil {uiNamespace getVariable "TER_3den_RscConfigViewer73_script"}) then {
-			uiNamespace setVariable ["TER_3den_RscConfigViewer73_script", compile preprocessFileLineNumbers "\TER_Editing\gui\scripts\RscConfigViewer73.sqf"];
-		//};
+		if (isNil {uiNamespace getVariable "TER_3den_RscConfigViewer73_script"}) then {
+			uiNamespace setVariable ["TER_3den_RscConfigViewer73_script", compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscConfigViewer73.sqf"];
+		};
 		//--- Load settings
 		_dbSettings = +(profileNamespace getVariable ["TER_3den_configViewer73_dbSettings",[]]);
 		//--- Initialize Display
@@ -101,6 +101,7 @@ switch _mode do {
 		_toolViewMode ctrlAddEventHandler ["ToolBoxSelChanged",{
 			["changeView",_this] call SELF;
 		}];
+		["changeView",[_toolViewMode, _settingViewMode]] call SELF;
 		//--- Inheritance toolbox
 		_settingInheritance = [_dbSettings, ["inheritance"], 0] call BIS_fnc_dbValueReturn;
 		_toolInheritance = _display displayCtrl IDC_CONFIG_TOOLINHERITANCE;
@@ -150,7 +151,7 @@ switch _mode do {
 			["infoClose",[ctrlParentControlsGroup (_this#0)]] call SELF;
 		}];
 		_stxtInfo = _display displayCtrl IDC_CONFIG_STXTINFO;
-		_stxtInfo ctrlSetStructuredText parseText call compile loadFile "\TER_Editing\gui\scripts\RscConfigViewer73\info.sqf";
+		_stxtInfo ctrlSetStructuredText parseText loadFile "TER_Editing\gui\scripts\RscConfigViewer73\info.sqf";
 		//--- Parents config combo
 		_comboParents = _display displayCtrl IDC_CONFIG_COMBOPARENTS;
 		_comboParents ctrlAddEventHandler ["LBSelChanged",{
@@ -185,6 +186,118 @@ switch _mode do {
 		_cfgSelected = profilenamespace getvariable ["BIS_fnc_configviewer_selected",""];
 		_display setVariable ["_cfgArray",_cfgArray];
 		["updateClasses",[_display, _cfgSelected]] spawn SELF;
+		//--- Export button
+		_btnExport = _display displayCtrl IDC_CONFIG_BTNEXPORT;
+		_btnExport ctrlAddEventHandler ["ButtonClick", {
+			["exportOpen", _this] call SELF;
+		}];
+		//--- Export group
+		_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
+		//--- Load settings
+		_inherit = [_dbSettings, ["export", "inherit"], false] call BIS_fnc_dbValueReturn;
+		_cbExportInherit = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_CBINHERITED;
+		_cbExportInherit cbSetChecked _inherit;
+		_newlinecharInd = [_dbSettings, ["export", "newlinechar"], 0] call BIS_fnc_dbValueReturn;
+		_toolExportNewLineChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLNEWLINECHAR;
+		_toolExportNewLineChar lbSetCurSel _newlinecharInd;
+		diag_log [_toolExportNewLineChar, _newlineCharInd];
+		_tabcharInd = [_dbSettings, ["export", "tabchar"], 0] call BIS_fnc_dbValueReturn;
+		_toolExportTabChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLTABCHAR;
+		_toolExportTabChar lbSetCurSel _tabcharInd;
+		_tabSize = [_dbSettings, ["export", "tabsize"], 1] call BIS_fnc_dbValueReturn;
+		_edExportTabSize = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDINDENT;
+		_edExportTabSize ctrlSetText str _tabSize;
+		_recursive = [_dbSettings, ["export", "recursive"], false] call BIS_fnc_dbValueReturn;
+		_cbExportRecursive = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_CBRECURSIVE;
+		_cbExportRecursive cbSetChecked _recursive;
+		_tabCount = [_dbSettings, ["export", "tabcount"], 0] call BIS_fnc_dbValueReturn;
+		_edExportTabCount = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDTABCOUNT;
+		_edExportTabCount ctrlSetText str _tabCount;
+
+		_btnExportCancel = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_BTNCANCEL;
+		_btnExportCancel ctrlAddEventHandler ["ButtonClick",{
+			["exportExit", [ctrlParentControlsGroup (_this#0)]] call SELF;
+		}];
+		_btnExportCopy = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_BTNCOPY;
+		_btnExportCopy ctrlAddEventHandler ["ButtonClick",{
+			["exportCopy", [ctrlParentControlsGroup (_this#0)]] call SELF;
+		}];
+	};
+	case "exportCopy":{
+		params ["_grpExport"];
+		_display = ctrlParent _grpExport;
+		_stxtExportStatus = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TXTSTATUS;
+		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#FFFF00'>Working...</t>";
+		_edExportConfig = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDCONFIG;
+		_cfg = [ctrlText _edExportConfig, configFile] call BIS_fnc_configPath;
+		if (!isClass _cfg) exitWith {
+			_stxtExportStatus ctrlSetStructuredText parseText "<t color='#FF0000'>Config is not a class!</t>";
+		};
+		_cbExportInherit = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_CBINHERITED;
+		_inh = cbChecked _cbExportInherit;
+		_toolExportNewLineChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLNEWLINECHAR;
+		_newlineChar = switch (lbCurSel _toolExportNewLineChar) do {
+			case 0:{endl};
+			case 1:{"<br/>"};
+			case 2:{"\n"};
+			case 3:{toString[10]};
+			default {endl};
+		};
+		_toolExportTabChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLTABCHAR;
+		_tabChar = switch (lbCurSel _toolExportTabChar) do {
+			case 0: {"	"};
+			case 1: {" "};
+		};
+		_tabCharC = "";
+		_edExportTabSize = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDINDENT;
+		_tabSize = parseNumber(ctrltext _edExportTabSize);
+		for "_i" from 1 to _tabSize do {
+			_tabCharC = _tabCharC + _tabChar;
+		};
+		_tabChar = _tabCharC;
+		_cbExportRecursive = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_CBRECURSIVE;
+		_recursive = cbChecked _cbExportRecursive;
+		_edExportTabCount = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDTABCOUNT;
+		_tabCount = parseNumber(ctrlText(_edExportTabCount));
+		_classString = [_cfg, _inh, _newlineChar, _tabChar, _recursive, _tabCount] call TER_fnc_configToString;
+		if (count _classString == 0) exitWith {
+			_stxtExportStatus ctrlSetStructuredText parseText "<t color='#FF0000'>Returned string is empty, nothing copied.</t>";
+		};
+		copyToClipboard _classString;
+		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#00FF00'>Successfull :)</t>";
+	};
+	case "exportExit":{
+		params ["_grpExport"];
+		_grpExport ctrlShow false;
+	};
+	case "exportOpen":{
+		params ["_btnExport"];
+		_display = ctrlParent _btnExport;
+		_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
+		_grpExport ctrlShow true;
+		ctrlSetFocus _grpExport;
+
+		private _cfgArray = _display getVariable ["_cfgArray", []];
+		private _cfgString = [_cfgArray, ""] call BIS_fnc_configPath;
+		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
+		_cfgSelected = _lbConfigs lbText lbCurSel _lbConfigs;
+		_cfgString = format["%1 >> ""%2""", _cfgString, _cfgSelected];
+		_edExportConfig = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDCONFIG;
+		_edExportConfig ctrlSetText _cfgString;
+	};
+	case "changeView":{
+		params ["_toolViewMode", "_ind"];
+		_display = ctrlParent _toolViewMode;
+		_grpListView = _display displayCtrl IDC_CONFIG_GRPLIST;
+		_grpTextView = _display displayCtrl IDC_CONFIG_GRPTEXT;
+		if (_ind == 0) then {
+			//--- LIST view
+			_grpListView ctrlShow true;
+			_grpTextView ctrlShow false;
+		} else {
+			_grpTextView ctrlShow true;
+			_grpListView ctrlShow false;
+		};
 	};
 	case "collectHistory":{
 		params ["_cfgArray"];
@@ -350,6 +463,11 @@ switch _mode do {
 				_grpHistory ctrlShow false;
 				true
 			};
+			_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
+			if (ctrlShown _grpExport) exitWith {
+				_grpExport ctrlShow false;
+				true
+			};
 			false
 		};
 		false
@@ -490,6 +608,16 @@ switch _mode do {
 			_lbProperties setVariable ["loadedInd", true];
 		};
 		//lbSort _lbProperties;
+		// Text view
+		_edProperties = _display displayCtrl IDC_CONFIG_EDPROPERTIES;
+		_strConfig = [_newConfig, _includeInherit, toString[10], "    ", false] call TER_fnc_configToString;
+		_edProperties ctrlSetText _strConfig;
+		_edProperties ctrlSetPositionH (
+			(ctrlTextHeight _edProperties) + 8 * UI_GRID_H // why 8??
+			max
+			safeZoneH - 6.9 * UI_GRID_H
+		);
+		_edProperties ctrlCommit 0;
 	};
 	case "changeProperty":{
 		params ["_lbProperties","_ind"];
@@ -918,7 +1046,20 @@ switch _mode do {
 		//--- Preview picture scale
 		_sliderPicPreviewScale = _display displayCtrl IDC_CONFIG_SLIDERPREVIEWSCALE;
 		[_dbSettings, ["picPreviewScale"], sliderPosition _sliderPicPreviewScale] call BIS_fnc_dbValueSet;
-
+		//--- Export settings
+		_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
+		_cbExportInherited = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_CBINHERITED;
+		[_dbSettings, ["export", "inherit"], cbChecked _cbExportInherited] call BIS_fnc_dbValueSet;
+		_toolNewLineChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLNEWLINECHAR;
+		[_dbSettings, ["export", "newlinechar"], lbCurSel _toolNewLineChar] call BIS_fnc_dbValueSet;
+		_toolExportTabChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLTABCHAR;
+		[_dbSettings, ["export", "tabchar"], lbCurSel _toolExportTabChar] call BIS_fnc_dbValueSet;
+		_edExportTabSize = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDINDENT;
+		[_dbSettings, ["export", "tabsize"], parseNumber ctrlText _edExportTabSize] call BIS_fnc_dbValueSet;
+		_cbExportRecursive = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_CBRECURSIVE;
+		[_dbSettings, ["export", "recursive"], cbChecked _cbExportRecursive] call BIS_fnc_dbValueSet;
+		_edExportTabCount = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_EDTABCOUNT;
+		[_dbSettings, ["export", "tabcount"], parseNumber ctrlText _edExportTabCount] call BIS_fnc_dbValueSet;
 		profileNamespace setVariable ["TER_3den_configViewer73_dbSettings",_dbSettings];
 		saveProfileNamespace;
 	};

@@ -22,7 +22,7 @@ switch _mode do {
 	case "onLoad":{
 		params ["_grpColorPicker"];
 		if (isNil {uiNamespace getVariable "TER_3den_RscColorPicker_script"}) then {
-			uiNamespace setVariable ["TER_3den_RscColorPicker_script", compile preprocessFileLineNumbers "\TER_Editing\gui\scripts\RscColorPicker.sqf"];
+			uiNamespace setVariable ["TER_3den_RscColorPicker_script", compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscColorPicker.sqf"];
 		};
 		_loadColor = uiNamespace getVariable ["TER_3den_RscColorPicker_loadColor",[1,1,1,1]];
 		["loadColor", [_grpColorPicker, _loadColor]] call SELF;

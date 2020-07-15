@@ -87,11 +87,7 @@
 
 #define STR(TEXT) #TEXT
 #define ARGS [STR(STR(onLoad)), _this]
-#ifndef NONMOD
 #define SCRIPT_STR(FILE) STR(STR(TER_Editing\gui\scripts\FILE.sqf))
-#else
-#define SCRIPT_STR(FILE) STR(STR(gui\scripts\FILE.sqf))
-#endif
 #define ONLOAD(SCRIPT) onLoad = STR(ARGS execVM SCRIPT_STR(SCRIPT);)
 
 #define DEBUG_TEXTWIDTH_UIGRID onLoad = STR(diag_log ((ctrlTextWidth (_this select 0)) / UI_GRID_W));
