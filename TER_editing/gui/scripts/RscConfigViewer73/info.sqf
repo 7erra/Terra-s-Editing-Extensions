@@ -2,7 +2,7 @@
 CTRL + F: Search configs<br/>
 CTRL + SHIFT + F: Search properties<br/>
 CTRL + Q: One config up<br/>
-CTRL + C: Copies classname when config listbox ist focused<br/>
+CTRL + C: Copies classname when config listbox is focused<br/>
 F1: Opens this window<br/>
 <br/>
 <t underline='1'>Color&#160;coding</t><br/>
