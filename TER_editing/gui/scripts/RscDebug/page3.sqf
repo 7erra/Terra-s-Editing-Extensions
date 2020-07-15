@@ -87,7 +87,11 @@ case "ccexec":{
 	_locality = _comboLocality lbValue (lbCurSel _comboLocality);
 	if (_locality == -1) then {
 		//--- Local execution
-		_result = with missionnamespace do {call _command;};
+		_result = with missionNamespace do {
+			//--- The following is a workaround to avoid error messages when
+			//--- assigning values to global variables
+			[nil] apply {[] call _command} param [0, nil]
+		};
 		if (isNil "_result") then {
 			_edOutput ctrlSetText "#NIL";
 		} else {
