@@ -32,43 +32,51 @@ class Display3DEN
 					text = "Config Viewer 73";
 					picture = "";
 					ACT_DISPLAY(DisplayConfigViewer73);
+					opensNewWindow = 1;
 				};
 				class TER_3den_stxtEditor
 				{
 					text = "Structured Text Editor";
 					picture = "";
 					ACT_DISPLAY(StxtEditor);
+					opensNewWindow = 1;
 				};
 				class TER_3den_colorPicker: TER_3den_stxtEditor
 				{
 					text = "Color Picker";
 					ACT_DISPLAY(ColorPicker);
+					opensNewWindow = 1;
 				};
 				class TER_3den_fontPicker: TER_3den_colorPicker
 				{
 					text = "Font Picker";
 					ACT_DISPLAY(FontList);
+					opensNewWindow = 1;
 				};
 				class TER_3den_attachToFinder
 				{
 					text = "attachTo Finder";
 					picture = "TER_editing\icons\attachTo.paa";
 					action = "(findDisplay 313) ctrlCreate [""TER_3den_RscAttachToFinder"",73100];";
+					opensNewWindow = 1;
 				};
 				class TER_3den_dikCodes
 				{
 					text = "Key Codes";
 					ACT_DISPLAY(DisplayKeyCodes);
+					opensNewWindow = 1;
 				};
 				class TER_3den_namespaceVars
 				{
 					text = "Namespace Variables";
 					ACT_DISPLAY(DisplayNamespaceVars);
+					opensNewWindow = 1;
 				};
 				class TER_3den_ctrlExplained
 				{
 					text = "Control Types";
 					ACT_DISPLAY(DisplayCtrlsExplained);
+					opensNewWindow = 1;
 				};
 			};
 		};
