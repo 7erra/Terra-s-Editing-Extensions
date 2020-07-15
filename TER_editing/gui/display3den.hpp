@@ -13,7 +13,7 @@ class Display3DEN
 				class TER_3den_folder
 				{
 					text = "7'3 Editing";
-					picture = "";
+					picture = "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\open_ca.paa";
 					items[] = {
 						"TER_3den_ConfigViewer73",
 						"TER_3den_stxtEditor",
@@ -118,6 +118,17 @@ class Display3DEN
 				text = "Clear Inventory";
 				action = "call TER_fnc_clearInventory";
 				conditionShow = "hoverObjectBrain";
+			};
+			//--- Overwrite old config viewer context menu entry
+			class FindConfig
+			{
+				text="$STR_3DEN_Display3DEN_EntityMenu_FindConfig_text";
+				data="FindConfig";
+				value=0;
+				conditionShow="hoverObject 	+ hoverWaypoint 	+ hoverLogic 	+ hoverMarker";
+				action="['findconfig'] call TER_fnc_configViewer73;";
+				picture="\a3\3DEN\Data\Displays\Display3DEN\EntityMenu\findConfig_ca.paa";
+				opensNewWindow=1;
 			};
 		};
 	};
