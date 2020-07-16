@@ -51,7 +51,7 @@ _props apply {
 			_linestr = format["%1 = %2;", _xname, getNumber _xprop];
 		};
 		case isText _xprop:{
-			_linestr = format["%1 = ""%2"";", _xname, getText _xprop];
+			_linestr = format["%1 = %2;", _xname, str getText _xprop];
 		};
 		case isArray _xprop:{
 			private _xval = str getArray _xprop;
