@@ -264,7 +264,7 @@ switch _mode do {
 			_stxtExportStatus ctrlSetStructuredText parseText "<t color='#FF0000'>Returned string is empty, nothing copied.</t>";
 		};
 		copyToClipboard _classString;
-		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#00FF00'>Successfull :)</t>";
+		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#00FF00'>Successful :)</t>";
 	};
 	case "exportExit":{
 		params ["_grpExport"];
