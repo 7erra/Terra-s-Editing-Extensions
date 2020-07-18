@@ -7,7 +7,6 @@
     #include "display3den.hpp"
     #include "RscInterrupt.hpp"
     #include "RscGUIEditor.hpp"
-    //#include "RscDebugConsole.hpp"
 #else
     #include "RscDebug.hpp"
 #endif

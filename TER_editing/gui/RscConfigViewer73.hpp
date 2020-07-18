@@ -1,5 +1,7 @@
 // Debug
+#ifdef DEBUG_W
 #undef DEBUG_W
+#endif
 #define DEBUG_W onLoad = "systemchat str [ctrltextwidth (_this#0) / (2.5 * pixelGrid * pixelW)];";
 // Positions
 #define _L (safeZoneX)
