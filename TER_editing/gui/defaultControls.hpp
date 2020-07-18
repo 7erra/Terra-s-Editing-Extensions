@@ -162,7 +162,8 @@ class ctrlCheckboxToolbar;
 
 #else
 
-class ScrollBar
+#include "testBaseControls.hpp"
+/* class ScrollBar
 {
 	color[] = {1,1,1,0.6};
 	colorActive[] = {1,1,1,1};
@@ -4573,5 +4574,5 @@ class RscControlsTable
 	class HeaderTemplate
 	{
 	};
-};
+}; */
 #endif

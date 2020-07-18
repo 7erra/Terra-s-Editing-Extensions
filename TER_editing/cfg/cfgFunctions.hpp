@@ -20,7 +20,8 @@ class CfgFunctions
 		{
 			file = FNC_PATH("gui\scripts");
 			// general
-			class controlInfo {};
+			class controlInfo;
+			class exportGUIBaseClasses;
 		};
 		class Debug
 		{
@@ -32,12 +33,27 @@ class CfgFunctions
 			file = FNC_PATH("fnc");
 			class convertNumber {};
 		};
+		class Python
+		{
+			file = FNC_PATH("fnc\py");
+			class pyTerEden;
+		};
 	};
 	class DREAD
 	{
 		class config
 		{
 			class copyConfigClass {file = FNC_PATH("fnc\fn_copyConfigClass.sqf");};
+		};
+	};
+	class MF
+	{
+		class String
+		{
+			class replaceInString 
+			{
+				file = FNC_PATH("fnc\fn_replaceInString.sqf");
+			};
 		};
 	};
 };
