@@ -18,7 +18,9 @@ Preview a property by double clicking it. Available previews:<br/>
 - Classes (opens in config viewer)<br/>
 <br/>
 <t underline='1'>Settings</t><br/>
-View mode: WIP<br/>
+View modes:<br/>
+- LIST: Properties are displayed in a list box.<br/>
+- TEXT: Properties are displayed as text block for easy copying.<br/>
 Inheritance: When ON all properties from the parent class will be displayed.<br/>
 Show classes: ON shows subclasses in the property window.<br/>
 <br/>
