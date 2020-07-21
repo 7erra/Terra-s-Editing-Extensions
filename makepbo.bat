@@ -3,7 +3,7 @@ echo Building mod...
 set folder=TER_Editing
 echo Folder: %folder%
 set source="P:\%folder%"
-set dest="P:\@Terra's Editing Extensions"
+set dest="P:\-Terra-s-Editing-Extensions\@Terra's Editing Extensions"
 pboProject -P -R +K %source% -M=%dest%
 set packingError=%ERRORLEVEL%
 echo Error level is %packingError%

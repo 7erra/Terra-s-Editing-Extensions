@@ -1,6 +1,6 @@
 #include "ctrls.inc"
 // TODO: ADD TER_Editing
-#define SELF "\TER_Editing\gui\scripts\RscKeyCodes.sqf";
+#define SELF "TER_Editing\gui\scripts\RscKeyCodes.sqf";
 //params ["_display",["_mode","onLoad"],["_eArgs",[]]];
 params ["_mode","_this"];
 /* _lnbKeyCodes = _display displayCtrl IDC_KEYCODES_LISTKEYCODES;

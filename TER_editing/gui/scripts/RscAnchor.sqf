@@ -10,7 +10,7 @@ _display = findDisplay 73130;
 
 switch _mode do {
 case "load":{
-	uiNamespace setVariable ["TER_3den_RscDisplayAnchor_script",compile preprocessFileLineNumbers "\TER_Editing\gui\scripts\RscAnchor.sqf"];
+	uiNamespace setVariable ["TER_3den_RscDisplayAnchor_script",compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscAnchor.sqf"];
 	//--- Button texts
 	_textsBtn = ["LEFT<br/>TOP","LEFT<br/>MIDDLE","LEFT<br/>BOTTOM","CENTER<br/>TOP","CENTER<br/>MIDDLE","CENTER<br/>BOTTOM","RIGHT<br/>TOP","RIGHT<br/>MIDDLE","RIGHT<br/>BOTTOM"];
 	for "_i" from 0 to ((count _textsBtn) -1) do {

@@ -3,7 +3,7 @@
 class TER_3den_RscDisplayCtrlsExplained
 {
 	idd = IDD_DISPLAY_CTRLSEXPLAINED;
-	onLoad = "[""onload"",_this] execVM ""\TER_Editing\gui\scripts\RscCtrlsExplained.sqf"";";
+	onLoad = "[""onload"",_this] execVM ""TER_Editing\gui\scripts\RscCtrlsExplained.sqf"";";
 	class controlsBackground
 	{
 		class BackgroundDisable: ctrlStaticBackgroundDisable

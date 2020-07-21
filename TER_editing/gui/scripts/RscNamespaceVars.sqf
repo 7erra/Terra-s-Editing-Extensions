@@ -21,7 +21,7 @@ case "onload":{
 	params ["_display"];
 	_self = uiNamespace getVariable STRSELF;
 	if (isNil "_self") then {
-		_self = compile preprocessFileLineNumbers "\TER_Editing\gui\scripts\RscNamespaceVars.sqf";
+		_self = compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscNamespaceVars.sqf";
 		uiNamespace setVariable [STRSELF,_self];
 	};
 	//--- Namespace combo

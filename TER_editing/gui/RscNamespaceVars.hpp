@@ -1,7 +1,7 @@
 class TER_3den_RscDisplayNamespaceVars
 {
 	idd = IDD_DISPLAY_NAMESPACEVARS;
-	onLoad = "[""onload"",_this] execVM ""\TER_Editing\gui\scripts\RscNamespaceVars.sqf"";";
+	onLoad = "[""onload"",_this] execVM ""TER_Editing\gui\scripts\RscNamespaceVars.sqf"";";
 	class controlsBackground
 	{
 		class backDisable: ctrlStaticBackgroundDisable 
