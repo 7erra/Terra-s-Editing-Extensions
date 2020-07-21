@@ -5,8 +5,8 @@ class RscText
 	access = 0;
 	type = 0;
 	idc = -1;
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
+	colorBackground[] = Color_Empty;
+	colorText[] = GUI_TEXT_COLOR;
 	text = "";
 	fixedWidth = 0;
 	x = 0;
@@ -16,11 +16,11 @@ class RscText
 	style = 0;
 	shadow = 1;
 	colorShadow[] = {0,0,0,0.5};
-	font = "RobotoCondensed";
-	SizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	SizeEx = GUI_TEXT_SIZE_MEDIUM;
 	linespacing = 1;
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 class RscTextSmall: RscText
@@ -35,7 +35,7 @@ class RscTitle: RscText
 	w = 0.7;
 	shadow = 0;
 	style = 0;
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	colorText[] = {0.95,0.95,0.95,1};
 	font = "PuristaMedium";
 };
@@ -46,14 +46,14 @@ class RscProgress
 	access = 0;
 	type = 8;
 	style = 0;
-	colorFrame[] = {0,0,0,0};
-	colorBar[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+	colorFrame[] = Color_Empty;
+	colorBar[] = GUI_BCG_COLOR;
 	x = 0.344;
 	y = 0.619;
 	w = 0.313726;
 	h = 0.0261438;
 	shadow = 2;
-	texture = "#(argb,8,8,3)color(1,1,1,1)";
+	texture = ProcTextWhite;
 };
 class RscProgressNotFreeze
 {
@@ -67,7 +67,7 @@ class RscProgressNotFreeze
 	y = 0;
 	w = 0.5;
 	h = 0.1;
-	texture = "#(argb,8,8,3)color(0,0,0,0)";
+	texture = ProcTextTransparent;
 };
 class RscPicture
 {
@@ -77,9 +77,9 @@ class RscPicture
 	type = 0;
 	idc = -1;
 	style = 48;
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
-	font = "TahomaB";
+	colorBackground[] = Color_Empty;
+	colorText[] = GUI_TEXT_COLOR;
+	font = GUI_FONT_SYSTEM;
 	sizeEx = 0;
 	lineSpacing = 0;
 	text = "";
@@ -89,8 +89,8 @@ class RscPicture
 	y = 0;
 	w = 0.2;
 	h = 0.15;
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 class RscLadderPicture: RscPicture
@@ -112,72 +112,72 @@ class RscHTML
 	idc = -1;
 	style = 0;
 	filename = "";
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
-	colorBold[] = {1,1,1,1};
+	colorBackground[] = Color_Empty;
+	colorText[] = GUI_TEXT_COLOR;
+	colorBold[] = GUI_TEXT_COLOR;
 	colorLink[] = {1,1,1,0.75};
-	colorLinkActive[] = {1,1,1,1};
-	colorPicture[] = {1,1,1,1};
-	colorPictureLink[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
-	colorPictureBorder[] = {0,0,0,0};
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	colorLinkActive[] = GUI_TEXT_COLOR;
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureLink[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
+	colorPictureBorder[] = Color_Empty;
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 	class H1
 	{
-		font = "RobotoCondensed";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_NORMAL;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_LARGE;
 		align = "left";
 	};
 	class H2
 	{
-		font = "RobotoCondensed";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_NORMAL;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_MEDIUM;
 		align = "right";
 	};
 	class H3
 	{
-		font = "RobotoCondensed";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_NORMAL;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_MEDIUM;
 		align = "left";
 	};
 	class H4
 	{
-		font = "RobotoCondensed";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_NORMAL;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_MEDIUM;
 		align = "left";
 	};
 	class H5
 	{
-		font = "RobotoCondensed";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_NORMAL;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_MEDIUM;
 		align = "left";
 	};
 	class H6
 	{
-		font = "RobotoCondensed";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_NORMAL;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_MEDIUM;
 		align = "left";
 	};
 	class P
 	{
-		font = "RobotoCondensed";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_NORMAL;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_MEDIUM;
 		align = "left";
 	};
 	x = 0;
 	y = 0;
 	w = 0.1;
 	h = 0.1;
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	prevPage = "\A3\ui_f\data\gui\rsccommon\rschtml\arrow_left_ca.paa";
 	nextPage = "\A3\ui_f\data\gui\rsccommon\rschtml\arrow_right_ca.paa";
 	shadow = 2;
@@ -189,13 +189,13 @@ class RscButton
 	access = 0;
 	type = 1;
 	text = "";
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	colorBackground[] = {0,0,0,0.5};
 	colorBackgroundDisabled[] = {0,0,0,0.5};
 	colorBackgroundActive[] = {0,0,0,1};
 	colorFocused[] = {0,0,0,1};
-	colorShadow[] = {0,0,0,0};
+	colorShadow[] = Color_Empty;
 	colorBorder[] = {0,0,0,1};
 	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
 	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
@@ -208,8 +208,8 @@ class RscButton
 	w = 0.095589;
 	h = 0.039216;
 	shadow = 2;
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	url = "";
 	offsetX = 0;
 	offsetY = 0;
@@ -234,33 +234,33 @@ class RscShortcutButton
 	class ShortcutPos
 	{
 		left = 0;
-		top = "((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_SMALL) / 2";
-		w = "GUI_TEXT_SIZE_SMALL * (3/4)";
-		h = "GUI_TEXT_SIZE_SMALL";
+		top = ((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_MEDIUM) / 2;
+		w = GUI_TEXT_SIZE_MEDIUM * (3/4);
+		h = GUI_TEXT_SIZE_MEDIUM;
 	};
 	class TextPos
 	{
-		left = "GUI_TEXT_SIZE_SMALL * (3/4)";
-		top = "((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_SMALL) / 2";
+		left = GUI_TEXT_SIZE_MEDIUM * (3/4);
+		top = ((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_MEDIUM) / 2;
 		right = 0.005;
 		bottom = 0;
 	};
 	shortcuts[] = {};
-	textureNoShortcut = "#(argb,8,8,3)color(0,0,0,0)";
-	color[] = {1,1,1,1};
-	colorFocused[] = {1,1,1,1};
+	textureNoShortcut = ProcTextTransparent;
+	color[] = GUI_TEXT_COLOR;
+	colorFocused[] = GUI_TEXT_COLOR;
 	color2[] = {0.95,0.95,0.95,1};
 	colorDisabled[] = {1,1,1,0.25};
 	colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",1};
 	colorBackgroundFocused[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",1};
-	colorBackground2[] = {1,1,1,1};
+	colorBackground2[] = GUI_TEXT_COLOR;
 	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
 	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
 	soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
 	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
 	class Attributes
 	{
-		font = "RobotoCondensed";
+		font = GUI_FONT_NORMAL;
 		color = "#E5E5E5";
 		align = "left";
 		shadow = "true";
@@ -270,14 +270,14 @@ class RscShortcutButton
 	default = 0;
 	shadow = 1;
 	w = 0.183825;
-	h = "(GUI_GRID_HAbs / 20)";
+	h = (GUI_GRID_HAbs / 20);
 	textSecondary = "";
-	colorSecondary[] = {1,1,1,1};
-	colorFocusedSecondary[] = {1,1,1,1};
+	colorSecondary[] = GUI_TEXT_COLOR;
+	colorFocusedSecondary[] = GUI_TEXT_COLOR;
 	color2Secondary[] = {0.95,0.95,0.95,1};
 	colorDisabledSecondary[] = {1,1,1,0.25};
-	sizeExSecondary = "GUI_TEXT_SIZE_SMALL";
-	fontSecondary = "RobotoCondensed";
+	sizeExSecondary = GUI_TEXT_SIZE_MEDIUM;
+	fontSecondary = GUI_FONT_NORMAL;
 	animTextureDefault = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
 	animTextureNormal = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
 	animTextureDisabled = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
@@ -287,15 +287,15 @@ class RscShortcutButton
 	periodFocus = 1.2;
 	periodOver = 0.8;
 	period = 0.4;
-	font = "RobotoCondensed";
-	size = "GUI_TEXT_SIZE_SMALL";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	size = GUI_TEXT_SIZE_MEDIUM;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	text = "";
 	url = "";
 	action = "";
 	class AttributesImage
 	{
-		font = "RobotoCondensed";
+		font = GUI_FONT_NORMAL;
 		color = "#E5E5E5";
 		align = "left";
 	};
@@ -314,7 +314,7 @@ class RscEdit
 	y = 0;
 	h = 0.04;
 	w = 0.2;
-	colorBackground[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
 	colorText[] = {0.95,0.95,0.95,1};
 	colorDisabled[] = {1,1,1,0.25};
 	colorSelection[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",1};
@@ -322,18 +322,18 @@ class RscEdit
 	text = "";
 	size = 0.2;
 	style = "0x00 + 0x40";
-	font = "RobotoCondensed";
+	font = GUI_FONT_NORMAL;
 	shadow = 2;
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	canModify = 1;
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 class ScrollBar
 {
 	color[] = {1,1,1,0.6};
-	colorActive[] = {1,1,1,1};
+	colorActive[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.3};
 	thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
 	arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
@@ -355,21 +355,21 @@ class RscCombo
 	access = 0;
 	type = 4;
 	colorSelect[] = {0,0,0,1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorBackground[] = {0,0,0,1};
 	colorScrollbar[] = {1,0,0,1};
 	colorDisabled[] = {1,1,1,0.25};
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	colorPictureDisabled[] = {1,1,1,0.25};
-	colorPictureRight[] = {1,1,1,1};
-	colorPictureRightSelected[] = {1,1,1,1};
+	colorPictureRight[] = GUI_TEXT_COLOR;
+	colorPictureRightSelected[] = GUI_TEXT_COLOR;
 	colorPictureRightDisabled[] = {1,1,1,0.25};
-	colorTextRight[] = {1,1,1,1};
+	colorTextRight[] = GUI_TEXT_COLOR;
 	colorSelectRight[] = {0,0,0,1};
 	colorSelect2Right[] = {0,0,0,1};
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 	soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
 	soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
@@ -377,11 +377,11 @@ class RscCombo
 	maxHistoryDelay = 1;
 	class ComboScrollBar: ScrollBar
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 	};
 	style = "0x10 + 0x200";
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	shadow = 0;
 	x = 0;
 	y = 0;
@@ -400,7 +400,7 @@ class RscListBox
 	access = 0;
 	type = 5;
 	rowHeight = 0;
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	colorScrollbar[] = {1,0,0,0};
 	colorSelect[] = {0,0,0,1};
@@ -412,23 +412,23 @@ class RscListBox
 	autoScrollSpeed = -1;
 	autoScrollDelay = 5;
 	autoScrollRewind = 0;
-	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
-	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	arrowEmpty = ProcTextWhite;
+	arrowFull = ProcTextWhite;
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	colorPictureDisabled[] = {1,1,1,0.25};
-	colorPictureRight[] = {1,1,1,1};
-	colorPictureRightSelected[] = {1,1,1,1};
+	colorPictureRight[] = GUI_TEXT_COLOR;
+	colorPictureRightSelected[] = GUI_TEXT_COLOR;
 	colorPictureRightDisabled[] = {1,1,1,0.25};
-	colorTextRight[] = {1,1,1,1};
+	colorTextRight[] = GUI_TEXT_COLOR;
 	colorSelectRight[] = {0,0,0,1};
 	colorSelect2Right[] = {0,0,0,1};
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 	class ListScrollBar: ScrollBar
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		autoScrollEnabled = 1;
 	};
 	x = 0;
@@ -436,8 +436,8 @@ class RscListBox
 	w = 0.3;
 	h = 0.3;
 	style = 16;
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	shadow = 0;
 	colorShadow[] = {0,0,0,0.5};
 	period = 1.2;
@@ -450,7 +450,7 @@ class RscListNBox
 	access = 0;
 	type = 102;
 	rowHeight = 0;
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorScrollbar[] = {0.95,0.95,0.95,1};
 	colorSelect[] = {0,0,0,1};
 	colorSelect2[] = {0,0,0,1};
@@ -462,8 +462,8 @@ class RscListNBox
 	autoScrollSpeed = -1;
 	autoScrollDelay = 5;
 	autoScrollRewind = 0;
-	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
-	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+	arrowEmpty = ProcTextWhite;
+	arrowFull = ProcTextWhite;
 	drawSideArrows = 0;
 	columns[] = {0.3,0.6,0.7};
 	idcLeft = -1;
@@ -473,13 +473,13 @@ class RscListNBox
 	};
 	style = 16;
 	shadow = 0;
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	color[] = {0.95,0.95,0.95,1};
 	colorDisabled[] = {1,1,1,0.25};
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
-	colorPictureDisabled[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
+	colorPictureDisabled[] = GUI_TEXT_COLOR;
 	period = 1.2;
 	x = 0;
 	y = 0;
@@ -498,19 +498,19 @@ class RscXListBox
 	x = 0.1;
 	y = 0.1;
 	color[] = {1,1,1,0.6};
-	colorActive[] = {1,1,1,1};
+	colorActive[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	colorSelect[] = {0.95,0.95,0.95,1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect",0.09,1};
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	colorPictureDisabled[] = {1,1,1,0.25};
-	colorPictureRight[] = {1,1,1,1};
-	colorPictureRightSelected[] = {1,1,1,1};
+	colorPictureRight[] = GUI_TEXT_COLOR;
+	colorPictureRightSelected[] = GUI_TEXT_COLOR;
 	colorPictureRightDisabled[] = {1,1,1,0.25};
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 	style = "0x400 + 0x02 +0x10";
 	shadow = 2;
@@ -519,8 +519,8 @@ class RscXListBox
 	border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
 	w = 0.14706;
 	h = 0.039216;
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 };
 class RscTree
 {
@@ -528,29 +528,29 @@ class RscTree
 	fade = 0;
 	access = 0;
 	type = 12;
-	colorBackground[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
 	colorSelect[] = {1,1,1,0.7};
 	colorDisabled[] = {1,1,1,0.25};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorSelectText[] = {0,0,0,1};
-	colorBorder[] = {0,0,0,0};
-	colorSearch[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+	colorBorder[] = Color_Empty;
+	colorSearch[] = GUI_BCG_COLOR;
 	colorMarked[] = {0.2,0.3,0.7,1};
 	colorMarkedText[] = {0,0,0,1};
 	colorMarkedSelected[] = {0,0.5,0.5,1};
 	multiselectEnabled = 0;
-	colorPicture[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
 	colorPictureSelected[] = {0,0,0,1};
 	colorPictureDisabled[] = {1,1,1,0.25};
-	colorPictureRight[] = {1,1,1,1};
+	colorPictureRight[] = GUI_TEXT_COLOR;
 	colorPictureRightSelected[] = {0,0,0,1};
 	colorPictureRightDisabled[] = {1,1,1,0.25};
-	colorArrow[] = {1,1,1,1};
+	colorArrow[] = GUI_TEXT_COLOR;
 	maxHistoryDelay = 1;
 	shadow = 0;
 	style = 0;
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	expandedTexture = "A3\ui_f\data\gui\rsccommon\rsctree\expandedTexture_ca.paa";
 	hiddenTexture = "A3\ui_f\data\gui\rsccommon\rsctree\hiddenTexture_ca.paa";
 	x = 0;
@@ -559,7 +559,7 @@ class RscTree
 	h = 0.2;
 	rowHeight = 0.0439091;
 	colorSelectBackground[] = {0,0,0,0.5};
-	colorLines[] = {0,0,0,0};
+	colorLines[] = Color_Empty;
 	borderSize = 0;
 	expandOnDoubleclick = 1;
 	class ScrollBar: ScrollBar
@@ -574,7 +574,7 @@ class RscSlider
 	type = 3;
 	style = 1024;
 	color[] = {1,1,1,0.8};
-	colorActive[] = {1,1,1,1};
+	colorActive[] = GUI_TEXT_COLOR;
 	shadow = 0;
 	x = 0;
 	y = 0;
@@ -590,7 +590,7 @@ class RscXSliderH
 	fade = 0;
 	type = 43;
 	color[] = {1,1,1,0.6};
-	colorActive[] = {1,1,1,1};
+	colorActive[] = GUI_TEXT_COLOR;
 	colorDisable[] = {1,1,1,0.4};
 	style = "0x400+ 0x10";
 	shadow = 0;
@@ -603,8 +603,8 @@ class RscXSliderH
 	arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
 	border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
 	thumb = "\A3\ui_f\data\gui\cfg\slider\thumb_ca.paa";
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 class RscActiveText
@@ -628,12 +628,12 @@ class RscActiveText
 	y = 0;
 	h = 0.035;
 	w = 0.035;
-	font = "RobotoCondensed";
+	font = GUI_FONT_NORMAL;
 	shadow = 2;
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
 	url = "";
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 };
 class RscStructuredText
@@ -644,10 +644,10 @@ class RscStructuredText
 	type = 13;
 	idc = -1;
 	style = 0;
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	class Attributes
 	{
-		font = "RobotoCondensed";
+		font = GUI_FONT_NORMAL;
 		color = "#ffffff";
 		colorLink = "#D09B43";
 		align = "left";
@@ -658,7 +658,7 @@ class RscStructuredText
 	h = 0.035;
 	w = 0.1;
 	text = "";
-	size = "GUI_TEXT_SIZE_SMALL";
+	size = GUI_TEXT_SIZE_MEDIUM;
 	shadow = 1;
 };
 class RscControlsGroup
@@ -667,13 +667,13 @@ class RscControlsGroup
 	fade = 0;
 	class VScrollbar: ScrollBar
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		width = 0.021;
 		autoScrollEnabled = 1;
 	};
 	class HScrollbar: ScrollBar
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		height = 0.028;
 	};
 	class Controls
@@ -723,15 +723,15 @@ class RscToolbox
 	colorDisable[] = {0.4,0.4,0.4,1};
 	colorSelectedBg[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",0.5};
 	shadow = 0;
-	strings[] = {"",""};
+	strings[] = {","};
 	x = 0;
 	y = 0;
 	w = 0.3;
 	h = 0.025;
 	rows = 1;
 	columns = 2;
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_SMALL;
 };
 class RscHitZones
 {
@@ -784,7 +784,7 @@ class RscMapControl
 	colorBackground[] = {0.969,0.957,0.949,1};
 	colorOutside[] = {0,0,0,1};
 	colorText[] = {0,0,0,1};
-	font = "TahomaB";
+	font = GUI_FONT_SYSTEM;
 	sizeEx = 0.04;
 	colorSea[] = {0.467,0.631,0.851,0.5};
 	colorForest[] = {0.624,0.78,0.388,0.5};
@@ -793,8 +793,8 @@ class RscMapControl
 	colorMainCountlines[] = {0.572,0.354,0.188,0.5};
 	colorCountlinesWater[] = {0.491,0.577,0.702,0.3};
 	colorMainCountlinesWater[] = {0.491,0.577,0.702,0.6};
-	colorForestBorder[] = {0,0,0,0};
-	colorRocksBorder[] = {0,0,0,0};
+	colorForestBorder[] = Color_Empty;
+	colorRocksBorder[] = Color_Empty;
 	colorPowerLines[] = {0.1,0.1,0.1,1};
 	colorRailWay[] = {0.8,0.2,0,1};
 	colorNames[] = {0.1,0.1,0.1,0.9};
@@ -804,7 +804,7 @@ class RscMapControl
 	colorRoads[] = {0.7,0.7,0.7,1};
 	colorMainRoads[] = {0.9,0.5,0.3,1};
 	colorTracksFill[] = {0.84,0.76,0.65,1};
-	colorRoadsFill[] = {1,1,1,1};
+	colorRoadsFill[] = GUI_TEXT_COLOR;
 	colorMainRoadsFill[] = {1,0.6,0.4,1};
 	colorGrid[] = {0.1,0.1,0.1,0.6};
 	colorGridMap[] = {0.1,0.1,0.1,0.6};
@@ -814,12 +814,12 @@ class RscMapControl
 	{
 		colorBackground[] = {1,1,1,0.5};
 		color[] = {0,0,0,1};
-		x = "SafeZoneX + GUI_GRID_W";
-		y = "SafeZoneY + safezoneH - 4.5 * GUI_GRID_H";
-		w = "10 * GUI_GRID_W";
-		h = "3.5 * GUI_GRID_H";
-		font = "RobotoCondensed";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		x = SafeZoneX + GUI_GRID_W;
+		y = SafeZoneY + safezoneH - 4.5 * GUI_GRID_H;
+		w = 10 * GUI_GRID_W;
+		h = 3.5 * GUI_GRID_H;
+		font = GUI_FONT_NORMAL;
+		sizeEx = GUI_TEXT_SIZE_SMALL;
 	};
 	class ActiveMarker
 	{
@@ -828,7 +828,7 @@ class RscMapControl
 	};
 	class Command
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\a3\ui_f\data\map\mapcontrol\waypoint_ca.paa";
 		size = 18;
 		importance = 1;
@@ -837,13 +837,13 @@ class RscMapControl
 	};
 	class Task
 	{
-		taskNone = "#(argb,8,8,3)color(0,0,0,0)";
+		taskNone = ProcTextTransparent;
 		taskCreated = "#(argb,8,8,3)color(0,0,0,1)";
-		taskAssigned = "#(argb,8,8,3)color(1,1,1,1)";
+		taskAssigned = ProcTextWhite;
 		taskSucceeded = "#(argb,8,8,3)color(0,1,0,1)";
 		taskFailed = "#(argb,8,8,3)color(1,0,0,1)";
 		taskCanceled = "#(argb,8,8,3)color(1,0.5,0,1)";
-		colorCreated[] = {1,1,1,1};
+		colorCreated[] = GUI_TEXT_COLOR;
 		colorCanceled[] = {0.7,0.7,0.7,1};
 		colorDone[] = {0.7,1,0.3,1};
 		colorFailed[] = {1,0.3,0.2,1};
@@ -860,7 +860,7 @@ class RscMapControl
 	};
 	class CustomMark
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\a3\ui_f\data\map\mapcontrol\custommark_ca.paa";
 		size = 18;
 		importance = 1;
@@ -896,7 +896,7 @@ class RscMapControl
 	};
 	class Church
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\church_CA.paa";
 		size = 24;
 		importance = 1;
@@ -968,7 +968,7 @@ class RscMapControl
 	};
 	class Lighthouse
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\lighthouse_CA.paa";
 		size = 24;
 		importance = 1;
@@ -977,7 +977,7 @@ class RscMapControl
 	};
 	class Quay
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\quay_CA.paa";
 		size = 24;
 		importance = 1;
@@ -986,7 +986,7 @@ class RscMapControl
 	};
 	class Fuelstation
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\fuelstation_CA.paa";
 		size = 24;
 		importance = 1;
@@ -995,7 +995,7 @@ class RscMapControl
 	};
 	class Hospital
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\hospital_CA.paa";
 		size = 24;
 		importance = 1;
@@ -1004,7 +1004,7 @@ class RscMapControl
 	};
 	class BusStop
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\busstop_CA.paa";
 		size = 24;
 		importance = 1;
@@ -1013,7 +1013,7 @@ class RscMapControl
 	};
 	class LineMarker
 	{
-		textureComboBoxColor = "#(argb,8,8,3)color(1,1,1,1)";
+		textureComboBoxColor = ProcTextWhite;
 		lineWidthThin = 0.008;
 		lineWidthThick = 0.014;
 		lineDistanceMin = 3e-005;
@@ -1021,7 +1021,7 @@ class RscMapControl
 	};
 	class Transmitter
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\transmitter_CA.paa";
 		size = 24;
 		importance = 1;
@@ -1057,7 +1057,7 @@ class RscMapControl
 	};
 	class Watertower
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\watertower_CA.paa";
 		size = 24;
 		importance = 1;
@@ -1066,7 +1066,7 @@ class RscMapControl
 	};
 	class Waypoint
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		importance = 1;
 		coefMin = 1;
 		coefMax = 1;
@@ -1075,7 +1075,7 @@ class RscMapControl
 	};
 	class WaypointCompleted
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		importance = 1;
 		coefMin = 1;
 		coefMax = 1;
@@ -1084,9 +1084,9 @@ class RscMapControl
 	};
 	moveOnEdges = 1;
 	x = "SafeZoneXAbs";
-	y = "SafeZoneY + 1.5 * GUI_GRID_H";
+	y = SafeZoneY + 1.5 * GUI_GRID_H;
 	w = "SafeZoneWAbs";
-	h = "SafeZoneH - 1.5 * GUI_GRID_H";
+	h = SafeZoneH - 1.5 * GUI_GRID_H;
 	shadow = 0;
 	ptsPerSquareSea = 5;
 	ptsPerSquareTxt = 20;
@@ -1107,22 +1107,22 @@ class RscMapControl
 	colorTrails[] = {0.84,0.76,0.65,0.15};
 	colorTrailsFill[] = {0.84,0.76,0.65,0.65};
 	widthRailWay = 4;
-	fontLabel = "RobotoCondensed";
-	sizeExLabel = "GUI_TEXT_SIZE_SMALL";
-	fontGrid = "TahomaB";
+	fontLabel = GUI_FONT_NORMAL;
+	sizeExLabel = GUI_TEXT_SIZE_SMALL;
+	fontGrid = GUI_FONT_SYSTEM;
 	sizeExGrid = 0.02;
-	fontUnits = "TahomaB";
-	sizeExUnits = "GUI_TEXT_SIZE_SMALL";
-	fontNames = "RobotoCondensed";
-	sizeExNames = "GUI_TEXT_SIZE_SMALL * 2";
-	fontInfo = "RobotoCondensed";
-	sizeExInfo = "GUI_TEXT_SIZE_SMALL";
-	fontLevel = "TahomaB";
+	fontUnits = GUI_FONT_SYSTEM;
+	sizeExUnits = GUI_TEXT_SIZE_SMALL;
+	fontNames = GUI_FONT_NORMAL;
+	sizeExNames = GUI_TEXT_SIZE_SMALL * 2;
+	fontInfo = GUI_FONT_NORMAL;
+	sizeExInfo = GUI_TEXT_SIZE_SMALL;
+	fontLevel = GUI_FONT_SYSTEM;
 	sizeExLevel = 0.02;
-	text = "#(argb,8,8,3)color(1,1,1,1)";
+	text = ProcTextWhite;
 	idcMarkerColor = -1;
 	idcMarkerIcon = -1;
-	textureComboBoxColor = "#(argb,8,8,3)color(1,1,1,1)";
+	textureComboBoxColor = ProcTextWhite;
 	showMarkers = 1;
 	class power
 	{
@@ -1131,7 +1131,7 @@ class RscMapControl
 		importance = 1;
 		coefMin = 0.85;
 		coefMax = 1;
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 	};
 	class powersolar
 	{
@@ -1140,7 +1140,7 @@ class RscMapControl
 		importance = 1;
 		coefMin = 0.85;
 		coefMax = 1;
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 	};
 	class powerwave
 	{
@@ -1149,7 +1149,7 @@ class RscMapControl
 		importance = 1;
 		coefMin = 0.85;
 		coefMax = 1;
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 	};
 	class powerwind
 	{
@@ -1158,7 +1158,7 @@ class RscMapControl
 		importance = 1;
 		coefMin = 0.85;
 		coefMax = 1;
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 	};
 	class Shipwreck
 	{
@@ -1212,15 +1212,15 @@ class RscCheckBox
 	w = "0.025 * safezoneW";
 	h = "0.04 * safezoneH";
 	color[] = {1,1,1,0.7};
-	colorFocused[] = {1,1,1,1};
-	colorHover[] = {1,1,1,1};
-	colorPressed[] = {1,1,1,1};
+	colorFocused[] = GUI_TEXT_COLOR;
+	colorHover[] = GUI_TEXT_COLOR;
+	colorPressed[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.2};
-	colorBackground[] = {0,0,0,0};
-	colorBackgroundFocused[] = {0,0,0,0};
-	colorBackgroundHover[] = {0,0,0,0};
-	colorBackgroundPressed[] = {0,0,0,0};
-	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
+	colorBackgroundFocused[] = Color_Empty;
+	colorBackgroundHover[] = Color_Empty;
+	colorBackgroundPressed[] = Color_Empty;
+	colorBackgroundDisabled[] = Color_Empty;
 	textureChecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
 	textureUnchecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
 	textureFocusedChecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
@@ -1231,8 +1231,8 @@ class RscCheckBox
 	texturePressedUnchecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
 	textureDisabledChecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_checked_ca.paa";
 	textureDisabledUnchecked = "A3\Ui_f\data\GUI\RscCommon\RscCheckBox\CheckBox_unchecked_ca.paa";
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 	soundEnter[] = {"",0.1,1};
 	soundPush[] = {"",0.1,1};
@@ -1242,15 +1242,15 @@ class RscCheckBox
 class RscDisplayUavTerminalWaypointMenu
 {
 	colorBackground[] = {0,0,0,0.5};
-	colorBorder[] = {0,0,0,0};
+	colorBorder[] = Color_Empty;
 	colorSeparator[] = {0.95,0.95,0.95,1};
 	colorSelectBackground[] = {1,1,1,0.3};
-	colorChecked[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-	colorEnabled[] = {1,1,1,1};
+	colorChecked[] = GUI_BCG_COLOR;
+	colorEnabled[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	idc = 108;
 	type = 14;
-	font = "RobotoCondensed";
+	font = GUI_FONT_NORMAL;
 	sizeEx = "0.028*SafezoneH";
 	style = 0;
 	x = 0;
@@ -1263,7 +1263,7 @@ class RscIGText: RscText
 	access = 0;
 	h = 0.04;
 	colorText[] = {0.8,0.8,0.8,1};
-	font = "TahomaB";
+	font = GUI_FONT_SYSTEM;
 	sizeEx = 0.024;
 	style = "0x00 + 0x100";
 };
@@ -1274,7 +1274,7 @@ class RscIGProgress: RscProgress
 	style = 1;
 	w = 0.009;
 	h = 0.178;
-	texture = "#(argb,8,8,3)color(1,1,1,1)";
+	texture = ProcTextWhite;
 };
 class RscListBoxKeys: RscListBox
 {
@@ -1286,13 +1286,13 @@ class RscListBoxKeys: RscListBox
 };
 class VScrollbar: ScrollBar
 {
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	width = 0.021;
 	autoScrollEnabled = 1;
 };
 class HScrollbar: ScrollBar
 {
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	height = 0.028;
 };
 class RscControlsGroupNoScrollbars: RscControlsGroup
@@ -1329,18 +1329,18 @@ class RscLine: RscText
 	w = 0.66;
 	h = 0;
 	text = "";
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
+	colorBackground[] = Color_Empty;
+	colorText[] = GUI_TEXT_COLOR;
 };
 class RscActivePicture: RscActiveText
 {
 	style = 48;
 	color[] = {1,1,1,0.5};
-	colorActive[] = {1,1,1,1};
+	colorActive[] = GUI_TEXT_COLOR;
 };
 class RscButtonTextOnly: RscButton
 {
-	SizeEx = "GUI_TEXT_SIZE_SMALL";
+	SizeEx = GUI_TEXT_SIZE_SMALL;
 	colorBackground[] = {1,1,1,0};
 	colorBackgroundActive[] = {1,1,1,0};
 	colorBackgroundDisabled[] = {1,1,1,0};
@@ -1355,7 +1355,7 @@ class RscShortcutButtonMain: RscShortcutButton
 	default = 0;
 	w = 0.313726;
 	h = 0.104575;
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	class HitZone
 	{
@@ -1367,14 +1367,14 @@ class RscShortcutButtonMain: RscShortcutButton
 	class ShortcutPos
 	{
 		left = 0.0145;
-		top = "((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_SMALL) / 2";
-		w = "GUI_TEXT_SIZE_SMALL * (3/4)";
-		h = "GUI_TEXT_SIZE_SMALL";
+		top = ((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_LARGE) / 2;
+		w = GUI_TEXT_SIZE_LARGE * (3/4);
+		h = GUI_TEXT_SIZE_LARGE;
 	};
 	class TextPos
 	{
-		left = "(GUI_GRID_WAbs / 32) * 1.5";
-		top = "((GUI_GRID_HAbs / 20)*2 - GUI_TEXT_SIZE_SMALL) / 2";
+		left = (GUI_GRID_WAbs / 32) * 1.5;
+		top = ((GUI_GRID_HAbs / 20)*2 - GUI_TEXT_SIZE_LARGE) / 2;
 		right = 0.005;
 		bottom = 0;
 	};
@@ -1385,21 +1385,21 @@ class RscShortcutButtonMain: RscShortcutButton
 	animTexturePressed = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\down_ca.paa";
 	animTextureDefault = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButtonMain\normal_ca.paa";
 	period = 0.5;
-	font = "RobotoCondensed";
-	size = "GUI_TEXT_SIZE_SMALL";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	size = GUI_TEXT_SIZE_LARGE;
+	sizeEx = GUI_TEXT_SIZE_LARGE;
 	text = "";
 	action = "";
 	class Attributes
 	{
-		font = "RobotoCondensed";
+		font = GUI_FONT_NORMAL;
 		color = "#E5E5E5";
 		align = "left";
 		shadow = "false";
 	};
 	class AttributesImage
 	{
-		font = "RobotoCondensed";
+		font = GUI_FONT_NORMAL;
 		color = "#E5E5E5";
 		align = "false";
 	};
@@ -1416,7 +1416,7 @@ class RscButtonEditor: RscShortcutButton
 	class TextPos
 	{
 		left = 0;
-		top = "((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_SMALL) / 2";
+		top = ((GUI_GRID_HAbs / 20) - GUI_TEXT_SIZE_MEDIUM) / 2;
 		right = 0;
 		bottom = 0;
 	};
@@ -1449,7 +1449,7 @@ class RscIGUIShortcutButton: RscShortcutButton
 	};
 	class Attributes
 	{
-		font = "RobotoCondensed";
+		font = GUI_FONT_NORMAL;
 		color = "#E5E5E5";
 		align = "center";
 		shadow = "true";
@@ -1460,9 +1460,9 @@ class RscGearShortcutButton: RscShortcutButton
 	w = 0.0392157;
 	h = 0.0522876;
 	style = 2;
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	color2[] = {1,1,1,0.85};
-	colorBackground[] = {1,1,1,1};
+	colorBackground[] = GUI_TEXT_COLOR;
 	colorbackground2[] = {1,1,1,0.85};
 	colorDisabled[] = {1,1,1,0.4};
 	class HitZone
@@ -1495,7 +1495,7 @@ class RscGearShortcutButton: RscShortcutButton
 	animTextureDefault = "\A3\ui_f\data\GUI\RscCommon\RscGearShortcutButton\normal_ca.paa";
 	class Attributes
 	{
-		font = "RobotoCondensed";
+		font = GUI_FONT_NORMAL;
 		color = "#E5E5E5";
 		align = "center";
 		shadow = "false";
@@ -1512,39 +1512,39 @@ class RscButtonMenu: RscShortcutButton
 	y = 0;
 	w = 0.095589;
 	h = 0.039216;
-	animTextureNormal = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureDisabled = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureFocused = "#(argb,8,8,3)color(1,1,1,1)";
-	animTexturePressed = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureDefault = "#(argb,8,8,3)color(1,1,1,1)";
+	animTextureNormal = ProcTextWhite;
+	animTextureDisabled = ProcTextWhite;
+	animTextureOver = ProcTextWhite;
+	animTextureFocused = ProcTextWhite;
+	animTexturePressed = ProcTextWhite;
+	animTextureDefault = ProcTextWhite;
 	colorBackground[] = {0,0,0,0.8};
-	colorBackgroundFocused[] = {1,1,1,1};
+	colorBackgroundFocused[] = GUI_TEXT_COLOR;
 	colorBackground2[] = {0.75,0.75,0.75,1};
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	colorFocused[] = {0,0,0,1};
 	color2[] = {0,0,0,1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	textSecondary = "";
-	colorSecondary[] = {1,1,1,1};
+	colorSecondary[] = GUI_TEXT_COLOR;
 	colorFocusedSecondary[] = {0,0,0,1};
 	color2Secondary[] = {0,0,0,1};
 	colorDisabledSecondary[] = {1,1,1,0.25};
-	sizeExSecondary = "GUI_TEXT_SIZE_SMALL";
+	sizeExSecondary = GUI_TEXT_SIZE_MEDIUM;
 	fontSecondary = "PuristaLight";
 	period = 1.2;
 	periodFocus = 1.2;
 	periodOver = 1.2;
-	size = "GUI_TEXT_SIZE_SMALL";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	size = GUI_TEXT_SIZE_MEDIUM;
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
 	class TextPos
 	{
-		left = "0.25 * GUI_GRID_W";
-		top = "(GUI_GRID_H - GUI_TEXT_SIZE_SMALL) / 2";
+		left = 0.25 * GUI_GRID_W;
+		top = (GUI_GRID_H - GUI_TEXT_SIZE_MEDIUM) / 2;
 		right = 0.005;
 		bottom = 0;
 	};
@@ -1557,10 +1557,10 @@ class RscButtonMenu: RscShortcutButton
 	};
 	class ShortcutPos
 	{
-		left = "5.25 * GUI_GRID_W";
+		left = 5.25 * GUI_GRID_W;
 		top = 0;
-		w = "1 * GUI_GRID_W";
-		h = "1 * GUI_GRID_H";
+		w = 1 * GUI_GRID_W;
+		h = 1 * GUI_GRID_H;
 	};
 	soundEnter[] = {"\A3\ui_f\data\sound\RscButtonMenu\soundEnter",0.09,1};
 	soundPush[] = {"\A3\ui_f\data\sound\RscButtonMenu\soundPush",0.09,1};
@@ -1588,7 +1588,7 @@ class RscButtonMenuSteam: RscButtonMenu
 	class TextPos
 	{
 		left = 0.0325;
-		top = "(GUI_GRID_H - GUI_TEXT_SIZE_SMALL) / 2";
+		top = (GUI_GRID_H - GUI_TEXT_SIZE_MEDIUM) / 2;
 		right = 0.005;
 		bottom = 0;
 	};
@@ -1607,21 +1607,21 @@ class RscLoadingText: RscText
 	y = 0.666672;
 	w = 0.411768;
 	h = 0.039216;
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
-	colorText[] = {1,1,1,1};
+	sizeEx = GUI_TEXT_SIZE_MEDIUM;
+	colorText[] = GUI_TEXT_COLOR;
 };
 class RscIGUIListBox: RscListBox
 {
-	color[] = {1,1,1,1};
-	colorText[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
+	colorText[] = GUI_TEXT_COLOR;
 	colorScrollbar[] = {0.95,0.95,0.95,1};
 	colorSelect[] = {0.95,0.95,0.95,1};
 	colorSelect2[] = {0.95,0.95,0.95,1};
 	colorSelectBackground[] = {0,0,0,0.4};
 	colorSelectBackground2[] = {0,0,0,1};
 	period = 0;
-	colorBackground[] = {0,0,0,0};
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	colorBackground[] = Color_Empty;
+	sizeEx = GUI_TEXT_SIZE_SMALL;
 	class ScrollBar: ScrollBar
 	{
 	};
@@ -1630,13 +1630,13 @@ class RscIGUIListNBox: RscListNBox
 {
 	style = "0 + 0x10";
 	shadow = 2;
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	colorText[] = {1,1,1,0.75};
 	colorScrollbar[] = {0.95,0.95,0.95,1};
 	colorSelect[] = {0.95,0.95,0.95,1};
 	colorSelect2[] = {0.95,0.95,0.95,1};
-	colorSelectBackground[] = {1,1,1,1};
-	colorSelectBackground2[] = {1,1,1,1};
+	colorSelectBackground[] = GUI_TEXT_COLOR;
+	colorSelectBackground2[] = GUI_TEXT_COLOR;
 	period = 0;
 	colorBackground[] = {0,0,0,1};
 	columns[] = {0.1,0.7,0.1,0.1};
@@ -1651,9 +1651,9 @@ class RscFrame
 	deletable = 0;
 	style = 64;
 	shadow = 2;
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
-	font = "RobotoCondensed";
+	colorBackground[] = Color_Empty;
+	colorText[] = GUI_TEXT_COLOR;
+	font = GUI_FONT_NORMAL;
 	sizeEx = 0.02;
 	text = "";
 	x = 0;
@@ -1674,27 +1674,27 @@ class RscBackground: RscText
 	text = "";
 	ColorBackground[] = {0.48,0.5,0.35,1};
 	ColorText[] = {0.1,0.1,0.1,1};
-	font = "RobotoCondensed";
+	font = GUI_FONT_NORMAL;
 	SizeEx = 1;
 };
 class RscBackgroundGUI: RscText
 {
 	colorBackground[] = {0,0,0,0.5};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	background = 1;
 };
 class RscBackgroundGUILeft: RscPicture
 {
 	text = "A3\ui_f\data\gui\rsccommon\rscbackgroundgui\gradient_left_gs.paa";
 	colorText[] = {1,1,1,"0.3*0"};
-	colorBackground[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
 	background = 1;
 };
 class RscBackgroundGUIRight: RscPicture
 {
 	text = "A3\ui_f\data\gui\rsccommon\rscbackgroundgui\gradient_right_gs.paa";
 	colorText[] = {0,0,0,"0.4*0"};
-	colorBackground[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
 	background = 1;
 };
 class RscBackgroundGUIBottom: RscPicture
@@ -1721,10 +1721,10 @@ class RscBackgroundLogo: RscPictureKeepAspect
 	text = "\A3\Ui_f\data\Logos\arma3_splash_ca.paa";
 	align = "top";
 	background = 1;
-	x = "safezoneX + safezoneW - (9 * (GUI_GRID_WAbs / 32))";
-	y = "safezoneY - 2 * (GUI_GRID_HAbs / 20)";
-	w = "(8 * (GUI_GRID_WAbs / 32))";
-	h = "(8 * (GUI_GRID_HAbs / 20))";
+	x = safezoneX + safezoneW - (9 * (GUI_GRID_WAbs / 32));
+	y = safezoneY - 2 * (GUI_GRID_HAbs / 20);
+	w = (8 * (GUI_GRID_WAbs / 32));
+	h = (8 * (GUI_GRID_HAbs / 20));
 };
 class RscMapControlEmpty: RscMapControl
 {
@@ -1740,216 +1740,216 @@ class RscMapControlEmpty: RscMapControl
 	ptsPerSquareObj = 1000;
 	alphaFadeStartScale = 0;
 	alphaFadeEndScale = 0;
-	colorBackground[] = {1,1,1,1};
-	colorOutside[] = {1,1,1,1};
-	colorSea[] = {0,0,0,0};
-	colorForest[] = {0,0,0,0};
-	colorForestBorder[] = {0,0,0,0};
-	colorRocks[] = {0,0,0,0};
-	colorRocksBorder[] = {0,0,0,0};
-	colorLevels[] = {0,0,0,0};
-	colorMainCountlines[] = {0,0,0,0};
-	colorCountlines[] = {0,0,0,0};
-	colorMainCountlinesWater[] = {0,0,0,0};
-	colorCountlinesWater[] = {0,0,0,0};
-	colorPowerLines[] = {0,0,0,0};
-	colorRailWay[] = {0,0,0,0};
-	colorNames[] = {0,0,0,0};
-	colorInactive[] = {0,0,0,0};
-	colorGrid[] = {0,0,0,0};
-	colorGridMap[] = {0,0,0,0};
+	colorBackground[] = GUI_TEXT_COLOR;
+	colorOutside[] = GUI_TEXT_COLOR;
+	colorSea[] = Color_Empty;
+	colorForest[] = Color_Empty;
+	colorForestBorder[] = Color_Empty;
+	colorRocks[] = Color_Empty;
+	colorRocksBorder[] = Color_Empty;
+	colorLevels[] = Color_Empty;
+	colorMainCountlines[] = Color_Empty;
+	colorCountlines[] = Color_Empty;
+	colorMainCountlinesWater[] = Color_Empty;
+	colorCountlinesWater[] = Color_Empty;
+	colorPowerLines[] = Color_Empty;
+	colorRailWay[] = Color_Empty;
+	colorNames[] = Color_Empty;
+	colorInactive[] = Color_Empty;
+	colorGrid[] = Color_Empty;
+	colorGridMap[] = Color_Empty;
 	class Task: Task
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		iconCreated = "#(argb,8,8,3)color(0,0,0,0)";
-		iconCanceled = "#(argb,8,8,3)color(0,0,0,0)";
-		iconDone = "#(argb,8,8,3)color(0,0,0,0)";
-		iconFailed = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
-		colorCreated[] = {0,0,0,0};
-		colorCanceled[] = {0,0,0,0};
-		colorDone[] = {0,0,0,0};
-		colorFailed[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		iconCreated = ProcTextTransparent;
+		iconCanceled = ProcTextTransparent;
+		iconDone = ProcTextTransparent;
+		iconFailed = ProcTextTransparent;
+		color[] = Color_Empty;
+		colorCreated[] = Color_Empty;
+		colorCanceled[] = Color_Empty;
+		colorDone[] = Color_Empty;
+		colorFailed[] = Color_Empty;
 		size = 0;
 	};
 	class Waypoint: Waypoint
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class WaypointCompleted: WaypointCompleted
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class CustomMark: CustomMark
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Command: Command
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Bush: Bush
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Rock: Rock
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class SmallTree: SmallTree
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Tree: Tree
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class busstop: BusStop
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class fuelstation: Fuelstation
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class hospital: Hospital
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class church: Church
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class lighthouse: Lighthouse
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class power: power
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class powersolar: powersolar
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class powerwave: powerwave
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class powerwind: powerwind
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class quay: Quay
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class shipwreck: Shipwreck
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class transmitter: Transmitter
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class watertower: Watertower
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Bunker: Bunker
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Cross: Cross
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Fortress: Fortress
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Fountain: Fountain
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Chapel: Chapel
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Ruin: Ruin
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Stack: Stack
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Tourism: Tourism
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class ViewTower: ViewTower
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 };
@@ -1959,8 +1959,8 @@ class IGUIBack
 	idc = 124;
 	style = 128;
 	text = "";
-	colorText[] = {0,0,0,0};
-	font = "RobotoCondensed";
+	colorText[] = Color_Empty;
+	font = GUI_FONT_NORMAL;
 	sizeEx = 0;
 	shadow = 0;
 	x = 0.1;
@@ -2002,7 +2002,7 @@ class RscMapControlTooltip: RscControlsGroupNoScrollbars
 			x = 0;
 			y = 0;
 			w = 1;
-			h = "GUI_GRID_H";
+			h = GUI_GRID_H;
 			colorBackground[] = {1,1,1,0.15};
 		};
 		class Info: RscStructuredText
@@ -2075,7 +2075,7 @@ class CA_Title_Back: CA_Mainback
 	y = 0;
 	w = 0.950743;
 	h = 0.058824;
-	text = "#(argb,8,8,3)color(0,0,0,0)";
+	text = ProcTextTransparent;
 	colorText[] = {0.95,0.95,0.95,1};
 };
 class CA_Black_Back: CA_Mainback
@@ -2099,7 +2099,7 @@ class CA_Logo: RscPictureKeepAspect
 	y = 0.333;
 	w = 0.25;
 	h = 0.08;
-	text = "#(argb,8,8,3)color(1,1,1,1)";
+	text = ProcTextWhite;
 };
 class CA_Logo_Small: CA_Logo
 {
@@ -2115,8 +2115,8 @@ class CA_RscButton: RscButton
 	w = 0.14706;
 	h = 0.039216;
 	borderSize = 0.009804;
-	color[] = {0,0,0,0};
-	colorActive[] = {0,0,0,0};
+	color[] = Color_Empty;
+	colorActive[] = Color_Empty;
 };
 class CA_RscButton_dialog: CA_RscButton
 {
@@ -2134,9 +2134,9 @@ class CA_Ok: RscActiveText
 	y = 0.8;
 	w = 0.15;
 	h = 0.035;
-	text = "#(argb,8,8,3)color(0,0,0,0)";
-	color[] = {0,0,0,0};
-	colorActive[] = {0,0,0,0};
+	text = ProcTextTransparent;
+	color[] = Color_Empty;
+	colorActive[] = Color_Empty;
 };
 class CA_Ok_image: RscText
 {
@@ -2162,7 +2162,7 @@ class CA_Ok_image2: RscText
 };
 class CA_Ok_text: RscText
 {
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	sizeEx = GUI_TEXT_SIZE_SMALL;
 	idc = -1;
 	x = 0.86;
 	y = 0.8;
@@ -2188,8 +2188,8 @@ class ctrlDefault
 	tooltip = "";
 	tooltipMaxWidth = 0.5;
 	tooltipColorShade[] = {0,0,0,1};
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {0,0,0,0};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = Color_Empty;
 	class ScrollBar
 	{
 		width = 0;
@@ -2199,7 +2199,7 @@ class ctrlDefault
 		arrowFull = "\a3\3DEN\Data\Controls\ctrlDefault\arrowFull_ca.paa";
 		border = "\a3\3DEN\Data\Controls\ctrlDefault\border_ca.paa";
 		thumb = "\a3\3DEN\Data\Controls\ctrlDefault\thumb_ca.paa";
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 	};
 };
 class ctrlCheckbox: ctrlDefault
@@ -2207,15 +2207,15 @@ class ctrlCheckbox: ctrlDefault
 	type = 77;
 	checked = 0;
 	color[] = {1,1,1,0.7};
-	colorFocused[] = {1,1,1,1};
-	colorHover[] = {1,1,1,1};
-	colorPressed[] = {1,1,1,1};
+	colorFocused[] = GUI_TEXT_COLOR;
+	colorHover[] = GUI_TEXT_COLOR;
+	colorPressed[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
-	colorBackground[] = {0,0,0,0};
-	colorBackgroundFocused[] = {0,0,0,0};
-	colorBackgroundHover[] = {0,0,0,0};
-	colorBackgroundPressed[] = {0,0,0,0};
-	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
+	colorBackgroundFocused[] = Color_Empty;
+	colorBackgroundHover[] = Color_Empty;
+	colorBackgroundPressed[] = Color_Empty;
+	colorBackgroundDisabled[] = Color_Empty;
 	textureChecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa";
 	textureUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
 	textureFocusedChecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa";
@@ -2263,7 +2263,7 @@ class ctrlCheckboxBaseline: ctrlCheckbox
 class ctrlDefaultText: ctrlDefault
 {
 	sizeEx = "4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5";
-	font = "RobotoCondensedLight";
+	font = GUI_FONT_THIN;
 	shadow = 1;
 };
 class ctrlDefaultButton: ctrlDefaultText
@@ -2302,16 +2302,16 @@ class ctrlActiveText: ctrlDefaultButton
 class ctrlActivePicture: ctrlActiveText
 {
 	style = 48;
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 };
 class ctrlStatic: ctrlDefaultText
 {
 	type = 0;
-	colorBackground[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
 	text = "";
 	lineSpacing = 1;
 	fixedWidth = 0;
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorShadow[] = {0,0,0,1};
 	moving = 0;
 	autoplay = 0;
@@ -2381,7 +2381,7 @@ class ctrlControlsGroupNoScrollbars: ctrlControlsGroup
 class ctrlStructuredText: ctrlDefaultText
 {
 	type = 13;
-	colorBackground[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
 	size = "4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5";
 	text = "";
 	class Attributes
@@ -2390,7 +2390,7 @@ class ctrlStructuredText: ctrlDefaultText
 		color = "#ffffff";
 		colorLink = "";
 		size = 1;
-		font = "RobotoCondensedLight";
+		font = GUI_FONT_THIN;
 	};
 	onCanDestroy = "";
 	onDestroy = "";
@@ -2439,18 +2439,18 @@ class RscTextCheckBox
 	w = "0.025 * safezoneW";
 	h = "0.04 * safezoneH";
 	colorText[] = {1,0,0,1};
-	color[] = {0,0,0,0};
-	colorBackground[] = {0,0,0,0};
+	color[] = Color_Empty;
+	colorBackground[] = Color_Empty;
 	colorTextSelect[] = {0,0.8,0,1};
 	colorSelectedBg[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",1};
 	colorSelect[] = {0,0,0,1};
 	colorTextDisable[] = {0.4,0.4,0.4,1};
 	colorDisable[] = {0.4,0.4,0.4,1};
-	tooltipColorText[] = {1,1,1,1};
-	tooltipColorBox[] = {1,1,1,1};
+	tooltipColorText[] = GUI_TEXT_COLOR;
+	tooltipColorBox[] = GUI_TEXT_COLOR;
 	tooltipColorShade[] = {0,0,0,0.65};
-	font = "RobotoCondensed";
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	font = GUI_FONT_NORMAL;
+	sizeEx = GUI_TEXT_SIZE_SMALL;
 	rows = 1;
 	columns = 1;
 	strings[] = {"UNCHECKED"};
@@ -2475,31 +2475,31 @@ class RscEditMultiReadOnly: RscEdit
 };
 class RscMapSignalBackground: RscText
 {
-	x = "12.5 * GUI_GRID_W + (safezoneX + (safezoneW - GUI_GRID_WAbs)/2)";
-	y = "10 * GUI_GRID_H + (safezoneY + (safezoneH - GUI_GRID_HAbs)/2)";
-	w = "15.5 * GUI_GRID_W";
-	h = "5 * GUI_GRID_H";
+	x = 12.5 * GUI_GRID_W + GUI_GRID_CENTER_X;
+	y = 10 * GUI_GRID_H + GUI_GRID_CENTER_Y;
+	w = 15.5 * GUI_GRID_W;
+	h = 5 * GUI_GRID_H;
 	colorBackground[] = {0.1,0.1,0.1,0.8};
 };
 class RscMapSignalPicture: RscPicture
 {
 	colorText[] = {"(profilenamespace getvariable ['IGUI_WARNING_RGB_R',0.8])","(profilenamespace getvariable ['IGUI_WARNING_RGB_G',0.5])","(profilenamespace getvariable ['IGUI_WARNING_RGB_B',0.0])","(profilenamespace getvariable ['IGUI_WARNING_RGB_A',0.8])"};
 	text = "\A3\ui_f\data\map\diary\signal_ca.paa";
-	x = "19 * GUI_GRID_W + (safezoneX + (safezoneW - GUI_GRID_WAbs)/2)";
-	y = "10.5 * GUI_GRID_H + (safezoneY + (safezoneH - GUI_GRID_HAbs)/2)";
-	w = "2 * GUI_GRID_W";
-	h = "2 * GUI_GRID_H";
+	x = 19 * GUI_GRID_W + GUI_GRID_CENTER_X;
+	y = 10.5 * GUI_GRID_H + GUI_GRID_CENTER_Y;
+	w = 2 * GUI_GRID_W;
+	h = 2 * GUI_GRID_H;
 };
 class RscMapSignalText: RscText
 {
 	style = 2;
 	colorText[] = {"(profilenamespace getvariable ['IGUI_WARNING_RGB_R',0.8])","(profilenamespace getvariable ['IGUI_WARNING_RGB_G',0.5])","(profilenamespace getvariable ['IGUI_WARNING_RGB_B',0.0])","(profilenamespace getvariable ['IGUI_WARNING_RGB_A',0.8])"};
 	text = "Cannot connect to the positioning system.";
-	x = "13 * GUI_GRID_W + (safezoneX + (safezoneW - GUI_GRID_WAbs)/2)";
-	y = "13.5 * GUI_GRID_H + (safezoneY + (safezoneH - GUI_GRID_HAbs)/2)";
-	w = "14.5 * GUI_GRID_W";
-	h = "1 * GUI_GRID_H";
-	sizeEx = "0.8 * GUI_GRID_H";
+	x = 13 * GUI_GRID_W + GUI_GRID_CENTER_X;
+	y = 13.5 * GUI_GRID_H + GUI_GRID_CENTER_Y;
+	w = 14.5 * GUI_GRID_W;
+	h = 1 * GUI_GRID_H;
+	sizeEx = 0.8 * GUI_GRID_H;
 };
 class RscMessageBox: RscControlsGroupNoScrollbars
 {
@@ -2515,45 +2515,45 @@ class RscMessageBox: RscControlsGroupNoScrollbars
 			idc = 235100;
 			x = 0;
 			y = 0;
-			w = "18.8 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			w = 18.8 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",1};
 		};
 		class BcgCommon: RscBackgroundGUI
 		{
 			idc = 235101;
 			x = 0;
-			y = "1.1 * GUI_GRID_H";
-			w = "18.8 * GUI_GRID_W";
-			h = "1.7 * GUI_GRID_H";
+			y = 1.1 * GUI_GRID_H;
+			w = 18.8 * GUI_GRID_W;
+			h = 1.7 * GUI_GRID_H;
 			colorBackground[] = {0,0,0,1};
 		};
 		class Text: RscStructuredText
 		{
 			idc = 235102;
-			x = "0.7 * GUI_GRID_W";
-			y = "1.8 * GUI_GRID_H";
-			w = "17 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.7 * GUI_GRID_W;
+			y = 1.8 * GUI_GRID_H;
+			w = 17 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class BackgroundButtonOK: RscBackgroundGUI
 		{
 			idc = 235103;
 			x = 0;
-			y = "2.9 * GUI_GRID_H";
-			w = "6.2 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			y = 2.9 * GUI_GRID_H;
+			w = 6.2 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 			colorBackground[] = {0,0,0,1};
 		};
 		class BackgroundButtonMiddle: BackgroundButtonOK
 		{
 			idc = 235104;
-			x = "6.3 * GUI_GRID_W";
+			x = 6.3 * GUI_GRID_W;
 		};
 		class BackgroundButtonCancel: BackgroundButtonOK
 		{
 			idc = 235105;
-			x = "12.6 * GUI_GRID_W";
+			x = 12.6 * GUI_GRID_W;
 		};
 		class ButtonOK: RscButtonMenuOK
 		{
@@ -2561,18 +2561,18 @@ class RscMessageBox: RscControlsGroupNoScrollbars
 			idc = 235106;
 			colorBackground[] = {0,0,0,1};
 			x = 0;
-			y = "2.9 * GUI_GRID_H";
-			w = "6.2 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			y = 2.9 * GUI_GRID_H;
+			w = 6.2 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonCancel: RscButtonMenuCancel
 		{
 			idc = 235107;
 			colorBackground[] = {0,0,0,1};
-			x = "12.6 * GUI_GRID_W";
-			y = "2.9 * GUI_GRID_H";
-			w = "6.2 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 12.6 * GUI_GRID_W;
+			y = 2.9 * GUI_GRID_H;
+			w = 6.2 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 	};
 };
@@ -2586,11 +2586,11 @@ class RscWIP: RscControlsGroup
 	{
 		height = 0;
 	};
-	x = "safezoneX + safezoneW - 10 * GUI_GRID_W";
-	y = "safezoneY + safezoneH - 5.3 * GUI_GRID_H";
+	x = safezoneX + safezoneW - 10 * GUI_GRID_W;
+	y = safezoneY + safezoneH - 5.3 * GUI_GRID_H;
 	idc = 2300;
-	w = "9.5 * GUI_GRID_W";
-	h = "5.3 * GUI_GRID_H";
+	w = 9.5 * GUI_GRID_W;
+	h = 5.3 * GUI_GRID_H;
 	class controls
 	{
 		class WIP_VersionText: RscText
@@ -2599,10 +2599,10 @@ class RscWIP: RscControlsGroup
 			shadow = 0;
 			idc = 1001;
 			text = "Development Build";
-			x = "0 * GUI_GRID_W";
-			y = "3 * GUI_GRID_H";
-			w = "9.5 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 3 * GUI_GRID_H;
+			w = 9.5 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 			colorText[] = {1,1,1,0.3};
 			colorBackground[] = {0.2,0.2,0.2,0.05};
 		};
@@ -2611,10 +2611,10 @@ class RscWIP: RscControlsGroup
 			style = 2;
 			shadow = 0;
 			idc = 1000;
-			x = "0 * GUI_GRID_W";
-			y = "4 * GUI_GRID_H";
-			w = "9.5 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 4 * GUI_GRID_H;
+			w = 9.5 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 			colorText[] = {1,1,1,0.3};
 			colorBackground[] = {0.2,0.2,0.2,0.05};
 		};
@@ -2631,20 +2631,20 @@ class DLCActionNotification: RscControlsGroup
 		height = 0;
 	};
 	idc = 2303;
-	x = "6 * GUI_GRID_W + (profilenamespace getvariable [""IGUI_GRID_MENU_X"",(1.5 * GUI_GRID_W + safezoneX)])";
-	y = "0 * GUI_GRID_H + (profilenamespace getvariable [""IGUI_GRID_MENU_Y"",(5 * GUI_GRID_H + safezoneY)])";
-	w = "17.8 * GUI_GRID_W";
-	h = "4.6 * GUI_GRID_H";
+	x = 6 * GUI_GRID_W + (profilenamespace getvariable ["IGUI_GRID_MENU_X",(1.5 * GUI_GRID_W + safezoneX)]);
+	y = 0 * GUI_GRID_H + (profilenamespace getvariable ["IGUI_GRID_MENU_Y",(5 * GUI_GRID_H + safezoneY)]);
+	w = 17.8 * GUI_GRID_W;
+	h = 4.6 * GUI_GRID_H;
 	class controls
 	{
 		class ANBackground: RscText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])","(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_A',0.8])"};
 			idc = 1010;
-			x = "1 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "15.8 * GUI_GRID_W";
-			h = "4.6 * GUI_GRID_H";
+			x = 1 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 15.8 * GUI_GRID_W;
+			h = 4.6 * GUI_GRID_H;
 		};
 		class ANTitle: RscText
 		{
@@ -2652,31 +2652,31 @@ class DLCActionNotification: RscControlsGroup
 			shadow = 0;
 			colorText[] = {"(profilenamespace getvariable ['IGUI_TEXT_RGB_R',0])","(profilenamespace getvariable ['IGUI_TEXT_RGB_G',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_B',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_A',0.8])"};
 			text = "Vehicle Locked";
-			x = "1 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "12 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
-			sizeEx = "1.2 * GUI_GRID_H";
+			x = 1 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 12 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
+			sizeEx = 1.2 * GUI_GRID_H;
 		};
 		class ANLogo: RscPicture
 		{
 			idc = 100;
-			x = "13 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "3.8 * GUI_GRID_W";
-			h = "3.8 * GUI_GRID_H";
+			x = 13 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 3.8 * GUI_GRID_W;
+			h = 3.8 * GUI_GRID_H;
 		};
 		class ANShortcut: RscText
 		{
 			style = 2;
 			shadow = 0;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			idc = 1011;
 			text = "LShift+P";
-			x = "13 * GUI_GRID_W";
-			y = "3.8 * GUI_GRID_H";
-			w = "3.8 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 13 * GUI_GRID_W;
+			y = 3.8 * GUI_GRID_H;
+			w = 3.8 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 			colorBackground[] = {0.0313726,0.721569,0.917647,1};
 		};
 		class ANText: RscText
@@ -2684,12 +2684,12 @@ class DLCActionNotification: RscControlsGroup
 			idc = 101;
 			shadow = 0;
 			style = "0x10+0x200";
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			colorText[] = {"(profilenamespace getvariable ['IGUI_TEXT_RGB_R',0])","(profilenamespace getvariable ['IGUI_TEXT_RGB_G',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_B',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_A',0.8])"};
-			x = "1 * GUI_GRID_W";
-			y = "1.4 * GUI_GRID_H";
-			w = "12 * GUI_GRID_W";
-			h = "3.2 * GUI_GRID_H";
+			x = 1 * GUI_GRID_W;
+			y = 1.4 * GUI_GRID_H;
+			w = 12 * GUI_GRID_W;
+			h = 3.2 * GUI_GRID_H;
 		};
 	};
 };
@@ -2722,11 +2722,11 @@ class ctrlButton: ctrlDefaultButton
 	colorFocused[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	font = "PuristaLight";
 	text = "";
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	borderSize = 0;
-	colorBorder[] = {0,0,0,0};
-	colorShadow[] = {0,0,0,0};
+	colorBorder[] = Color_Empty;
+	colorShadow[] = Color_Empty;
 	offsetX = 0;
 	offsetY = 0;
 	offsetPressedX = "pixelW";
@@ -2768,29 +2768,29 @@ class ctrlButtonPictureKeepAspect: ctrlButton
 class RscDebugConsole: RscControlsGroupNoScrollbars
 {
 	idc = 13184;
-	x = "9 * GUI_GRID_W + GUI_GRID_X";
-	y = "0.5 * GUI_GRID_H + (safezoneY + safezoneH - GUI_GRID_HAbs)";
-	w = "21.5 * GUI_GRID_W";
-	h = "21.5 * GUI_GRID_H";
+	x = 9 * GUI_GRID_W + GUI_GRID_X;
+	y = 0.5 * GUI_GRID_H + GUI_GRID_Y;
+	w = 21.5 * GUI_GRID_W;
+	h = 21.5 * GUI_GRID_H;
 	class controls
 	{
 		class Title: RscButton
 		{
-			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+			colorBackground[] = GUI_BCG_COLOR;
 			idc = 11884;
 			text = "Debug console";
-			x = "0 *    (   GUI_GRID_WAbs / 40)";
-			y = "0 *    (   (   GUI_GRID_WAbs / 1.2) / 25)";
-			w = "22 *    (   GUI_GRID_WAbs / 40)";
-			h = "1 *    (   (   GUI_GRID_WAbs / 1.2) / 25)";
+			x = 0 *    (   GUI_GRID_WAbs / 40);
+			y = 0 *    (   (   GUI_GRID_WAbs / 1.2) / 25);
+			w = 22 *    (   GUI_GRID_WAbs / 40);
+			h = 1 *    (   (   GUI_GRID_WAbs / 1.2) / 25);
 			style = 0;
-			colorText[] = {1,1,1,1};
+			colorText[] = GUI_TEXT_COLOR;
 			period = -1;
-			colorDisabled[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-			colorBackgroundDisabled[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-			colorBackgroundActive[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-			colorFocused[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-			colorShadow[] = {0,0,0,0};
+			colorDisabled[] = GUI_BCG_COLOR;
+			colorBackgroundDisabled[] = GUI_BCG_COLOR;
+			colorBackgroundActive[] = GUI_BCG_COLOR;
+			colorFocused[] = GUI_BCG_COLOR;
+			colorShadow[] = Color_Empty;
 			colorBorder[] = {0,0,0,1};
 			soundEnter[] = {"",0.09,1};
 			soundPush[] = {"",0.09,1};
@@ -2800,65 +2800,65 @@ class RscDebugConsole: RscControlsGroupNoScrollbars
 		class Link: RscHTML
 		{
 			idc = 11891;
-			x = "7 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "15 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 7 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 15 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ExpressionBackground: RscText
 		{
 			colorBackground[] = {0,0,0,0.7};
 			idc = 11885;
-			x = "0 * GUI_GRID_W";
-			y = "1.1 * GUI_GRID_H";
-			w = "22 * GUI_GRID_W";
-			h = "8 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 1.1 * GUI_GRID_H;
+			w = 22 * GUI_GRID_W;
+			h = 8 * GUI_GRID_H;
 		};
 		class ExpressionText: RscText
 		{
 			idc = 11892;
 			text = "Execute";
-			x = "0.2 * GUI_GRID_W";
-			y = "1.1 * GUI_GRID_H";
-			w = "22 * GUI_GRID_W";
-			h = "0.5 * GUI_GRID_H";
-			sizeEx = "0.8 * GUI_GRID_H";
+			x = 0.2 * GUI_GRID_W;
+			y = 1.1 * GUI_GRID_H;
+			w = 22 * GUI_GRID_W;
+			h = 0.5 * GUI_GRID_H;
+			sizeEx = 0.8 * GUI_GRID_H;
 		};
 		class Expression: RscEdit
 		{
 			style = 16;
 			autocomplete = "scripting";
-			font = "EtelkaMonospacePro";
+			font = GUI_FONT_MONO;
 			idc = 12284;
-			x = "0.5 * GUI_GRID_W";
-			y = "1.7 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "6 * GUI_GRID_H";
-			sizeEx = "0.75 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 1.7 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 6 * GUI_GRID_H;
+			sizeEx = 0.75 * GUI_GRID_H;
 			onMouseButtonDblClick = "ctrlSetFocus (_this select 0)";
 		};
 		class ExpressionOutputBackground: RscText
 		{
 			show = "isMultiplayer";
-			colorBackground[] = {0,0,0,0};
+			colorBackground[] = Color_Empty;
 			idc = 13191;
-			x = "0.5 * GUI_GRID_W";
-			y = "7.7 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 7.7 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ExpressionOutput: RscEdit
 		{
 			style = 512;
 			canModify = 0;
-			font = "EtelkaMonospacePro";
+			font = GUI_FONT_MONO;
 			colorBackground[] = {0,0,0,0.8};
-			sizeEx = "0.7 * GUI_GRID_H";
+			sizeEx = 0.7 * GUI_GRID_H;
 			idc = 13190;
-			x = "0.5 * GUI_GRID_W";
-			y = "7.7 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 7.7 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 			onMouseButtonDblClick = "ctrlSetFocus (_this select 0)";
 			onLoad = "parsingNamespace setVariable [""BIS_RscDebugConsoleExpressionResultCtrl"", _this select 0]";
 		};
@@ -2874,99 +2874,99 @@ class RscDebugConsole: RscControlsGroupNoScrollbars
 			};
 			style = 2;
 			idc = 13284;
-			x = "0 * GUI_GRID_W";
-			y = "9.2 * GUI_GRID_H";
-			w = "1 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 9.2 * GUI_GRID_H;
+			w = 1 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonExecuteServerBackground: RscText
 		{
 			show = "isMultiplayer";
 			colorBackground[] = {0,1,0,0.25};
 			idc = -1;
-			x = "1.1 * GUI_GRID_W";
-			y = "9.2 * GUI_GRID_H";
-			w = "6.9 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 1.1 * GUI_GRID_W;
+			y = 9.2 * GUI_GRID_H;
+			w = 6.9 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonExecuteServer: RscButtonMenu
 		{
 			idc = 13286;
 			text = "SERVER EXEC";
-			x = "1.1 * GUI_GRID_W";
-			y = "9.2 * GUI_GRID_H";
-			w = "6.9 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 1.1 * GUI_GRID_W;
+			y = 9.2 * GUI_GRID_H;
+			w = 6.9 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonExecuteAllBackground: RscText
 		{
 			show = "isMultiplayer";
 			colorBackground[] = {1,0,0,0.25};
 			idc = -1;
-			x = "8.1 * GUI_GRID_W";
-			y = "9.2 * GUI_GRID_H";
-			w = "6.9 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 8.1 * GUI_GRID_W;
+			y = 9.2 * GUI_GRID_H;
+			w = 6.9 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonExecuteAll: RscButtonMenu
 		{
 			idc = 13285;
 			text = "GLOBAL EXEC";
-			x = "8.1 * GUI_GRID_W";
-			y = "9.2 * GUI_GRID_H";
-			w = "6.9 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 8.1 * GUI_GRID_W;
+			y = 9.2 * GUI_GRID_H;
+			w = 6.9 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonExecuteLocalBackground: RscText
 		{
 			show = "isMultiplayer";
 			colorBackground[] = {0,0,1,0.25};
 			idc = -1;
-			x = "15.1 * GUI_GRID_W";
-			y = "9.2 * GUI_GRID_H";
-			w = "6.9 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 15.1 * GUI_GRID_W;
+			y = 9.2 * GUI_GRID_H;
+			w = 6.9 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonExecuteLocal: RscButtonMenu
 		{
 			default = 1;
 			idc = 13484;
 			text = "LOCAL EXEC";
-			x = "15.1 * GUI_GRID_W";
-			y = "9.2 * GUI_GRID_H";
-			w = "6.9 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 15.1 * GUI_GRID_W;
+			y = 9.2 * GUI_GRID_H;
+			w = 6.9 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class WatchBackground: RscText
 		{
 			colorBackground[] = {0,0,0,0.7};
 			idc = 11886;
-			x = "0 * GUI_GRID_W";
-			y = "10.4 * GUI_GRID_H";
-			w = "22 * GUI_GRID_W";
-			h = "8.9 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 10.4 * GUI_GRID_H;
+			w = 22 * GUI_GRID_W;
+			h = 8.9 * GUI_GRID_H;
 		};
 		class WatchText: RscText
 		{
 			idc = 11893;
 			text = "Watch:";
-			x = "0.2 * GUI_GRID_W";
-			y = "10.4 * GUI_GRID_H";
-			w = "22 * GUI_GRID_W";
-			h = "0.5 * GUI_GRID_H";
-			sizeEx = "0.8 * GUI_GRID_H";
+			x = 0.2 * GUI_GRID_W;
+			y = 10.4 * GUI_GRID_H;
+			w = 22 * GUI_GRID_W;
+			h = 0.5 * GUI_GRID_H;
+			sizeEx = 0.8 * GUI_GRID_H;
 		};
 		class WatchInput1: RscEdit
 		{
 			autocomplete = "scripting";
 			shadow = 0;
-			font = "EtelkaMonospacePro";
+			font = GUI_FONT_MONO;
 			idc = 12285;
-			x = "0.5 * GUI_GRID_W";
-			y = "11 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
-			sizeEx = "0.7 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 11 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
+			sizeEx = 0.7 * GUI_GRID_H;
 			onMouseButtonDblClick = "ctrlSetFocus (_this select 0)";
 			onSetFocus = "_this select 0 setVariable ['RscDebugConsole_watchPaused', true]";
 			onKillFocus = "_this select 0 setVariable ['RscDebugConsole_watchPaused', false]";
@@ -2975,117 +2975,117 @@ class RscDebugConsole: RscControlsGroupNoScrollbars
 		{
 			style = 512;
 			canModify = 0;
-			font = "EtelkaMonospacePro";
+			font = GUI_FONT_MONO;
 			colorBackground[] = {0,0,0,0.8};
-			sizeEx = "0.7 * GUI_GRID_H";
+			sizeEx = 0.7 * GUI_GRID_H;
 			idc = 12286;
-			x = "0.5 * GUI_GRID_W";
-			y = "12 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 12 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 			onMouseButtonDblClick = "ctrlSetFocus (_this select 0)";
 		};
 		class WatchInput2: WatchInput1
 		{
 			idc = 12287;
-			x = "0.5 * GUI_GRID_W";
-			y = "13 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 13 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class WatchOutput2: WatchOutput1
 		{
 			idc = 12288;
-			x = "0.5 * GUI_GRID_W";
-			y = "14 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 14 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class WatchInput3: WatchInput1
 		{
 			idc = 12289;
-			x = "0.5 * GUI_GRID_W";
-			y = "15 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 15 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class WatchOutput3: WatchOutput1
 		{
 			idc = 12290;
-			x = "0.5 * GUI_GRID_W";
-			y = "16 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 16 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class WatchInput4: WatchInput1
 		{
 			idc = 12291;
-			x = "0.5 * GUI_GRID_W";
-			y = "17 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 17 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class WatchOutput4: WatchOutput1
 		{
 			idc = 12293;
-			x = "0.5 * GUI_GRID_W";
-			y = "18 * GUI_GRID_H";
-			w = "21 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 18 * GUI_GRID_H;
+			w = 21 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonSpectatorCamera: RscButtonMenu
 		{
 			idc = 13287;
 			text = "SPECTATOR";
-			x = "0 * GUI_GRID_W";
-			y = "19.4 * GUI_GRID_H";
-			w = "7.4 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 19.4 * GUI_GRID_H;
+			w = 7.4 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonFunctions: RscButtonMenu
 		{
 			idc = 13289;
 			text = "FUNCTIONS";
-			x = "7.5 * GUI_GRID_W";
-			y = "19.4 * GUI_GRID_H";
-			w = "7.4 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 7.5 * GUI_GRID_W;
+			y = 19.4 * GUI_GRID_H;
+			w = 7.4 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonAnimations: RscButtonMenu
 		{
 			idc = 13291;
 			text = "ANIMATIONS";
-			x = "15 * GUI_GRID_W";
-			y = "19.4 * GUI_GRID_H";
-			w = "7 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 15 * GUI_GRID_W;
+			y = 19.4 * GUI_GRID_H;
+			w = 7 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonSplendidCamera: RscButtonMenu
 		{
 			idc = 13288;
 			text = "CAMERA";
-			x = "0 * GUI_GRID_W";
-			y = "20.5 * GUI_GRID_H";
-			w = "7.4 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 20.5 * GUI_GRID_H;
+			w = 7.4 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonConfig: RscButtonMenu
 		{
 			idc = 13290;
 			text = "CONFIG";
-			x = "7.5 * GUI_GRID_W";
-			y = "20.5 * GUI_GRID_H";
-			w = "7.4 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 7.5 * GUI_GRID_W;
+			y = 20.5 * GUI_GRID_H;
+			w = 7.4 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonGUI: RscButtonMenu
 		{
 			idc = 13292;
 			text = "GUI EDITOR";
-			x = "15 * GUI_GRID_W";
-			y = "20.5 * GUI_GRID_H";
-			w = "7 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 15 * GUI_GRID_W;
+			y = 20.5 * GUI_GRID_H;
+			w = 7 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ENH_ButtonFunctions: ctrlButtonPictureKeepAspect
 		{
@@ -3093,109 +3093,109 @@ class RscDebugConsole: RscControlsGroupNoScrollbars
 			deletable = 0;
 			text = "\a3\3DEN\Data\Displays\Display3DEN\EntityMenu\functions_ca.paa";
 			tooltip = "3den Enhanced Functions Viewer";
-			colorBackground[] = {0,0,0,0};
-			colorBackgroundActive[] = {0,0,0,0};
-			colorFocused[] = {0,0,0,0};
-			colorBackgroundDisabled[] = {0,0,0,0};
+			colorBackground[] = Color_Empty;
+			colorBackgroundActive[] = Color_Empty;
+			colorFocused[] = Color_Empty;
+			colorBackgroundDisabled[] = Color_Empty;
 			onButtonClick = "ctrlParent (_this # 0) createDisplay 'ENH_FunctionsViewer'";
-			x = "getNumber(configFile >> 'RscDebugConsole' >> 'controls' >> 'Title' >> 'w') - (4.1 * GUI_GRID_W)";
+			x = getNumber(configFile >> 'RscDebugConsole' >> 'controls' >> 'Title' >> 'w') - (4.1 * GUI_GRID_W);
 			y = "getNumber(configFile >> 'RscDebugConsole' >> 'controls' >> 'Title' >> 'y')";
-			w = "1 * GUI_GRID_W";
-			h = "1 *GUI_GRID_H";
+			w = 1 * GUI_GRID_W;
+			h = 1 *GUI_GRID_H;
 		};
 	};
 };
 class RscFeedback: RscHTML
 {
 	idc = 6455;
-	x = "1 * GUI_GRID_W + GUI_GRID_X";
+	x = 1 * GUI_GRID_W + GUI_GRID_X;
 	y = "safezoneY";
-	w = "15 * GUI_GRID_W";
-	h = "1 * GUI_GRID_H";
+	w = 15 * GUI_GRID_W;
+	h = 1 * GUI_GRID_H;
 	colorBackground[] = {0.67451,0.290196,0.290196,1};
-	colorLink[] = {1,1,1,1};
-	colorLinkActive[] = {1,1,1,1};
+	colorLink[] = GUI_TEXT_COLOR;
+	colorLinkActive[] = GUI_TEXT_COLOR;
 	shadow = 0;
 	class P
 	{
-		font = "RobotoCondensedBold";
-		fontBold = "RobotoCondensedBold";
-		sizeEx = "GUI_TEXT_SIZE_SMALL";
+		font = GUI_FONT_BOLD;
+		fontBold = GUI_FONT_BOLD;
+		sizeEx = GUI_TEXT_SIZE_MEDIUM;
 		align = "center";
 	};
 };
 class RscMissionStatus: RscControlsGroupNoScrollbars
 {
-	w = "(2.5 * GUI_GRID_W)";
-	h = "(15 * GUI_GRID_H)";
+	w = (2.5 * GUI_GRID_W);
+	h = (15 * GUI_GRID_H);
 	idc = 15283;
-	x = "0 * GUI_GRID_W + (profilenamespace getvariable [""IGUI_GRID_MP_X"",(safezoneX + safezoneW - 2 * GUI_GRID_W)])";
-	y = "0 * GUI_GRID_H + (profilenamespace getvariable [""IGUI_GRID_MP_Y"",(5 * GUI_GRID_H + safezoneY)])";
+	x = 0 * GUI_GRID_W + (profilenamespace getvariable ["IGUI_GRID_MP_X",(safezoneX + safezoneW - 2 * GUI_GRID_W)]);
+	y = 0 * GUI_GRID_H + (profilenamespace getvariable ["IGUI_GRID_MP_Y",(5 * GUI_GRID_H + safezoneY)]);
 	class controls
 	{
 		class BarBridge: RscText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])","(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_A',0.8])"};
 			idc = 13983;
-			x = "0.5 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "1.5 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 1.5 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class BarWEST: RscText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])","(profilenamespace getvariable ['Map_BLUFOR_G',1])","(profilenamespace getvariable ['Map_BLUFOR_B',1])",0.75};
 			idc = 13984;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "0.5 * GUI_GRID_W";
-			h = "14.9 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 0.5 * GUI_GRID_W;
+			h = 14.9 * GUI_GRID_H;
 		};
 		class BarEAST: RscText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])",0.75};
 			idc = 13985;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "0.5 * GUI_GRID_W";
-			h = "14.9 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 0.5 * GUI_GRID_W;
+			h = 14.9 * GUI_GRID_H;
 		};
 		class BarGUER: RscText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['Map_Independent_R',0])","(profilenamespace getvariable ['Map_Independent_G',1])","(profilenamespace getvariable ['Map_Independent_B',1])",0.75};
 			idc = 13986;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "0.5 * GUI_GRID_W";
-			h = "14.9 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 0.5 * GUI_GRID_W;
+			h = 14.9 * GUI_GRID_H;
 		};
 		class BarCIV: RscText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['Map_Civilian_R',0])","(profilenamespace getvariable ['Map_Civilian_G',1])","(profilenamespace getvariable ['Map_Civilian_B',1])",0.75};
 			idc = 13987;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "0.5 * GUI_GRID_W";
-			h = "14.9 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 0.5 * GUI_GRID_W;
+			h = 14.9 * GUI_GRID_H;
 		};
 		class BarUnknown: RscText
 		{
 			style = 16;
 			idc = 13988;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "0.5 * GUI_GRID_W";
-			h = "14.9 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 0.5 * GUI_GRID_W;
+			h = 14.9 * GUI_GRID_H;
 			colorBackground[] = {0.25,0.25,0.25,0.75};
 		};
 		class Slot1Background: RscText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])","(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_A',0.8])"};
 			idc = 13989;
-			x = "0.6 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot1Progress: RscProgress
 		{
@@ -3203,21 +3203,21 @@ class RscMissionStatus: RscControlsGroupNoScrollbars
 			colorBar[] = {1,1,1,0.5};
 			texture = "\a3\Ui_f\data\IGUI\RscTitles\MPProgress\progress_ca.paa";
 			idc = 13990;
-			x = "0.6 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot1: RscActivePictureKeepAspect
 		{
 			colorText[] = {"(profilenamespace getvariable ['IGUI_TEXT_RGB_R',0])","(profilenamespace getvariable ['IGUI_TEXT_RGB_G',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_B',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_A',0.8])"};
 			shadow = 0;
 			idc = 14183;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "0.1 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 0.1 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot1Text: RscStructuredText
 		{
@@ -3225,310 +3225,310 @@ class RscMissionStatus: RscControlsGroupNoScrollbars
 			style = 2;
 			shadow = 0;
 			idc = 14093;
-			x = "0.3 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "2 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
-			sizeEx = "1.2 * GUI_GRID_H";
+			x = 0.3 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 2 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
+			sizeEx = 1.2 * GUI_GRID_H;
 		};
 		class Slot2Background: Slot1Background
 		{
 			idc = 13991;
-			x = "0.6 * GUI_GRID_W";
-			y = "1.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 1.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot2Progress: Slot1Progress
 		{
 			idc = 13992;
-			x = "0.6 * GUI_GRID_W";
-			y = "1.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 1.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot2: Slot1
 		{
 			idc = 14184;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "1.6 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 1.6 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot2Text: Slot1Text
 		{
 			idc = 14094;
-			y = "1.5 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 1.5 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot3Background: Slot1Background
 		{
 			idc = 13993;
-			x = "0.6 * GUI_GRID_W";
-			y = "3 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 3 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot3Progress: Slot1Progress
 		{
 			idc = 13994;
-			x = "0.6 * GUI_GRID_W";
-			y = "3 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 3 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot3: Slot1
 		{
 			idc = 14185;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "3.1 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 3.1 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot3Text: Slot1Text
 		{
 			idc = 14095;
-			y = "3 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 3 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot4Background: Slot1Background
 		{
 			idc = 13995;
-			x = "0.6 * GUI_GRID_W";
-			y = "4.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 4.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot4Progress: Slot1Progress
 		{
 			idc = 13996;
-			x = "0.6 * GUI_GRID_W";
-			y = "4.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 4.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot4: Slot1
 		{
 			idc = 14186;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "4.6 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 4.6 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot4Text: Slot1Text
 		{
 			idc = 14096;
-			y = "4.5 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 4.5 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot5Background: Slot1Background
 		{
 			idc = 13997;
-			x = "0.6 * GUI_GRID_W";
-			y = "6 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 6 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot5Progress: Slot1Progress
 		{
 			idc = 13998;
-			x = "0.6 * GUI_GRID_W";
-			y = "6 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 6 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot5: Slot1
 		{
 			idc = 14187;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "6.1 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 6.1 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot5Text: Slot1Text
 		{
 			idc = 14097;
-			y = "6 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 6 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot6Background: Slot1Background
 		{
 			idc = 13999;
-			x = "0.6 * GUI_GRID_W";
-			y = "7.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 7.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot6Progress: Slot1Progress
 		{
 			idc = 14000;
-			x = "0.6 * GUI_GRID_W";
-			y = "7.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 7.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot6: Slot1
 		{
 			idc = 14188;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "7.6 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 7.6 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot6Text: Slot1Text
 		{
 			idc = 14098;
-			y = "7.5 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 7.5 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot7Background: Slot1Background
 		{
 			idc = 14001;
-			x = "0.6 * GUI_GRID_W";
-			y = "9 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 9 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot7Progress: Slot1Progress
 		{
 			idc = 14002;
-			x = "0.6 * GUI_GRID_W";
-			y = "9 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 9 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot7: Slot1
 		{
 			idc = 14189;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "9.1 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 9.1 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot7Text: Slot1Text
 		{
 			idc = 14099;
-			y = "9 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 9 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot8Background: Slot1Background
 		{
 			idc = 14003;
-			x = "0.6 * GUI_GRID_W";
-			y = "10.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 10.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot8Progress: Slot1Progress
 		{
 			idc = 14004;
-			x = "0.6 * GUI_GRID_W";
-			y = "10.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 10.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot8: Slot1
 		{
 			idc = 14190;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "10.6 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 10.6 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot8Text: Slot1Text
 		{
 			idc = 14100;
-			y = "10.5 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 10.5 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot9Background: Slot1Background
 		{
 			idc = 14005;
-			x = "0.6 * GUI_GRID_W";
-			y = "12 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 12 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot9Progress: Slot1Progress
 		{
 			idc = 14006;
-			x = "0.6 * GUI_GRID_W";
-			y = "12 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 12 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot9: Slot1
 		{
 			idc = 14191;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "12.1 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 12.1 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot9Text: Slot1Text
 		{
 			idc = 14101;
-			y = "12 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 12 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot0Background: Slot1Background
 		{
 			idc = 14007;
-			x = "0.6 * GUI_GRID_W";
-			y = "13.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
+			x = 0.6 * GUI_GRID_W;
+			y = 13.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
 		};
 		class Slot0Progress: Slot1Progress
 		{
 			idc = 14008;
-			x = "0.6 * GUI_GRID_W";
-			y = "13.5 * GUI_GRID_H";
-			w = "1.4 * GUI_GRID_W";
-			h = "1.4 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			x = 0.6 * GUI_GRID_W;
+			y = 13.5 * GUI_GRID_H;
+			w = 1.4 * GUI_GRID_W;
+			h = 1.4 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 		class Slot0: Slot1
 		{
 			idc = 14192;
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			x = "0.7 * GUI_GRID_W";
-			y = "13.6 * GUI_GRID_H";
-			w = "1.2 * GUI_GRID_W";
-			h = "1.2 * GUI_GRID_H";
+			text = ProcTextTransparent;
+			x = 0.7 * GUI_GRID_W;
+			y = 13.6 * GUI_GRID_H;
+			w = 1.2 * GUI_GRID_W;
+			h = 1.2 * GUI_GRID_H;
 		};
 		class Slot0Text: Slot1Text
 		{
 			idc = 14102;
-			y = "13.5 * GUI_GRID_H";
-			colorBackground[] = {0,0,0,0};
+			y = 13.5 * GUI_GRID_H;
+			colorBackground[] = Color_Empty;
 		};
 	};
 };
 class RscNotificationArea: RscControlsGroupNoScrollbars
 {
 	idc = 312;
-	x = "0 * GUI_GRID_W + (profilenamespace getvariable [""IGUI_GRID_NOTIFICATION_X"",(0.5 - 6 * GUI_GRID_W)])";
-	y = "0 * GUI_GRID_H + (profilenamespace getvariable [""IGUI_GRID_NOTIFICATION_Y"",(safezoneY + 6.5 * GUI_GRID_H)])";
-	w = "12 * GUI_GRID_W";
-	h = "6 * GUI_GRID_H";
+	x = 0 * GUI_GRID_W + (profilenamespace getvariable ["IGUI_GRID_NOTIFICATION_X",(0.5 - 6 * GUI_GRID_W)]);
+	y = 0 * GUI_GRID_H + (profilenamespace getvariable ["IGUI_GRID_NOTIFICATION_Y",(safezoneY + 6.5 * GUI_GRID_H)]);
+	w = 12 * GUI_GRID_W;
+	h = 6 * GUI_GRID_H;
 	class controls
 	{
 		class Notification: RscControlsGroupNoScrollbars
@@ -3536,56 +3536,56 @@ class RscNotificationArea: RscControlsGroupNoScrollbars
 			x = 0;
 			y = 0;
 			idc = 13435;
-			w = "12 * GUI_GRID_W";
-			h = "3 * GUI_GRID_H";
+			w = 12 * GUI_GRID_W;
+			h = 3 * GUI_GRID_H;
 			class controls
 			{
 				class Title: RscText
 				{
 					colorBackground[] = {0,0,0,0.7};
 					idc = 12135;
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "12 * GUI_GRID_W";
-					h = "0.8 * GUI_GRID_H";
-					sizeEx = "0.8 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 12 * GUI_GRID_W;
+					h = 0.8 * GUI_GRID_H;
+					sizeEx = 0.8 * GUI_GRID_H;
 				};
 				class PictureBackground: RscText
 				{
 					colorBackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])","(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])",0.7};
 					idc = 12136;
-					x = "0 * GUI_GRID_W";
-					y = "0.9 * GUI_GRID_H";
-					w = "2 * GUI_GRID_W";
-					h = "2 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0.9 * GUI_GRID_H;
+					w = 2 * GUI_GRID_W;
+					h = 2 * GUI_GRID_H;
 				};
 				class Picture: RscPictureKeepAspect
 				{
 					idc = 12335;
-					x = "0.1 * GUI_GRID_W";
-					y = "1 * GUI_GRID_H";
-					w = "1.8 * GUI_GRID_W";
-					h = "1.8 * GUI_GRID_H";
+					x = 0.1 * GUI_GRID_W;
+					y = 1 * GUI_GRID_H;
+					w = 1.8 * GUI_GRID_W;
+					h = 1.8 * GUI_GRID_H;
 				};
 				class Score: RscText
 				{
 					shadow = 0;
 					style = 2;
 					idc = 12137;
-					x = "0 * GUI_GRID_W";
-					y = "0.9 * GUI_GRID_H";
-					w = "2 * GUI_GRID_W";
-					h = "2 * GUI_GRID_H";
-					sizeEx = "1.2 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0.9 * GUI_GRID_H;
+					w = 2 * GUI_GRID_W;
+					h = 2 * GUI_GRID_H;
+					sizeEx = 1.2 * GUI_GRID_H;
 				};
 				class DescriptionBackground: RscText
 				{
 					colorBackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])","(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])",0.7};
 					idc = 12138;
-					x = "2.1 * GUI_GRID_W";
-					y = "0.9 * GUI_GRID_H";
-					w = "9.9 * GUI_GRID_W";
-					h = "2 * GUI_GRID_H";
+					x = 2.1 * GUI_GRID_W;
+					y = 0.9 * GUI_GRID_H;
+					w = 9.9 * GUI_GRID_W;
+					h = 2 * GUI_GRID_H;
 				};
 				class Description: RscStructuredText
 				{
@@ -3595,12 +3595,12 @@ class RscNotificationArea: RscControlsGroupNoScrollbars
 						align = "center";
 					};
 					idc = 12235;
-					x = "2.1 * GUI_GRID_W";
-					y = "0.9 * GUI_GRID_H";
-					w = "9.9 * GUI_GRID_W";
-					h = "2 * GUI_GRID_H";
-					colorBackground[] = {0,0,0,0};
-					sizeEx = "1 * GUI_GRID_H";
+					x = 2.1 * GUI_GRID_W;
+					y = 0.9 * GUI_GRID_H;
+					w = 9.9 * GUI_GRID_W;
+					h = 2 * GUI_GRID_H;
+					colorBackground[] = Color_Empty;
+					sizeEx = 1 * GUI_GRID_H;
 				};
 			};
 		};
@@ -3608,31 +3608,31 @@ class RscNotificationArea: RscControlsGroupNoScrollbars
 };
 class RscHintGroup: RscControlsGroupNoScrollbars
 {
-	w = "(12 * GUI_GRID_W)";
+	w = (12 * GUI_GRID_W);
 	idc = 12957;
-	x = "0 * GUI_GRID_W + (profilenamespace getvariable [""IGUI_GRID_HINT_X"",((safezoneX + safezoneW) - (12 * GUI_GRID_W) - 1 * GUI_GRID_W)])";
-	y = "0 * GUI_GRID_H + (profilenamespace getvariable [""IGUI_GRID_HINT_Y"",(safezoneY + 6 * GUI_GRID_H)])";
-	h = "5 * GUI_GRID_H";
+	x = 0 * GUI_GRID_W + (profilenamespace getvariable ["IGUI_GRID_HINT_X",((safezoneX + safezoneW) - (12 * GUI_GRID_W) - 1 * GUI_GRID_W)]);
+	y = 0 * GUI_GRID_H + (profilenamespace getvariable ["IGUI_GRID_HINT_Y",(safezoneY + 6 * GUI_GRID_H)]);
+	h = 5 * GUI_GRID_H;
 	class controls
 	{
 		class Title: RscStructuredText
 		{
 			colorBackground[] = {0,0,0,0.7};
-			w = "(12 * GUI_GRID_W)";
+			w = (12 * GUI_GRID_W);
 			idc = 11657;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			h = "1 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			h = 1 * GUI_GRID_H;
 		};
 		class Hint: RscStructuredText
 		{
 			colorBackground[] = {"(profilenamespace getvariable ['IGUI_BCG_RGB_R',0])","(profilenamespace getvariable ['IGUI_BCG_RGB_G',1])","(profilenamespace getvariable ['IGUI_BCG_RGB_B',1])",0.7};
-			size = "GUI_TEXT_SIZE_SMALL";
-			w = "(12 * GUI_GRID_W)";
+			size = GUI_TEXT_SIZE_SMALL;
+			w = (12 * GUI_GRID_W);
 			idc = 11757;
-			x = "0 * GUI_GRID_W";
-			y = "1 * GUI_GRID_H";
-			h = "4 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 1 * GUI_GRID_H;
+			h = 4 * GUI_GRID_H;
 		};
 	};
 };
@@ -3641,13 +3641,13 @@ class RscVehicleToggles
 	idc = 112;
 	type = 18;
 	style = -1;
-	xSpace = "0.1 * GUI_GRID_W";
-	x = "0.1 * GUI_GRID_W + (profilenamespace getvariable [""IGUI_GRID_VEHICLE_X"",(safezoneX + 0.5 * GUI_GRID_W)])";
-	y = "3.4 * GUI_GRID_H + (profilenamespace getvariable [""IGUI_GRID_VEHICLE_Y"",(safezoneY + 0.5 * GUI_GRID_H)])";
-	w = "9.8 * GUI_GRID_W";
-	h = "0.8 * GUI_GRID_H";
-	iconW = "0.8 * GUI_GRID_W";
-	iconH = "0.8 * GUI_GRID_H";
+	xSpace = 0.1 * GUI_GRID_W;
+	x = 0.1 * GUI_GRID_W + (profilenamespace getvariable ["IGUI_GRID_VEHICLE_X",(safezoneX + 0.5 * GUI_GRID_W)]);
+	y = 3.4 * GUI_GRID_H + (profilenamespace getvariable ["IGUI_GRID_VEHICLE_Y",(safezoneY + 0.5 * GUI_GRID_H)]);
+	w = 9.8 * GUI_GRID_W;
+	h = 0.8 * GUI_GRID_H;
+	iconW = 0.8 * GUI_GRID_W;
+	iconH = 0.8 * GUI_GRID_H;
 	class Icons
 	{
 		class EngineIcon
@@ -3797,13 +3797,13 @@ class RscTrafficLight: RscActiveText
 	style = 48;
 	color[] = {1,1,1,0.7};
 	colorText[] = {1,1,1,0.7};
-	colorActive[] = {1,1,1,1};
+	colorActive[] = GUI_TEXT_COLOR;
 	text = "\A3\Ui_f\data\GUI\RscCommon\RscTrafficLight\TrafficLight_ca.paa";
 	tooltip = "You are running a modded version of the game. Click to see the list of active mods.";
-	x = "SafezoneX + SafezoneW - (2 * GUI_GRID_W)";
-	y = "23 * GUI_GRID_H + (safezoneY + safezoneH - GUI_GRID_HAbs)";
-	w = "1 * GUI_GRID_W";
-	h = "1 * GUI_GRID_H";
+	x = SafezoneX + SafezoneW - (2 * GUI_GRID_W);
+	y = 23 * GUI_GRID_H + GUI_GRID_Y;
+	w = 1 * GUI_GRID_W;
+	h = 1 * GUI_GRID_H;
 };
 class RscButtonSearch: RscButton
 {
@@ -3845,71 +3845,71 @@ class RscMsgBoxKeysPreset: RscControlsGroupNoScrollbars
 		};
 		class MessageBox: RscControlsGroupNoScrollbars
 		{
-			x = "(safezoneWAbs - 18 * GUI_GRID_W) / 2";
-			y = "(safezoneH - 10 * GUI_GRID_H) / 2";
+			x = (safezoneWAbs - 18 * GUI_GRID_W) / 2;
+			y = (safezoneH - 10 * GUI_GRID_H) / 2;
 			idc = 2300;
-			w = "18 * GUI_GRID_W";
-			h = "10.5 * GUI_GRID_H";
+			w = 18 * GUI_GRID_W;
+			h = 10.5 * GUI_GRID_H;
 			class controls
 			{
 				class BackgroundImage: RscPicture
 				{
 					idc = 1200;
 					text = "\a3\Ui_f\data\GUI\RscCommon\RscMsgBoxKeysPresets\background_ca.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class LogoTextBackground: RscText
 				{
 					idc = 1000;
-					x = "0 * GUI_GRID_W";
-					y = "6 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "3 * GUI_GRID_H";
-					colorText[] = {0,0,0,0};
+					x = 0 * GUI_GRID_W;
+					y = 6 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 3 * GUI_GRID_H;
+					colorText[] = Color_Empty;
 					colorBackground[] = {0,0,0,0.6};
 				};
 				class Logo: RscPicture
 				{
 					idc = 1201;
 					text = "\A3\Data_F_Exp\Logos\arma3_exp_logo_ca.paa";
-					x = "0.25 * GUI_GRID_W";
-					y = "6.25 * GUI_GRID_H";
-					w = "2.5 * GUI_GRID_W";
-					h = "2.5 * GUI_GRID_H";
+					x = 0.25 * GUI_GRID_W;
+					y = 6.25 * GUI_GRID_H;
+					w = 2.5 * GUI_GRID_W;
+					h = 2.5 * GUI_GRID_H;
 				};
 				class Text: RscText
 				{
 					shadow = 0;
 					style = "0x10+0x200";
-					sizeEx = "GUI_TEXT_SIZE_SMALL";
+					sizeEx = GUI_TEXT_SIZE_SMALL;
 					idc = 1001;
 					text = "Arma 3 Apex introduces new controls preset. Do you want to go to the controls menu and preview it?";
-					x = "3 * GUI_GRID_W";
-					y = "6.5 * GUI_GRID_H";
-					w = "14.5 * GUI_GRID_W";
-					h = "2 * GUI_GRID_H";
-					colorText[] = {1,1,1,1};
+					x = 3 * GUI_GRID_W;
+					y = 6.5 * GUI_GRID_H;
+					w = 14.5 * GUI_GRID_W;
+					h = 2 * GUI_GRID_H;
+					colorText[] = GUI_TEXT_COLOR;
 				};
 				class ButtonClose: RscButtonMenuCancel
 				{
 					onButtonClick = "ctrlDelete (ctrlParentControlsGroup ctrlParentControlsGroup (_this select 0));";
 					text = "Not now";
-					x = "0 * GUI_GRID_W";
-					y = "9.1 * GUI_GRID_H";
-					w = "6.5 * GUI_GRID_W";
-					h = "1 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 9.1 * GUI_GRID_H;
+					w = 6.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
 				};
 				class ButtonOK: RscButtonMenuOK
 				{
 					onButtonClick = "ctrlDelete (ctrlParentControlsGroup ctrlParentControlsGroup (_this select 0));";
 					text = "Yes";
-					x = "11.5 * GUI_GRID_W";
-					y = "9.1 * GUI_GRID_H";
-					w = "6.5 * GUI_GRID_W";
-					h = "1 * GUI_GRID_H";
+					x = 11.5 * GUI_GRID_W;
+					y = 9.1 * GUI_GRID_H;
+					w = 6.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
 				};
 			};
 		};
@@ -3946,72 +3946,72 @@ class RscMsgBoxKeysPresetJets: RscControlsGroupNoHScrollbars
 		};
 		class MessageBox: RscControlsGroupNoScrollbars
 		{
-			x = "(safezoneWAbs - 18 * GUI_GRID_W) / 2";
-			y = "(safezoneH - 10 * GUI_GRID_H) / 2";
+			x = (safezoneWAbs - 18 * GUI_GRID_W) / 2;
+			y = (safezoneH - 10 * GUI_GRID_H) / 2;
 			idc = 2300;
-			w = "18 * GUI_GRID_W";
-			h = "11.5 * GUI_GRID_H";
+			w = 18 * GUI_GRID_W;
+			h = 11.5 * GUI_GRID_H;
 			class controls
 			{
 				class BackgroundImage: RscPicture
 				{
 					idc = 1200;
 					text = "\a3\Ui_f\data\GUI\RscCommon\RscMsgBoxKeysPresetsJets\background_ca.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "10 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
 				};
 				class LogoTextBackground: RscText
 				{
 					idc = 1000;
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "10 * GUI_GRID_H";
-					colorText[] = {0,0,0,0};
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
+					colorText[] = Color_Empty;
 					colorBackground[] = {0,0,0,0.6};
 				};
 				class Logo: RscPicture
 				{
 					idc = 1201;
 					text = "\A3\Data_F_Jets\Logos\jets_logo_ca.paa";
-					x = "0.25 * GUI_GRID_W";
-					y = "0.25 * GUI_GRID_H";
-					w = "2.5 * GUI_GRID_W";
-					h = "2.5 * GUI_GRID_H";
+					x = 0.25 * GUI_GRID_W;
+					y = 0.25 * GUI_GRID_H;
+					w = 2.5 * GUI_GRID_W;
+					h = 2.5 * GUI_GRID_H;
 				};
 				class Text: RscStructuredText
 				{
 					shadow = 0;
 					style = "0x10+0x200";
-					sizeEx = "GUI_TEXT_SIZE_SMALL";
+					sizeEx = GUI_TEXT_SIZE_SMALL;
 					idc = 1001;
 					text = "With the addition of these new features and deepening of existing gameplay, there have been several <t color='%1'>control additions and tweaks</t>. You can inspect these in the CONTROLS section of the OPTIONS menu. It's also possible to reset to the Arma 3 or now standard Arma 3 Apex PRESETS, but please be aware that doing so will remove any customized control bindings.";
-					x = "3 * GUI_GRID_W";
-					y = "0.25 * GUI_GRID_H";
-					w = "14.5 * GUI_GRID_W";
-					h = "10 * GUI_GRID_H";
-					colorText[] = {1,1,1,1};
+					x = 3 * GUI_GRID_W;
+					y = 0.25 * GUI_GRID_H;
+					w = 14.5 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
+					colorText[] = GUI_TEXT_COLOR;
 				};
 				class ButtonClose: RscButtonMenuCancel
 				{
 					onButtonClick = "ctrlDelete (ctrlParentControlsGroup ctrlParentControlsGroup (_this select 0));";
 					text = "Close";
-					x = "0 * GUI_GRID_W";
-					y = "10.1 * GUI_GRID_H";
-					w = "6.5 * GUI_GRID_W";
-					h = "1 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 10.1 * GUI_GRID_H;
+					w = 6.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
 				};
 				class ButtonOK: RscButtonMenuOK
 				{
 					onButtonClick = "ctrlDelete (ctrlParentControlsGroup ctrlParentControlsGroup (_this select 0));";
 					text = "Controls";
 					tooltip = "View or change game controls.";
-					x = "11.5 * GUI_GRID_W";
-					y = "10.1 * GUI_GRID_H";
-					w = "6.5 * GUI_GRID_W";
-					h = "1 * GUI_GRID_H";
+					x = 11.5 * GUI_GRID_W;
+					y = 10.1 * GUI_GRID_H;
+					w = 6.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
 				};
 			};
 		};
@@ -4048,72 +4048,72 @@ class RscMsgBoxKeysPresetCustomInfoPanel: RscControlsGroupNoHScrollbars
 		};
 		class MessageBox: RscControlsGroupNoScrollbars
 		{
-			x = "(safezoneWAbs - 18 * GUI_GRID_W) / 2";
-			y = "(safezoneH - 10 * GUI_GRID_H) / 2";
+			x = (safezoneWAbs - 18 * GUI_GRID_W) / 2;
+			y = (safezoneH - 10 * GUI_GRID_H) / 2;
 			idc = 2300;
-			w = "18 * GUI_GRID_W";
-			h = "11.5 * GUI_GRID_H";
+			w = 18 * GUI_GRID_W;
+			h = 11.5 * GUI_GRID_H;
 			class controls
 			{
 				class BackgroundImage: RscPicture
 				{
 					idc = 1200;
 					text = "\A3\Ui_f\data\GUI\RscCommon\RscMsgBoxKeysPresetCustomInfoPanel\background_ca.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "10 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
 				};
 				class LogoTextBackground: RscText
 				{
 					idc = 1000;
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "10 * GUI_GRID_H";
-					colorText[] = {0,0,0,0};
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
+					colorText[] = Color_Empty;
 					colorBackground[] = {0,0,0,0.6};
 				};
 				class Logo: RscPicture
 				{
 					idc = 1201;
 					text = "\A3\Ui_f\data\GUI\RscCommon\RscMsgBoxKeysPresetCustomInfoPanel\infoPanelIcon_ca.paa";
-					x = "0.25 * GUI_GRID_W";
-					y = "0.25 * GUI_GRID_H";
-					w = "2.5 * GUI_GRID_W";
-					h = "2.5 * GUI_GRID_H";
+					x = 0.25 * GUI_GRID_W;
+					y = 0.25 * GUI_GRID_H;
+					w = 2.5 * GUI_GRID_W;
+					h = 2.5 * GUI_GRID_H;
 				};
 				class Text: RscStructuredText
 				{
 					shadow = 0;
 					style = "0x10+0x200";
-					sizeEx = "GUI_TEXT_SIZE_SMALL";
+					sizeEx = GUI_TEXT_SIZE_SMALL;
 					idc = 1001;
 					text = "$str_a3_rscmsgboxkeyspresetcustominfopanel_text";
-					x = "3 * GUI_GRID_W";
-					y = "0.25 * GUI_GRID_H";
-					w = "14.5 * GUI_GRID_W";
-					h = "10 * GUI_GRID_H";
-					colorText[] = {1,1,1,1};
+					x = 3 * GUI_GRID_W;
+					y = 0.25 * GUI_GRID_H;
+					w = 14.5 * GUI_GRID_W;
+					h = 10 * GUI_GRID_H;
+					colorText[] = GUI_TEXT_COLOR;
 				};
 				class ButtonClose: RscButtonMenuCancel
 				{
 					onButtonClick = "ctrlDelete (ctrlParentControlsGroup ctrlParentControlsGroup (_this select 0));";
 					text = "Not now";
-					x = "0 * GUI_GRID_W";
-					y = "10.1 * GUI_GRID_H";
-					w = "6.5 * GUI_GRID_W";
-					h = "1 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 10.1 * GUI_GRID_H;
+					w = 6.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
 				};
 				class ButtonOK: RscButtonMenuOK
 				{
 					onButtonClick = "ctrlDelete (ctrlParentControlsGroup ctrlParentControlsGroup (_this select 0));";
 					text = "Controls";
 					tooltip = "View or change game controls.";
-					x = "11.5 * GUI_GRID_W";
-					y = "10.1 * GUI_GRID_H";
-					w = "6.5 * GUI_GRID_W";
-					h = "1 * GUI_GRID_H";
+					x = 11.5 * GUI_GRID_W;
+					y = 10.1 * GUI_GRID_H;
+					w = 6.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
 				};
 			};
 		};
@@ -4129,8 +4129,8 @@ class RscControlsTable
 	type = 19;
 	style = 16;
 	lineSpacing = 0;
-	rowHeight = "GUI_GRID_H";
-	headerHeight = "GUI_GRID_H";
+	rowHeight = GUI_GRID_H;
+	headerHeight = GUI_GRID_H;
 	firstIDC = -1;
 	lastIDC = -1;
 	selectedRowColorFrom[] = {0.7,0.85,1,0.25};
@@ -4153,7 +4153,7 @@ class RscControlsTable
 };
 class RscIGUIText: RscText
 {
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	sizeEx = GUI_TEXT_SIZE_SMALL;
 	colorText[] = {"(profilenamespace getvariable ['IGUI_TEXT_RGB_R',0])","(profilenamespace getvariable ['IGUI_TEXT_RGB_G',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_B',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_A',0.8])"};
 	style = 0;
 };
@@ -4170,7 +4170,7 @@ class RscOpticsValue: RscOpticsText
 };
 class RscIGUIValue: RscIGUIText
 {
-	sizeEx = "GUI_TEXT_SIZE_SMALL";
+	sizeEx = GUI_TEXT_SIZE_SMALL;
 	colorText[] = {"(profilenamespace getvariable ['IGUI_TEXT_RGB_R',0])","(profilenamespace getvariable ['IGUI_TEXT_RGB_G',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_B',1])","(profilenamespace getvariable ['IGUI_TEXT_RGB_A',0.8])"};
 	style = 0;
 };
@@ -4179,8 +4179,8 @@ class RscButtonMenuMain: RscButtonMenu
 	size = "(pixelH * pixelGrid * 2)";
 	style = "0x00 + 0xC0";
 	colorBackground[] = {1,1,1,0.75};
-	colorBackgroundFocused[] = {1,1,1,1};
-	colorBackground2[] = {1,1,1,1};
+	colorBackgroundFocused[] = GUI_TEXT_COLOR;
+	colorBackground2[] = GUI_TEXT_COLOR;
 	class Attributes
 	{
 		align = "left";
@@ -4196,8 +4196,8 @@ class RscButtonMenuMain: RscButtonMenu
 	};
 	animTextureNormal = "#(argb,8,8,3)color(0,0,0,1)";
 	animTextureDisabled = "#(argb,8,8,3)color(0,0,0,1)";
-	animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureFocused = "#(argb,8,8,3)color(1,1,1,1)";
+	animTextureOver = ProcTextWhite;
+	animTextureFocused = ProcTextWhite;
 	animTexturePressed = "#(argb,8,8,3)color(0,0,0,1)";
 	animTextureDefault = "#(argb,8,8,3)color(0,0,0,1)";
 };
@@ -4269,7 +4269,7 @@ class RscMainMenuSpotlight: RscControlsGroupNoScrollbars
 				};
 				class LineLeft: RscText
 				{
-					colorBackground[] = {1,1,1,1};
+					colorBackground[] = GUI_TEXT_COLOR;
 					x = 0;
 					y = 0;
 					w = "pixelW";
@@ -4329,11 +4329,11 @@ class RscMainMenuSpotlight: RscControlsGroupNoScrollbars
 		class Button: RscButton
 		{
 			idc = 1026;
-			colorBackground[] = {0,0,0,0};
-			colorBackgroundActive[] = {0,0,0,0};
-			colorBackgroundDisabled[] = {0,0,0,0};
-			colorFocused[] = {0,0,0,0};
-			colorDisabled[] = {0,0,0,0};
+			colorBackground[] = Color_Empty;
+			colorBackgroundActive[] = Color_Empty;
+			colorBackgroundDisabled[] = Color_Empty;
+			colorFocused[] = Color_Empty;
+			colorDisabled[] = Color_Empty;
 			x = 0;
 			y = 0;
 			w = "10 * (pixelW * pixelGridNoUIScale * 2)";
@@ -4344,10 +4344,10 @@ class RscMainMenuSpotlight: RscControlsGroupNoScrollbars
 class RscDisplaySingleMission_ChallengeOverviewGroup: RscControlsGroupNoHScrollbars
 {
 	idc = 2302;
-	x = "17 * GUI_GRID_W + (safezoneX + (safezoneW - GUI_GRID_WAbs)/2)";
-	y = "SafezoneY + (18.4 * GUI_GRID_H) + (0.5 * (safezoneH - GUI_GRID_HAbs))";
-	w = "22 * GUI_GRID_W";
-	h = "3.5 * GUI_GRID_H + (0.5 * (safezoneH - GUI_GRID_HAbs))";
+	x = 17 * GUI_GRID_W + GUI_GRID_CENTER_X;
+	y = SafezoneY + (18.4 * GUI_GRID_H) + (0.5 * (safezoneH - GUI_GRID_HAbs));
+	w = 22 * GUI_GRID_W;
+	h = 3.5 * GUI_GRID_H + (0.5 * (safezoneH - GUI_GRID_HAbs));
 	class controls
 	{
 	};
@@ -4359,10 +4359,10 @@ class RscDisplayDebriefing_RscTextMultiline: RscText
 class RscDisplayDebriefing_ListGroup: RscControlsGroupNoHScrollbars
 {
 	idc = 21903;
-	x = "2.2 * GUI_GRID_W + (safezoneX + (safezoneW - GUI_GRID_WAbs)/2)";
-	y = "8.9 * GUI_GRID_H + (safezoneY + (safezoneH - GUI_GRID_HAbs)/2)";
-	w = "36.8 * GUI_GRID_W";
-	h = "12.2 * GUI_GRID_H";
+	x = 2.2 * GUI_GRID_W + GUI_GRID_CENTER_X;
+	y = 8.9 * GUI_GRID_H + GUI_GRID_CENTER_Y;
+	w = 36.8 * GUI_GRID_W;
+	h = 12.2 * GUI_GRID_H;
 	class controls
 	{
 	};
@@ -4371,7 +4371,7 @@ class RscButtonArsenal: RscButton
 {
 	style = "0x30 + 0x800";
 	colorBackground[] = {0,0,0,0.8};
-	colorDisabled[] = {1,1,1,1};
+	colorDisabled[] = GUI_TEXT_COLOR;
 };
 class RscDisplayDLCContentBrowser_DLC: RscControlsGroupNoScrollbars
 {
@@ -4410,7 +4410,7 @@ class RscDisplayDLCContentBrowser_DLC: RscControlsGroupNoScrollbars
 		class LineT: LineL
 		{
 			idc = 2007;
-			h = "GUI_GRID_H";
+			h = GUI_GRID_H;
 			text = "Purchase";
 			style = 2;
 		};
@@ -4422,20 +4422,20 @@ class RscDisplayDLCContentBrowser_DLC: RscControlsGroupNoScrollbars
 		class Title: RscText
 		{
 			idc = 2010;
-			h = "1.2 * GUI_GRID_H";
-			sizeEx = "1.2 * GUI_GRID_H";
-			font = "RobotoCondensedBold";
+			h = 1.2 * GUI_GRID_H;
+			sizeEx = 1.2 * GUI_GRID_H;
+			font = GUI_FONT_BOLD;
 			style = 2;
 			shadow = 0;
 		};
 		class Button: RscButton
 		{
 			idc = 2009;
-			colorBackground[] = {0,0,0,0};
-			colorBackgroundActive[] = {0,0,0,0};
-			colorBackgroundDisabled[] = {0,0,0,0};
-			colorFocused[] = {0,0,0,0};
-			colorDisabled[] = {0,0,0,0};
+			colorBackground[] = Color_Empty;
+			colorBackgroundActive[] = Color_Empty;
+			colorBackgroundDisabled[] = Color_Empty;
+			colorFocused[] = Color_Empty;
+			colorDisabled[] = Color_Empty;
 		};
 		class Hover: RscText
 		{
@@ -4449,92 +4449,92 @@ class RscDisplayDLCPreview_List: RscControlsGroupNoScrollbars
 {
 	x = 0;
 	y = 0;
-	w = "38 * GUI_GRID_W";
-	h = "15 * GUI_GRID_H";
+	w = 38 * GUI_GRID_W;
+	h = 15 * GUI_GRID_H;
 	class Controls
 	{
 		class PictureGroup: RscControlsGroupNoScrollbars
 		{
 			idc = 32563;
-			x = "1 * GUI_GRID_W + 0";
-			y = "1 * GUI_GRID_H + 0";
-			w = "18 * GUI_GRID_W";
-			h = "9 * GUI_GRID_H";
+			x = 1 * GUI_GRID_W + 0;
+			y = 1 * GUI_GRID_H + 0;
+			w = 18 * GUI_GRID_W;
+			h = 9 * GUI_GRID_H;
 			class Controls
 			{
 				class PictureAnimBackground: RscPicture
 				{
 					idc = 31472;
 					text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\background_co.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class PictureAnim: RscPictureKeepAspect
 				{
 					idc = 31463;
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class PictureAnimOverlay: RscPicture
 				{
 					show = 0;
 					idc = 31467;
 					text = "\A3\Ui_f\data\GUI\Rsc\RscDisplaySingleMission\Stripe_ca.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class PictureAnimOverlayIcon: RscPicture
 				{
 					show = 0;
 					idc = 31469;
 					text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\overlayIcon_ca.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class PictureBackground: RscPicture
 				{
 					idc = 31471;
 					text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\background_co.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class Picture: RscPictureKeepAspect
 				{
 					idc = 31464;
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class PictureOverlay: RscPicture
 				{
 					show = 0;
 					idc = 31468;
 					text = "\A3\Ui_f\data\GUI\Rsc\RscDisplaySingleMission\Stripe_ca.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 				class PictureOverlayIcon: RscPicture
 				{
 					show = 0;
 					idc = 31470;
 					text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\overlayIcon_ca.paa";
-					x = "0 * GUI_GRID_W";
-					y = "0 * GUI_GRID_H";
-					w = "18 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0 * GUI_GRID_W;
+					y = 0 * GUI_GRID_H;
+					w = 18 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 			};
 		};
@@ -4543,27 +4543,27 @@ class RscDisplayDLCPreview_List: RscControlsGroupNoScrollbars
 			color[] = {1,1,1,0.5};
 			idc = 31465;
 			text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\browsePrev_ca.paa";
-			x = "1.5 * GUI_GRID_W + 0";
-			y = "1.5 * GUI_GRID_H + 0";
-			w = "1 * GUI_GRID_W";
-			h = "8 * GUI_GRID_H";
+			x = 1.5 * GUI_GRID_W + 0;
+			y = 1.5 * GUI_GRID_H + 0;
+			w = 1 * GUI_GRID_W;
+			h = 8 * GUI_GRID_H;
 		};
 		class BrowseNext: BrowsePrev
 		{
 			idc = 31466;
 			text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\browseNext_ca.paa";
-			x = "17.5 * GUI_GRID_W + 0";
-			y = "1.5 * GUI_GRID_H + 0";
-			w = "1 * GUI_GRID_W";
-			h = "8 * GUI_GRID_H";
+			x = 17.5 * GUI_GRID_W + 0;
+			y = 1.5 * GUI_GRID_H + 0;
+			w = 1 * GUI_GRID_W;
+			h = 8 * GUI_GRID_H;
 		};
 		class PictureListGroup: RscControlsGroup
 		{
 			idc = 32564;
-			x = "1 * GUI_GRID_W + 0";
-			y = "10.5 * GUI_GRID_H + 0";
-			w = "18 * GUI_GRID_W";
-			h = "4 * GUI_GRID_H";
+			x = 1 * GUI_GRID_W + 0;
+			y = 10.5 * GUI_GRID_H + 0;
+			w = 18 * GUI_GRID_W;
+			h = 4 * GUI_GRID_H;
 			class Controls
 			{
 			};
@@ -4573,47 +4573,47 @@ class RscDisplayDLCPreview_List: RscControlsGroupNoScrollbars
 			style = 2;
 			shadow = 0;
 			idc = 31264;
-			x = "19.5 * GUI_GRID_W + 0";
-			y = "1 * GUI_GRID_H + 0";
-			w = "18 * GUI_GRID_W";
-			h = "2 * GUI_GRID_H";
+			x = 19.5 * GUI_GRID_W + 0;
+			y = 1 * GUI_GRID_H + 0;
+			w = 18 * GUI_GRID_W;
+			h = 2 * GUI_GRID_H;
 			colorBackground[] = {1,0,1,1};
-			sizeEx = "1.5 * GUI_GRID_H";
+			sizeEx = 1.5 * GUI_GRID_H;
 		};
 		class Background: RscText
 		{
 			idc = 31263;
-			x = "19.5 * GUI_GRID_W + 0";
-			y = "3 * GUI_GRID_H + 0";
-			w = "18 * GUI_GRID_W";
-			h = "11.5 * GUI_GRID_H";
+			x = 19.5 * GUI_GRID_W + 0;
+			y = 3 * GUI_GRID_H + 0;
+			w = 18 * GUI_GRID_W;
+			h = 11.5 * GUI_GRID_H;
 			colorBackground[] = {0.1,0.1,0.1,0.8};
 		};
 		class BackgroundBottom: RscText
 		{
 			idc = 31266;
-			x = "19.5 * GUI_GRID_W + 0";
-			y = "12 * GUI_GRID_H + 0";
-			w = "18 * GUI_GRID_W";
-			h = "2.5 * GUI_GRID_H";
+			x = 19.5 * GUI_GRID_W + 0;
+			y = 12 * GUI_GRID_H + 0;
+			w = 18 * GUI_GRID_W;
+			h = 2.5 * GUI_GRID_H;
 			colorBackground[] = {1,1,1,0.05};
 		};
 		class InfoGroup: RscControlsGroup
 		{
 			idc = 32565;
-			x = "19.5 * GUI_GRID_W + 0";
-			y = "3 * GUI_GRID_H + 0";
-			w = "18 * GUI_GRID_W";
-			h = "9 * GUI_GRID_H";
+			x = 19.5 * GUI_GRID_W + 0;
+			y = 3 * GUI_GRID_H + 0;
+			w = 18 * GUI_GRID_W;
+			h = 9 * GUI_GRID_H;
 			class Controls
 			{
 				class Info: RscStructuredText
 				{
 					idc = 31363;
-					x = "0.5 * GUI_GRID_W";
-					y = "0.5 * GUI_GRID_H";
-					w = "17 * GUI_GRID_W";
-					h = "9 * GUI_GRID_H";
+					x = 0.5 * GUI_GRID_W;
+					y = 0.5 * GUI_GRID_H;
+					w = 17 * GUI_GRID_W;
+					h = 9 * GUI_GRID_H;
 				};
 			};
 		};
@@ -4622,129 +4622,129 @@ class RscDisplayDLCPreview_List: RscControlsGroupNoScrollbars
 			show = 0;
 			idc = 32663;
 			text = "Try";
-			x = "31 * GUI_GRID_W + 0";
-			y = "12.75 * GUI_GRID_H + 0";
-			w = "6 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 31 * GUI_GRID_W + 0;
+			y = 12.75 * GUI_GRID_H + 0;
+			w = 6 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class ButtonPurchase: RscButtonMenuSteam
 		{
 			show = 0;
 			idc = 32664;
 			text = "Purchase";
-			x = "31 * GUI_GRID_W + 0";
-			y = "12.75 * GUI_GRID_H + 0";
-			w = "6 * GUI_GRID_W";
-			h = "1 * GUI_GRID_H";
+			x = 31 * GUI_GRID_W + 0;
+			y = 12.75 * GUI_GRID_H + 0;
+			w = 6 * GUI_GRID_W;
+			h = 1 * GUI_GRID_H;
 		};
 		class InfoStats: RscStructuredText
 		{
 			idc = 31364;
-			x = "19.5 * GUI_GRID_W + 0";
-			y = "12.25 * GUI_GRID_H + 0";
-			w = "11 * GUI_GRID_W";
-			h = "2 * GUI_GRID_H";
+			x = 19.5 * GUI_GRID_W + 0;
+			y = 12.25 * GUI_GRID_H + 0;
+			w = 11 * GUI_GRID_W;
+			h = 2 * GUI_GRID_H;
 		};
 	};
 };
 class RscDisplayDLCPreview_ListItem: RscControlsGroup
 {
 	idc = 43183;
-	x = "0 * GUI_GRID_W + 0";
-	y = "0 * GUI_GRID_H + 0";
-	w = "6 * GUI_GRID_W";
-	h = "4 * GUI_GRID_H";
+	x = 0 * GUI_GRID_W + 0;
+	y = 0 * GUI_GRID_H + 0;
+	w = 6 * GUI_GRID_W;
+	h = 4 * GUI_GRID_H;
 	class Controls
 	{
 		class Select: RscText
 		{
 			fade = 1;
 			idc = 41883;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "6 * GUI_GRID_W";
-			h = "3.1 * GUI_GRID_H";
-			colorBackground[] = {1,1,1,1};
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 6 * GUI_GRID_W;
+			h = 3.1 * GUI_GRID_H;
+			colorBackground[] = GUI_TEXT_COLOR;
 		};
 		class Hover: RscText
 		{
 			fade = 1;
 			idc = 41884;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "6 * GUI_GRID_W";
-			h = "3.1 * GUI_GRID_H";
-			colorBackground[] = {1,1,1,1};
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 6 * GUI_GRID_W;
+			h = 3.1 * GUI_GRID_H;
+			colorBackground[] = GUI_TEXT_COLOR;
 		};
 		class Background: RscPicture
 		{
 			idc = 42085;
 			text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\background_co.paa";
-			x = "0.1 * GUI_GRID_W";
-			y = "0.1 * GUI_GRID_H";
-			w = "5.8 * GUI_GRID_W";
-			h = "2.9 * GUI_GRID_H";
-			colorBackground[] = {1,1,1,1};
+			x = 0.1 * GUI_GRID_W;
+			y = 0.1 * GUI_GRID_H;
+			w = 5.8 * GUI_GRID_W;
+			h = 2.9 * GUI_GRID_H;
+			colorBackground[] = GUI_TEXT_COLOR;
 		};
 		class Picture: RscPictureKeepAspect
 		{
 			idc = 42083;
 			text = "#(argb,8,8,3)color(1,0,1,1)";
-			x = "0.1 * GUI_GRID_W";
-			y = "0.1 * GUI_GRID_H";
-			w = "5.8 * GUI_GRID_W";
-			h = "2.9 * GUI_GRID_H";
+			x = 0.1 * GUI_GRID_W;
+			y = 0.1 * GUI_GRID_H;
+			w = 5.8 * GUI_GRID_W;
+			h = 2.9 * GUI_GRID_H;
 		};
 		class Button: RscButton
 		{
-			colorBackground[] = {0,0,0,0};
-			colorBackgroundActive[] = {0,0,0,0};
-			colorBackgroundDisabled[] = {0,0,0,0};
-			colorFocused[] = {0,0,0,0};
-			colorDisabled[] = {0,0,0,0};
+			colorBackground[] = Color_Empty;
+			colorBackgroundActive[] = Color_Empty;
+			colorBackgroundDisabled[] = Color_Empty;
+			colorFocused[] = Color_Empty;
+			colorDisabled[] = Color_Empty;
 			idc = 42483;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "6 * GUI_GRID_W";
-			h = "3.1 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 6 * GUI_GRID_W;
+			h = 3.1 * GUI_GRID_H;
 		};
 		class SessionNotification: RscPicture
 		{
 			show = 0;
 			idc = 42084;
 			text = "\a3\Ui_f\data\GUI\Rsc\RscDisplayDLCPreview\session_ca.paa";
-			x = "0.1 * GUI_GRID_W";
-			y = "2.2 * GUI_GRID_H";
-			w = "0.7 * GUI_GRID_W";
-			h = "0.7 * GUI_GRID_H";
+			x = 0.1 * GUI_GRID_W;
+			y = 2.2 * GUI_GRID_H;
+			w = 0.7 * GUI_GRID_W;
+			h = 0.7 * GUI_GRID_H;
 		};
 	};
 };
 class RscDisplayDLCPreview_ListItemSquare: RscDisplayDLCPreview_ListItem
 {
-	w = "3 * GUI_GRID_W";
+	w = 3 * GUI_GRID_W;
 	class Controls: Controls
 	{
 		class Select: Select
 		{
-			w = "3 * GUI_GRID_W";
+			w = 3 * GUI_GRID_W;
 		};
 		class Hover: Hover
 		{
-			w = "3 * GUI_GRID_W";
+			w = 3 * GUI_GRID_W;
 		};
 		class Background: Background
 		{
-			text = "#(argb,8,8,3)color(0,0,0,0)";
-			w = "2.8 * GUI_GRID_W";
+			text = ProcTextTransparent;
+			w = 2.8 * GUI_GRID_W;
 		};
 		class Picture: Picture
 		{
-			w = "2.8 * GUI_GRID_W";
+			w = 2.8 * GUI_GRID_W;
 		};
 		class Button: Button
 		{
-			w = "3 * GUI_GRID_W";
+			w = 3 * GUI_GRID_W;
 		};
 	};
 };
@@ -4755,10 +4755,10 @@ class RscTextNoShadow: RscText
 };
 class RscButtonNoColor: RscButton
 {
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {0,0,0,0};
-	colorBackgroundActive[] = {0,0,0,0};
-	colorFocused[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
+	colorText[] = Color_Empty;
+	colorBackgroundActive[] = Color_Empty;
+	colorFocused[] = Color_Empty;
 	text = "";
 	soundEnter[] = {"\A3\ui_f\data\sound\ReadOut\readoutClick",0.5,1};
 	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
@@ -4768,104 +4768,104 @@ class RscButtonNoColor: RscButton
 class RscDisplayMPScoreTable_SideLineTemplate: RscControlsGroup
 {
 	idc = 104;
-	x = "0 * GUI_GRID_W";
-	y = "0 * GUI_GRID_H";
-	w = "38 * GUI_GRID_W";
-	h = "0.8 * GUI_GRID_H";
+	x = 0 * GUI_GRID_W;
+	y = 0 * GUI_GRID_H;
+	w = 38 * GUI_GRID_W;
+	h = 0.8 * GUI_GRID_H;
 	class controls
 	{
 		class LineBackground: RscText
 		{
 			idc = 105;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "38 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 38 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class PlayersName: RscText
 		{
 			idc = 107;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			text = "Player 007";
-			x = "0 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "15 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 0 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 15 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class KillsInfantry: RscText
 		{
 			idc = 108;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			style = 2;
 			text = "10";
-			x = "15 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "3.2 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 15 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 3.2 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class KillsSoft: RscText
 		{
 			idc = 109;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			style = 2;
 			text = "10";
-			x = "18.2 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "3.2 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 18.2 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 3.2 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class KillsArmor: RscText
 		{
 			idc = 110;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			style = 2;
 			text = "10";
-			x = "21.4 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "3.2 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 21.4 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 3.2 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class KillsAir: RscText
 		{
 			idc = 111;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			style = 2;
 			text = "10";
-			x = "24.6 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "3.2 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 24.6 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 3.2 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class Killed: RscText
 		{
 			idc = 112;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			style = 2;
 			text = "10";
-			x = "27.8 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "3.2 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 27.8 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 3.2 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class KillsTotal: RscText
 		{
 			idc = 113;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			style = 2;
 			text = "150";
-			x = "31 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "6 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 31 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 6 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 	};
 };
@@ -4897,18 +4897,18 @@ class RscDisplayMPScoreTable_LineTemplate: RscDisplayMPScoreTable_SideLineTempla
 		class Order: RscText
 		{
 			idc = 106;
-			sizeEx = "GUI_TEXT_SIZE_SMALL";
+			sizeEx = GUI_TEXT_SIZE_SMALL;
 			shadow = 0;
 			text = "1";
-			x = "0.5 * GUI_GRID_W";
-			y = "0 * GUI_GRID_H";
-			w = "1.5 * GUI_GRID_W";
-			h = "0.8 * GUI_GRID_H";
+			x = 0.5 * GUI_GRID_W;
+			y = 0 * GUI_GRID_H;
+			w = 1.5 * GUI_GRID_W;
+			h = 0.8 * GUI_GRID_H;
 		};
 		class PlayersName: PlayersName
 		{
-			x = "2 * GUI_GRID_W";
-			w = "13 * GUI_GRID_W";
+			x = 2 * GUI_GRID_W;
+			w = 13 * GUI_GRID_W;
 		};
 	};
 };
@@ -4948,7 +4948,7 @@ class ctrlStaticTitle: ctrlStatic
 {
 	moving = 1;
 	colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 };
 class ctrlStaticFooter: ctrlStatic
 {
@@ -4994,8 +4994,8 @@ class ctrlButtonClose: ctrlButtonCancel
 };
 class ctrlButtonToolbar: ctrlButtonPictureKeepAspect
 {
-	colorBackground[] = {0,0,0,0};
-	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
+	colorBackgroundDisabled[] = Color_Empty;
 };
 class ctrlButtonSearch: ctrlButton
 {
@@ -5018,17 +5018,17 @@ class ctrlButtonCollapseAll: ctrlButtonToolbar
 };
 class ctrlButtonFilter: ctrlButton
 {
-	colorBackground[] = {0,0,0,0};
-	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
+	colorBackgroundDisabled[] = Color_Empty;
 	colorBackgroundActive[] = {1,1,1,0.3};
-	colorFocused[] = {0,0,0,0};
+	colorFocused[] = Color_Empty;
 };
 class ctrlEdit: ctrlDefaultText
 {
 	type = 2;
 	colorBackground[] = {0,0,0,0.5};
 	text = "";
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	colorSelection[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	canModify = 1;
@@ -5065,7 +5065,7 @@ class ctrlSliderV: ctrlDefault
 	class Title
 	{
 		idc = -1;
-		colorBase[] = {1,1,1,1};
+		colorBase[] = GUI_TEXT_COLOR;
 		colorActive[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	};
 	class Value
@@ -5073,7 +5073,7 @@ class ctrlSliderV: ctrlDefault
 		idc = -1;
 		format = "%.f";
 		type = "SPTPlain";
-		colorBase[] = {1,1,1,1};
+		colorBase[] = GUI_TEXT_COLOR;
 		colorActive[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	};
 	onCanDestroy = "";
@@ -5101,17 +5101,17 @@ class ctrlCombo: ctrlDefaultText
 	style = "0x00 + 0x10 + 0x200";
 	colorBackground[] = {0.05,0.05,0.05,1};
 	colorSelectBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	colorSelect[] = {0,0,0,1};
-	colorTextRight[] = {1,1,1,1};
+	colorTextRight[] = GUI_TEXT_COLOR;
 	colorSelectRight[] = {1,1,1,0.25};
-	colorSelect2Right[] = {1,1,1,1};
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	colorSelect2Right[] = GUI_TEXT_COLOR;
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	colorPictureDisabled[] = {1,1,1,0.25};
-	colorPictureRight[] = {1,1,1,1};
-	colorPictureRightSelected[] = {1,1,1,1};
+	colorPictureRight[] = GUI_TEXT_COLOR;
+	colorPictureRightSelected[] = GUI_TEXT_COLOR;
 	colorPictureRightDisabled[] = {1,1,1,0.25};
 	arrowEmpty = "\a3\3DEN\Data\Controls\ctrlCombo\arrowEmpty_ca.paa";
 	arrowFull = "\a3\3DEN\Data\Controls\ctrlCombo\arrowFull_ca.paa";
@@ -5129,7 +5129,7 @@ class ctrlCombo: ctrlDefaultText
 		arrowFull = "\a3\3DEN\Data\Controls\ctrlDefault\arrowFull_ca.paa";
 		border = "\a3\3DEN\Data\Controls\ctrlDefault\border_ca.paa";
 		thumb = "\a3\3DEN\Data\Controls\ctrlDefault\thumb_ca.paa";
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 	};
 	onCanDestroy = "";
 	onDestroy = "";
@@ -5163,17 +5163,17 @@ class ctrlListbox: ctrlDefaultText
 	colorSelectBackground2[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	colorShadow[] = {0,0,0,0.5};
 	colorDisabled[] = {1,1,1,0.25};
-	colorText[] = {1,1,1,1};
-	colorSelect[] = {1,1,1,1};
-	colorSelect2[] = {1,1,1,1};
-	colorTextRight[] = {1,1,1,1};
-	colorSelectRight[] = {1,1,1,1};
-	colorSelect2Right[] = {1,1,1,1};
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
+	colorSelect[] = GUI_TEXT_COLOR;
+	colorSelect2[] = GUI_TEXT_COLOR;
+	colorTextRight[] = GUI_TEXT_COLOR;
+	colorSelectRight[] = GUI_TEXT_COLOR;
+	colorSelect2Right[] = GUI_TEXT_COLOR;
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	colorPictureDisabled[] = {1,1,1,0.25};
-	colorPictureRight[] = {1,1,1,1};
-	colorPictureRightSelected[] = {1,1,1,1};
+	colorPictureRight[] = GUI_TEXT_COLOR;
+	colorPictureRightSelected[] = GUI_TEXT_COLOR;
 	colorPictureRightDisabled[] = {1,1,1,0.25};
 	period = 1;
 	rowHeight = "4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5";
@@ -5208,16 +5208,16 @@ class ctrlToolbox: ctrlDefaultText
 	type = 6;
 	style = 2;
 	colorBackground[] = {0,0,0,0.5};
-	colorText[] = {1,1,1,1};
-	colorTextSelect[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
+	colorTextSelect[] = GUI_TEXT_COLOR;
 	rows = 1;
 	columns = 1;
 	strings[] = {};
 	values[] = {};
 	color[] = {1,0,1,1};
-	colorSelect[] = {0,0,0,0};
-	colorTextDisable[] = {0,0,0,0};
-	colorDisable[] = {0,0,0,0};
+	colorSelect[] = Color_Empty;
+	colorTextDisable[] = Color_Empty;
+	colorDisable[] = Color_Empty;
 	colorSelectedBg[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	onCanDestroy = "";
 	onDestroy = "";
@@ -5248,16 +5248,16 @@ class ctrlCheckboxes: ctrlDefaultText
 {
 	type = 7;
 	colorBackground[] = {0,0,0,0.5};
-	colorText[] = {1,1,1,1};
-	colorTextSelect[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
+	colorTextSelect[] = GUI_TEXT_COLOR;
 	rows = 1;
 	columns = 1;
 	strings[] = {};
 	checked_strings[] = {};
 	color[] = {1,0,1,1};
-	colorSelect[] = {0,0,0,0};
-	colorTextDisable[] = {0,0,0,0};
-	colorDisable[] = {0,0,0,0};
+	colorSelect[] = Color_Empty;
+	colorTextDisable[] = Color_Empty;
+	colorDisable[] = Color_Empty;
 	colorSelectedBg[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	onCanDestroy = "";
 	onDestroy = "";
@@ -5281,14 +5281,14 @@ class ctrlCheckboxesCheckbox: ctrlCheckboxes
 	style = 48;
 	strings[] = {"\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa"};
 	checked_strings[] = {"\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa"};
-	colorBackground[] = {0,0,0,0};
-	colorSelectedBg[] = {0,0,0,0};
+	colorBackground[] = Color_Empty;
+	colorSelectedBg[] = Color_Empty;
 };
 class ctrlProgress: ctrlDefault
 {
 	type = 8;
-	texture = "#(argb,8,8,3)color(1,1,1,1)";
-	colorBar[] = {1,1,1,1};
+	texture = ProcTextWhite;
+	colorBar[] = GUI_TEXT_COLOR;
 	colorFrame[] = {0,0,0,1};
 	onCanDestroy = "";
 	onDestroy = "";
@@ -5296,15 +5296,15 @@ class ctrlProgress: ctrlDefault
 class ctrlHTML: ctrlDefaultText
 {
 	type = 9;
-	colorBackground[] = {0,0,0,0};
-	colorText[] = {1,1,1,1};
+	colorBackground[] = Color_Empty;
+	colorText[] = GUI_TEXT_COLOR;
 	colorBold[] = {1,1,1,0.5};
-	colorLink[] = {1,1,1,1};
+	colorLink[] = GUI_TEXT_COLOR;
 	colorLinkActive[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
-	colorPicture[] = {1,1,1,1};
-	colorPictureBorder[] = {0,0,0,0};
-	colorPictureLink[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureBorder[] = Color_Empty;
+	colorPictureLink[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	prevPage = "\a3\3DEN\Data\Controls\CtrlHTML\prevPage_ca.paa";
 	nextPage = "\a3\3DEN\Data\Controls\CtrlHTML\nextPage_ca.paa";
 	filename = "";
@@ -5312,8 +5312,8 @@ class ctrlHTML: ctrlDefaultText
 	cycleAllLinks = 0;
 	class P
 	{
-		font = "RobotoCondensedLight";
-		fontBold = "RobotoCondensedBold";
+		font = GUI_FONT_THIN;
+		fontBold = GUI_FONT_BOLD;
 		sizeEx = "4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5";
 	};
 	class H1: P
@@ -5335,8 +5335,8 @@ class ctrlHTML: ctrlDefaultText
 	};
 	class H6: P
 	{
-		font = "RobotoCondensedLight";
-		fontBold = "RobotoCondensedLight";
+		font = GUI_FONT_THIN;
+		fontBold = GUI_FONT_THIN;
 	};
 	onCanDestroy = "";
 	onDestroy = "";
@@ -5363,20 +5363,20 @@ class ctrlTree: ctrlDefaultText
 {
 	type = 12;
 	colorBorder[] = {0,0,0,1};
-	colorLines[] = {0,0,0,0};
-	colorBackground[] = {0,0,0,0};
+	colorLines[] = Color_Empty;
+	colorBackground[] = Color_Empty;
 	colorSelect[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	colorMarked[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",0.5};
 	colorMarkedSelected[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
-	colorText[] = {1,1,1,1};
-	colorSelectText[] = {1,1,1,1};
-	colorMarkedText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
+	colorSelectText[] = GUI_TEXT_COLOR;
+	colorMarkedText[] = GUI_TEXT_COLOR;
 	colorSearch[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	colorPictureDisabled[] = {1,1,1,0.25};
-	colorPictureRight[] = {1,1,1,1};
-	colorPictureRightSelected[] = {1,1,1,1};
+	colorPictureRight[] = GUI_TEXT_COLOR;
+	colorPictureRightSelected[] = GUI_TEXT_COLOR;
 	colorPictureRightDisabled[] = {1,1,1,0.25};
 	multiselectEnabled = 0;
 	expandOnDoubleclick = 1;
@@ -5388,8 +5388,8 @@ class ctrlTree: ctrlDefaultText
 	{
 		scrollSpeed = 0.05;
 	};
-	colorDisabled[] = {0,0,0,0};
-	colorArrow[] = {0,0,0,0};
+	colorDisabled[] = Color_Empty;
+	colorArrow[] = Color_Empty;
 	onCanDestroy = "";
 	onDestroy = "";
 	onMouseEnter = "";
@@ -5437,21 +5437,21 @@ class ctrlShortcutButton: ctrlDefaultButton
 	text = "";
 	size = "4.86 * (1 / (getResolution select 3)) * pixelGrid * 0.5";
 	shadow = 0;
-	color[] = {1,1,1,1};
-	color2[] = {1,1,1,1};
-	colorFocused[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
+	color2[] = GUI_TEXT_COLOR;
+	colorFocused[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
-	animTextureNormal = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureOver = "#(argb,8,8,3)color(1,1,1,1)";
-	animTexturePressed = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureFocused = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureDisabled = "#(argb,8,8,3)color(1,1,1,1)";
-	animTextureDefault = "#(argb,8,8,3)color(1,1,1,1)";
+	animTextureNormal = ProcTextWhite;
+	animTextureOver = ProcTextWhite;
+	animTexturePressed = ProcTextWhite;
+	animTextureFocused = ProcTextWhite;
+	animTextureDisabled = ProcTextWhite;
+	animTextureDefault = ProcTextWhite;
 	period = 1;
 	periodFocus = 1;
 	periodOver = 0.5;
 	shortcuts[] = {"0x00050000 + 0",28,57,156};
-	textureNoShortcut = "#(argb,8,8,3)color(1,1,1,1)";
+	textureNoShortcut = ProcTextWhite;
 	class Attributes
 	{
 		align = "center";
@@ -5533,12 +5533,12 @@ class ctrlXListbox: ctrlDefaultText
 {
 	type = 42;
 	style = "0x400 + 0x02 + 0x10";
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	colorActive[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorSelect[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	colorDisabled[] = {1,1,1,0.25};
-	colorPicture[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
 	cycle = 1;
 	arrowEmpty = "\a3\3DEN\Data\Controls\CtrlXSlider\arrowEmpty_ca.paa";
 	arrowFull = "\a3\3DEN\Data\Controls\CtrlXSlider\arrowFull_ca.paa";
@@ -5565,7 +5565,7 @@ class ctrlXSliderV: ctrlDefault
 	type = 43;
 	style = 0;
 	color[] = {1,1,1,0.6};
-	colorActive[] = {1,1,1,1};
+	colorActive[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
 	sliderRange[] = {0,1};
 	sliderPosition = 1;
@@ -5577,7 +5577,7 @@ class ctrlXSliderV: ctrlDefault
 	class Title
 	{
 		idc = -1;
-		colorBase[] = {1,1,1,1};
+		colorBase[] = GUI_TEXT_COLOR;
 		colorActive[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	};
 	class Value
@@ -5585,7 +5585,7 @@ class ctrlXSliderV: ctrlDefault
 		idc = -1;
 		format = "%.f";
 		type = "SPTPlain";
-		colorBase[] = {1,1,1,1};
+		colorBase[] = GUI_TEXT_COLOR;
 		colorActive[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	};
 	onCanDestroy = "";
@@ -5610,14 +5610,14 @@ class ctrlXSliderH: ctrlXSliderV
 class ctrlMenu: ctrlDefaultText
 {
 	type = 46;
-	font = "RobotoCondensedLight";
-	colorBorder[] = {0,0,0,0};
+	font = GUI_FONT_THIN;
+	colorBorder[] = Color_Empty;
 	colorBackground[] = {0,0,0,1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorSelect[] = {0,0,0,1};
 	colorSelectBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	colorDisabled[] = {1,1,1,0.25};
-	colorPicture[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
 	colorPictureSelect[] = {0,0,0,1};
 	colorPictureDisabled[] = {1,1,1,0.5};
 	arrow = "\a3\3DEN\Data\Controls\ctrlMenu\arrow_ca.paa";
@@ -5625,15 +5625,15 @@ class ctrlMenu: ctrlDefaultText
 	itemSpacingW = 0.01;
 	itemSpacingH = 0.01;
 	pictureCheckboxEnabled = "\a3\3DEN\Data\Controls\CtrlMenu\pictureCheckboxEnabled_ca.paa";
-	pictureCheckboxDisabled = "#(argb,8,8,3)color(0,0,0,0)";
+	pictureCheckboxDisabled = ProcTextTransparent;
 	pictureRadioEnabled = "\a3\3DEN\Data\Controls\CtrlMenu\pictureRadioEnabled_ca.paa";
-	pictureRadioDisabled = "#(argb,8,8,3)color(0,0,0,0)";
+	pictureRadioDisabled = ProcTextTransparent;
 };
 class ctrlMenuStrip: ctrlMenu
 {
 	type = 47;
 	colorStripBackground[] = {0,0,0,1};
-	colorStripText[] = {1,1,1,1};
+	colorStripText[] = GUI_TEXT_COLOR;
 	colorStripSelect[] = {0,0,0,1};
 	colorStripSelectBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	colorStripDisabled[] = {1,1,1,0.25};
@@ -5647,7 +5647,7 @@ class ctrlMap: ctrlDefault
 	w = "safezoneWAbs";
 	h = "safezoneH";
 	sizeEx = 0.05;
-	font = "RobotoCondensedLight";
+	font = GUI_FONT_THIN;
 	colorText[] = {0,0,0,1};
 	moveOnEdges = 1;
 	ptsPerSquareSea = 5;
@@ -5673,15 +5673,15 @@ class ctrlMap: ctrlDefault
 	maxSatelliteAlpha = 0.85;
 	alphaFadeStartScale = 2;
 	alphaFadeEndScale = 2;
-	text = "#(argb,8,8,3)color(1,1,1,1)";
+	text = ProcTextWhite;
 	colorBackground[] = {0.969,0.957,0.949,1};
 	colorOutside[] = {0,0,0,1};
 	colorSea[] = {0.467,0.631,0.851,0.5};
 	colorForest[] = {0.624,0.78,0.388,0.5};
 	colorForestTextured[] = {0.624,0.78,0.388,0.25};
-	colorForestBorder[] = {0,0,0,0};
+	colorForestBorder[] = Color_Empty;
 	colorRocks[] = {0,0,0,0.3};
-	colorRocksBorder[] = {0,0,0,0};
+	colorRocksBorder[] = Color_Empty;
 	colorLevels[] = {0.286,0.177,0.094,0.5};
 	colorMainCountlines[] = {0.572,0.354,0.188,0.5};
 	colorCountlines[] = {0.572,0.354,0.188,0.25};
@@ -5694,7 +5694,7 @@ class ctrlMap: ctrlDefault
 	colorTracks[] = {0.84,0.76,0.65,0.15};
 	colorTracksFill[] = {0.84,0.76,0.65,1};
 	colorRoads[] = {0.7,0.7,0.7,1};
-	colorRoadsFill[] = {1,1,1,1};
+	colorRoadsFill[] = GUI_TEXT_COLOR;
 	colorMainRoads[] = {0.9,0.5,0.3,1};
 	colorMainRoadsFill[] = {1,0.6,0.4,1};
 	colorTrails[] = {0.84,0.76,0.65,0.15};
@@ -5702,22 +5702,22 @@ class ctrlMap: ctrlDefault
 	colorGrid[] = {0.1,0.1,0.1,0.6};
 	colorGridMap[] = {0.1,0.1,0.1,0.6};
 	widthRailWay = 4;
-	fontLabel = "RobotoCondensedLight";
+	fontLabel = GUI_FONT_THIN;
 	sizeExLabel = 0.05;
-	fontGrid = "TahomaB";
+	fontGrid = GUI_FONT_SYSTEM;
 	sizeExGrid = 0.02;
-	fontUnits = "TahomaB";
+	fontUnits = GUI_FONT_SYSTEM;
 	sizeExUnits = 0.05;
-	fontNames = "RobotoCondensed";
+	fontNames = GUI_FONT_NORMAL;
 	sizeExNames = 0.05;
-	fontInfo = "RobotoCondensedLight";
+	fontInfo = GUI_FONT_THIN;
 	sizeExInfo = 0.05;
-	fontLevel = "TahomaB";
+	fontLevel = GUI_FONT_SYSTEM;
 	sizeExLevel = 0.02;
 	showCountourInterval = 1;
 	idcMarkerColor = -1;
 	idcMarkerIcon = -1;
-	textureComboBoxColor = "#(argb,8,8,3)color(1,1,1,1)";
+	textureComboBoxColor = ProcTextWhite;
 	showMarkers = "true";
 	class LineMarker
 	{
@@ -5734,13 +5734,13 @@ class ctrlMap: ctrlDefault
 		h = 0.1;
 		color[] = {0,0,0,1};
 		colorBackground[] = {1,1,1,0.5};
-		font = "RobotoCondensedLight";
+		font = GUI_FONT_THIN;
 		sizeEX = "3.96 * (1 / (getResolution select 3)) * pixelGrid * 0.5";
 	};
 	class Task
 	{
 		icon = "\A3\ui_f\data\map\mapcontrol\taskIcon_CA.paa";
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		iconCreated = "\A3\ui_f\data\map\mapcontrol\taskIconCreated_CA.paa";
 		colorCreated[] = {1,1,0,1};
 		iconCanceled = "\A3\ui_f\data\map\mapcontrol\taskIconCanceled_CA.paa";
@@ -5778,7 +5778,7 @@ class ctrlMap: ctrlDefault
 	};
 	class Command: Waypoint
 	{
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\waypoint_ca.paa";
 		size = 18;
 	};
@@ -5817,7 +5817,7 @@ class ctrlMap: ctrlDefault
 	{
 		coefMax = 1;
 		coefMin = 0.85;
-		color[] = {1,1,1,1};
+		color[] = GUI_TEXT_COLOR;
 		icon = "\A3\ui_f\data\map\mapcontrol\fuelstation_CA.paa";
 	};
 	class Hospital: FuelStation
@@ -5954,216 +5954,216 @@ class ctrlMapEmpty: ctrlMap
 	ptsPerSquareObj = 1000;
 	alphaFadeStartScale = 0;
 	alphaFadeEndScale = 0;
-	colorBackground[] = {1,1,1,1};
-	colorOutside[] = {1,1,1,1};
-	colorSea[] = {0,0,0,0};
-	colorForest[] = {0,0,0,0};
-	colorForestBorder[] = {0,0,0,0};
-	colorRocks[] = {0,0,0,0};
-	colorRocksBorder[] = {0,0,0,0};
-	colorLevels[] = {0,0,0,0};
-	colorMainCountlines[] = {0,0,0,0};
-	colorCountlines[] = {0,0,0,0};
-	colorMainCountlinesWater[] = {0,0,0,0};
-	colorCountlinesWater[] = {0,0,0,0};
-	colorPowerLines[] = {0,0,0,0};
-	colorRailWay[] = {0,0,0,0};
-	colorNames[] = {0,0,0,0};
-	colorInactive[] = {0,0,0,0};
-	colorGrid[] = {0,0,0,0};
-	colorGridMap[] = {0,0,0,0};
+	colorBackground[] = GUI_TEXT_COLOR;
+	colorOutside[] = GUI_TEXT_COLOR;
+	colorSea[] = Color_Empty;
+	colorForest[] = Color_Empty;
+	colorForestBorder[] = Color_Empty;
+	colorRocks[] = Color_Empty;
+	colorRocksBorder[] = Color_Empty;
+	colorLevels[] = Color_Empty;
+	colorMainCountlines[] = Color_Empty;
+	colorCountlines[] = Color_Empty;
+	colorMainCountlinesWater[] = Color_Empty;
+	colorCountlinesWater[] = Color_Empty;
+	colorPowerLines[] = Color_Empty;
+	colorRailWay[] = Color_Empty;
+	colorNames[] = Color_Empty;
+	colorInactive[] = Color_Empty;
+	colorGrid[] = Color_Empty;
+	colorGridMap[] = Color_Empty;
 	class Task: Task
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		iconCreated = "#(argb,8,8,3)color(0,0,0,0)";
-		iconCanceled = "#(argb,8,8,3)color(0,0,0,0)";
-		iconDone = "#(argb,8,8,3)color(0,0,0,0)";
-		iconFailed = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
-		colorCreated[] = {0,0,0,0};
-		colorCanceled[] = {0,0,0,0};
-		colorDone[] = {0,0,0,0};
-		colorFailed[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		iconCreated = ProcTextTransparent;
+		iconCanceled = ProcTextTransparent;
+		iconDone = ProcTextTransparent;
+		iconFailed = ProcTextTransparent;
+		color[] = Color_Empty;
+		colorCreated[] = Color_Empty;
+		colorCanceled[] = Color_Empty;
+		colorDone[] = Color_Empty;
+		colorFailed[] = Color_Empty;
 		size = 0;
 	};
 	class Waypoint: Waypoint
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class WaypointCompleted: WaypointCompleted
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class CustomMark: CustomMark
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Command: Command
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Bush: Bush
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Rock: Rock
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class SmallTree: SmallTree
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Tree: Tree
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class busstop: BusStop
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class fuelstation: FuelStation
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class hospital: Hospital
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class church: Church
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class lighthouse: Lighthouse
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class power: Power
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class powersolar: PowerSolar
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class powerwave: PowerWave
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class powerwind: PowerWind
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class quay: Quay
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class shipwreck: Shipwreck
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class transmitter: Transmitter
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class watertower: Watertower
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Bunker: Bunker
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Cross: Cross
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Fortress: Fortress
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Fountain: Fountain
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Chapel: Chapel
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Ruin: Ruin
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Stack: Stack
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class Tourism: Tourism
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 	class ViewTower: ViewTower
 	{
-		icon = "#(argb,8,8,3)color(0,0,0,0)";
-		color[] = {0,0,0,0};
+		icon = ProcTextTransparent;
+		color[] = Color_Empty;
 		size = 0;
 	};
 };
@@ -6176,13 +6176,13 @@ class ctrlListNBox: ctrlDefaultText
 	style = "0x00 + 0x10";
 	colorSelectBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	colorSelectBackground2[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
-	colorText[] = {1,1,1,1};
+	colorText[] = GUI_TEXT_COLOR;
 	colorDisabled[] = {1,1,1,0.25};
-	colorSelect[] = {1,1,1,1};
-	colorSelect2[] = {1,1,1,1};
+	colorSelect[] = GUI_TEXT_COLOR;
+	colorSelect2[] = GUI_TEXT_COLOR;
 	colorShadow[] = {0,0,0,0.5};
-	colorPicture[] = {1,1,1,1};
-	colorPictureSelected[] = {1,1,1,1};
+	colorPicture[] = GUI_TEXT_COLOR;
+	colorPictureSelected[] = GUI_TEXT_COLOR;
 	colorPictureDisabled[] = {1,1,1,0.25};
 	columns[] = {0};
 	drawSideArrows = 0;
@@ -6214,7 +6214,7 @@ class ctrlListNBox: ctrlDefaultText
 };
 class ctrlCheckboxToolbar: ctrlCheckbox
 {
-	color[] = {1,1,1,1};
+	color[] = GUI_TEXT_COLOR;
 	colorBackgroundHover[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 	colorBackgroundPressed[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])",1};
 };
