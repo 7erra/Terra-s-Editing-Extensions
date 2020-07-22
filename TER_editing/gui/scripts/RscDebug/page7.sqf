@@ -8,11 +8,14 @@ _btnRPTDiagLog = _page controlsGroupCtrl IDC_BTN_RPTDIAGLOG;
 _edRPTDiagLogText = _page controlsGroupCtrl IDC_ED_RPTDIAGLOGTEXT;
 _edRPTLines = _page controlsGroupCtrl IDC_ED_RPTLINES;
 _btnRPTReload = _page controlsGroupCtrl IDC_BTN_RPTRELOAD;
-
 switch (_mode) do {
 	case "load":{
 		if (_page getVariable ["pageInitialized",false]) exitWith {};
 		_page setVariable ["pageInitialized",true];
+		_expression = profileNamespace getVariable ["TER_fnc_debugPage7_script_expression", ""];
+		_edRPTDiagLogText ctrlSetText _expression;
+		_setLines = profileNamespace getVariable ["TER_fnc_debugPage7_script_setLines", 50];
+		_edRPTLines ctrlSetText str _setLines;
 		["loadRPT", _params] call SELF;
 		_btnRPTDiagLog ctrlAddEventHandler ["ButtonClick",{
 			with uiNamespace do {["log", _this] call SELF;};
@@ -20,6 +23,7 @@ switch (_mode) do {
 		_btnRPTReload ctrlAddEventHandler ["ButtonClick",{
 			with uiNamespace do {["loadRPT"] call SELF};
 		}];
+		//--- TODO: use ctrlSetScrollValues when implemented
 	};
 	case "log":{
 		_params params ["_btnRPTDiagLog"];
@@ -33,7 +37,6 @@ switch (_mode) do {
 			_maxLines = [] call TER_fnc_countRPTLines;
 			_loadLines = parseNumber(ctrlText _edRPTLines);
 			_lineCounter = _maxLines - _loadLines;
-			systemChat str [_lineCounter, _edRPTLines];
 			for "_l" from _maxLines to _lineCounter step -1 do{
 				private _lcontent = [_l] call TER_fnc_loadRPTLine;
 				_rptContent = _lcontent + endl + _rptContent;
@@ -46,5 +49,10 @@ switch (_mode) do {
 	case "unload":{
 		//--- save current settings
 		if !(_page getVariable ["pageInitialized",false]) exitWith {};
+		_expression = ctrlText _edRPTDiagLogText;
+		profileNamespace setVariable ["TER_fnc_debugPage7_script_expression", _expression];
+		_setLines = parseNumber ctrlText _edRPTLines;
+		profileNamespace setVariable ["TER_fnc_debugPage7_script_setLines", _setLines];
+		saveProfileNamespace;
 	};
 };

@@ -17,3 +17,4 @@ if %packingError% NEQ 0 (
 	echo PboProject failed, this is the log:
 	pause
 )
+exit
