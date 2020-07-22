@@ -895,31 +895,69 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = W_BORDER;
 					h = 1 * GUI_GRID_H;
 				};
-				class RPTContent: TER_3den_RscEditCode
+				class RPTContentGroup: RscControlsGroup
 				{
-					idc = IDC_ED_RPTCONTENT;
-					style = ST_LEFT + ST_MULTI;
-					canModify = 0;
 					x = 0.1 * GUI_GRID_W;
 					y = 1.1 * GUI_GRID_H;
 					w = W_BORDER - 0.1 * GUI_GRID_W;
-					h = H_BORDER - 3.2 * GUI_GRID_H;
+					h = H_BORDER - 3.3 * GUI_GRID_H;
+					class controls
+					{
+						class RPTContent: TER_3den_RscEditCodeOutput
+						{
+							idc = IDC_ED_RPTCONTENT;
+							style = ST_LEFT + ST_MULTI;
+							canModify = 0;
+							x = 0;
+							y = 0;
+							w = W_BORDER - 0.1 * GUI_GRID_W;
+							h = H_BORDER - 3.2 * GUI_GRID_H;
+						};
+					};
 				};
-				class RPTLog: TER_3den_RscEditCode
+				class RPTLogButton: RscButtonMenu
 				{
-					idc = IDC_ED_RPTLOG;
-					x = 0.1 * GUI_GRID_W;
+					idc = IDC_BTN_RPTDIAGLOG;
+					text = "diag_log";
+					x = 0 * GUI_GRID_W;
 					y = H_BORDER - 2.1 * GUI_GRID_H;
-					w = W_BORDER - 0.1 * GUI_GRID_H;
+					w = 5 * GUI_GRID_W;
 					h = 1 * GUI_GRID_H;
 				};
-				class RPTClear: RscButtonMenu
+				class RPTLogEdit: TER_3den_RscEditCode
 				{
-					idc = IDC_BTN_RPTCLEAR;
-					text = "Clear";
+					idc = IDC_ED_RPTDIAGLOGTEXT;
+					x = 5.1 * GUI_GRID_W;
+					y = H_BORDER - 2.1 * GUI_GRID_H;
+					w = W_BORDER - 5.3 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTLinesText: RscText
+				{
+					text = "Lines:";
 					x = 0;
 					y = H_BORDER - 1 * GUI_GRID_H;
-					w = W_BORDER;
+					w = 2.9 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTLinesEdit: RscEdit
+				{
+					idc = IDC_ED_RPTLINES;
+					style = ST_CENTER;
+					text = "50";
+					x = 3 * GUI_GRID_W;
+					y = H_BORDER - 1 * GUI_GRID_H;
+					w = 2 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					maxChars = 3;
+				};
+				class RPTReload: RscButtonMenu
+				{
+					idc = IDC_BTN_RPTRELOAD;
+					text = "Reload";
+					x = 5.1 * GUI_GRID_W;
+					y = H_BORDER - 1 * GUI_GRID_H;
+					w = W_BORDER - 5.1 * GUI_GRID_W;
 					h = 1 * GUI_GRID_H;
 				};
 			};
