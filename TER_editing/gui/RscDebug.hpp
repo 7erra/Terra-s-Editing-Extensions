@@ -5,6 +5,8 @@
 #define H_BORDER (DEBUG_H - 2.4 * GUI_GRID_H)
 #define W_BORDER (R_BORDER - L_BORDER)
 #define DEEP_RED {0.5,0,0,1}
+#define RPT_TEXT_SIZE (profileNamespace getVariable ["TER_3den_RscDebug_RPTTextSize", 0.7])
+
 class TER_3den_RscEditCode: RscEdit
 {
 	font="EtelkaMonospacePro";
@@ -37,6 +39,7 @@ class TER_3den_RscEditCodeOutput: TER_3den_RscEditCode
  page 4: BIKI links, target debug, recent watch entries
  page 5: Unit live watch
  page 6: KK Debug
+ page 7: RPT Viewer
  */
 class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 {
@@ -895,6 +898,40 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = W_BORDER;
 					h = 1 * GUI_GRID_H;
 				};
+				class RPTTextSizeText: RscStructuredText
+				{
+					idc = IDC_TXT_RPTTEXTSIZETEXT;
+					text = "Aa";
+					font = "EtelkaMonospacePro";
+					x = W_BORDER - 3.7 * GUI_GRID_W;
+					y = CUR_Y;
+					w = 1.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					class Attributes
+					{
+						font = "RobotoCondensed";
+						color = "#ffffff";
+						colorLink = "#D09B43";
+						align = "center";
+						shadow = 1;
+						size = RPT_TEXT_SIZE * GUI_GRID_H;
+					};
+				};
+				class RPTTextSizePlus: RscButtonMenu
+				{
+					idc = IDC_BTN_RPTTEXTSIZEPLUS;
+					text = "+";
+					x = W_BORDER - 2.1 * GUI_GRID_W;
+					y = CUR_Y;
+					w = 1 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTTextSizeMinus: RPTTextSizePlus
+				{
+					idc = IDC_BTN_RPTTEXTSIZEMINUS;
+					text = "-";
+					x = W_BORDER - 1 * GUI_GRID_W;
+				};
 				class RPTContentGroup: RscControlsGroup
 				{
 					x = 0.1 * GUI_GRID_W;
@@ -908,6 +945,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 							idc = IDC_ED_RPTCONTENT;
 							style = ST_LEFT + ST_MULTI;
 							canModify = 0;
+							sizeEx = RPT_TEXT_SIZE * GUI_GRID_H;
 							x = 0;
 							y = 0;
 							w = W_BORDER - 0.1 * GUI_GRID_W;

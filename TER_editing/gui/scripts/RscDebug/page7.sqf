@@ -8,6 +8,9 @@ _btnRPTDiagLog = _page controlsGroupCtrl IDC_BTN_RPTDIAGLOG;
 _edRPTDiagLogText = _page controlsGroupCtrl IDC_ED_RPTDIAGLOGTEXT;
 _edRPTLines = _page controlsGroupCtrl IDC_ED_RPTLINES;
 _btnRPTReload = _page controlsGroupCtrl IDC_BTN_RPTRELOAD;
+_txtRPTTextSizeText = _page controlsGroupCtrl IDC_TXT_RPTTEXTSIZETEXT;
+_btnRPTTextSizePlus = _page controlsGroupCtrl IDC_BTN_RPTTEXTSIZEPLUS;
+_btnRPTTextSizeMinus = _page controlsGroupCtrl IDC_BTN_RPTTEXTSIZEMINUS;
 switch (_mode) do {
 	case "load":{
 		if (_page getVariable ["pageInitialized",false]) exitWith {};
@@ -24,6 +27,31 @@ switch (_mode) do {
 			with uiNamespace do {["loadRPT"] call SELF};
 		}];
 		//--- TODO: use ctrlSetScrollValues when implemented
+		_btnRPTTextSizePlus ctrlAddEventHandler ["ButtonClick", {
+			with uiNamespace do {["changeTextSize", [_this#0, +1]] call SELF};
+		}];
+		_btnRPTTextSizeMinus ctrlAddEventHandler ["ButtonClick", {
+			with uiNamespace do {["changeTextSize", [_this#0, -1]] call SELF};
+		}];
+		//--- Update size preview text the calculations are bs
+		with uiNamespace do {["changeTextSize", [nil, 0]] call SELF};
+	};
+	case "changeTextSize":{
+		_params params ["_btn", "_change"];
+		_change = 0.05 * _change;
+		systemchat "test";
+		_currentSize = profileNamespace getVariable [
+			"TER_3den_RscDebug_RPTTextSize", 0.7
+		];
+		_newSize = (_currentSize + _change) max 0 min 1;
+		profileNamespace setVariable ["TER_3den_RscDebug_RPTTextSize",_newSize];
+		diag_log [_txtRPTTextSizeText, _newSize, format[
+			"<t size='%1'>Aa</t>", _newSize
+		]];
+		_txtRPTTextSizeText ctrlSetStructuredText parseText format[
+			"<t size='%1'>Aa</t>", _newSize
+		];
+		
 	};
 	case "log":{
 		_params params ["_btnRPTDiagLog"];
