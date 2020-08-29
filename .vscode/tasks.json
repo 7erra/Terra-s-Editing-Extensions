@@ -6,12 +6,22 @@
 		{
 			"label": "Build pbo",
 			"type": "shell",
-			"command": ".\\makepbo.bat",
-			"problemMatcher": [],
+			"command": "${config:python.pythonPath}",
+			"args": [
+				".vscode/makepbo.py"
+			],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"label": "Start A3",
+			"type": "shell",
+			"command": "${config:python.pythonPath}",
+			"args": [
+				".vscode/launch.py"
+			]
 		}
 	]
 }
