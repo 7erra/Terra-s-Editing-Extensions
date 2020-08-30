@@ -13,7 +13,7 @@ mods = f'-mod={";".join(modslist)}'
 
 mission = '"E:\Documents\Arma 3\missions\TER_Editing_mission.vr\mission.sqm"'
 #%% Launch the game with parameters
-print(f'Launching {a3_exe}...')
+print(f'Launching {a3_exe}')
 subprocess.Popen([a3_exe.absolute(),
                 '-noSplash',
                 '-enableHT',
@@ -23,8 +23,8 @@ subprocess.Popen([a3_exe.absolute(),
                 '-showScriptErrors',
                 '-filePatching',
                 '-window',
-                '-posX=-1600',
-                f'-posY={1080/2 - 720/2}',
+                '-posX=-1290',
+                f'-posY=340',
                 mods,
                 mission],
                 stdout=None,
