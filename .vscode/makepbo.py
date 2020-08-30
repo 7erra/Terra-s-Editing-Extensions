@@ -5,8 +5,8 @@ import sys
 import shutil
 
 folder = Path('P:/TER_Editing')
-source = Path('P:/-Terra-s-Editing-Extensions/TER_editing')
-destination = Path("P:/-Terra-s-Editing-Extensions/@Terra's Editing Extensions")
+source = Path('P:/Terra-s-Editing-Extensions/TER_editing')
+destination = Path("P:/Terra-s-Editing-Extensions/@Terra's Editing Extensions")
 logfile = Path(f'P:/temp/{folder.name}.packing.log')
 #%% Create a symlink to the P drive so pboProject can work correctly
 # Note: User has to have symlink rights
