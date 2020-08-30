@@ -21,7 +21,7 @@ switch (_mode) do {
 		_edRPTLines ctrlSetText str _setLines;
 		["loadRPT", _params] call SELF;
 		_btnRPTDiagLog ctrlAddEventHandler ["ButtonClick",{
-			with uiNamespace do {["log", _this] call SELF;};
+			with uiNamespace do {["log", _this] call SELF};
 		}];
 		_btnRPTReload ctrlAddEventHandler ["ButtonClick",{
 			with uiNamespace do {["loadRPT"] call SELF};
@@ -39,15 +39,11 @@ switch (_mode) do {
 	case "changeTextSize":{
 		_params params ["_btn", "_change"];
 		_change = 0.05 * _change;
-		systemchat "test";
 		_currentSize = profileNamespace getVariable [
 			"TER_3den_RscDebug_RPTTextSize", 0.7
 		];
 		_newSize = (_currentSize + _change) max 0 min 1;
 		profileNamespace setVariable ["TER_3den_RscDebug_RPTTextSize",_newSize];
-		diag_log [_txtRPTTextSizeText, _newSize, format[
-			"<t size='%1'>Aa</t>", _newSize
-		]];
 		_txtRPTTextSizeText ctrlSetStructuredText parseText format[
 			"<t size='%1'>Aa</t>", _newSize
 		];

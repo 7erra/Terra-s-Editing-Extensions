@@ -946,9 +946,9 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 							style = ST_LEFT + ST_MULTI;
 							canModify = 0;
 							sizeEx = RPT_TEXT_SIZE * GUI_GRID_H;
-							x = 0;
-							y = 0;
-							w = W_BORDER - 0.1 * GUI_GRID_W;
+							x = pixelW;
+							y = pixelH;
+							w = W_BORDER - 4 * pixelW - 0.021;
 							h = H_BORDER - 3.2 * GUI_GRID_H;
 						};
 					};
