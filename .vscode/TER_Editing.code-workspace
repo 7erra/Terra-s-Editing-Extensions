@@ -1,0 +1,44 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"psi-header.templates": [
+			{
+				"language": "sqf",
+				"template": [
+					"Function: <<filename>>",
+					"",
+					"Description:",
+					"\t__DESCRIPTION__",
+					"",
+					"Parameters:",
+					"\tN: _VARNAME\t- __DESCRIPTION__. <__TYPE__>",
+					"",
+					"Returns:",
+					"\t_VARNAME - __DESCRIPTION__ <__TYPE__>",
+					"",
+					"Examples:",
+					"\t(begin example)",
+					"\t\t[__ARGS__] call __FUNCTION__;",
+					"\t(end)",
+					"",
+					"Author:",
+					"\t<<author>>"
+				]
+			}
+		],
+		"psi-header.lang-config": [
+			{
+				"language": "sqf",
+				"begin": "/* ----------------------------------------------------------------------------",
+				"prefix": "",
+				"end": "---------------------------------------------------------------------------- */",
+				"forceToTop": true
+			}
+		],
+		"A3MissionRoot": "E:\\Documents\\Arma 3\\missions"
+	}
+}
