@@ -8,7 +8,7 @@
 			"type": "shell",
 			"command": "${config:python.pythonPath}",
 			"args": [
-				".vscode/makepbo.py"
+				".vscode/build.py"
 			],
 			"group": {
 				"kind": "build",

@@ -1,17 +1,16 @@
 #%% Import libraries and set variables
 from pathlib import Path
 import subprocess
-import sys
-import shutil
 
-folder = Path('P:/TER_Editing')
-source = Path('P:/Terra-s-Editing-Extensions/TER_editing')
-destination = Path("P:/Terra-s-Editing-Extensions/@Terra's Editing Extensions")
-logfile = Path(f'P:/temp/{folder.name}.packing.log')
+repo_local = Path(__file__).parents[1]
+source = repo_local / 'TER_Editing'
+destination = repo_local / "@Terra's Editing Extensions"
+packing_folder = Path('P:/TER_Editing')
+logfile = Path(f'P:/temp/{source.name}.packing.log')
 #%% Create a symlink to the P drive so pboProject can work correctly
 # Note: User has to have symlink rights
 try:
-    folder.symlink_to(source, target_is_directory=True)
+    packing_folder.symlink_to(source, target_is_directory=True)
 except FileExistsError:
     pass
 #%% The real magic brought to you by mikero
@@ -19,7 +18,7 @@ pboProject = subprocess.run(['pboProject',
                             '-R',
                             '-P',
                             '+K',
-                            folder,
+                            packing_folder,
                             f'-M={destination.absolute()}'
                             ])
 # Let's see if everything worked...
@@ -38,6 +37,7 @@ finally:
     print("Full log can be found here:", logfile)
     # We still have to remove the symlink from before to keep P clean
     try:
-        folder.unlink()
+        packing_folder.unlink()
     except FileNotFoundError:
         pass
+# %%
