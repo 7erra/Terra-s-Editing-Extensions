@@ -19,7 +19,7 @@ _attachedObject = get3DENEntity (uiNamespace getVariable "TER_3den_attachedObjec
 
 switch _mode do {
 case "onload":{
-	_script = compile preprocessFileLineNumbers "\TER_Editing\gui\scripts\RscAttachToFinder.sqf";//---! MOD PATH;
+	_script = compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscAttachToFinder.sqf";//---! MOD PATH;
 	if (isNil "TER_3den_RscAttachToFinder_script") then {
 		uiNamespace setVariable ["TER_3den_RscAttachToFinder_script", _script];
 	};

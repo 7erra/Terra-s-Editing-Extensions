@@ -1,0 +1,32 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build pbo",
+			"type": "shell",
+			"command": "${config:python.pythonPath}",
+			"args": [
+				".vscode/build.py"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Start A3",
+			"type": "shell",
+			"command": "${config:python.pythonPath}",
+			"args": [
+				".vscode/launch.py"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			}
+		}
+	]
+}

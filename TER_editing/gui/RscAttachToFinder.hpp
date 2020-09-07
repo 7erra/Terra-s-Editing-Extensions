@@ -3,7 +3,7 @@
 class TER_3den_RscAttachToFinder: RscControlsGroupNoScrollbars
 {
 	idc = IDC_ATTACH_GROUP;
-	onLoad = "[""onload"",_this] execVM ""\TER_Editing\gui\scripts\RscAttachToFinder.sqf"";";
+	onLoad = "[""onload"",_this] execVM ""TER_Editing\gui\scripts\RscAttachToFinder.sqf"";";
 	x = safezoneX + safeZoneW/2 - (ATTACH_W/2);
 	y = 26 * UI_GRID_H + UI_GRID_Y;
 	w = ATTACH_W;

@@ -5,6 +5,8 @@
 #define H_BORDER (DEBUG_H - 2.4 * GUI_GRID_H)
 #define W_BORDER (R_BORDER - L_BORDER)
 #define DEEP_RED {0.5,0,0,1}
+#define RPT_TEXT_SIZE (profileNamespace getVariable ["TER_3den_RscDebug_RPTTextSize", 0.7])
+
 class TER_3den_RscEditCode: RscEdit
 {
 	font="EtelkaMonospacePro";
@@ -19,94 +21,6 @@ class TER_3den_RscEditCodeOutput: TER_3den_RscEditCode
 	canModify = 0;
 	h = GUI_GRID_H;
 };
-/*
-class TER_3den_RscWatchGroupControl: RscControlsGroupNoScrollBars
-{
-	x = 0;
-	y = 0 * GUI_GRID_H;
-	w = W_BORDER;
-	h = 2.2 * GUI_GRID_H;
-	class controls 
-	{
-		class cb_liveOutput: RscCheckbox
-		{
-			idc = IDC_CB_WATCHLIVE;
-			tooltip = "Add to live watch";
-			x = 0.1 * GUI_GRID_W;
-			y = 0.1 * GUI_GRID_H;
-			w = GUI_GRID_W;
-			h = GUI_GRID_H;
-		};
-		class ed_input: TER_3den_RscEditCode
-		{
-			idc = IDC_ED_WATCHIN;
-			x = 1.2 * GUI_GRID_W;
-			y = 0.1 * GUI_GRID_H;
-			w = W_BORDER-(2.3 * GUI_GRID_W);
-			h = GUI_GRID_H;
-		};
-		class btn_delete: RscActivePicture
-		{
-			idc = IDC_BTN_WATCHDELETE;
-			text = "\a3\3den\data\displays\display3den\panelleft\entitylist_delete_ca.paa";
-			tooltip = "Delete";
-			color[] = {1,0,0,0.5};
-			colorActive[] = {1,0,0,1};
-			x = W_BORDER-(1 * GUI_GRID_W);
-			y = 0.1 * GUI_GRID_H;
-			w = GUI_GRID_W;
-			h = GUI_GRID_H;
-		};
-		class ed_output: TER_3den_RscEditCodeOutput
-		{
-			idc = IDC_ED_WATCHOUT;
-			x = 0;
-			y = 1.2 * GUI_GRID_H;
-			w = W_BORDER;
-			h = GUI_GRID_H;
-		};
-	};
-};
-class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
-{
-	x = 0;
-	y = 0;
-	w = W_BORDER;
-	h = GUI_GRID_H;
-	class controls 
-	{
-		class btn_cc_exec: RscButtonMenu
-		{
-			idc = IDC_BTN_CCEXEC;
-			text = "Execute";
-			x = 0;
-			y = 0;
-			w = 2.5 * GUI_GRID_W;
-			h = GUI_GRID_H;
-		};
-		class ed_cc_code: TER_3den_RscEditCode
-		{
-			idc = IDC_ED_CCCODE;
-			x = 2.6 * GUI_GRID_W;
-			y = 0;
-			w = W_BORDER - (3.7 * GUI_GRID_W);
-			h = GUI_GRID_H;
-		};
-		class btn_cc_delete: RscButtonMenu
-		{
-			idc = IDC_BTN_CCDELETE;
-			text = "X";
-			tooltip = "Delete";
-			style = ST_CENTER;
-			colorBackground[] = DEEP_RED;
-			x = W_BORDER-(1 * GUI_GRID_W);
-			y = 0 * GUI_GRID_H;
-			w = GUI_GRID_W;
-			h = GUI_GRID_H;
-		};
-	};
-};
-*/
 #define ADD_Y(VAL) __EXEC(_curY = _curY +0.1 +VAL)
 #define CUR_Y __EVAL(_curY) * GUI_GRID_H
 #define ADD_HEIGHT(HEIGHT) HEIGHT * GUI_GRID_H; ADD_Y(HEIGHT)
@@ -125,6 +39,7 @@ class TER_3den_RscCCGroup: RscControlsGroupNoScrollBars
  page 4: BIKI links, target debug, recent watch entries
  page 5: Unit live watch
  page 6: KK Debug
+ page 7: RPT Viewer
  */
 class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 {
@@ -135,7 +50,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 	w = DEBUG_W;
 	h = DEBUG_H;
 	ONLOAD(RscDebug);
-	//onLoad = "[""load"",_this] execVM ""\TER_Editing\gui\scripts\RscDebug.sqf"";";
+	//onLoad = "[""load"",_this] execVM ""TER_Editing\gui\scripts\RscDebug.sqf"";";
 	class controls 
 	{
 		class background: RscText
@@ -968,6 +883,123 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 				};
 			};
 		};
+		// START PAGE 7
+		__EXEC(_curY = 0.1)
+		class TER_3den_debugConsole_page7: TER_3den_debugConsole_page1
+		{
+			idc = IDC_DEBUG_PAGE_7;
+			class controls
+			{
+				class Title: RscText
+				{
+					text = "RPT";
+					x = 0;
+					y = CUR_Y;
+					w = W_BORDER;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTTextSizeText: RscStructuredText
+				{
+					idc = IDC_TXT_RPTTEXTSIZETEXT;
+					text = "Aa";
+					font = "EtelkaMonospacePro";
+					x = W_BORDER - 3.7 * GUI_GRID_W;
+					y = CUR_Y;
+					w = 1.5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					class Attributes
+					{
+						font = "RobotoCondensed";
+						color = "#ffffff";
+						colorLink = "#D09B43";
+						align = "center";
+						shadow = 1;
+						size = RPT_TEXT_SIZE * GUI_GRID_H;
+					};
+				};
+				class RPTTextSizePlus: RscButtonMenu
+				{
+					idc = IDC_BTN_RPTTEXTSIZEPLUS;
+					text = "+";
+					x = W_BORDER - 2.1 * GUI_GRID_W;
+					y = CUR_Y;
+					w = 1 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTTextSizeMinus: RPTTextSizePlus
+				{
+					idc = IDC_BTN_RPTTEXTSIZEMINUS;
+					text = "-";
+					x = W_BORDER - 1 * GUI_GRID_W;
+				};
+				class RPTContentGroup: RscControlsGroup
+				{
+					x = 0.1 * GUI_GRID_W;
+					y = 1.1 * GUI_GRID_H;
+					w = W_BORDER - 0.1 * GUI_GRID_W;
+					h = H_BORDER - 3.3 * GUI_GRID_H;
+					class controls
+					{
+						class RPTContent: TER_3den_RscEditCodeOutput
+						{
+							idc = IDC_ED_RPTCONTENT;
+							style = ST_LEFT + ST_MULTI;
+							canModify = 0;
+							sizeEx = RPT_TEXT_SIZE * GUI_GRID_H;
+							x = pixelW;
+							y = pixelH;
+							w = W_BORDER - 4 * pixelW - 0.021;
+							h = H_BORDER - 3.2 * GUI_GRID_H;
+						};
+					};
+				};
+				class RPTLogButton: RscButtonMenu
+				{
+					idc = IDC_BTN_RPTDIAGLOG;
+					text = "diag_log";
+					x = 0 * GUI_GRID_W;
+					y = H_BORDER - 2.1 * GUI_GRID_H;
+					w = 5 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTLogEdit: TER_3den_RscEditCode
+				{
+					idc = IDC_ED_RPTDIAGLOGTEXT;
+					x = 5.1 * GUI_GRID_W;
+					y = H_BORDER - 2.1 * GUI_GRID_H;
+					w = W_BORDER - 5.3 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTLinesText: RscText
+				{
+					text = "Lines:";
+					x = 0;
+					y = H_BORDER - 1 * GUI_GRID_H;
+					w = 2.9 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+				class RPTLinesEdit: RscEdit
+				{
+					idc = IDC_ED_RPTLINES;
+					style = ST_CENTER;
+					text = "50";
+					x = 3 * GUI_GRID_W;
+					y = H_BORDER - 1 * GUI_GRID_H;
+					w = 2 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+					maxChars = 3;
+				};
+				class RPTReload: RscButtonMenu
+				{
+					idc = IDC_BTN_RPTRELOAD;
+					text = "Reload";
+					x = 5.1 * GUI_GRID_W;
+					y = H_BORDER - 1 * GUI_GRID_H;
+					w = W_BORDER - 5.1 * GUI_GRID_W;
+					h = 1 * GUI_GRID_H;
+				};
+			};
+		};
 		class lb_pages: RscCombo
 		{
 			idc = IDC_LB_PAGES;
@@ -977,6 +1009,37 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			h = GUI_GRID_H;
 			arrowEmpty = "\a3\ui_f\data\gui\cfg\scrollbar\arrowempty_ca.paa";
 			arrowFull = "\a3\ui_f\data\gui\cfg\scrollbar\arrowfull_ca.paa";
+			class Items
+			{
+				class Page1
+				{
+					text = "General";
+				};
+				class Page2
+				{
+					text = "More Watch Fields";
+				};
+				class Page3
+				{
+					text = "Custom Commands";
+				};
+				class Page4
+				{
+					text = "BIKI Links / Target Debug / Saved Watch Entries";
+				};
+				class Page5
+				{
+					text = "Unit Live Watch";
+				};
+				class Page6
+				{
+					text = "KK Debug";
+				};
+				class Page7
+				{
+					text = "RPT";
+				};
+			};
 		};
 	};
 };

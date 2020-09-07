@@ -20,7 +20,7 @@ class CfgFunctions
 		{
 			file = FNC_PATH("gui\scripts");
 			// general
-			class controlInfo {};
+			class controlInfo;
 		};
 		class Debug
 		{
@@ -31,6 +31,13 @@ class CfgFunctions
 		{
 			file = FNC_PATH("fnc");
 			class convertNumber {};
+		};
+		class Python
+		{
+			file = FNC_PATH("fnc\py");
+			class pyTerEden;
+			class loadRPTLine;
+			class countRPTLines;
 		};
 	};
 	class DREAD

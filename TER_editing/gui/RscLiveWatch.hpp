@@ -4,7 +4,7 @@ class TER_3den_RscLiveWatch
 	duration = 1e+6;
 	fadeIn = 0;
 	fadeOut = 0;
-	onLoad = "[""onload"",_this] execVM ""\TER_Editing\gui\scripts\RscLiveWatch.sqf"";";
+	onLoad = "[""onload"",_this] execVM ""TER_Editing\gui\scripts\RscLiveWatch.sqf"";";
 	class controls
 	{
 		class table_watch: RscControlsTable

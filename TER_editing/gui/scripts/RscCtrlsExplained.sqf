@@ -41,7 +41,7 @@ switch _mode do {
 case "onload":{
 	params ["_display"];
 	if (isNil {uiNamespace getVariable "TER_3den_RscDisplayCtrlsExplained_script"}) then {
-		uiNamespace setVariable ["TER_3den_RscDisplayCtrlsExplained_script",compile preprocessFileLineNumbers "\TER_Editing\gui\scripts\RscCtrlsExplained.sqf"];
+		uiNamespace setVariable ["TER_3den_RscDisplayCtrlsExplained_script",compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscCtrlsExplained.sqf"];
 	};
 	//--- LNB control types
 	_ind = _lnbCTTypes lnbAddRow ["Introduction",""];
@@ -105,7 +105,7 @@ case "ctchanged":{
 		_fileName = toLower (_ctName select [3,count _ctName -1]);
 		_isCT = true;
 	};
-	_file = format ["\TER_Editing\gui\scripts\RscCtrlsExplained\%1.sqf",_fileName];
+	_file = format ["TER_Editing\gui\scripts\RscCtrlsExplained\%1.sqf",_fileName];
 	_htmlLoadTest htmlLoad _file;
 	if !(ctrlHTMLLoaded _htmlLoadTest) exitWith {
 		_stxtEmptyFile = _display ctrlCreate ["TER_3den_ctrlStructuredText",-1,_grpContent];

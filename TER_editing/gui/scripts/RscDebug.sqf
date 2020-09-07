@@ -1,12 +1,12 @@
 #include "ctrls.inc"
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 #include "\a3\ui_f\hpp\defineresincl.inc"
-#define SELF "\TER_Editing\gui\scripts\RscDebug.sqf"
+#define SELF "TER_Editing\gui\scripts\RscDebug.sqf"
 #define FNCSELF TER_fnc_RscDebug_script
 
 _mode = _this#0;
 _this = _this#1;
-_pageCount = 6;
+_pageCount = 7;
 _displayEscape = findDisplay 49;
 
 switch _mode do {
@@ -29,23 +29,15 @@ case "onLoad":{
 	uiNamespace setVariable ["TER_3den_uiSize2BigShown",false];
 	_displayEscape displayRemoveAllEventHandlers "MouseButtonDown";
 	// global functions
-	if (isNil {uiNamespace getVariable "TER_fnc_debugPage1"}) then {
+	if (isNil {uiNamespace getVariable "TER_fnc_debugPage1_script"}) then {
 		// compile functions
 		for "_i" from 1 to _pageCount do {
-			uiNamespace setVariable [format ["TER_fnc_debugPage%1_script",_i], compile preprocessFileLineNumbers format ["\TER_Editing\gui\scripts\RscDebug\page%1.sqf",_i]];
+			uiNamespace setVariable [format ["TER_fnc_debugPage%1_script",_i], compile preprocessFileLineNumbers format ["TER_Editing\gui\scripts\RscDebug\page%1.sqf",_i]];
 		};
 		uiNamespace setVariable ["TER_fnc_RscDebug_script",compile preprocessFileLineNumbers SELF];
 	};
 	// pages listbox:
 	_lbPages = _control controlsGroupCtrl IDC_LB_PAGES;
-	{_lbPages lbAdd _x} forEach [
-		"General",
-		"More Watch Fields",
-		"Custom Commands",
-		"BIKI Links / Target Debug / Saved Watch Entries",
-		"Unit Live Watch",
-		"KK Debug"
-	];
 	_lbPages setVariable ["TER_3den_xlbPagesInit",true];
 	_lbPages ctrlAddEventHandler ["LBSelChanged",{
 		with uiNamespace do {["pagechange",_this] call FNCSELF;};
@@ -165,13 +157,5 @@ case "unload":{
 	for "_i" from 1 to _pageCount do {
 		with uiNamespace do {["unload",[]] call call compile format ["TER_fnc_debugPage%1_script",_i]};
 	};
-	//--- save position of the debug consoles
-	/* _control = _displayEscape displayCtrl IDC_DEBUG;
-	_xp = ((ctrlPosition _control # 0) - GUI_GRID_X) / GUI_GRID_W;
-	profileNamespace setVariable ["TER_EDITING_DEBUGCONSOLE_X", _xp];
-	_vanillaCtrl = _displayEscape displayCtrl IDC_ESC_DEBUGCONSOLE;
-	_xp = ((ctrlPosition _vanillaCtrl # 0) - GUI_GRID_X) / GUI_GRID_W;
-	profileNamespace setVariable ["TER_EDITING_VANILLADEBUG_X", _xp]; */
-	saveProfileNamespace;
 };
 };

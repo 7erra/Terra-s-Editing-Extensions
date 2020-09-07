@@ -2,7 +2,7 @@ class TER_3den_RscDisplayAnchor
 {
 	idd = IDD_DISPLAY_ANCHOR;
 	enableSimulation = false;
-	onLoad = "[""load"",_this] spawn compile preprocessfilelinenumbers ""\TER_Editing\gui\scripts\RscAnchor.sqf"";";
+	onLoad = "[""load"",_this] spawn compile preprocessfilelinenumbers ""TER_Editing\gui\scripts\RscAnchor.sqf"";";
 	class controlsBackground
 	{
 		class background: RscText
