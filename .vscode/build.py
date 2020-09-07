@@ -10,7 +10,7 @@ logfile = Path(f'P:/temp/{source.name}.packing.log')
 #%% Create a symlink to the P drive so pboProject can work correctly
 # Note: User has to have symlink rights
 try:
-    packing_folder.symlink_to(source, target_is_directory=True)
+    packing_folder.symlink_to(source.absolute(), target_is_directory=True)
 except FileExistsError:
     pass
 #%% The real magic brought to you by mikero
