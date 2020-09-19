@@ -12,7 +12,7 @@ modslist = [r'!Workshop\@CBA_A3',
             r"P:\Terra-s-Editing-Extensions\@Terra's Editing Extensions"]
 mods = f'-mod={";".join(modslist)}'
 
-with open('TER_Editing.code-workspace', 'r') as f:
+with open('.vscode/TER_Editing.code-workspace', 'r') as f:
     workspace_settings = json.load(f)
 try:
     mission_root = workspace_settings['settings']['A3MissionRoot']
