@@ -6,6 +6,10 @@ class Display3DEN
 		{
 			class Items
 			{
+				class DebugConsole
+				{
+					shortcuts[] = {"512+0x20"};
+				};
 				class Tools
 				{
 					items[] += {"TER_3den_folder"}; // += must be used; you want to expand the array, not override it!

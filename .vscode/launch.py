@@ -7,7 +7,7 @@ a3_version = 'arma3diag_x64'
 a3_dir = Path('M:\SteamLibraryM\steamapps\common\Arma 3')
 a3_exe = a3_dir / f'{a3_version}.exe'
 
-modslist = [r'!Workshop\@CBA_A3',
+modslist = [
             r'!Workshop\@Pythia',
             r"P:\Terra-s-Editing-Extensions\@Terra's Editing Extensions"]
 mods = f'-mod={";".join(modslist)}'
