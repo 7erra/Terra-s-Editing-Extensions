@@ -1,8 +1,4 @@
-#ifndef NONMOD
-	#include "cfg\cfgPatches.hpp"
-#endif
+#include "cfg\cfgPatches.hpp"
 #include "cfg\cfgFunctions.hpp"
-#ifndef NONMOD
-	#include "cfg\cfg3den.hpp"
-#endif
+#include "cfg\cfg3den.hpp"
 #include "gui\guicfg.hpp"

@@ -1,5 +1,7 @@
 #include "\a3\ui_f\hpp\definecommoncolors.inc"
 #include "scripts\ctrls.inc"
+#include "\a3\ui_f\hpp\defineCommon.inc"
+#include "\a3\ui_f\hpp\defineResincl.inc"
 #include "defines.hpp"
 #include "RscTitles.hpp"
 #ifndef NONMOD
