@@ -4,14 +4,10 @@
 #include "\a3\ui_f\hpp\defineResincl.inc"
 #include "defines.hpp"
 #include "RscTitles.hpp"
-#ifndef NONMOD
-    #include "RscConfigViewer.hpp"
-    #include "display3den.hpp"
-    #include "RscInterrupt.hpp"
-    #include "RscGUIEditor.hpp"
-#else
-    #include "RscDebug.hpp"
-#endif
+#include "RscConfigViewer.hpp"
+#include "display3den.hpp"
+#include "RscInterrupt.hpp"
+#include "RscGUIEditor.hpp"
 //--- v1.5
 #include "RscStructuredTextEditor.hpp"
 #include "RscColorPicker.hpp"
