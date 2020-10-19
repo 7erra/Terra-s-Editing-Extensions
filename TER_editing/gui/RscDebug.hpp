@@ -44,13 +44,12 @@ class TER_3den_RscEditCodeOutput: TER_3den_RscEditCode
 class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 {
 	idc = IDC_DEBUG;
-	//x = 40 * GUI_GRID_W + GUI_GRID_X;
+	//ONLOAD(RscDebug);
+	INIT_CONTROL(TER_3den_debugConsole, "TER_Editing")
 	x = GUI_GRID_X + (profileNamespace getVariable ["TER_EDITING_DEBUGCONSOLE_X", 40]) * GUI_GRID_W;
 	y = safezoneY + 1 * GUI_GRID_H;
 	w = DEBUG_W;
 	h = DEBUG_H;
-	ONLOAD(RscDebug);
-	//onLoad = "[""load"",_this] execVM ""TER_Editing\gui\scripts\RscDebug.sqf"";";
 	class controls 
 	{
 		class background: RscText

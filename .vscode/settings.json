@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "TER_Editing_mission.vr\\p\\TER_Editing": true,
+    "TER_Editing_mission.vr\\p": true
+  }
+}

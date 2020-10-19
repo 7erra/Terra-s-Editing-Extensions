@@ -18,7 +18,7 @@
 	"_cfgArray" (Display) - Path to config (not to actual config, that is selected in the listbox)
 	"BIS_fnc_configviewer_path" (profileNamespace) - same as _cfgArray, shared with old config viewer
 	"BIS_fnc_configviewer_selected" (profileNamespace) - Selected listbox entry, shared with old config viewer
-	"TER_3den_RscConfigViewer73_script" (uiNamespace) - This script
+	"TER_3den_RscDisplayConfigViewer73_script" (uiNamespace) - This script
 	"TER_3den_RscColorPicker_loadColor" (uiNamespace) - Set on preview of a color from the properties listbox
 	"prevSearch" (Config search editbox) - ctrlText of the control to prevent searching when no new character was entered
 	"update" (Favorites listbox) - Prevent firing of EH when the same class is selected
@@ -27,7 +27,7 @@
 */
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 #include "ctrls.inc"
-#define SELF (uiNamespace getVariable ["TER_3den_RscConfigViewer73_script",{}])
+#define SELF (uiNamespace getVariable ["TER_3den_RscDisplayConfigViewer73_script",{}])
 params [["_mode", "create"],["_this",[]]];
 
 switch _mode do {
@@ -39,10 +39,6 @@ switch _mode do {
 	};
 	case "onLoad":{
 		params ["_display"];
-		//--- Init function
-		if (isNil {uiNamespace getVariable "TER_3den_RscConfigViewer73_script"}) then {
-			uiNamespace setVariable ["TER_3den_RscConfigViewer73_script", compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscConfigViewer73.sqf"];
-		};
 		//--- Load settings
 		_dbSettings = +(profileNamespace getVariable ["TER_3den_configViewer73_dbSettings",[]]);
 		//--- Initialize Display

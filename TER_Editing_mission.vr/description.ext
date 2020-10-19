@@ -1,1 +1,2 @@
 allowFunctionsRecompile = 1;
+allowFunctionsLog = 1;

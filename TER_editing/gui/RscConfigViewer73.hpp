@@ -19,7 +19,8 @@
 class TER_3den_RscDisplayConfigViewer73
 {
 	idd = IDD_DISPLAY_CONFIGVIEWER;
-	ONLOAD(RscConfigViewer73);
+	//ONLOAD(RscConfigViewer73);
+	INIT_DISPLAY(TER_3den_RscDisplayConfigViewer73, "TER_Editing")
 	class controlsBackground
 	{
 		class background: ctrlStaticBackground

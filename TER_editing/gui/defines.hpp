@@ -3,6 +3,24 @@
 #define SCRIPT_STR(FILE) STR(STR(TER_Editing\gui\scripts\FILE.sqf))
 #define ONLOAD(SCRIPT) onLoad = STR(ARGS execVM SCRIPT_STR(SCRIPT);)
 
+#ifdef TER_DEV
+#undef INIT_DISPLAY
+#define INIT_DISPLAY(NAME,PATH) \
+	scriptName = ##NAME##;\
+	scriptPath = ##PATH##;\
+	onLoad = ["onLoad",_this,#NAME,'##PATH##'] call INIT_DISPLAY_FUNCTION; \
+	onUnload = ["onUnload",_this,#NAME,'##PATH##'] call INIT_DISPLAY_FUNCTION;\
+	INIT_DISPLAY_INTERNAL
+
+#undef INIT_CONTROL
+#define INIT_CONTROL(NAME, PATH) \
+	scriptName = ##NAME##;\
+	scriptPath = ##PATH##;\
+	onLoad = ["onLoad",_this,#NAME,'##PATH##',false] call INIT_DISPLAY_FUNCTION; \
+	onUnload = ["onUnload",_this,#NAME,'##PATH##',false] call INIT_DISPLAY_FUNCTION;\
+	INIT_DISPLAY_INTERNAL
+#endif
+
 #define DEBUG_TEXTWIDTH_UIGRID onLoad = STR(diag_log ((ctrlTextWidth (_this select 0)) / UI_GRID_W));
 
 #include "\a3\ui_f\hpp\definedikcodes.inc"
