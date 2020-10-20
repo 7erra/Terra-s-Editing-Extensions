@@ -122,7 +122,10 @@ switch _mode do {
 			if (_x == _loadPageCtrl) then { // appear
 				// load script
 				// spawn because for some godforsaken reason the display is not loaded but the control is??
-				["load",[_displayEscape]] spawn _pagefnc;
+				_pagefnc spawn {
+					waitUntil {!isNull findDisplay 49};
+					["load",[findDisplay 49]] call _this;
+				};
 				_curCtrlPos set [0, 0.5 * GUI_GRID_W];
 				_x ctrlShow true;
 				_x ctrlSetPosition _curCtrlPos;
