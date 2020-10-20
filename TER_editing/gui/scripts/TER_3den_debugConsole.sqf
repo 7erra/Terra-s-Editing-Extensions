@@ -71,7 +71,7 @@ switch _mode do {
 		];
 		// unload eh
 		_displayEscape displayAddEventHandler ["unLoad",{
-			with uiNamespace do {["unload",_this] call SELF;};
+			with uiNamespace do {["onUnload",_this] call SELF;};
 		}];
 	};
 	case "moveMouseDown":{
@@ -129,7 +129,7 @@ switch _mode do {
 				_curCtrlPos set [0, 0.5 * GUI_GRID_W];
 				_curCtrlPos set [2, 21 * GUI_GRID_W];
 			} else { // disappear
-				["hide",[]] call _pagefnc;
+				["hide",[_displayEscape]] call _pagefnc;
 				_curCtrlPos set [0, 21.5 * GUI_GRID_W];
 				_curCtrlPos set [2, 0 * GUI_GRID_W];
 			};
@@ -139,7 +139,6 @@ switch _mode do {
 		} forEach _allPages;
 		//uiNamespace setVariable ["TER_3den_debugIndex",_index];
 		TER_3den_debugIndex = _index;
-		diag_log [_loadPageCtrl];
 	};
 	case "keydownesc":{
 		_params params ["_display","_key","_shift","_ctrl","_alt"];
@@ -156,7 +155,7 @@ switch _mode do {
 		_params params ["_displayEscape"];
 		//--- Escpape menu closed, activate unload ehs for pages
 		for "_i" from 1 to _pageCount do {
-			with uiNamespace do {["unload",[]] call call compile format ["TER_fnc_debugPage%1_script",_i]};
+			with uiNamespace do {["unload",[_displayEscape]] call call compile format ["TER_fnc_debugPage%1_script",_i]};
 		};
 	};
 };

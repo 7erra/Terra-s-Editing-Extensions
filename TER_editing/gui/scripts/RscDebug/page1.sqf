@@ -3,39 +3,10 @@
 #define SELF TER_fnc_debugPage1_script
 #define PICDAY "\a3\3den\data\attributes\slidertimeday\sun_ca.paa"
 #define PICNIGHT "\a3\3den\data\attributes\date\moon_full_ca.paa"
-_mode = _this select 0;
-_this = _this select 1;
-//controls
-/* _displayEscape = findDisplay 49;
-_page1 = _displayEscape displayCtrl IDC_DEBUG_PAGE_1;
-_btnLiveDebug = _page1 controlsGroupCtrl IDC_BTN_LIVEDEBUG;
-_comboSide = _page1 controlsGroupCtrl IDC_COMBO_SIDEPLAYER;
-_cbTeleport = _page1 controlsGroupCtrl IDC_CB_TELEPORT;
-_cbUnitIcons = _page1 controlsGroupCtrl IDC_CB_UNITICONS;
-_cbGrids = _page1 controlsGroupCtrl IDC_CB_GRIDS;
-_cbEditorGrids = _page1 controlsGroupCtrl IDC_CB_GRIDSGUIEDITOR;
-_comboGUIGrid = _page1 controlsGroupCtrl IDC_COMBO_GUIGRID;
-_btnGridAnchor = _page1 controlsGroupCtrl IDC_BTN_GRIDANCHOR;
-_btnGridExport = _page1 controlsGroupCtrl IDC_BTN_GRIDEXPORT;
-_edGridXValue = _page1 controlsGroupCtrl IDC_ED_GRIDXVALUE;
-_edGridYValue = _page1 controlsGroupCtrl IDC_ED_GRIDYVALUE;
-_edGridWValue = _page1 controlsGroupCtrl IDC_ED_GRIDWVALUE;
-_edGridHValue = _page1 controlsGroupCtrl IDC_ED_GRIDHVALUE;
-_edGridVariable = _page1 controlsGroupCtrl IDC_ED_GRIDVARIABLE;
-_btnClearChat = _page1 controlsGroupCtrl IDC_BTN_CLEARCHAT;
-_btnSwitchUnit = _page1 controlsGroupCtrl IDC_BTN_SWITCHUNIT;
-_picTimeSunrise = _page1 controlsGroupCtrl IDC_PIC_TIMESUNRISE;
-_picTimeSunset = _page1 controlsGroupCtrl IDC_PIC_TIMESUNSET;
-_comboTimeHour = _page1 controlsGroupCtrl IDC_COMBO_TIMEHOUR;
-_comboTimeMinute = _page1 controlsGroupCtrl IDC_COMBO_TIMEMINUTE;
-_btnGridSet = _page1 controlsGroupCtrl IDC_BTN_GRIDSET;
-_btnNamespaceVars = _page1 controlsgroupctrl IDC_BTN_NAMESPACEVARS;
-_btnConfigViewer73 = _page1 controlsGroupCtrl IDC_BTN_OPENCONFIGVIEWER73; */
-
-diag_log ["PAGE1 FUNCTION"];
+params ["_mode" ,"_params"];
 switch (_mode) do {
 	case "load":{
-		params ["_display"];
+		_params params ["_display"];
 		_page1 = _display displayCtrl IDC_DEBUG_PAGE_1;
 		if (_page1 getVariable ["pageInitialized",false]) exitWith {};
 		_page1 setVariable ["pageInitialized",true];
@@ -210,14 +181,14 @@ switch (_mode) do {
 		}];
 	};
 	case "sideplayer":{
-		params ["_ctrl","_index"];
+		_params params ["_ctrl","_index"];
 		_selectedSide = call compile (_ctrl lbText _index);
 		if (_selectedSide == side player) exitWith {};
 		_sideGroup = createGroup _selectedSide;
 		[player] joinSilent _sideGroup;
 	};
 	case "teleport":{
-		params ["_control","_state"];
+		_params params ["_control","_state"];
 		if (_state == 1) then {
 			_displayEH = (findDisplay 46) displayAddEventHandler ["KeyDown",{
 				params ["_display","_key","_shift","_ctrl","_alt"];
@@ -234,7 +205,7 @@ switch (_mode) do {
 		};
 	};
 	case "uniticons":{
-		params ["_ctrl","_state"];
+		_params params ["_ctrl","_state"];
 		if (_state == 1) then {
 			// draw icons
 			_3dMEH = addMissionEventHandler ["Draw3D",{
@@ -266,7 +237,7 @@ switch (_mode) do {
 		};
 	};
 	case "grids":{
-		params ["_ctrl","_state"];
+		_params params ["_ctrl","_state"];
 		if (_state == 1) then {
 			("TER_3den_RscGrids_layer" call BIS_fnc_rscLayer) cutRsc ["TER_RscDisplayGrids", "PLAIN"];
 		} else {
@@ -274,11 +245,11 @@ switch (_mode) do {
 		};
 	};
 	case "editorgrids":{
-		params ["_control","_checked"];
+		_params params ["_control","_checked"];
 		uiNamespace setVariable ["TER_3den_drawGridGUIEditor",_checked == 1];
 	};
 	case "guigrid":{
-		params ["_combo","_ind"];
+		_params params ["_combo","_ind"];
 		_page1 = ctrlParentControlsGroup _combo;
 		_data = call compile (_combo lbData _ind);
 		if (count _data == 0) exitWith {
@@ -290,12 +261,12 @@ switch (_mode) do {
 		["gridupdate",[_page1]] call SELF;
 	};
 	case "gridanchor":{
-		params ["_btnGridAnchor"];
+		_params params ["_btnGridAnchor"];
 		_displayEscape = ctrlParent _btnGridAnchor;
 		_displayEscape createDisplay "TER_3den_RscDisplayAnchor";
 	};
 	case "gridset":{
-		params ["_btnGridAnchor"];
+		_params params ["_btnGridAnchor"];
 		_page1 = ctrlParentControlsGroup _btnGridAnchor;
 		_edGridXValue = _page1 controlsGroupCtrl IDC_ED_GRIDXVALUE;
 		_edGridYValue = _page1 controlsGroupCtrl IDC_ED_GRIDYVALUE;
@@ -312,7 +283,7 @@ switch (_mode) do {
 		_comboGUIGrid lbSetCurSel 0;
 	};
 	case "gridexport":{
-		params ["_btnGridExport"];
+		_params params ["_btnGridExport"];
 		_page1 = ctrlParentControlsGroup _btnGridExport;
 		_edGridXValue = _page1 controlsGroupCtrl IDC_ED_GRIDXVALUE;
 		_edGridYValue = _page1 controlsGroupCtrl IDC_ED_GRIDYVALUE;
@@ -331,7 +302,7 @@ switch (_mode) do {
 		copyToClipboard _copy;
 	};
 	case "gridupdate":{
-		params ["_page1"];
+		_params params ["_page1"];
 		_edGridXValue = _page1 controlsGroupCtrl IDC_ED_GRIDXVALUE;
 		_edGridYValue = _page1 controlsGroupCtrl IDC_ED_GRIDYVALUE;
 		_edGridWValue = _page1 controlsGroupCtrl IDC_ED_GRIDWVALUE;
@@ -342,13 +313,12 @@ switch (_mode) do {
 		_edGridWValue ctrlSetText (TER_3den_GUIGrid#1);
 		_edGridHValue ctrlSetText (TER_3den_GUIGrid#2);
 		_edGridVariable ctrlSetText (TER_3den_GUIGrid#3);
-		diag_log [_page1, _edGridXValue, _edGridYValue, _edGridWValue, _edGridHValue, _edGridVariable];
 	};
 	case "clearchat":{
 		clearRadio;
 	};
 	case "switchunit":{
-		params ["_button"];
+		_params params ["_button"];
 		if (cursorObject isKindOf "MAN" && !isPlayer cursorObject) then {
 			selectPlayer cursorObject;
 		} else {
@@ -363,7 +333,7 @@ switch (_mode) do {
 		};
 	};
 	case "changetime":{
-		params ["_control","_ind"];
+		_params params ["_control","_ind"];
 		_page1 = ctrlParentControlsGroup _control;
 		_comboTimeHour = _page1 controlsGroupCtrl IDC_COMBO_TIMEHOUR;
 		_comboTimeMinute = _page1 controlsGroupCtrl IDC_COMBO_TIMEMINUTE;
@@ -382,16 +352,18 @@ switch (_mode) do {
 		};
 	};
 	case "namespacevars":{
-		params ["_control"];
+		_params params ["_control"];
 		ctrlparent _control createdisplay "TER_3den_RscDisplayNamespaceVars";
 	};
 	case "configviewer":{
-		params ["_btnConfigViewer73"];
+		_params params ["_btnConfigViewer73"];
 		with missionNamespace do {
 			[] call TER_fnc_configViewer73;
 		};
 	};
 	case "unload":{
+		_params params ["_display"];
+		_page1 = _display displayCtrl IDC_DEBUG_PAGE_1;
 		//--- save variables
 		if (_page1 getVariable ["pageInitialized",false]) then {
 			profileNamespace setVariable ["TER_3den_GUIGrid",uiNamespace getVariable "TER_3den_GUIGrid"];

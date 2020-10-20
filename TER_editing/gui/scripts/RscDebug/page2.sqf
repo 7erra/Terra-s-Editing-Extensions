@@ -1,8 +1,7 @@
 #include "..\ctrls.inc"
 #define SELF TER_fnc_debugPage2_script
 #define PARAMSROW ["_back","_cbLive","_edCommand","_actpicDelete","_txtOut"]
-_mode = _this select 0;
-_this = _this select 1;
+params ["_mode", "_params"];
 //--- Controls
 _displayEscape = findDisplay 49;
 _page = _displayEscape displayCtrl IDC_DEBUG_PAGE_2;
@@ -10,6 +9,9 @@ _tableWatch = _page controlsGroupCtrl IDC_DEBUG_TABLEWATCHFIELDS;
 
 switch (_mode) do {
 case "load":{
+	_params params ["_display"];
+	_page = _display displayCtrl IDC_DEBUG_PAGE_2;
+	_tableWatch = _page controlsGroupCtrl IDC_DEBUG_TABLEWATCHFIELDS;
 	if (_page getVariable ["pageInitialized",false]) exitWith {
 		//--- Activate watch controls when page is selected
 		_inputControls = [];
@@ -32,21 +34,25 @@ case "load":{
 	_btnAdd ctrlSetText "+";
 	_btnAdd ctrlSetTooltip "Add new watch field";
 	_btnAdd ctrlAddEventHandler ["ButtonClick",{
-		with uiNamespace do {["createfield",[""]] call SELF;};
+		with uiNamespace do {
+			["createfield",["", ctrlParent (_this#0)]] call SELF;
+		};
 	}];
 	//--- Fill table with prev commands
 	_hasLive = false;
-	{
-		_rowControls = with uiNamespace do {["createfield",[_x]] call SELF;};
+	{	
+		_rowControls = with uiNamespace do {["createfield",[_x, _display]] call SELF;};
 		_rowControls params PARAMSROW;
 		if (cbChecked _cbLive && !_hasLive) then {_hasLive = true};
 	} forEach (profileNamespace getVariable ["TER_3den_watchCommands",[]]);
 	if (_hasLive) then {
-		with uiNamespace do {["livedebug",[]] call SELF};
+		with uiNamespace do {["livedebug",[_display]] call SELF};
 	};
 };
 case "createfield":{
-	_command = param [0,""];
+	_params params ["_command", "_display"];
+	_page = _display displayCtrl IDC_DEBUG_PAGE_2;
+	_tableWatch = _page controlsGroupCtrl IDC_DEBUG_TABLEWATCHFIELDS;
 	_row = ctAddRow _tableWatch;
 	_row#1 params PARAMSROW;
 	//--- Live CB
@@ -58,7 +64,7 @@ case "createfield":{
 		_cbLive cbSetChecked true;
 	};
 	_cbLive ctrlAddEventHandler ["CheckedChanged",{
-		with uiNamespace do {["livedebug",_this] call SELF;};
+		with uiNamespace do {["livedebug",[ctrlParent(_this#0)]] call SELF;};
 	}];
 	//--- Command edit
 	_edCommand ctrlSetText _command;
@@ -79,7 +85,7 @@ case "createfield":{
 	//--- Output text
 	_txtOut ctrlSetBackgroundColor [0,0,0,0.8];
 	//--- Call watch loop
-	["liveloop",[ctRowCount _tableWatch -1]] spawn SELF;
+	["liveloop",[_tableWatch, _row#0]] spawn SELF;
 	//--- Return new controls
 	_row#1;
 };
@@ -94,11 +100,11 @@ case "deletefield":{
 	};
 	_tableWatch ctRemoveRows [_ind];
 	if (_updateLive) then {
-		["livedebug",_this] call SELF;
+		["livedebug",[ctrlParent _tableWatch]] call SELF;
 	};
 };
 case "liveloop":{
-	params ["_ind"];
+	_params params ["_tableWatch", "_ind"];
 	_row = _tableWatch ctRowControls _ind;
 	_row params PARAMSROW;
 	while {!isNull _edCommand} do {
@@ -119,17 +125,20 @@ case "liveloop":{
 	};
 };
 case "focuschange":{
-	params ["_edCommand","_focused"];
+	_params params ["_edCommand","_focused"];
 	_edCommand setVariable ["isFocused",_focused];
 	if (!_focused) then {
-		["livedebug",_this] call SELF;
+		["livedebug",[ctrlParent _edCommand]] call SELF;
 	};
 };
 case "livedebug":{
+	_params params [["_display", findDisplay 49]];
+	
 	_displayLive = uiNamespace getVariable ["TER_3den_RscLiveWatch_display",displayNull];
 	_openLiveDisplay = !isNull _displayLive;
 
 	//--- Get all checked commands
+	_tableWatch = _display displayCtrl IDC_DEBUG_PAGE_2 controlsGroupCtrl IDC_DEBUG_TABLEWATCHFIELDS;
 	_liveCommands = [];
 	for "_ind" from 0 to (ctRowCount _tableWatch -1) do {
 		_row = _tableWatch ctRowControls _ind;
@@ -149,6 +158,7 @@ case "livedebug":{
 	if (count _liveCommands == 0) exitWith {};
 	//--- Create display, come back when display is open
 	if (!_openLiveDisplay) exitWith {
+		//REMINDER: This displays calls this function back!
 		("TER_3den_RscWatchLive_layer" call BIS_fnc_rscLayer) cutRsc ["TER_3den_RscLiveWatch","PLAIN"];
 	};
 	//--- Update display
@@ -191,9 +201,12 @@ case "hide":{
 	};
 };
 case "unload":{
+	_params params ["_display"];
+	_page = _display displayCtrl IDC_DEBUG_PAGE_2;
+	_tableWatch = _page controlsGroupCtrl IDC_DEBUG_TABLEWATCHFIELDS;
 	if (!(_page getVariable ["pageInitialized",false])) exitWith {};
 	//--- Update live display
-	["livedebug",_this] call SELF;
+	["livedebug",[_display]] call SELF;
 	//--- Save variables
 	_saveCommands = [];
 	for "_ind" from 0 to (ctRowCount _tableWatch -1) do {

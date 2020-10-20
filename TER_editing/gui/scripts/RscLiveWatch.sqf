@@ -12,7 +12,7 @@ case "onload":{
 	_show set [1,false];
 	showHUD _show;
 	//--- Call a script from the second debug page (TER_Editing\gui\scripts\RscDebug\page2.sqf)
-	with uiNamespace do {["livedebug",[nil,0]] call TER_fnc_debugPage2_script;};
+	with uiNamespace do {["livedebug",[]] call TER_fnc_debugPage2_script;};
 	waitUntil {isNull _display};
 	//--- Display is closed, reset vars and HUD
 	uiNamespace setVariable ["TER_3den_RscLiveWatch_display",nil];
