@@ -217,6 +217,15 @@ switch _mode do {
 		_btnExportCopy ctrlAddEventHandler ["ButtonClick",{
 			with uiNamespace do {["exportCopy", [ctrlParentControlsGroup (_this#0)]] call SELF;};
 		}];
+
+		//--- Preview class
+		_btnPreview = _display displayCtrl IDC_CONFIG_BTNPREVIEW;
+		_btnPreview ctrlAddEventHandler ["ButtonClick", {
+			with uiNamespace do {["previewClass", _this] call SELF;};
+		}];
+	};
+	case "previewClass":{
+		_params params ["_btnPreview"];
 	};
 	case "exportCopy":{
 		_params params ["_grpExport"];
@@ -795,7 +804,7 @@ switch _mode do {
 		};
 		//--- TODO: Implement caching listboxes?
 		_fncLoad = {
-			_params params ["_display", "_enable"];
+			params ["_display", "_enable"];
 			{
 				private _ctrl = _display displayCtrl _x;
 				_ctrl ctrlEnable _enable;
