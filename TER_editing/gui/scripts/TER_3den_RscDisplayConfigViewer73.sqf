@@ -196,7 +196,6 @@ switch _mode do {
 		_newlinecharInd = [_dbSettings, ["export", "newlinechar"], 0] call BIS_fnc_dbValueReturn;
 		_toolExportNewLineChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLNEWLINECHAR;
 		_toolExportNewLineChar lbSetCurSel _newlinecharInd;
-		diag_log [_toolExportNewLineChar, _newlineCharInd];
 		_tabcharInd = [_dbSettings, ["export", "tabchar"], 0] call BIS_fnc_dbValueReturn;
 		_toolExportTabChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLTABCHAR;
 		_toolExportTabChar lbSetCurSel _tabcharInd;
