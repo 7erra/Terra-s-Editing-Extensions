@@ -27,7 +27,7 @@
 */
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 #include "ctrls.inc"
-#define SELF (uiNamespace getVariable ["TER_3den_RscDisplayConfigViewer73_script",{}])
+#define SELF TER_3den_RscDisplayConfigViewer73_script
 params [["_mode", "create"],["_this",[]]];
 
 switch _mode do {
@@ -42,16 +42,16 @@ switch _mode do {
 		//--- Load settings
 		_dbSettings = +(profileNamespace getVariable ["TER_3den_configViewer73_dbSettings",[]]);
 		//--- Initialize Display
-		_display displayAddEventHandler ["Unload",{
+		/* _display displayAddEventHandler ["Unload",{
 			["onUnload",_this] call SELF;
-		}];
+		}]; */
 		_display displayAddEventHandler ["KeyDown",{
-			["displayKey",_this] call SELF;
+			with uiNamespace do {["displayKey",_this] call SELF;};
 		}];
 		//--- Directory Listbox
 		_btnDirectory = _display displayCtrl IDC_CONFIG_BTNDIRECTORY;
 		_btnDirectory ctrlAddEventHandler ["ButtonClick",{
-			["dirUp",_this] call SELF;
+			with uiNamespace do {["dirUp",_this] call SELF;};
 		}];
 		//--- Search edit configs
 		_edSearchConfigs = _display displayCtrl IDC_CONFIG_EDCONFIGSEARCH;
@@ -59,43 +59,43 @@ switch _mode do {
 		_search = [_dbSettings, ["searchConfigs"], ""] call BIS_fnc_dbValueReturn;
 		_edSearchConfigs ctrlSetText _search;
 		ctrlSetFocus _edSearchConfigs;
-		private _prevSearch = ["translateSearch", [_search]] call SELF;
+		private _prevSearch = with uiNamespace do {["translateSearch", [_search]] call SELF;};
 		_edSearchConfigs setVariable ["prevSearch",_prevSearch];
 		_edSearchConfigs ctrlAddEventHandler ["KeyDown",{
 			["keySearch",_this] spawn SELF;
 		}];
 		_btnEndConfigSearch = _display displayCtrl IDC_CONFIG_BTNENDCONFIGSEARCH;
 		_btnEndConfigSearch ctrlAddEventHandler ["ButtonClick",{
-			["endConfigSearch",_this] call SELF;
+			with uiNamespace do {["endConfigSearch",_this] call SELF;};
 		}];
 		//--- Listbox configs
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
 		_lbConfigs ctrlAddEventHandler ["LBDblClick",{
-			["configsDblClick",_this] call SELF;
+			with uiNamespace do {["configsDblClick",_this] call SELF;};
 		}];
 		_lbConfigs ctrlAddEventHandler ["LBSelChanged",{
-			["configChange",_this] call SELF;
+			with uiNamespace do {["configChange",_this] call SELF;};
 		}];
 		_lbConfigs ctrlAddEventHandler ["KeyDown",{
-			["lbConfigsKey",_this] call SELF;
+			with uiNamespace do {["lbConfigsKey",_this] call SELF;};
 		}];
 		//--- Favorite button
 		_btnFavorite = _display displayCtrl IDC_CONFIG_BTNFAVOR;
 		_btnFavorite ctrlAddEventHandler ["ButtonClick",{
-			["toggleFavorite",_this] call SELF;
+			with uiNamespace do {["toggleFavorite",_this] call SELF;};
 		}];
 		//--- Favorite combo
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
 		["fillFavorites",[_display]] call SELF;
 		_lbFavorites ctrlAddEventHandler ["LBSelChanged",{
-			["changeFavorite",_this] call SELF;
+			with uiNamespace do {["changeFavorite",_this] call SELF;};
 		}];
 		//--- View mode toolbox
 		_settingViewMode = [_dbSettings, ["viewMode"], 0] call BIS_fnc_dbValueReturn;
 		_toolViewMode = _display displayCtrl IDC_CONFIG_TOOLVIEW;
 		_toolViewMode lbSetCurSel _settingViewMode;
 		_toolViewMode ctrlAddEventHandler ["ToolBoxSelChanged",{
-			["changeView",_this] call SELF;
+			with uiNamespace do {["changeView",_this] call SELF;};
 		}];
 		["changeView",[_toolViewMode, _settingViewMode]] call SELF;
 		//--- Inheritance toolbox
@@ -103,14 +103,14 @@ switch _mode do {
 		_toolInheritance = _display displayCtrl IDC_CONFIG_TOOLINHERITANCE;
 		_toolInheritance lbSetCurSel _settingInheritance;
 		_toolInheritance ctrlAddEventHandler ["ToolBoxSelChanged",{
-			["changeInheritance",_this] call SELF;
+			with uiNamespace do {["changeInheritance",_this] call SELF;};
 		}];
 		//--- Show classes toolbox
 		_settingShowClasses = [_dbSettings, ["showClasses"], 1] call BIS_fnc_dbValueReturn;
 		_toolShowClasses = _display displayCtrl IDC_CONFIG_TOOLSHOWCLASSES;
 		_toolShowClasses lbSetCurSel _settingShowClasses;
 		_toolShowClasses ctrlAddEventHandler ["ToolBoxSelChanged",{
-			["changeShowClasses",_this] call SELF;
+			with uiNamespace do {["changeShowClasses",_this] call SELF;};
 		}];
 		//--- Property search
 		_settingPropSearch = [_dbSettings, ["searchProperties"], ""] call BIS_fnc_dbValueReturn;
@@ -123,35 +123,35 @@ switch _mode do {
 		//--- Properties listbox
 		_lbProperties = _display displayCtrl IDC_CONFIG_LBPROPERTIES;
 		_lbProperties ctrlAddEventHandler ["LBSelChanged",{
-			["changeProperty",_this] call SELF;
+			with uiNamespace do {["changeProperty",_this] call SELF;};
 		}];
 		_lbProperties ctrlAddEventHandler ["LBDblClick",{
-			["doubleClickProperties", _this] call SELF;
+			with uiNamespace do {["doubleClickProperties", _this] call SELF;};
 		}];
 		//--- Error message
 		_stxtError = _display displayCtrl IDC_CONFIG_STXTERROR;
 		_stxtError ctrlAddEventHandler ["KillFocus",{
-			["errorHide",_this] call SELF;
+			with uiNamespace do {["errorHide",_this] call SELF;};
 		}];
 		_stxtError ctrlAddEventHandler ["MouseButtonDown",{
-			["errorHide",_this] call SELF;
+			with uiNamespace do {["errorHide",_this] call SELF;};
 		}];
 		//--- Info box
 		_btnInfoOpen = _display displayCtrl IDC_CONFIG_BTNOPENINFO;
 		_btnInfoOpen ctrlAddEventHandler ["ButtonClick",{
-			["openInfo",ctrlParent (_this#0)] call SELF;
+			with uiNamespace do {["openInfo",ctrlParent (_this#0)] call SELF;};
 		}];
 		_grpInfo = _display displayCtrl IDC_CONFIG_GRPINFO;
 		_btnInfoOk = _display displayCtrl IDC_CONFIG_BTNINFOOK;
 		_btnInfoOk ctrlAddEventHandler ["ButtonClick",{
-			["infoClose",[ctrlParentControlsGroup (_this#0)]] call SELF;
+			with uiNamespace do {["infoClose",[ctrlParentControlsGroup (_this#0)]] call SELF;};
 		}];
 		_stxtInfo = _display displayCtrl IDC_CONFIG_STXTINFO;
 		_stxtInfo ctrlSetStructuredText parseText loadFile "TER_Editing\gui\scripts\RscConfigViewer73\info.sqf";
 		//--- Parents config combo
 		_comboParents = _display displayCtrl IDC_CONFIG_COMBOPARENTS;
 		_comboParents ctrlAddEventHandler ["LBSelChanged",{
-			["gotoParent",_this] call SELF;
+			with uiNamespace do {["gotoParent",_this] call SELF;};
 		}];
 		//--- Preview group
 		_grpPreview = _display displayCtrl IDC_CONFIG_GRPPREVIEW;
@@ -162,7 +162,7 @@ switch _mode do {
 		_sliderPicPreviewScale sliderSetRange [0,1];
 		_sliderPicPreviewScale sliderSetSpeed [0.01,0.01];
 		_sliderPicPreviewScale ctrlAddEventHandler ["SliderPosChanged",{
-			["previewPicScaleChange",_this] call SELF;
+			with uiNamespace do {["previewPicScaleChange",_this] call SELF;};
 		}];
 		_settingPreviewScale = [_dbSettings, ["picPreviewScale"], 1] call BIS_fnc_dbValueReturn;
 		_sliderPicPreviewScale sliderSetPosition _settingPreviewScale;
@@ -175,7 +175,7 @@ switch _mode do {
 		_grpHistory = _display displayCtrl IDC_CONFIG_GRPHISTORY;
 		_lbHistory = _display displayCtrl IDC_CONFIG_LBHISTORY;
 		_lbHistory ctrlAddEventHandler ["LBDblClick",{
-			["lbDoubleClickHistory", _this] call SELF;
+			with uiNamespace do {["lbDoubleClickHistory", _this] call SELF;};
 		}];
 		//--- Load previous config
 		_cfgArray = +(profilenamespace getvariable ["BIS_fnc_configviewer_path",[]]);
@@ -185,7 +185,7 @@ switch _mode do {
 		//--- Export button
 		_btnExport = _display displayCtrl IDC_CONFIG_BTNEXPORT;
 		_btnExport ctrlAddEventHandler ["ButtonClick", {
-			["exportOpen", _this] call SELF;
+			with uiNamespace do {["exportOpen", _this] call SELF;};
 		}];
 		//--- Export group
 		_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
@@ -211,11 +211,11 @@ switch _mode do {
 
 		_btnExportCancel = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_BTNCANCEL;
 		_btnExportCancel ctrlAddEventHandler ["ButtonClick",{
-			["exportExit", [ctrlParentControlsGroup (_this#0)]] call SELF;
+			with uiNamespace do {["exportExit", [ctrlParentControlsGroup (_this#0)]] call SELF;};
 		}];
 		_btnExportCopy = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_BTNCOPY;
 		_btnExportCopy ctrlAddEventHandler ["ButtonClick",{
-			["exportCopy", [ctrlParentControlsGroup (_this#0)]] call SELF;
+			with uiNamespace do {["exportCopy", [ctrlParentControlsGroup (_this#0)]] call SELF;};
 		}];
 	};
 	case "exportCopy":{
