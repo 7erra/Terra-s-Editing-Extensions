@@ -28,7 +28,7 @@
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 #include "ctrls.inc"
 #define SELF TER_3den_RscDisplayConfigViewer73_script
-params [["_mode", "create"],["_this",[]]];
+params [["_mode", "create"],["_params",[]]];
 
 switch _mode do {
 	case "create":{
@@ -38,7 +38,7 @@ switch _mode do {
 		_parentDisplay createDisplay "TER_3den_RscDisplayConfigViewer73";
 	};
 	case "onLoad":{
-		params ["_display"];
+		_params params ["_display"];
 		//--- Load settings
 		_dbSettings = +(profileNamespace getVariable ["TER_3den_configViewer73_dbSettings",[]]);
 		//--- Initialize Display
@@ -219,7 +219,7 @@ switch _mode do {
 		}];
 	};
 	case "exportCopy":{
-		params ["_grpExport"];
+		_params params ["_grpExport"];
 		_display = ctrlParent _grpExport;
 		_stxtExportStatus = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TXTSTATUS;
 		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#FFFF00'>Working...</t>";
@@ -262,11 +262,11 @@ switch _mode do {
 		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#00FF00'>Successful :)</t>";
 	};
 	case "exportExit":{
-		params ["_grpExport"];
+		_params params ["_grpExport"];
 		_grpExport ctrlShow false;
 	};
 	case "exportOpen":{
-		params ["_btnExport"];
+		_params params ["_btnExport"];
 		_display = ctrlParent _btnExport;
 		_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
 		_grpExport ctrlShow true;
@@ -281,7 +281,7 @@ switch _mode do {
 		_edExportConfig ctrlSetText _cfgString;
 	};
 	case "changeView":{
-		params ["_toolViewMode", "_ind"];
+		_params params ["_toolViewMode", "_ind"];
 		_display = ctrlParent _toolViewMode;
 		_grpListView = _display displayCtrl IDC_CONFIG_GRPLIST;
 		_grpTextView = _display displayCtrl IDC_CONFIG_GRPTEXT;
@@ -295,7 +295,7 @@ switch _mode do {
 		};
 	};
 	case "collectHistory":{
-		params ["_cfgArray"];
+		_params params ["_cfgArray"];
 		_history = uiNamespace getVariable ["TER_3den_configViewer73_history",[]];
 		_cfgConfig = [_cfgArray] call BIS_fnc_configPath;
 		if (!isClass _cfgConfig OR count _cfgArray == 0) exitWith {
@@ -306,7 +306,7 @@ switch _mode do {
 		_history
 	};
 	case "openHistory":{
-		params ["_display"];
+		_params params ["_display"];
 		_history = +(uiNamespace getVariable ["TER_3den_configViewer73_history",[]]);
 		_historyString = _history apply {[_x, "STRING"] call BIS_fnc_configPath};
 		_lbHistory = _display displayCtrl IDC_CONFIG_LBHISTORY;
@@ -316,7 +316,7 @@ switch _mode do {
 		} forEach _historyString;
 	};
 	case "lbDoubleClickHistory":{
-		params ["_lbHistory","_ind"];
+		_params params ["_lbHistory","_ind"];
 		_display = ctrlParent _lbHistory;
 		private _cfgArray = _lbHistory lbData _ind;
 		private _cfgArray = parseSimpleArray _cfgArray;
@@ -324,7 +324,7 @@ switch _mode do {
 		["updateClasses",[_display, _selClass]] call SELF;
 	};
 	case "previewPicScaleChange":{
-		params ["_sliderPicPreviewScale","_slPos"];
+		_params params ["_sliderPicPreviewScale","_slPos"];
 		_display = ctrlParent _sliderPicPreviewScale;
 		_picPreview = _display displayCtrl IDC_CONFIG_PICPREVIEW;
 		//--- Set scale of the picture
@@ -393,7 +393,7 @@ switch _mode do {
 		};
 	};
 	case "lbConfigsKey":{
-		params ["_lbConfigs", "_key", "_shift", "_ctrl", "_alt"];
+		_params params ["_lbConfigs", "_key", "_shift", "_ctrl", "_alt"];
 		if (_ctrl && _key == DIK_C) exitWith {
 			private _selClass = _lbConfigs lbText lbCurSel _lbConfigs;
 			copyToClipboard _selClass;
@@ -406,18 +406,18 @@ switch _mode do {
 		false
 	};
 	case "openInfo":{
-		params ["_display"];
+		_params params ["_display"];
 		_grpInfo = _display displayCtrl IDC_CONFIG_GRPINFO;
 		_btnInfoOk = _display displayCtrl IDC_CONFIG_BTNINFOOK;
 		_grpInfo ctrlShow true;
 		ctrlSetFocus _grpInfo;
 	};
 	case "infoClose":{
-		params ["_grpInfo"];
+		_params params ["_grpInfo"];
 		_grpInfo ctrlShow false;
 	};
 	case "displayKey":{
-		params ["_display", "_key", "_shift", "_ctrl", "_alt"];
+		_params params ["_display", "_key", "_shift", "_ctrl", "_alt"];
 		_progLoading = _display displayCtrl IDC_CONFIG_PROGLOADING;
 		_isLoading = progressPosition _progLoading != 1;
 		if (_ctrl && _shift && _key == DIK_F) exitWith {
@@ -469,7 +469,7 @@ switch _mode do {
 	};
 	case "doubleClickProperties":{
 		//--- Double click to preview entry
-		params ["_lbProperties","_ind"];
+		_params params ["_lbProperties","_ind"];
 		_display = ctrlParent _lbProperties;
 		_data = _lbProperties lbData _ind;
 		_cfgArray = +(_display getVariable ["_cfgArray",[]]);
@@ -528,7 +528,7 @@ switch _mode do {
 	};
 	case "edPropSearchKeyDown":{
 		//--- Key was pressed while search is focused
-		params ["_edPropertySearch"];
+		_params params ["_edPropertySearch"];
 		_filter = ctrlText _edPropertySearch;
 		if (_filter == _edPropertySearch getVariable ["prevSearch",""]) exitWith {};
 		_edPropertySearch setVariable ["prevSearch",_filter];
@@ -537,7 +537,7 @@ switch _mode do {
 		["updateProperties",[_display]] call SELF;
 	};
 	case "updateProperties":{
-		params ["_display"];
+		_params params ["_display"];
 		//--- LB view
 		_lbProperties = _display displayCtrl IDC_CONFIG_LBPROPERTIES;
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
@@ -615,24 +615,24 @@ switch _mode do {
 		_edProperties ctrlCommit 0;
 	};
 	case "changeProperty":{
-		params ["_lbProperties","_ind"];
+		_params params ["_lbProperties","_ind"];
 		_display = ctrlParent _lbProperties;
 		["updateEdCfgPath",[_display]] call SELF;
 		_edPropValue = _display displayCtrl IDC_CONFIG_EDPROPVALUE;
 		_edPropValue ctrlSetText (_lbProperties lbText _ind);
 	};
 	case "changeShowClasses":{
-		params ["_toolShowClasses","_ind"];
+		_params params ["_toolShowClasses","_ind"];
 		_display = ctrlParent _toolShowClasses;
 		["updateProperties",[_display]] call SELF;
 	};
 	case "changeInheritance":{
-		params ["_toolInheritance","_ind"];
+		_params params ["_toolInheritance","_ind"];
 		_display = ctrlParent _toolInheritance;
 		["updateProperties",[_display]] call SELF;
 	};
 	case "changeFavorite":{
-		params ["_lbFavorites","_ind"];
+		_params params ["_lbFavorites","_ind"];
 		if (
 			!isNil {_lbFavorites getVariable "update"} OR
 			lbCurSel _lbFavorites == -1
@@ -651,13 +651,13 @@ switch _mode do {
 		["updateClasses",[_display, _cfgSelected]] spawn SELF;
 	};
 	case "errorHide":{
-		params ["_stxtError"];
+		_params params ["_stxtError"];
 		_stxtError ctrlSetFade 1;
 		_stxtError ctrlSetPositionH 0;
 		_stxtError ctrlCommit 0;
 	};
 	case "toggleFavorite":{
-		params ["_btnFavorite"];
+		_params params ["_btnFavorite"];
 		_display = ctrlParent _btnFavorite;
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
@@ -694,7 +694,7 @@ switch _mode do {
 	};
 	case "configChange":{
 		//--- New config selected from list
-		params ["_lbConfigs","_ind"];
+		_params params ["_lbConfigs","_ind"];
 		_display = ctrlParent _lbConfigs;
 		_selectClass = _lbConfigs lbText _ind;
 		_currentFavorites = +(profileNamespace getVariable ["BIS_fnc_configviewer_bookmarks",[]]);
@@ -743,7 +743,7 @@ switch _mode do {
 		["collectHistory", [_cfgArray]] call SELF;
 	};
 	case "gotoParent":{
-		params ["_comboParents","_ind"];
+		_params params ["_comboParents","_ind"];
 		_display = ctrlParent _comboParents;
 		_cfgArray = _comboParents lbData _ind;
 		if (_cfgArray == "") exitWith {};
@@ -753,7 +753,7 @@ switch _mode do {
 		["updateClasses",[_display, _selClass]] spawn SELF;
 	};
 	case "fillFavorites":{
-		params ["_display"];
+		_params params ["_display"];
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
 		//_lbFavorites lbAdd "";
 		lbClear _lbFavorites;
@@ -765,7 +765,7 @@ switch _mode do {
 		};
 	};
 	case "endConfigSearch":{
-		params ["_btnEndConfigSearch"];
+		_params params ["_btnEndConfigSearch"];
 		_display = ctrlParent _btnEndConfigSearch;
 		_edSearchConfigs = _display displayCtrl IDC_CONFIG_EDCONFIGSEARCH;
 		if (ctrlText _edSearchConfigs == "") exitWith {};
@@ -773,7 +773,7 @@ switch _mode do {
 		["updateClasses",[_display]] spawn SELF;
 	};
 	case "updateClasses":{
-		params ["_display",["_selectClass",""],["_allowLoading",true]];
+		_params params ["_display",["_selectClass",""],["_allowLoading",true]];
 		_progLoading = _display displayCtrl IDC_CONFIG_PROGLOADING;
 		_stxtProgress = _display displayCtrl IDC_CONFIG_STXTPROGRESS;
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
@@ -795,7 +795,7 @@ switch _mode do {
 		};
 		//--- TODO: Implement caching listboxes?
 		_fncLoad = {
-			params ["_display", "_enable"];
+			_params params ["_display", "_enable"];
 			{
 				private _ctrl = _display displayCtrl _x;
 				_ctrl ctrlEnable _enable;
@@ -877,7 +877,7 @@ switch _mode do {
 		};
 	};
 	case "translateSearch":{
-		params ["_filter"];
+		_params params ["_filter"];
 		private _configFilter = "isClass _x";
 		_filterArray = _filter splitString " ";
 		_filterArray apply {
@@ -924,7 +924,7 @@ switch _mode do {
 		_configFilter
 	};
 	case "configsDblClick":{
-		params ["_lbConfigs","_ind"];
+		_params params ["_lbConfigs","_ind"];
 		_display = ctrlParent _lbConfigs;
 		_entry = _lbConfigs lbText _ind;
 		_cfgArray = _display getVariable ["_cfgArray",[]];
@@ -944,7 +944,7 @@ switch _mode do {
 		["updateClasses",[_display]] spawn SELF;
 	};
 	case "showError":{
-		params ["_display","_errorMessage"];
+		_params params ["_display","_errorMessage"];
 		_stxtError = _display displayCtrl IDC_CONFIG_STXTERROR;
 		_errorMessage = "<t size='1.25'>ERROR</t><br/>" +_errorMessage;
 		_stxtError ctrlSetFade 0;
@@ -967,7 +967,7 @@ switch _mode do {
 		};
 	};
 	case "keySearch":{
-		params ["_edSearchConfigs","_key"];
+		_params params ["_edSearchConfigs","_key"];
 		//if !(_key in [DIK_NUMPADENTER, DIK_RETURN]) exitWith {};
 		_filter = ctrlText _edSearchConfigs;
 		_configFilter = ["translateSearch", [_filter]] call SELF;
@@ -981,7 +981,7 @@ switch _mode do {
 		false
 	};
 	case "dirUp":{
-		params ["_btnDirectory"];
+		_params params ["_btnDirectory"];
 		private ["_display", "_edSearchConfigs","_cfgArray","_cfgClass"];
 		_display = ctrlParent _btnDirectory;
 		_edSearchConfigs = _display displayCtrl IDC_CONFIG_EDCONFIGSEARCH;
@@ -992,7 +992,7 @@ switch _mode do {
 		["updateClasses",[_display, _cfgClass]] spawn SELF;
 	};
 	case "updateEdCfgPath":{
-		params ["_display"];
+		_params params ["_display"];
 		_edCfgPath = _display displayCtrl IDC_CONFIG_EDCFGPATH;
 		_cfgArray = +(_display getVariable ["_cfgArray",[]]);
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
@@ -1009,7 +1009,7 @@ switch _mode do {
 		_edCfgPath ctrlSetText _cfgString;
 	};
 	case "onUnload":{
-		params ["_display", "_exitCode"];
+		_params params ["_display", "_exitCode"];
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
 		_cfgArray = _display getVariable ["_cfgArray",[]];
 		_cfgSelected = _lbConfigs lbText lbCurSel _lbConfigs;
