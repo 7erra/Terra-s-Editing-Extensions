@@ -71,6 +71,7 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 			w = DEBUG_W;
 			h = 1 * GUI_GRID_H;
 			style = ST_LEFT;
+			shadow = 0;
 			colorText[] = {1,1,1,1};
 			period = -1;
 			//blinkingPeriod = 0;
