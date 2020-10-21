@@ -26,7 +26,7 @@ case "onLoad":{
 		_control ctrlShow false;
 		_control ctrlEnable false;
 	};
-	uiNamespace setVariable ["TER_3den_uiSize2BigShown",false];
+
 	_displayEscape displayRemoveAllEventHandlers "MouseButtonDown";
 	// global functions
 	if (isNil {uiNamespace getVariable "TER_fnc_debugPage1_script"}) then {
