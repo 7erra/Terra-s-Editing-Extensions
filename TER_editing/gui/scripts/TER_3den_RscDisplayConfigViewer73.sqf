@@ -274,7 +274,12 @@ switch _mode do {
 			isNumber(_cfgFull>>"idd")
 		) exitWith {
 			diag_log ["Creating display: ", configName _cfgFull];
-			_display createDisplay (configName _cfgFull);
+			_previewDisplay = _display createDisplay (configName _cfgFull);
+			"TER_3den_RscDisplayPreviewBackground_layer" cutRsc ["TER_3den_RscDisplayPreviewBackground", "PLAIN"];
+			_previewDisplay displayAddEventHandler ["Unload", {
+				params ["_display"];
+				"TER_3den_RscDisplayPreviewBackground_layer" cutFadeOut 0;
+			}];
 		};
 		diag_log "previewClass END";
 	};

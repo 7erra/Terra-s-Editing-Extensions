@@ -21,4 +21,5 @@ class RscTitles
 	
 	#include "RscLiveWatch.hpp"
 	#include "RscGrids.hpp"
+	#include "TER_3den_RscDisplayPreviewBackground.hpp"
 };
