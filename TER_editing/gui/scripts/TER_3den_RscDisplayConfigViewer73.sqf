@@ -224,8 +224,66 @@ switch _mode do {
 			with uiNamespace do {["previewClass", _this] call SELF;};
 		}];
 	};
+	#define BREAKPOINT if true exitWith {}
 	case "previewClass":{
 		_params params ["_btnPreview"];
+		_display = ctrlParent _btnPreview;
+		//--- Find out in which config we are:
+		//--- Previews are available for CfgVehicles, CfgWeapons, CfgMagazines
+		_cfgArray = _display getVariable ["_cfgArray", []];
+		_cfgArrayFull = ["getSelectedCfgArray", [_display, []]] call SELF;
+		_cfgFull = [_cfgArrayFull, configNull] call BIS_fnc_configPath;
+		_cfgHierarchy = configHierarchy _cfgFull;
+		_cfgArrayFull params [
+			["_cfgLevel0", ""],
+			["_cfgLevel1", ""],
+			["_cfgLevel2", ""]
+		];
+		diag_log ["previewclass:", _cfgArrayFull, configName _cfgFull];
+		//--- CfgVehicles class
+		_cfgVehicle = configFile >> "CfgVehicles" >> _cfgLevel2;
+		if (
+			count _cfgArrayFull == 3 &&
+			{isClass(_cfgVehicle)} &&
+			{getNumber(_cfgVehicle >> "scope") > 0}
+		) exitWith {
+			if is3DEN then {
+				collect3DENHistory {
+					_vehicle = create3DENEntity [
+						"Object",
+						configName _cfgVehicle,
+						screenToWorld [0.5, 0.5],
+						true
+					];
+				};
+			} else {
+				_vehicle = createVehicle [
+					configName _cfgVehicle,
+					[0,0,0],
+					[],
+					0,
+					"CAN_COLLIDE"
+				];
+				_vehicle setPos (player modelToWorld [0, sizeOf(configName _cfgVehicle)]);
+				_vehicle setDir (getDir player + 90);
+			};
+		};
+		//--- Display
+		if (
+			count _cfgArrayFull == 2 &&
+			isNumber(_cfgFull>>"idd")
+		) exitWith {
+			diag_log ["Creating display: ", configName _cfgFull];
+			_display createDisplay (configName _cfgFull);
+		};
+		diag_log "previewClass END";
+	};
+	case "getSelectedCfgArray":{
+		_params params ["_display", ["_format", []]];
+		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
+		_cfgSelected = _lbConfigs lbText lbCurSel _lbConfigs;
+		_cfgFull = (_display getVariable ["_cfgArray", []]) + [_cfgSelected];
+		[_cfgFull, _format] call BIS_fnc_configPath
 	};
 	case "exportCopy":{
 		_params params ["_grpExport"];
