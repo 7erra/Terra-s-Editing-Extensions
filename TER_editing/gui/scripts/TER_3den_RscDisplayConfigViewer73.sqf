@@ -28,6 +28,9 @@
 #include "\a3\ui_f\hpp\definedikcodes.inc"
 #include "ctrls.inc"
 #define SELF TER_3den_RscDisplayConfigViewer73_script
+#define WEAPONTYPE_PRIMARY 1
+#define WEAPONTYPE_HANDGUN 2
+#define WEAPONTYPE_SECONDARY 4
 params [["_mode", "create"],["_params",[]]];
 
 switch _mode do {
@@ -280,6 +283,51 @@ switch _mode do {
 				params ["_display"];
 				"TER_3den_RscDisplayPreviewBackground_layer" cutFadeOut 0;
 			}];
+		};
+		//--- Weapon
+		_cfgWeapon = configFile >> "CfgWeapons" >> _cfgLevel2;
+		if (
+			count _cfgArrayFull == 3 &&
+			{isClass _cfgWeapon} &&
+			{getNumber(_cfgWeapon >> "scope") > 0} &&
+			{getNumber(_cfgWeapon >> "type") in [WEAPONTYPE_PRIMARY, WEAPONTYPE_HANDGUN, WEAPONTYPE_SECONDARY]}
+		) exitWith {
+			diag_log ["weapon:"];
+			_fncAddMagazines = {
+				params ["_unit", "_cfgWeapon"];
+				getArray(_cfgWeapon>>"muzzles") apply {
+					if (_x == "this") then {
+						getArray(_cfgWeapon >> "magazines") apply {
+							for "_i" from 0 to 2 do {
+								_unit addMagazine _x;
+							};
+						};
+					} else {
+						getArray(_cfgWeapon >> _x >> "magazines") apply {
+							for "_i" from 0 to 3 do {
+								_unit addMagazine _x;
+							};
+						};
+					};
+				};
+			};
+			if (is3den) then {
+				private ["_previewMan"];
+				//--- Create dummy unit and give weapon
+				collect3DENHistory {
+					_previewMan = create3DENEntity [
+						"Object",
+						"C_Protagonist_VR_F",
+						screenToWorld[0.5, 0.5]
+					];
+				};
+				_previewMan addWeapon configName _cfgWeapon;
+				//--- Add magazines for all muzzles
+				[_previewMan, _cfgWeapon] call _fncAddMagazines;
+				save3DENInventory [_previewMan];
+			} else {
+			};
+			
 		};
 		diag_log "previewClass END";
 	};
