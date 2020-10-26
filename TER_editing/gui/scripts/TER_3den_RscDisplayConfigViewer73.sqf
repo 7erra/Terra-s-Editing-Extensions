@@ -325,6 +325,14 @@ switch _mode do {
 				//--- Add magazines for all muzzles
 				[_previewMan, _cfgWeapon] call _fncAddMagazines;
 				save3DENInventory [_previewMan];
+				//--- Show the weapon by selecting the correct animation
+				_animation = switch (getNumber(_cfgWeapon>>"type")) do {
+					case WEAPONTYPE_PRIMARY: {"aidlpercmstpsraswrfldnon_ai"};
+					case WEAPONTYPE_HANDGUN: {"amovpercmstpsraswpstdnon"};
+					case WEAPONTYPE_SECONDARY: {"amovpercmstpsraswlnrdnon"};
+					default {""};
+				};
+				_previewMan switchMove _animation;
 			} else {
 			};
 			
