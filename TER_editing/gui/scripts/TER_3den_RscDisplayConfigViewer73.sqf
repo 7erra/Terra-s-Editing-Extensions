@@ -26,6 +26,7 @@
 	"TER_3den_configViewer73_dbSettings" (profileNamespace) - Scripted database with settings
 */
 #include "\a3\ui_f\hpp\definedikcodes.inc"
+#include "\a3\ui_f\hpp\defineResinclDesign.inc"
 #include "ctrls.inc"
 #define SELF TER_3den_RscDisplayConfigViewer73_script
 #define WEAPONTYPE_PRIMARY 1
@@ -258,6 +259,7 @@ switch _mode do {
 						screenToWorld [0.5, 0.5],
 						true
 					];
+					set3DENSelected [_vehicle];
 				};
 			} else {
 				_vehicle = createVehicle [
@@ -269,6 +271,10 @@ switch _mode do {
 				];
 				_vehicle setPos (player modelToWorld [0, sizeOf(configName _cfgVehicle)]);
 				_vehicle setDir (getDir player + 90);
+				_vehicle addAction ["Delete", {
+					params ["_target", "_caller", "_actionId", "_arguments"];
+					deleteVehicle _target;
+				}];
 			};
 		};
 		//--- Display
@@ -292,17 +298,18 @@ switch _mode do {
 			{getNumber(_cfgWeapon >> "scope") > 0} &&
 			{getNumber(_cfgWeapon >> "type") in [WEAPONTYPE_PRIMARY, WEAPONTYPE_HANDGUN, WEAPONTYPE_SECONDARY]}
 		) exitWith {
-			diag_log ["weapon:"];
 			_fncAddMagazines = {
 				params ["_unit", "_cfgWeapon"];
 				getArray(_cfgWeapon>>"muzzles") apply {
 					if (_x == "this") then {
+						//--- Main muzzle
 						getArray(_cfgWeapon >> "magazines") apply {
 							for "_i" from 0 to 2 do {
 								_unit addMagazine _x;
 							};
 						};
 					} else {
+						//--- Underbarrel etc.
 						getArray(_cfgWeapon >> _x >> "magazines") apply {
 							for "_i" from 0 to 3 do {
 								_unit addMagazine _x;
@@ -311,6 +318,7 @@ switch _mode do {
 					};
 				};
 			};
+			_weaponClass = configName _cfgWeapon;
 			if (is3den) then {
 				private ["_previewMan"];
 				//--- Create dummy unit and give weapon
@@ -334,6 +342,22 @@ switch _mode do {
 				};
 				_previewMan switchMove _animation;
 			} else {
+				//--- Preview from running game, give weapon to player and open Arsenal
+				player addWeapon _weaponClass;
+				player selectWeapon _weaponClass;
+				[_cfgWeapon] spawn {
+					params ["_cfgWeapon"];
+					["Open", [true]] call BIS_fnc_arsenal;
+					//---Artificially trigger the button click of the arsenal button
+					_displayArsenal = uiNamespace getVariable "RscDisplayArsenal";
+					_index = switch (getNumber(_cfgWeapon>>"type")) do {
+						case WEAPONTYPE_PRIMARY: {IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON};
+						case WEAPONTYPE_HANDGUN: {IDC_RSCDISPLAYARSENAL_TAB_HANDGUN};
+						case WEAPONTYPE_SECONDARY: {IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON};
+						default {""};
+					};
+					with uiNamespace do {["TabSelectLeft", [_displayArsenal, _index]] call BIS_fnc_arsenal;};
+				};
 			};
 			
 		};
