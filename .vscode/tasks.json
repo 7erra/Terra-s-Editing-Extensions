@@ -16,17 +16,58 @@
 			}
 		},
 		{
-			"label": "Start A3",
-			"type": "shell",
-			"command": "${config:python.pythonPath}",
-			"args": [
-				".vscode/launch.py"
-			],
-			"problemMatcher": [],
-			"group": {
-				"kind": "test",
-				"isDefault": true
-			}
-		}
+            "label": "Run Arma 3",
+            "type": "process",
+            "options": {
+                "cwd": "M:\\SteamLibraryM\\steamapps\\common\\Arma 3"
+            },
+            "command": "arma3diag_x64",
+            "args": [
+                "${workspaceFolder}\\TER_Editing_mission.vr\\mission.sqm",
+				"-skipIntro",
+				"-filePatching",
+				"-noSplash",
+				"-noSound",
+                "-showScriptErrors",
+                "-mod=!Workshop\\@3den Enhanced;!Workshop\\@CBA_A3;!Workshop\\@Pythia;P:\\Terra-s-Editing-Extensions\\@Terra's Editing Extensions",
+                "-window",
+                "-posX=-1795",
+                "-posY=146",
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Test Release Arma 3",
+            "type": "process",
+            "options": {
+                "cwd": "M:\\SteamLibraryM\\steamapps\\common\\Arma 3"
+            },
+            "command": "arma3_x64",
+            "args": [
+                "E:\\Documents\\Arma 3\\missions\\emptymission.VR\\mission.sqm",
+				"-skipIntro",
+				"-filePatching",
+				"-noSplash",
+				"-noSound",
+                "-showScriptErrors",
+                "-mod=\"!Workshop\\@3den Enhanced\";\"!Workshop\\@CBA_A3\";\"!Workshop\\@Pythia\";\"P:\\Terra-s-Editing-Extensions\\@Terra's Editing Extensions\"",
+                "-window",
+                "-posX=-1795",
+                "-posY=146",
+            ]
+        },
+        {
+            "label": "Stop Arma 3",
+            "type": "shell",
+            "command": "Stop-Process",
+            "args": [
+                "-Name",
+                "arma3diag_x64",
+                "-Force"
+            ]
+        }
 	]
 }
