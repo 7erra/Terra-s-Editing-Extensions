@@ -243,7 +243,6 @@ switch _mode do {
 			["_cfgLevel1", ""],
 			["_cfgLevel2", ""]
 		];
-		diag_log ["previewclass:", _cfgArrayFull, configName _cfgFull];
 		//--- CfgVehicles class
 		_cfgVehicle = configFile >> "CfgVehicles" >> _cfgLevel2;
 		if (
@@ -282,11 +281,12 @@ switch _mode do {
 			count _cfgArrayFull == 2 &&
 			isNumber(_cfgFull>>"idd")
 		) exitWith {
-			diag_log ["Creating display: ", configName _cfgFull];
+			["showinterface", false] call BIS_fnc_3denInterface;
 			_previewDisplay = _display createDisplay (configName _cfgFull);
 			"TER_3den_RscDisplayPreviewBackground_layer" cutRsc ["TER_3den_RscDisplayPreviewBackground", "PLAIN"];
 			_previewDisplay displayAddEventHandler ["Unload", {
 				params ["_display"];
+				["showinterface", true] call BIS_fnc_3denInterface;
 				"TER_3den_RscDisplayPreviewBackground_layer" cutFadeOut 0;
 			}];
 		};
@@ -303,8 +303,10 @@ switch _mode do {
 				getArray(_cfgWeapon>>"muzzles") apply {
 					if (_x == "this") then {
 						//--- Main muzzle
-						getArray(_cfgWeapon >> "magazines") apply {
-							for "_i" from 0 to 2 do {
+						private _mags = getArray(_cfgWeapon >> "magazines");
+						_unit addPrimaryWeaponItem (_mags#0);
+						_mags apply {
+							for "_i" from 0 to 1 do {
 								_unit addMagazine _x;
 							};
 						};
@@ -318,6 +320,33 @@ switch _mode do {
 					};
 				};
 			};
+			_fncPreviewArsenal = {
+				params ["_cfgWeapon", ["_man", player]];
+				["Open",[true,objnull,_man]] call bis_fnc_arsenal;
+				//---Artificially trigger the button click of the arsenal button
+				//---And show the weapon
+				_displayArsenal = uiNamespace getVariable "RscDisplayArsenal";
+				private _index = switch (getNumber(_cfgWeapon>>"type")) do {
+					case WEAPONTYPE_PRIMARY: {IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON};
+					case WEAPONTYPE_HANDGUN: {IDC_RSCDISPLAYARSENAL_TAB_HANDGUN};
+					case WEAPONTYPE_SECONDARY: {IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON};
+					default {""};
+				};
+				private _idcList = IDC_RSCDISPLAYARSENAL_LIST + _index;
+				diag_log [
+					configName _cfgWeapon,
+					_idcList, 
+					_displayArsenal displayCtrl _idcList
+				];
+				with uiNamespace do {
+					["ShowItem",[
+						_displayArsenal,
+						_displayArsenal displayCtrl _idcList,
+						_index
+					]] call bis_fnc_arsenal;
+					["TabSelectLeft", [_displayArsenal, _index]] call BIS_fnc_arsenal;
+				};
+			};
 			_weaponClass = configName _cfgWeapon;
 			if (is3den) then {
 				private ["_previewMan"];
@@ -329,39 +358,20 @@ switch _mode do {
 						screenToWorld[0.5, 0.5]
 					];
 				};
-				_previewMan addWeapon configName _cfgWeapon;
+				_previewMan addWeapon _weaponClass;
 				//--- Add magazines for all muzzles
 				[_previewMan, _cfgWeapon] call _fncAddMagazines;
 				save3DENInventory [_previewMan];
-				//--- Show the weapon by selecting the correct animation
-				_animation = switch (getNumber(_cfgWeapon>>"type")) do {
-					case WEAPONTYPE_PRIMARY: {"aidlpercmstpsraswrfldnon_ai"};
-					case WEAPONTYPE_HANDGUN: {"amovpercmstpsraswpstdnon"};
-					case WEAPONTYPE_SECONDARY: {"amovpercmstpsraswlnrdnon"};
-					default {""};
-				};
-				_previewMan switchMove _animation;
+				_display closeDisplay 0;
+				[_cfgWeapon, _previewMan] spawn _fncPreviewArsenal;
 			} else {
 				//--- Preview from running game, give weapon to player and open Arsenal
 				player addWeapon _weaponClass;
 				player selectWeapon _weaponClass;
-				[_cfgWeapon] spawn {
-					params ["_cfgWeapon"];
-					["Open", [true]] call BIS_fnc_arsenal;
-					//---Artificially trigger the button click of the arsenal button
-					_displayArsenal = uiNamespace getVariable "RscDisplayArsenal";
-					_index = switch (getNumber(_cfgWeapon>>"type")) do {
-						case WEAPONTYPE_PRIMARY: {IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON};
-						case WEAPONTYPE_HANDGUN: {IDC_RSCDISPLAYARSENAL_TAB_HANDGUN};
-						case WEAPONTYPE_SECONDARY: {IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON};
-						default {""};
-					};
-					with uiNamespace do {["TabSelectLeft", [_displayArsenal, _index]] call BIS_fnc_arsenal;};
-				};
+				_display closeDisplay 0;
+				[_cfgWeapon, player] spawn _fncPreviewArsenal;
 			};
-			
 		};
-		diag_log "previewClass END";
 	};
 	case "getSelectedCfgArray":{
 		_params params ["_display", ["_format", []]];
