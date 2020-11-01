@@ -4,7 +4,7 @@ class TER_3den_RscDisplayPreviewBackground
 	fadeIn = 0;
 	fadeOut = 0;
 	duration = 10e+6;
-	INIT_DISPLAY(TER_3den_RscDisplayPreviewBackground, "TER_Eden")
+	INIT_DISPLAY(TER_3den_RscDisplayPreviewBackground, "TER_Editing")
 	class controlsBackground
 	{		
 		class BackgroundDisable: ctrlStaticBackgroundDisable
@@ -23,14 +23,14 @@ class TER_3den_RscDisplayPreviewBackground
 			style = ST_CENTER;
 			shadow = 0;
 			x = safeZoneXAbs;
-			y = safeZoneY + 1 * GUI_GRID_H;
+			y = safeZoneY;
 			w = safeZoneWAbs;
 			h = 1 * GUI_GRID_H;
 		};
 		class DisclaimerBottom: DisclaimerTop
 		{
 			idc = IDC_PREVIEWBACKGROUND_TXTDISCLAIMERBOTTOM;
-			y = safeZoneY + safeZoneH - 2 * GUI_GRID_H;
+			y = safeZoneY + safeZoneH - 1 * GUI_GRID_H;
 		};
 	};
 };
