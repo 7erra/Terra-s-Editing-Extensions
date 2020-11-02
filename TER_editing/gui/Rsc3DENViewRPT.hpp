@@ -1,8 +1,8 @@
-class TER_3DENViewRPT
+class TER_3DENViewRPT //To-Do: Use macro system for coordinates at some point
 {
 	idd = -1;
 	movingEnable = "true";
-	onLoad = "[_this # 0, 'onLoad'] call compile preprocessFileLineNumbers 't.sqf'";
+	onLoad = "[_this # 0, 'onLoad'] execVM ""TER_Editing\gui\scripts\Rsc3DENViewRPT.sqf"";";
 	class ControlsBackground
 	{
 		class BackgroundDisable: ctrlStaticBackgroundDisable
