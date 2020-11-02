@@ -19,7 +19,6 @@
 class TER_3den_RscDisplayConfigViewer73
 {
 	idd = IDD_DISPLAY_CONFIGVIEWER;
-	//ONLOAD(RscConfigViewer73);
 	INIT_DISPLAY(TER_3den_RscDisplayConfigViewer73, "TER_Editing")
 	class controlsBackground
 	{
@@ -413,7 +412,7 @@ class TER_3den_RscDisplayConfigViewer73
 		class btn_preview: btn_openInfo
 		{
 			idc = IDC_CONFIG_BTNPREVIEW;
-			text = "Preview";
+			text = "PREVIEW CLASS";
 			x = _R - (MARGIN(3) + 30) * UI_GRID_W;
 			w = 10 * UI_GRID_W;
 		};
