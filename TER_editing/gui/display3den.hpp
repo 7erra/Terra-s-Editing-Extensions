@@ -45,6 +45,7 @@ class Display3DEN
 					picture = "";
 					ACT_DISPLAY(TER_3DENViewRPT);
 					opensNewWindow = 1;
+					shortcuts[] = {"0x1D+0x38+0x20"};
 				};
 				class TER_3den_stxtEditor
 				{
