@@ -46,9 +46,6 @@ switch _mode do {
 		//--- Load settings
 		_dbSettings = +(profileNamespace getVariable ["TER_3den_configViewer73_dbSettings",[]]);
 		//--- Initialize Display
-		/* _display displayAddEventHandler ["Unload",{
-			["onUnload",_this] call SELF;
-		}]; */
 		_display displayAddEventHandler ["KeyDown",{
 			with uiNamespace do {["displayKey",_this] call SELF;};
 		}];
@@ -333,11 +330,6 @@ switch _mode do {
 					default {""};
 				};
 				private _idcList = IDC_RSCDISPLAYARSENAL_LIST + _index;
-				diag_log [
-					configName _cfgWeapon,
-					_idcList, 
-					_displayArsenal displayCtrl _idcList
-				];
 				with uiNamespace do {
 					["ShowItem",[
 						_displayArsenal,
@@ -713,7 +705,7 @@ switch _mode do {
 		private _newConfig = if (count _cfgArray == 0) then {
 			call compile (_lbConfigs lbText _ind)
 		} else {
-			_cfgConfig = [_cfgArray] call BIS_fnc_configPath;
+			private _cfgConfig = [_cfgArray] call BIS_fnc_configPath;
 			_cfgName = _lbConfigs lbText _ind;
 			_cfgConfig >> _cfgName
 		};
@@ -890,7 +882,7 @@ switch _mode do {
 		};
 		["updateProperties", [_display]] call SELF;
 		//--- Update parents
-		private _parents = [_cfgConfig >> _selectClass] call BIS_fnc_returnParents;
+		private _parents = [_cfgConfig] call (missionNamespace getVariable "BIS_fnc_returnParents");
 		_parents deleteAt 0;
 		reverse _parents;
 		_comboParents = _display displayCtrl IDC_CONFIG_COMBOPARENTS;
@@ -901,8 +893,35 @@ switch _mode do {
 			private _ind = _comboParents lbAdd ([_x, "STRING"] call BIS_fnc_configPath);
 			_comboParents lbSetData [_ind, str ([_x] call BIS_fnc_configPath)];
 		} forEach _parents;
-		//--- Save to history
-		["collectHistory", [_cfgArray]] call SELF;
+		//--- Check if config is previewable
+		_ctrlPreview = _display displayCtrl IDC_CONFIG_BTNPREVIEW;
+		_ctrlPreview ctrlEnable (["classPreviewType", [_cfgConfig]] call SELF != "");
+		//--- Save to history (not implemented)
+		//["collectHistory", [_cfgArray]] call SELF;
+	};
+	case "classPreviewType":{
+		_params params ["_cfg"];
+		private _hierarchy = configHierarchy _cfg;
+		//--- Check if config is...
+		//--- ... a vehicle config
+		if (
+			(configFile>>"CfgVehicles") in _hierarchy &&
+			{getNumber(_cfg >> "scope") > 0}
+		) exitWith {"vehicle"};
+		//--- ... a display config
+		if (
+			isNumber(_cfg>>"idd") &&
+			count(_hierarchy) == 2
+		) exitWith {"display"};
+		//--- ... a weapon config
+		if (
+			(configFile >> "CfgWeapons") in _hierarchy &&
+			count _hierarchy == 3 &&
+			{getNumber(_cfg >> "scope") > 0} &&
+			{getNumber(_cfg >> "type") in [WEAPONTYPE_PRIMARY, WEAPONTYPE_HANDGUN, WEAPONTYPE_SECONDARY]}
+		) exitWith {"weapon"};
+		//--- Config preview could not be determined
+		""
 	};
 	case "gotoParent":{
 		_params params ["_comboParents","_ind"];
