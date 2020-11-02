@@ -85,7 +85,7 @@ class TER_3DENViewRPT //To-Do: Use macro system for coordinates at some point
 			y = "(safezoneY + 16 * (pixelH * pixelGrid * 	0.50)) + 105 * (pixelH * pixelGrid * 	0.50)";
 			w = "25 * (pixelW * pixelGrid * 	0.50)";
 			h = "(5 * (pixelH * pixelGrid * 	0.50))";
-			onButtonClick = "[_this # 0, 'reload'] call compile preprocessFileLineNumbers 't.sqf'";
+			onButtonClick = "[_this # 0, 'reload'] execVM ""TER_Editing\gui\scripts\Rsc3DENViewRPT.sqf"";";
 		};
 		class Close: ctrlButtonClose
 		{
