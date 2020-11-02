@@ -4,7 +4,7 @@
    Date: 2020-11-02
 
    Description:
-   Initialises Rsc3DENViewRPT GUI. 
+   Initialises Rsc3DENViewRPT GUI. Script is executed by the GUI.
 
    Parameter(s):
    0: DISPLAY or CONTROL
