@@ -53,7 +53,7 @@
 				"-noSplash",
 				"-noSound",
                 "-showScriptErrors",
-                "-mod=\"!Workshop\\@3den Enhanced\";\"!Workshop\\@CBA_A3\";\"!Workshop\\@Pythia\";\"P:\\Terra-s-Editing-Extensions\\@Terra's Editing Extensions\"",
+                "-mod=!Workshop\\@3den Enhanced;!Workshop\\@CBA_A3;!Workshop\\@Pythia;P:\\Terra-s-Editing-Extensions\\@Terra's Editing Extensions",
                 "-window",
                 "-posX=-1795",
                 "-posY=146",
