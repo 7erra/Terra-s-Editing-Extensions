@@ -229,29 +229,19 @@ switch _mode do {
 	case "previewClass":{
 		_params params ["_btnPreview"];
 		_display = ctrlParent _btnPreview;
-		//--- Find out in which config we are:
 		//--- Previews are available for CfgVehicles, CfgWeapons, CfgMagazines
 		_cfgArray = _display getVariable ["_cfgArray", []];
 		_cfgArrayFull = ["getSelectedCfgArray", [_display, []]] call SELF;
 		_cfgFull = [_cfgArrayFull, configNull] call BIS_fnc_configPath;
-		_cfgHierarchy = configHierarchy _cfgFull;
-		_cfgArrayFull params [
-			["_cfgLevel0", ""],
-			["_cfgLevel1", ""],
-			["_cfgLevel2", ""]
-		];
 		//--- CfgVehicles class
 		_cfgVehicle = configFile >> "CfgVehicles" >> _cfgLevel2;
-		if (
-			count _cfgArrayFull == 3 &&
-			{isClass(_cfgVehicle)} &&
-			{getNumber(_cfgVehicle >> "scope") > 0}
-		) exitWith {
+		private _previewType = ["classPreviewType", [_cfgFull]] call SELF;
+		if (_previewType == "vehicle") exitWith {
 			if is3DEN then {
 				collect3DENHistory {
 					_vehicle = create3DENEntity [
 						"Object",
-						configName _cfgVehicle,
+						configName _cfgFull,
 						screenToWorld [0.5, 0.5],
 						true
 					];
@@ -259,25 +249,23 @@ switch _mode do {
 				};
 			} else {
 				_vehicle = createVehicle [
-					configName _cfgVehicle,
+					configName _cfgFull,
 					[0,0,0],
 					[],
 					0,
 					"CAN_COLLIDE"
 				];
-				_vehicle setPos (player modelToWorld [0, sizeOf(configName _cfgVehicle)]);
+				_vehicle setPos (player modelToWorld [0, sizeOf(configName _cfgFull)]);
 				_vehicle setDir (getDir player + 90);
 				_vehicle addAction ["Delete", {
 					params ["_target", "_caller", "_actionId", "_arguments"];
 					deleteVehicle _target;
 				}];
 			};
+			_display closeDisplay 0;
 		};
 		//--- Display
-		if (
-			count _cfgArrayFull == 2 &&
-			isNumber(_cfgFull>>"idd")
-		) exitWith {
+		if (_previewType == "display") exitWith {
 			["showinterface", false] call BIS_fnc_3denInterface;
 			_previewDisplay = _display createDisplay (configName _cfgFull);
 			"TER_3den_RscDisplayPreviewBackground_layer" cutRsc ["TER_3den_RscDisplayPreviewBackground", "PLAIN"];
@@ -288,13 +276,7 @@ switch _mode do {
 			}];
 		};
 		//--- Weapon
-		_cfgWeapon = configFile >> "CfgWeapons" >> _cfgLevel2;
-		if (
-			count _cfgArrayFull == 3 &&
-			{isClass _cfgWeapon} &&
-			{getNumber(_cfgWeapon >> "scope") > 0} &&
-			{getNumber(_cfgWeapon >> "type") in [WEAPONTYPE_PRIMARY, WEAPONTYPE_HANDGUN, WEAPONTYPE_SECONDARY]}
-		) exitWith {
+		if (_previewType == "weapon") exitWith {
 			_fncAddMagazines = {
 				params ["_unit", "_cfgWeapon"];
 				getArray(_cfgWeapon>>"muzzles") apply {
@@ -339,7 +321,7 @@ switch _mode do {
 					["TabSelectLeft", [_displayArsenal, _index]] call BIS_fnc_arsenal;
 				};
 			};
-			_weaponClass = configName _cfgWeapon;
+			_weaponClass = configName _cfgFull;
 			if (is3den) then {
 				private ["_previewMan"];
 				//--- Create dummy unit and give weapon
@@ -352,16 +334,16 @@ switch _mode do {
 				};
 				_previewMan addWeapon _weaponClass;
 				//--- Add magazines for all muzzles
-				[_previewMan, _cfgWeapon] call _fncAddMagazines;
+				[_previewMan, _cfgFull] call _fncAddMagazines;
 				save3DENInventory [_previewMan];
 				_display closeDisplay 0;
-				[_cfgWeapon, _previewMan] spawn _fncPreviewArsenal;
+				[_cfgFull, _previewMan] spawn _fncPreviewArsenal;
 			} else {
 				//--- Preview from running game, give weapon to player and open Arsenal
 				player addWeapon _weaponClass;
 				player selectWeapon _weaponClass;
 				_display closeDisplay 0;
-				[_cfgWeapon, player] spawn _fncPreviewArsenal;
+				[_cfgFull, player] spawn _fncPreviewArsenal;
 			};
 		};
 	};
@@ -902,10 +884,11 @@ switch _mode do {
 	case "classPreviewType":{
 		_params params ["_cfg"];
 		private _hierarchy = configHierarchy _cfg;
+		diag_log ["_cfg", _cfg];
 		//--- Check if config is...
 		//--- ... a vehicle config
 		if (
-			(configFile>>"CfgVehicles") in _hierarchy &&
+			(configFile >> "CfgVehicles") in _hierarchy &&
 			{getNumber(_cfg >> "scope") > 0}
 		) exitWith {"vehicle"};
 		//--- ... a display config
