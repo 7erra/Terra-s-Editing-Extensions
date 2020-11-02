@@ -25,17 +25,17 @@ switch _mode do {
 		};
 		_displayEscape spawn {_this displayRemoveAllEventHandlers "MouseButtonDown";};
 		// global functions
-		//if (isNil {uiNamespace getVariable "TER_fnc_debugPage1_script"}) then {
+		if (isNil {uiNamespace getVariable "TER_fnc_debugPage1_script"}) then {
 			// compile functions
 			for "_i" from 1 to _pageCount do {
 				uiNamespace setVariable [
 					format ["TER_fnc_debugPage%1_script",_i], 
 					compile preprocessFileLineNumbers format [
-						"p\TER_Editing\gui\scripts\RscDebug\page%1.sqf",_i
+						"\TER_Editing\gui\scripts\RscDebug\page%1.sqf",_i
 					]
 				];
 			};
-		//};
+		};
 		// pages listbox:
 		_lbPages = _control controlsGroupCtrl IDC_LB_PAGES;
 		_lbPages setVariable ["TER_3den_xlbPagesInit",true];
