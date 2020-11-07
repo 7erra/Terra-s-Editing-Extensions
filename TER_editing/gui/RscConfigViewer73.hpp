@@ -19,7 +19,7 @@
 class TER_3den_RscDisplayConfigViewer73
 {
 	idd = IDD_DISPLAY_CONFIGVIEWER;
-	ONLOAD(RscConfigViewer73);
+	INIT_DISPLAY(TER_3den_RscDisplayConfigViewer73, "TER_Editing")
 	class controlsBackground
 	{
 		class background: ctrlStaticBackground
@@ -399,6 +399,31 @@ class TER_3den_RscDisplayConfigViewer73
 				};
 			};
 		};
+		class btn_openInfo: ctrlButton
+		{
+			idc = IDC_CONFIG_BTNOPENINFO;
+			text = "?";
+			x = _R - (MARGIN(4) + 31) * UI_GRID_W;
+			y = _B - (1 + MARGIN(1)) * UI_GRID_H;
+			w = 1 * UI_GRID_W;
+			h = 1 * UI_GRID_H;
+			shortcuts[] = {DIK_F1};
+		};
+		class btn_preview: btn_openInfo
+		{
+			idc = IDC_CONFIG_BTNPREVIEW;
+			text = "PREVIEW CLASS";
+			x = _R - (MARGIN(3) + 30) * UI_GRID_W;
+			w = 10 * UI_GRID_W;
+		};
+		class btn_export: btn_openInfo
+		{
+			idc = IDC_CONFIG_BTNEXPORT;
+			text = "EXPORT";
+			tooltip = "Export the selected class to clipboard";
+			x = _R - (MARGIN(2) + 20) * UI_GRID_W;
+			w = 10 * UI_GRID_W;
+		};
 		class btn_close: ctrlButtonCancel
 		{
 			text = "CLOSE";
@@ -406,21 +431,6 @@ class TER_3den_RscDisplayConfigViewer73
 			y = _B - (1 + MARGIN(1)) * UI_GRID_H;
 			w = 10 * UI_GRID_W;
 			h = 1 * UI_GRID_H;
-		};
-		class btn_export: btn_close
-		{
-			idc = IDC_CONFIG_BTNEXPORT;
-			text = "EXPORT";
-			tooltip = "Export the selected class to clipboard";
-			x = _R - (MARGIN(2) + 20) * UI_GRID_W;
-		};
-		class btn_openInfo: btn_close
-		{
-			idc = IDC_CONFIG_BTNOPENINFO;
-			text = "?";
-			x = _R - (MARGIN(3) + 21) * UI_GRID_W;
-			w = 1 * UI_GRID_W;
-			shortcuts[] = {DIK_F1};
 		};
 		#define W_PREVIEW 30
 		#define H_PREVIEW 22

@@ -19,7 +19,7 @@ class CfgFunctions
 		};
 		class Debug
 		{
-			class configViewer73 {file = "\TER_Editing\gui\scripts\RscConfigViewer73.sqf";};
+			class configViewer73 {file = "\TER_editing\gui\scripts\TER_3den_RscDisplayConfigViewer73.sqf";};
 			class configToString {file = "\TER_Editing\fnc\fn_configToString.sqf";};
 		};
 		class Numbers

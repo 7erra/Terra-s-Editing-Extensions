@@ -3,6 +3,7 @@
 #include "\a3\ui_f\hpp\defineCommon.inc"
 #include "\a3\ui_f\hpp\defineResincl.inc"
 #include "defines.hpp"
+#include "CfgScriptPaths.hpp"
 #include "RscTitles.hpp"
 #include "RscConfigViewer.hpp"
 #include "display3den.hpp"

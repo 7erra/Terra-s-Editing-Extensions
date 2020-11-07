@@ -18,7 +18,7 @@
 	"_cfgArray" (Display) - Path to config (not to actual config, that is selected in the listbox)
 	"BIS_fnc_configviewer_path" (profileNamespace) - same as _cfgArray, shared with old config viewer
 	"BIS_fnc_configviewer_selected" (profileNamespace) - Selected listbox entry, shared with old config viewer
-	"TER_3den_RscConfigViewer73_script" (uiNamespace) - This script
+	"TER_3den_RscDisplayConfigViewer73_script" (uiNamespace) - This script
 	"TER_3den_RscColorPicker_loadColor" (uiNamespace) - Set on preview of a color from the properties listbox
 	"prevSearch" (Config search editbox) - ctrlText of the control to prevent searching when no new character was entered
 	"update" (Favorites listbox) - Prevent firing of EH when the same class is selected
@@ -26,9 +26,13 @@
 	"TER_3den_configViewer73_dbSettings" (profileNamespace) - Scripted database with settings
 */
 #include "\a3\ui_f\hpp\definedikcodes.inc"
+#include "\a3\ui_f\hpp\defineResinclDesign.inc"
 #include "ctrls.inc"
-#define SELF (uiNamespace getVariable ["TER_3den_RscConfigViewer73_script",{}])
-params [["_mode", "create"],["_this",[]]];
+#define SELF TER_3den_RscDisplayConfigViewer73_script
+#define WEAPONTYPE_PRIMARY 1
+#define WEAPONTYPE_HANDGUN 2
+#define WEAPONTYPE_SECONDARY 4
+params [["_mode", "create"],["_params",[]]];
 
 switch _mode do {
 	case "create":{
@@ -38,24 +42,17 @@ switch _mode do {
 		_parentDisplay createDisplay "TER_3den_RscDisplayConfigViewer73";
 	};
 	case "onLoad":{
-		params ["_display"];
-		//--- Init function
-		if (isNil {uiNamespace getVariable "TER_3den_RscConfigViewer73_script"}) then {
-			uiNamespace setVariable ["TER_3den_RscConfigViewer73_script", compile preprocessFileLineNumbers "TER_Editing\gui\scripts\RscConfigViewer73.sqf"];
-		};
+		_params params ["_display"];
 		//--- Load settings
 		_dbSettings = +(profileNamespace getVariable ["TER_3den_configViewer73_dbSettings",[]]);
 		//--- Initialize Display
-		_display displayAddEventHandler ["Unload",{
-			["onUnload",_this] call SELF;
-		}];
 		_display displayAddEventHandler ["KeyDown",{
-			["displayKey",_this] call SELF;
+			with uiNamespace do {["displayKey",_this] call SELF;};
 		}];
 		//--- Directory Listbox
 		_btnDirectory = _display displayCtrl IDC_CONFIG_BTNDIRECTORY;
 		_btnDirectory ctrlAddEventHandler ["ButtonClick",{
-			["dirUp",_this] call SELF;
+			with uiNamespace do {["dirUp",_this] call SELF;};
 		}];
 		//--- Search edit configs
 		_edSearchConfigs = _display displayCtrl IDC_CONFIG_EDCONFIGSEARCH;
@@ -63,43 +60,43 @@ switch _mode do {
 		_search = [_dbSettings, ["searchConfigs"], ""] call BIS_fnc_dbValueReturn;
 		_edSearchConfigs ctrlSetText _search;
 		ctrlSetFocus _edSearchConfigs;
-		private _prevSearch = ["translateSearch", [_search]] call SELF;
+		private _prevSearch = with uiNamespace do {["translateSearch", [_search]] call SELF;};
 		_edSearchConfigs setVariable ["prevSearch",_prevSearch];
 		_edSearchConfigs ctrlAddEventHandler ["KeyDown",{
 			["keySearch",_this] spawn SELF;
 		}];
 		_btnEndConfigSearch = _display displayCtrl IDC_CONFIG_BTNENDCONFIGSEARCH;
 		_btnEndConfigSearch ctrlAddEventHandler ["ButtonClick",{
-			["endConfigSearch",_this] call SELF;
+			with uiNamespace do {["endConfigSearch",_this] call SELF;};
 		}];
 		//--- Listbox configs
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
 		_lbConfigs ctrlAddEventHandler ["LBDblClick",{
-			["configsDblClick",_this] call SELF;
+			with uiNamespace do {["configsDblClick",_this] call SELF;};
 		}];
 		_lbConfigs ctrlAddEventHandler ["LBSelChanged",{
-			["configChange",_this] call SELF;
+			with uiNamespace do {["configChange",_this] call SELF;};
 		}];
 		_lbConfigs ctrlAddEventHandler ["KeyDown",{
-			["lbConfigsKey",_this] call SELF;
+			with uiNamespace do {["lbConfigsKey",_this] call SELF;};
 		}];
 		//--- Favorite button
 		_btnFavorite = _display displayCtrl IDC_CONFIG_BTNFAVOR;
 		_btnFavorite ctrlAddEventHandler ["ButtonClick",{
-			["toggleFavorite",_this] call SELF;
+			with uiNamespace do {["toggleFavorite",_this] call SELF;};
 		}];
 		//--- Favorite combo
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
 		["fillFavorites",[_display]] call SELF;
 		_lbFavorites ctrlAddEventHandler ["LBSelChanged",{
-			["changeFavorite",_this] call SELF;
+			with uiNamespace do {["changeFavorite",_this] call SELF;};
 		}];
 		//--- View mode toolbox
 		_settingViewMode = [_dbSettings, ["viewMode"], 0] call BIS_fnc_dbValueReturn;
 		_toolViewMode = _display displayCtrl IDC_CONFIG_TOOLVIEW;
 		_toolViewMode lbSetCurSel _settingViewMode;
 		_toolViewMode ctrlAddEventHandler ["ToolBoxSelChanged",{
-			["changeView",_this] call SELF;
+			with uiNamespace do {["changeView",_this] call SELF;};
 		}];
 		["changeView",[_toolViewMode, _settingViewMode]] call SELF;
 		//--- Inheritance toolbox
@@ -107,14 +104,14 @@ switch _mode do {
 		_toolInheritance = _display displayCtrl IDC_CONFIG_TOOLINHERITANCE;
 		_toolInheritance lbSetCurSel _settingInheritance;
 		_toolInheritance ctrlAddEventHandler ["ToolBoxSelChanged",{
-			["changeInheritance",_this] call SELF;
+			with uiNamespace do {["changeInheritance",_this] call SELF;};
 		}];
 		//--- Show classes toolbox
 		_settingShowClasses = [_dbSettings, ["showClasses"], 1] call BIS_fnc_dbValueReturn;
 		_toolShowClasses = _display displayCtrl IDC_CONFIG_TOOLSHOWCLASSES;
 		_toolShowClasses lbSetCurSel _settingShowClasses;
 		_toolShowClasses ctrlAddEventHandler ["ToolBoxSelChanged",{
-			["changeShowClasses",_this] call SELF;
+			with uiNamespace do {["changeShowClasses",_this] call SELF;};
 		}];
 		//--- Property search
 		_settingPropSearch = [_dbSettings, ["searchProperties"], ""] call BIS_fnc_dbValueReturn;
@@ -127,35 +124,35 @@ switch _mode do {
 		//--- Properties listbox
 		_lbProperties = _display displayCtrl IDC_CONFIG_LBPROPERTIES;
 		_lbProperties ctrlAddEventHandler ["LBSelChanged",{
-			["changeProperty",_this] call SELF;
+			with uiNamespace do {["changeProperty",_this] call SELF;};
 		}];
 		_lbProperties ctrlAddEventHandler ["LBDblClick",{
-			["doubleClickProperties", _this] call SELF;
+			with uiNamespace do {["doubleClickProperties", _this] call SELF;};
 		}];
 		//--- Error message
 		_stxtError = _display displayCtrl IDC_CONFIG_STXTERROR;
 		_stxtError ctrlAddEventHandler ["KillFocus",{
-			["errorHide",_this] call SELF;
+			with uiNamespace do {["errorHide",_this] call SELF;};
 		}];
 		_stxtError ctrlAddEventHandler ["MouseButtonDown",{
-			["errorHide",_this] call SELF;
+			with uiNamespace do {["errorHide",_this] call SELF;};
 		}];
 		//--- Info box
 		_btnInfoOpen = _display displayCtrl IDC_CONFIG_BTNOPENINFO;
 		_btnInfoOpen ctrlAddEventHandler ["ButtonClick",{
-			["openInfo",ctrlParent (_this#0)] call SELF;
+			with uiNamespace do {["openInfo",ctrlParent (_this#0)] call SELF;};
 		}];
 		_grpInfo = _display displayCtrl IDC_CONFIG_GRPINFO;
 		_btnInfoOk = _display displayCtrl IDC_CONFIG_BTNINFOOK;
 		_btnInfoOk ctrlAddEventHandler ["ButtonClick",{
-			["infoClose",[ctrlParentControlsGroup (_this#0)]] call SELF;
+			with uiNamespace do {["infoClose",[ctrlParentControlsGroup (_this#0)]] call SELF;};
 		}];
 		_stxtInfo = _display displayCtrl IDC_CONFIG_STXTINFO;
 		_stxtInfo ctrlSetStructuredText parseText loadFile "TER_Editing\gui\scripts\RscConfigViewer73\info.sqf";
 		//--- Parents config combo
 		_comboParents = _display displayCtrl IDC_CONFIG_COMBOPARENTS;
 		_comboParents ctrlAddEventHandler ["LBSelChanged",{
-			["gotoParent",_this] call SELF;
+			with uiNamespace do {["gotoParent",_this] call SELF;};
 		}];
 		//--- Preview group
 		_grpPreview = _display displayCtrl IDC_CONFIG_GRPPREVIEW;
@@ -166,7 +163,7 @@ switch _mode do {
 		_sliderPicPreviewScale sliderSetRange [0,1];
 		_sliderPicPreviewScale sliderSetSpeed [0.01,0.01];
 		_sliderPicPreviewScale ctrlAddEventHandler ["SliderPosChanged",{
-			["previewPicScaleChange",_this] call SELF;
+			with uiNamespace do {["previewPicScaleChange",_this] call SELF;};
 		}];
 		_settingPreviewScale = [_dbSettings, ["picPreviewScale"], 1] call BIS_fnc_dbValueReturn;
 		_sliderPicPreviewScale sliderSetPosition _settingPreviewScale;
@@ -179,7 +176,7 @@ switch _mode do {
 		_grpHistory = _display displayCtrl IDC_CONFIG_GRPHISTORY;
 		_lbHistory = _display displayCtrl IDC_CONFIG_LBHISTORY;
 		_lbHistory ctrlAddEventHandler ["LBDblClick",{
-			["lbDoubleClickHistory", _this] call SELF;
+			with uiNamespace do {["lbDoubleClickHistory", _this] call SELF;};
 		}];
 		//--- Load previous config
 		_cfgArray = +(profilenamespace getvariable ["BIS_fnc_configviewer_path",[]]);
@@ -189,7 +186,7 @@ switch _mode do {
 		//--- Export button
 		_btnExport = _display displayCtrl IDC_CONFIG_BTNEXPORT;
 		_btnExport ctrlAddEventHandler ["ButtonClick", {
-			["exportOpen", _this] call SELF;
+			with uiNamespace do {["exportOpen", _this] call SELF;};
 		}];
 		//--- Export group
 		_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
@@ -200,7 +197,6 @@ switch _mode do {
 		_newlinecharInd = [_dbSettings, ["export", "newlinechar"], 0] call BIS_fnc_dbValueReturn;
 		_toolExportNewLineChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLNEWLINECHAR;
 		_toolExportNewLineChar lbSetCurSel _newlinecharInd;
-		diag_log [_toolExportNewLineChar, _newlineCharInd];
 		_tabcharInd = [_dbSettings, ["export", "tabchar"], 0] call BIS_fnc_dbValueReturn;
 		_toolExportTabChar = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TOOLTABCHAR;
 		_toolExportTabChar lbSetCurSel _tabcharInd;
@@ -216,15 +212,150 @@ switch _mode do {
 
 		_btnExportCancel = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_BTNCANCEL;
 		_btnExportCancel ctrlAddEventHandler ["ButtonClick",{
-			["exportExit", [ctrlParentControlsGroup (_this#0)]] call SELF;
+			with uiNamespace do {["exportExit", [ctrlParentControlsGroup (_this#0)]] call SELF;};
 		}];
 		_btnExportCopy = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_BTNCOPY;
 		_btnExportCopy ctrlAddEventHandler ["ButtonClick",{
-			["exportCopy", [ctrlParentControlsGroup (_this#0)]] call SELF;
+			with uiNamespace do {["exportCopy", [ctrlParentControlsGroup (_this#0)]] call SELF;};
+		}];
+
+		//--- Preview class
+		_btnPreview = _display displayCtrl IDC_CONFIG_BTNPREVIEW;
+		_btnPreview ctrlAddEventHandler ["ButtonClick", {
+			with uiNamespace do {["previewClass", _this] call SELF;};
 		}];
 	};
+	#define BREAKPOINT if true exitWith {}
+	case "previewClass":{
+		_params params ["_btnPreview"];
+		_display = ctrlParent _btnPreview;
+		//--- Previews are available for CfgVehicles, CfgWeapons, CfgMagazines
+		_cfgArray = _display getVariable ["_cfgArray", []];
+		_cfgArrayFull = ["getSelectedCfgArray", [_display, []]] call SELF;
+		_cfgFull = [_cfgArrayFull, configNull] call BIS_fnc_configPath;
+		//--- CfgVehicles class
+		_cfgVehicle = configFile >> "CfgVehicles" >> _cfgLevel2;
+		private _previewType = ["classPreviewType", [_cfgFull]] call SELF;
+		if (_previewType == "vehicle") exitWith {
+			if is3DEN then {
+				collect3DENHistory {
+					_vehicle = create3DENEntity [
+						"Object",
+						configName _cfgFull,
+						screenToWorld [0.5, 0.5],
+						true
+					];
+					set3DENSelected [_vehicle];
+				};
+			} else {
+				_vehicle = createVehicle [
+					configName _cfgFull,
+					[0,0,0],
+					[],
+					0,
+					"CAN_COLLIDE"
+				];
+				_vehicle setPos (player modelToWorld [0, sizeOf(configName _cfgFull)]);
+				_vehicle setDir (getDir player + 90);
+				_vehicle addAction ["Delete", {
+					params ["_target", "_caller", "_actionId", "_arguments"];
+					deleteVehicle _target;
+				}];
+			};
+			_display closeDisplay 0;
+		};
+		//--- Display
+		if (_previewType == "display") exitWith {
+			["showinterface", false] call BIS_fnc_3denInterface;
+			_previewDisplay = _display createDisplay (configName _cfgFull);
+			"TER_3den_RscDisplayPreviewBackground_layer" cutRsc ["TER_3den_RscDisplayPreviewBackground", "PLAIN"];
+			_previewDisplay displayAddEventHandler ["Unload", {
+				params ["_display"];
+				["showinterface", true] call BIS_fnc_3denInterface;
+				"TER_3den_RscDisplayPreviewBackground_layer" cutFadeOut 0;
+			}];
+		};
+		//--- Weapon
+		if (_previewType == "weapon") exitWith {
+			_fncAddMagazines = {
+				params ["_unit", "_cfgWeapon"];
+				getArray(_cfgWeapon>>"muzzles") apply {
+					if (_x == "this") then {
+						//--- Main muzzle
+						private _mags = getArray(_cfgWeapon >> "magazines");
+						_unit addPrimaryWeaponItem (_mags#0);
+						_mags apply {
+							for "_i" from 0 to 1 do {
+								_unit addMagazine _x;
+							};
+						};
+					} else {
+						//--- Underbarrel etc.
+						getArray(_cfgWeapon >> _x >> "magazines") apply {
+							for "_i" from 0 to 3 do {
+								_unit addMagazine _x;
+							};
+						};
+					};
+				};
+			};
+			_fncPreviewArsenal = {
+				params ["_cfgWeapon", ["_man", player]];
+				["Open",[true,objnull,_man]] call bis_fnc_arsenal;
+				//---Artificially trigger the button click of the arsenal button
+				//---And show the weapon
+				_displayArsenal = uiNamespace getVariable "RscDisplayArsenal";
+				private _index = switch (getNumber(_cfgWeapon>>"type")) do {
+					case WEAPONTYPE_PRIMARY: {IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON};
+					case WEAPONTYPE_HANDGUN: {IDC_RSCDISPLAYARSENAL_TAB_HANDGUN};
+					case WEAPONTYPE_SECONDARY: {IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON};
+					default {""};
+				};
+				private _idcList = IDC_RSCDISPLAYARSENAL_LIST + _index;
+				with uiNamespace do {
+					["ShowItem",[
+						_displayArsenal,
+						_displayArsenal displayCtrl _idcList,
+						_index
+					]] call bis_fnc_arsenal;
+					["TabSelectLeft", [_displayArsenal, _index]] call BIS_fnc_arsenal;
+				};
+			};
+			_weaponClass = configName _cfgFull;
+			if (is3den) then {
+				private ["_previewMan"];
+				//--- Create dummy unit and give weapon
+				collect3DENHistory {
+					_previewMan = create3DENEntity [
+						"Object",
+						"C_Protagonist_VR_F",
+						screenToWorld[0.5, 0.5]
+					];
+				};
+				_previewMan addWeapon _weaponClass;
+				//--- Add magazines for all muzzles
+				[_previewMan, _cfgFull] call _fncAddMagazines;
+				save3DENInventory [_previewMan];
+				_display closeDisplay 0;
+				[_cfgFull, _previewMan] spawn _fncPreviewArsenal;
+			} else {
+				//--- Preview from running game, give weapon to player and open Arsenal
+				player addWeapon _weaponClass;
+				player selectWeapon _weaponClass;
+				_display closeDisplay 0;
+				[_cfgFull, player] spawn _fncPreviewArsenal;
+			};
+		};
+	};
+	case "getSelectedCfgArray":{
+		_params params ["_display", ["_format", []]];
+		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
+		_cfgSelected = _lbConfigs lbText lbCurSel _lbConfigs;
+		_cfgFull = (_display getVariable ["_cfgArray", []]) + [_cfgSelected];
+		[_cfgFull, _format] call BIS_fnc_configPath
+	};
 	case "exportCopy":{
-		params ["_grpExport"];
+		_params params ["_grpExport"];
 		_display = ctrlParent _grpExport;
 		_stxtExportStatus = _grpExport controlsGroupCtrl IDC_CONFIG_EXPORT_TXTSTATUS;
 		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#FFFF00'>Working...</t>";
@@ -267,11 +398,11 @@ switch _mode do {
 		_stxtExportStatus ctrlSetStructuredText parseText "<t color='#00FF00'>Successful :)</t>";
 	};
 	case "exportExit":{
-		params ["_grpExport"];
+		_params params ["_grpExport"];
 		_grpExport ctrlShow false;
 	};
 	case "exportOpen":{
-		params ["_btnExport"];
+		_params params ["_btnExport"];
 		_display = ctrlParent _btnExport;
 		_grpExport = _display displayCtrl IDC_CONFIG_GRPEXPORT;
 		_grpExport ctrlShow true;
@@ -286,7 +417,7 @@ switch _mode do {
 		_edExportConfig ctrlSetText _cfgString;
 	};
 	case "changeView":{
-		params ["_toolViewMode", "_ind"];
+		_params params ["_toolViewMode", "_ind"];
 		_display = ctrlParent _toolViewMode;
 		_grpListView = _display displayCtrl IDC_CONFIG_GRPLIST;
 		_grpTextView = _display displayCtrl IDC_CONFIG_GRPTEXT;
@@ -300,7 +431,7 @@ switch _mode do {
 		};
 	};
 	case "collectHistory":{
-		params ["_cfgArray"];
+		_params params ["_cfgArray"];
 		_history = uiNamespace getVariable ["TER_3den_configViewer73_history",[]];
 		_cfgConfig = [_cfgArray] call BIS_fnc_configPath;
 		if (!isClass _cfgConfig OR count _cfgArray == 0) exitWith {
@@ -311,7 +442,7 @@ switch _mode do {
 		_history
 	};
 	case "openHistory":{
-		params ["_display"];
+		_params params ["_display"];
 		_history = +(uiNamespace getVariable ["TER_3den_configViewer73_history",[]]);
 		_historyString = _history apply {[_x, "STRING"] call BIS_fnc_configPath};
 		_lbHistory = _display displayCtrl IDC_CONFIG_LBHISTORY;
@@ -321,7 +452,7 @@ switch _mode do {
 		} forEach _historyString;
 	};
 	case "lbDoubleClickHistory":{
-		params ["_lbHistory","_ind"];
+		_params params ["_lbHistory","_ind"];
 		_display = ctrlParent _lbHistory;
 		private _cfgArray = _lbHistory lbData _ind;
 		private _cfgArray = parseSimpleArray _cfgArray;
@@ -329,7 +460,7 @@ switch _mode do {
 		["updateClasses",[_display, _selClass]] call SELF;
 	};
 	case "previewPicScaleChange":{
-		params ["_sliderPicPreviewScale","_slPos"];
+		_params params ["_sliderPicPreviewScale","_slPos"];
 		_display = ctrlParent _sliderPicPreviewScale;
 		_picPreview = _display displayCtrl IDC_CONFIG_PICPREVIEW;
 		//--- Set scale of the picture
@@ -398,7 +529,7 @@ switch _mode do {
 		};
 	};
 	case "lbConfigsKey":{
-		params ["_lbConfigs", "_key", "_shift", "_ctrl", "_alt"];
+		_params params ["_lbConfigs", "_key", "_shift", "_ctrl", "_alt"];
 		if (_ctrl && _key == DIK_C) exitWith {
 			private _selClass = _lbConfigs lbText lbCurSel _lbConfigs;
 			copyToClipboard _selClass;
@@ -411,18 +542,18 @@ switch _mode do {
 		false
 	};
 	case "openInfo":{
-		params ["_display"];
+		_params params ["_display"];
 		_grpInfo = _display displayCtrl IDC_CONFIG_GRPINFO;
 		_btnInfoOk = _display displayCtrl IDC_CONFIG_BTNINFOOK;
 		_grpInfo ctrlShow true;
 		ctrlSetFocus _grpInfo;
 	};
 	case "infoClose":{
-		params ["_grpInfo"];
+		_params params ["_grpInfo"];
 		_grpInfo ctrlShow false;
 	};
 	case "displayKey":{
-		params ["_display", "_key", "_shift", "_ctrl", "_alt"];
+		_params params ["_display", "_key", "_shift", "_ctrl", "_alt"];
 		_progLoading = _display displayCtrl IDC_CONFIG_PROGLOADING;
 		_isLoading = progressPosition _progLoading != 1;
 		if (_ctrl && _shift && _key == DIK_F) exitWith {
@@ -474,7 +605,7 @@ switch _mode do {
 	};
 	case "doubleClickProperties":{
 		//--- Double click to preview entry
-		params ["_lbProperties","_ind"];
+		_params params ["_lbProperties","_ind"];
 		_display = ctrlParent _lbProperties;
 		_data = _lbProperties lbData _ind;
 		_cfgArray = +(_display getVariable ["_cfgArray",[]]);
@@ -533,7 +664,7 @@ switch _mode do {
 	};
 	case "edPropSearchKeyDown":{
 		//--- Key was pressed while search is focused
-		params ["_edPropertySearch"];
+		_params params ["_edPropertySearch"];
 		_filter = ctrlText _edPropertySearch;
 		if (_filter == _edPropertySearch getVariable ["prevSearch",""]) exitWith {};
 		_edPropertySearch setVariable ["prevSearch",_filter];
@@ -542,7 +673,7 @@ switch _mode do {
 		["updateProperties",[_display]] call SELF;
 	};
 	case "updateProperties":{
-		params ["_display"];
+		_params params ["_display"];
 		//--- LB view
 		_lbProperties = _display displayCtrl IDC_CONFIG_LBPROPERTIES;
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
@@ -556,7 +687,7 @@ switch _mode do {
 		private _newConfig = if (count _cfgArray == 0) then {
 			call compile (_lbConfigs lbText _ind)
 		} else {
-			_cfgConfig = [_cfgArray] call BIS_fnc_configPath;
+			private _cfgConfig = [_cfgArray] call BIS_fnc_configPath;
 			_cfgName = _lbConfigs lbText _ind;
 			_cfgConfig >> _cfgName
 		};
@@ -620,24 +751,24 @@ switch _mode do {
 		_edProperties ctrlCommit 0;
 	};
 	case "changeProperty":{
-		params ["_lbProperties","_ind"];
+		_params params ["_lbProperties","_ind"];
 		_display = ctrlParent _lbProperties;
 		["updateEdCfgPath",[_display]] call SELF;
 		_edPropValue = _display displayCtrl IDC_CONFIG_EDPROPVALUE;
 		_edPropValue ctrlSetText (_lbProperties lbText _ind);
 	};
 	case "changeShowClasses":{
-		params ["_toolShowClasses","_ind"];
+		_params params ["_toolShowClasses","_ind"];
 		_display = ctrlParent _toolShowClasses;
 		["updateProperties",[_display]] call SELF;
 	};
 	case "changeInheritance":{
-		params ["_toolInheritance","_ind"];
+		_params params ["_toolInheritance","_ind"];
 		_display = ctrlParent _toolInheritance;
 		["updateProperties",[_display]] call SELF;
 	};
 	case "changeFavorite":{
-		params ["_lbFavorites","_ind"];
+		_params params ["_lbFavorites","_ind"];
 		if (
 			!isNil {_lbFavorites getVariable "update"} OR
 			lbCurSel _lbFavorites == -1
@@ -656,13 +787,13 @@ switch _mode do {
 		["updateClasses",[_display, _cfgSelected]] spawn SELF;
 	};
 	case "errorHide":{
-		params ["_stxtError"];
+		_params params ["_stxtError"];
 		_stxtError ctrlSetFade 1;
 		_stxtError ctrlSetPositionH 0;
 		_stxtError ctrlCommit 0;
 	};
 	case "toggleFavorite":{
-		params ["_btnFavorite"];
+		_params params ["_btnFavorite"];
 		_display = ctrlParent _btnFavorite;
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
@@ -699,7 +830,7 @@ switch _mode do {
 	};
 	case "configChange":{
 		//--- New config selected from list
-		params ["_lbConfigs","_ind"];
+		_params params ["_lbConfigs","_ind"];
 		_display = ctrlParent _lbConfigs;
 		_selectClass = _lbConfigs lbText _ind;
 		_currentFavorites = +(profileNamespace getVariable ["BIS_fnc_configviewer_bookmarks",[]]);
@@ -733,7 +864,7 @@ switch _mode do {
 		};
 		["updateProperties", [_display]] call SELF;
 		//--- Update parents
-		private _parents = [_cfgConfig >> _selectClass] call BIS_fnc_returnParents;
+		private _parents = [_cfgConfig] call (missionNamespace getVariable "BIS_fnc_returnParents");
 		_parents deleteAt 0;
 		reverse _parents;
 		_comboParents = _display displayCtrl IDC_CONFIG_COMBOPARENTS;
@@ -744,11 +875,39 @@ switch _mode do {
 			private _ind = _comboParents lbAdd ([_x, "STRING"] call BIS_fnc_configPath);
 			_comboParents lbSetData [_ind, str ([_x] call BIS_fnc_configPath)];
 		} forEach _parents;
-		//--- Save to history
-		["collectHistory", [_cfgArray]] call SELF;
+		//--- Check if config is previewable
+		_ctrlPreview = _display displayCtrl IDC_CONFIG_BTNPREVIEW;
+		_ctrlPreview ctrlEnable (["classPreviewType", [_cfgConfig]] call SELF != "");
+		//--- Save to history (not implemented)
+		//["collectHistory", [_cfgArray]] call SELF;
+	};
+	case "classPreviewType":{
+		_params params ["_cfg"];
+		private _hierarchy = configHierarchy _cfg;
+		diag_log ["_cfg", _cfg];
+		//--- Check if config is...
+		//--- ... a vehicle config
+		if (
+			(configFile >> "CfgVehicles") in _hierarchy &&
+			{getNumber(_cfg >> "scope") > 0}
+		) exitWith {"vehicle"};
+		//--- ... a display config
+		if (
+			isNumber(_cfg>>"idd") &&
+			count(_hierarchy) == 2
+		) exitWith {"display"};
+		//--- ... a weapon config
+		if (
+			(configFile >> "CfgWeapons") in _hierarchy &&
+			count _hierarchy == 3 &&
+			{getNumber(_cfg >> "scope") > 0} &&
+			{getNumber(_cfg >> "type") in [WEAPONTYPE_PRIMARY, WEAPONTYPE_HANDGUN, WEAPONTYPE_SECONDARY]}
+		) exitWith {"weapon"};
+		//--- Config preview could not be determined
+		""
 	};
 	case "gotoParent":{
-		params ["_comboParents","_ind"];
+		_params params ["_comboParents","_ind"];
 		_display = ctrlParent _comboParents;
 		_cfgArray = _comboParents lbData _ind;
 		if (_cfgArray == "") exitWith {};
@@ -758,7 +917,7 @@ switch _mode do {
 		["updateClasses",[_display, _selClass]] spawn SELF;
 	};
 	case "fillFavorites":{
-		params ["_display"];
+		_params params ["_display"];
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
 		//_lbFavorites lbAdd "";
 		lbClear _lbFavorites;
@@ -770,7 +929,7 @@ switch _mode do {
 		};
 	};
 	case "endConfigSearch":{
-		params ["_btnEndConfigSearch"];
+		_params params ["_btnEndConfigSearch"];
 		_display = ctrlParent _btnEndConfigSearch;
 		_edSearchConfigs = _display displayCtrl IDC_CONFIG_EDCONFIGSEARCH;
 		if (ctrlText _edSearchConfigs == "") exitWith {};
@@ -778,7 +937,7 @@ switch _mode do {
 		["updateClasses",[_display]] spawn SELF;
 	};
 	case "updateClasses":{
-		params ["_display",["_selectClass",""],["_allowLoading",true]];
+		_params params ["_display",["_selectClass",""],["_allowLoading",true]];
 		_progLoading = _display displayCtrl IDC_CONFIG_PROGLOADING;
 		_stxtProgress = _display displayCtrl IDC_CONFIG_STXTPROGRESS;
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
@@ -882,7 +1041,7 @@ switch _mode do {
 		};
 	};
 	case "translateSearch":{
-		params ["_filter"];
+		_params params ["_filter"];
 		private _configFilter = "isClass _x";
 		_filterArray = _filter splitString " ";
 		_filterArray apply {
@@ -929,7 +1088,7 @@ switch _mode do {
 		_configFilter
 	};
 	case "configsDblClick":{
-		params ["_lbConfigs","_ind"];
+		_params params ["_lbConfigs","_ind"];
 		_display = ctrlParent _lbConfigs;
 		_entry = _lbConfigs lbText _ind;
 		_cfgArray = _display getVariable ["_cfgArray",[]];
@@ -949,7 +1108,7 @@ switch _mode do {
 		["updateClasses",[_display]] spawn SELF;
 	};
 	case "showError":{
-		params ["_display","_errorMessage"];
+		_params params ["_display","_errorMessage"];
 		_stxtError = _display displayCtrl IDC_CONFIG_STXTERROR;
 		_errorMessage = "<t size='1.25'>ERROR</t><br/>" +_errorMessage;
 		_stxtError ctrlSetFade 0;
@@ -972,7 +1131,7 @@ switch _mode do {
 		};
 	};
 	case "keySearch":{
-		params ["_edSearchConfigs","_key"];
+		_params params ["_edSearchConfigs","_key"];
 		//if !(_key in [DIK_NUMPADENTER, DIK_RETURN]) exitWith {};
 		_filter = ctrlText _edSearchConfigs;
 		_configFilter = ["translateSearch", [_filter]] call SELF;
@@ -986,7 +1145,7 @@ switch _mode do {
 		false
 	};
 	case "dirUp":{
-		params ["_btnDirectory"];
+		_params params ["_btnDirectory"];
 		private ["_display", "_edSearchConfigs","_cfgArray","_cfgClass"];
 		_display = ctrlParent _btnDirectory;
 		_edSearchConfigs = _display displayCtrl IDC_CONFIG_EDCONFIGSEARCH;
@@ -997,7 +1156,7 @@ switch _mode do {
 		["updateClasses",[_display, _cfgClass]] spawn SELF;
 	};
 	case "updateEdCfgPath":{
-		params ["_display"];
+		_params params ["_display"];
 		_edCfgPath = _display displayCtrl IDC_CONFIG_EDCFGPATH;
 		_cfgArray = +(_display getVariable ["_cfgArray",[]]);
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
@@ -1014,7 +1173,7 @@ switch _mode do {
 		_edCfgPath ctrlSetText _cfgString;
 	};
 	case "onUnload":{
-		params ["_display", "_exitCode"];
+		_params params ["_display", "_exitCode"];
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
 		_cfgArray = _display getVariable ["_cfgArray",[]];
 		_cfgSelected = _lbConfigs lbText lbCurSel _lbConfigs;

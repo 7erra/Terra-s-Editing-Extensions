@@ -2,8 +2,7 @@
 #include "..\ctrls.inc"
 #define SELF TER_fnc_debugPage3_script
 #define PARAMSROW ["_btnExec","_edCommand","_actpicDelete"]
-_mode = _this select 0;
-_this = _this select 1;
+params ["_mode", "_params"];
 //--- CONTROLS
 _displayEscape = findDisplay 49;
 _page = _displayEscape displayCtrl IDC_DEBUG_PAGE_3;
@@ -14,11 +13,19 @@ _edOutput = _page controlsGroupCtrl IDC_DEBUG_EDOUTPUTCC;
 
 switch (_mode) do {
 case "load":{
+	waitUntil {!isNull findDisplay 49};
+	_displayEscape = findDisplay 49;
+	_page = _displayEscape displayCtrl IDC_DEBUG_PAGE_3;
+	_comboLocality = _page controlsGroupCtrl IDC_DEBUG_CCLOCALITY;
+	_btnAdd = _page controlsGroupCtrl IDC_DEBUG_CCADD;
+	_ctCCTable = _page controlsGroupCtrl IDC_DEBUG_TABLECC;
+	_edOutput = _page controlsGroupCtrl IDC_DEBUG_EDOUTPUTCC;
+	//_params params ["_displayEscape"];
+	//_page = _displayEscape displayCtrl IDC_DEBUG_PAGE_3;
 	if (_page getVariable ["pageInitialized",false]) exitWith {};
 	_page setVariable ["pageInitialized",true];
-	//--- Title text
-	_txtTitle ctrlSetStructuredText parseText "<t font='PuristaLight'>Custom Commands:</t>";
 	//--- Locality combo
+	_comboLocality = _page controlsGroupCtrl IDC_DEBUG_CCLOCALITY;
 	if (isMultiplayer) then {
 		//--- Add general locality options and players
 		_targetPlayers = allPlayers apply {[name _x, owner _x]};
@@ -46,7 +53,7 @@ case "load":{
 	};
 	//--- Add button
 	_btnAdd ctrlAddEventHandler ["ButtonClick",{
-		with uiNamespace do {["addcc",[]] call SELF};
+		with uiNamespace do {["addcc",[]] spawn SELF};
 	}];
 	//--- Load previous
 	{
@@ -54,11 +61,11 @@ case "load":{
 	} forEach (profileNamespace getVariable ["TER_3den_ccArray",[]]);
 };
 case "localitychange":{
-	params ["_comboLocality","_ind"];
+	_params params ["_comboLocality","_ind"];
 	uiNamespace setVariable ["TER_3den_ccLocalityInd",_ind];
 };
 case "addcc":{
-	_command = param [0,""];
+	_command = _params param [0,""];
 	_row = ctAddRow _ctCCTable;
 	_row#1 params PARAMSROW;
 	//--- Exec button
@@ -109,7 +116,7 @@ case "deletecc":{
 	_ctCCTable ctRemoveRows [_ind];
 };
 case "edkey":{
-	params ["_edCommand", "_key", "_shift", "_ctrl", "_alt"];
+	_params params ["_edCommand", "_key", "_shift", "_ctrl", "_alt"];
 	if (_key in [DIK_RETURN, DIK_NUMPADENTER]) then {
 		["ccexec",[]] call SELF;
 	};
