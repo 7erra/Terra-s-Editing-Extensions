@@ -37,6 +37,7 @@ class Display3DEN
 					picture = "";
 					ACT_DISPLAY(DisplayConfigViewer73);
 					opensNewWindow = 1;
+					shortcuts[] = {"0x2A+0x2E"}; // Left Shift + C
 				};
 				class TER_3den_stxtEditor
 				{
