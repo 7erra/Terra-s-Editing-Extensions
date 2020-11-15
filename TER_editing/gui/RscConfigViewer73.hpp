@@ -395,7 +395,7 @@ class TER_3den_RscDisplayConfigViewer73
 					x = 0.5 * safeZoneW - (W_INFO/2) * UI_GRID_W;
 					y = 0.5 * safeZoneH - (H_INFO/2) * UI_GRID_H;
 					w = W_INFO * UI_GRID_W;
-					h = (H_INFO - 1.1) * UI_GRID_H;
+					h = (H_INFO) * UI_GRID_H;
 				};
 			};
 		};
