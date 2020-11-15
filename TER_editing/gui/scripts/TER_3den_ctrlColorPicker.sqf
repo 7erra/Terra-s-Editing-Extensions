@@ -1,6 +1,6 @@
 #include "ctrls.inc"
 #include "\a3\ui_f\hpp\definedikcodes.inc"
-#define SELF (uiNamespace getVariable ["TER_3den_ctrlColorPicker_script",{}])
+#define SELF TER_3den_ctrlColorPicker_script
 params ["_mode","_params"];
 switch _mode do {
 	case "loadColor":{

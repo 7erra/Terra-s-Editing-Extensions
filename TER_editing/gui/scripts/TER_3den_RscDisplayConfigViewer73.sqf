@@ -634,7 +634,7 @@ switch _mode do {
 			if ({_x isEqualType 0} count _value in [3,4]) exitWith {
 				//--- Color RGB or RGBA
 				_grpColorPicker = _display displayCtrl IDC_CONFIG_GRPCOLORPICKER;
-				["loadColor", [_grpColorPicker, _value]] call (uiNamespace getVariable ["TER_3den_RscColorPicker_script",{}]);
+				["loadColor", [_grpColorPicker, _value]] call TER_3den_ctrlColorPicker_script;
 				_grpPreview = _display displayCtrl IDC_CONFIG_GRPPREVIEW;
 				_grpPreview ctrlShow true;
 				_display call _fncHideGrps;
@@ -884,7 +884,6 @@ switch _mode do {
 	case "classPreviewType":{
 		_params params ["_cfg"];
 		private _hierarchy = configHierarchy _cfg;
-		diag_log ["_cfg", _cfg];
 		//--- Check if config is...
 		//--- ... a vehicle config
 		if (
