@@ -63,7 +63,7 @@ switch _mode do {
 		private _prevSearch = with uiNamespace do {["translateSearch", [_search]] call SELF;};
 		_edSearchConfigs setVariable ["prevSearch",_prevSearch];
 		_edSearchConfigs ctrlAddEventHandler ["KeyDown",{
-			["keySearch",_this] spawn SELF;
+			with uiNamespace do {["keySearch",_this] spawn SELF;};
 		}];
 		_btnEndConfigSearch = _display displayCtrl IDC_CONFIG_BTNENDCONFIGSEARCH;
 		_btnEndConfigSearch ctrlAddEventHandler ["ButtonClick",{
@@ -119,7 +119,7 @@ switch _mode do {
 		_edPropertySearch ctrlSetText _settingPropSearch;
 		_edPropertySearch setVariable ["prevSearch", _settingPropSearch];
 		_edPropertySearch ctrlAddEventHandler ["KeyDown",{
-			["edPropSearchKeyDown",_this] spawn SELF;
+			with uiNamespace do {["edPropSearchKeyDown",_this] spawn SELF;};
 		}];
 		//--- Properties listbox
 		_lbProperties = _display displayCtrl IDC_CONFIG_LBPROPERTIES;
