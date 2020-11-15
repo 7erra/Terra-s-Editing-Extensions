@@ -1,0 +1,85 @@
+[h1]7erra's Editing Extensions[/h1]
+Hello everyone!
+
+The goal of this mod is to make creating missions easier. It massively extends the features of the debug console, the 3den Editor, and the Config Viewer while creating no dependency for the client.
+
+[b][u]Debug Console[/u][/b]
+As of v2 there are so many features that they will be explained in detail on the GitHub page. Here is a brief overview over the most important improvements:
+This tool will be shown alongside the vanilla debug console. It contains several sections with different small and big improvements. Most noteably are:
+[list]
+[*]More watch fields: Just like the vanilla debug console these lines can evaluate expressions in real time without having a restriction to how many there are at any given time
+[*]GUI Editor Fix: Makes the GUI Editor usable again and further improves the experience with easy to setup configuration
+[*]Saving Watch Lines: If you ever run out of watch lines on the vanilla debug console but still need some expressions for later this tool has your back
+[*]Unit Live Watch: Track units in real time with a camera
+[*]Ingame RPT log viewer (FOR THIS FEATURE THE GAME MUST BE STARTED WITHOUT BATTLEYE)
+[/list]
+
+[b][u]3den[/u][/b]
+Tools for 3den can be found under "Toolbar >> Tools >> 7'3 Editing". Those include
+[list]
+[*]Modern Config Viewer (see below)
+[*]Structured Text Editor
+[*]Color picker (RGBA, Texture, config, HTML)
+[*]Font picker
+[*]attachTo Finder
+[*]DIK Codes
+[*]Control Types Explained
+[*]Namespace Variables
+[/list]
+The context menu gets some additions too:
+[list]
+[*]Show types: Finds the selected object type on the map and marks it with a map marker and a 3D symbol
+[*]Show Building Positions: Draws icons on the positions of a building
+[*]Export Marker as String: Copies a marker to the clipboard which can be used with BIS_fnc_stringToMarker saving several lines of code
+[*]Clear Inventory: Remove the entire loadout from a unit to start from scratch
+[/list]
+
+[b][u]Config Viewer 73[/u][/b]
+This is a modern version of the Splendid(TM) Config Viewer from vanilla Arma 3. Due to the amount of features it has here is a separate list of those:
+[list]
+[*]Supports all configs: mission, campaign, game
+[*]Search functionality for: classes, properties
+[*]Favorites are shared with the Splendid(TM) Config Viewer
+[*]Different display modes: As a list or as text
+[*]Hide inherited properties
+[*]Include classes in the properties window
+[*]Colored properties according to the datatype
+[*]Double clicking certain properties will open a preview
+[*]Quickly switch to the config's parents from a dropdown menu
+[*]Copyable config path and config value
+[*]Ability to preview the selected config class from the left tab (more info below)
+[*]Export the config in different formats
+
+The preview of the classes works the following way:
+[u]Weapon class:[/u]
+In 3den a dummy unit is created. While ingame the player is used. The selected weapon is then added to the unit and the Arsenal with the weapon selected is opened.
+[u]Vehicle class:[/u]
+In 3den the vehicle is created as an editable object. Ingame the vehicle is created (if it is a unit a unit is created) in a safe distance away from the player in the direction the player is facing. Additionally an action is added to the object so you can delete it.
+[u]Display:[/u]
+The display is created on top of the Config Viewer 73 display. There might occur some errors or undefined behavior since the eventhandlers of the display still fire.
+
+The following export options are available:
+[*]Include/Exclude inherited properties
+[*]Choose a line break charachter
+[*]Choose a tab charachter
+[*]Change the size of the indent (only useful when indent char is set to spaces)
+[*]Copy the class recursively with subclasses (might crash the game for large configs)
+[*]Set the inital indent
+The content of the class is copied to the clipboard so you can paste it anywhere.
+
+[b][u]Misc[/u][/b]
+Several functions:
+[list]
+[*][code]TER_fnc_controlInfo[/code] Initializes tooltips and systemchat output on all selected displays or a specific one
+[*][code]TER_fnc_convertNumber[/code] Convert a number from and to decimal, binary and hexadecimal
+[*][code]TER_fnc_configToString[/code] Convert a config to a string with optional arguments for different formats
+[*][code]DREAD_fnc_copyConfigClass[/code] Export an entire config entry (also available in the Splendid Config Viewer)
+[/list]
+
+Server key included
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1387934106]Steam Workshop page[/url]
+[url=https://github.com/7erra/-Terra-s-Editing-Extensions]GitHub repository[/url]
+
+Greetings,
+7'erra
