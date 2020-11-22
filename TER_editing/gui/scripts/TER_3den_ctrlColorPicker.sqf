@@ -26,7 +26,7 @@ switch _mode do {
 		{
 			_slider = _grpColorPicker controlsGroupCtrl _x;
 			_slider ctrlAddEventHandler ["SliderPosChanged",{
-				["updateColor",_this] call SELF;
+				with uiNamespace do {["updateColor",_this] call SELF};
 			}];
 		} forEach [
 			IDC_COLOR_SLIDERR, 
