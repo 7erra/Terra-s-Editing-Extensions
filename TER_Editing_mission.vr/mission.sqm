@@ -1,4 +1,4 @@
-version=53;
+version=54;
 class EditorData
 {
 	moveGridStep=1;
@@ -19,6 +19,7 @@ class EditorData
 	};
 };
 binarizationWanted=0;
+sourceName="ter_editing_mission";
 addons[]=
 {
 	"A3_Characters_F",

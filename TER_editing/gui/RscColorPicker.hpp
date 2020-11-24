@@ -3,7 +3,7 @@
 class TER_3den_ctrlColorPicker: ctrlControlsGroupNoScrollbars
 {
 	idc = IDC_COLOR_DISPLAYCTRL;
-	INIT_CONTROL(TER_3den_ctrlColorPicker, "TER_Editing")
+	INIT_CONTROL(TER_3den_ctrlColorPicker,TER_Editing)
 	x = 0;
 	y = 0;
 	w = W_COLORPICKER * UI_GRID_W;
