@@ -7,7 +7,7 @@
 
 --------------------------------------------------------------------------------
 ## [2.6.5] - 2020-10-25
-See [2.6.2]([2.6.2])
+See [2.6.2](#262---23102020)
 ### Added
 ### Changed
 ### Fixed
@@ -18,7 +18,7 @@ Can't continue work atm because the packing is failing <s>for unknown reasons...
 EDIT: because of an update to the tools that breaks some of my macros
 ### Added
 ### Changed
-- [Reverted to [v2.6.1]](#[2.6.1]---15.10.2020)
+- [Reverted to [v2.6.1]](#261---15102020)
 ### Fixed
 
 --------------------------------------------------------------------------------
