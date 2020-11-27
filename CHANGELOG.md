@@ -3,6 +3,7 @@
 ## [Unreleased] - yyyy-mm-dd
 ### Added
 ### Changed
+- Config Viewer 73: Non favorited entries are now displayed as "--" in the favorite comobox
 ### Fixed
 
 --------------------------------------------------------------------------------
