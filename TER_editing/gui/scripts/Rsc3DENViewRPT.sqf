@@ -14,8 +14,8 @@
    NOTHING
 */
 
-#define CTRL_GROUP_WIDTH (200 * pixelW * pixelGrid * 0.50)
-#define SIZEEX 4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5
+#define CTRL_GROUP_WIDTH (35 * 	(5 * 0.5 * pixelW * pixelGrid)) //These values won't change if GUI config is adjusted, maybe get the width onload?
+#define SIZEEX (4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5) //Also static, but will most likely never be changed, Eden Editor default
 
 params ["_display","_mode"];
 
@@ -44,7 +44,7 @@ private _wantedLines = switch (_mode) do
 
 	private _ctrlProgress = _display displayCtrl 300;
 	private _ctrlEdit = _display displayCtrl 100;
-	_ctrlEdit ctrlSetText "Please wait..."; //Performance is better if text control is almost empty
+	_ctrlEdit ctrlSetText "Please wait..."; //Performance is better if text control is almost empty, will be fixed with 2.02
 
 	private _content = "";
 
