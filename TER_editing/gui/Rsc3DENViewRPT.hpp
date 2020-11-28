@@ -2,7 +2,7 @@
 #define DIALOG_W 35
 #define DIALOG_H 20
 
-class TER_3DENViewRPT //To-Do: Use macro system for coordinates at some point
+class TER_3DENViewRPT
 {
 	idd = -1;
 	movingEnable = "true";
@@ -83,7 +83,7 @@ class TER_3DENViewRPT //To-Do: Use macro system for coordinates at some point
       text = "Reload";
       x = CENTERED_X(DIALOG_W) + (174 - 26) * GRID_W;
       y = DIALOG_TOP + 105 * UI_GRID_H;
-      w = 25 * GRID_W;
+      w = 5 * CUI_GRID_W;
       h = CUI_GRID_H;
       onButtonClick = "[_this # 0, 'reload'] call ENH_fnc_rpt_load";
     };
