@@ -14,8 +14,8 @@
    NOTHING
 */
 
-#define CTRL_GROUP_WIDTH (35 * 	(5 * 0.5 * pixelW * pixelGrid) //These values won't change if GUI config is adjusted, maybe get the width onload?
-#define SIZEEX 4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5 //Also static, but will most likely never be changed, Eden Editor default
+#define CTRL_GROUP_WIDTH (35 * 	(5 * 0.5 * pixelW * pixelGrid)) //These values won't change if GUI config is adjusted, maybe get the width onload?
+#define SIZEEX (4.32 * (1 / (getResolution select 3)) * pixelGrid * 0.5) //Also static, but will most likely never be changed, Eden Editor default
 
 params ["_display","_mode"];
 
