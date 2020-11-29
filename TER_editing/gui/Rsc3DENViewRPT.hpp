@@ -76,16 +76,16 @@ class TER_3DENViewRPT //To-Do: Use macro system for coordinates at some point
       y = CUI_GRID_Y + DIALOG_H * CUI_GRID_H - 14.6 * CUI_GRID_H;
       w = DIALOG_W * CUI_GRID_W;
       h = 1/5 * CUI_GRID_H;
-      colorFrame[] = {0,1,1,1};
+      colorFrame[] = {0,0,0,0};
     };
     class Reload: ctrlButton
     {
       text = "Reload";
-      x = CENTERED_X(DIALOG_W) + (174 - 26) * GRID_W;
-      y = DIALOG_TOP + 105 * UI_GRID_H;
-      w = 25 * GRID_W;
+      x = CUI_GRID_X + DIALOG_W / 2 * CUI_GRID_W - 17 * CUI_GRID_W;
+      y = CUI_GRID_Y + DIALOG_H * CUI_GRID_H - 14.2 * CUI_GRID_H;
+      w = 5 * CUI_GRID_W;
       h = CUI_GRID_H;
-      onButtonClick = "[_this # 0, 'reload'] call ENH_fnc_rpt_load";
+      onButtonClick = "[_this # 0, 'reload'] call TER_fnc_rpt_load";
     };
     class Close: ctrlButtonClose
     {
