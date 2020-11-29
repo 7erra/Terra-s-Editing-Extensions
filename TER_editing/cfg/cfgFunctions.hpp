@@ -33,6 +33,7 @@ class CfgFunctions
 			class pyTerEden;
 			class loadRPTLine;
 			class countRPTLines;
+			class getRPT;
 		};
 	};
 	class DREAD
