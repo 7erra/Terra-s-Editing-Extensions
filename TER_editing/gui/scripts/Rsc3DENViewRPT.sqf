@@ -26,7 +26,7 @@ private _wantedLines = switch (_mode) do
 {
 	case "onLoad":
 	{
-		private _return = profileNamespace getVariable ["ENH_ShowRPT_LinesCount",100];
+		private _return = profileNamespace getVariable ["TER_ShowRPT_LinesCount",100];
 		_ctrlEditLines ctrlSetText str _return;
 		_return
 	};
@@ -38,8 +38,8 @@ private _wantedLines = switch (_mode) do
 
 [_wantedLines, _display, _ctrlEditLines] spawn
 {
-	if !(isNil "ENH_ShowRPT_Loading") exitWith {};//Prevent the user from starting cycle multiple times
-	ENH_ShowRPT_Loading = true;
+	if !(isNil "TER_ShowRPT_Loading") exitWith {};//Prevent the user from starting cycle multiple times
+	TER_ShowRPT_Loading = true;
 	params ["_wantedLines", "_display", "_ctrlEditLines"];
 
 	private _ctrlProgress = _display displayCtrl 300;
@@ -65,7 +65,7 @@ private _wantedLines = switch (_mode) do
 		_content = _content + endl + (["load_rpt_line", [_line]] call TER_fnc_pyTerEden);
 	};
 
-	profileNamespace setVariable ["ENH_ShowRPT_LinesCount",_wantedLines];
+	profileNamespace setVariable ["TER_ShowRPT_LinesCount",_wantedLines];
 	
 	//Change width before adding text. It seems to only work this way. Wait until width is set
 	_ctrlEdit ctrlSetPositionW (_longestLine max CTRL_GROUP_WIDTH); //Longest line and not smaller then ctrlGroup width
@@ -76,5 +76,5 @@ private _wantedLines = switch (_mode) do
 	_ctrlEdit ctrlSetPositionH ctrlTextHeight _ctrlEdit;
 	_ctrlEdit ctrlCommit 0;
 	
-	ENH_ShowRPT_Loading = nil;
+	TER_ShowRPT_Loading = nil;
 };
