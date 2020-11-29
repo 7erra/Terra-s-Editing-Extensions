@@ -24,3 +24,5 @@
 #include "RscNamespaceVars.hpp"
 //--- v2.3
 #include "RscConfigViewer73.hpp"
+//--- v2.7
+#include "TER_3den_RscDisplay3denViewRPT.hpp"
