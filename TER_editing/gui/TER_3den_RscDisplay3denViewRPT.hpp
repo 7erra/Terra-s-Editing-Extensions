@@ -3,7 +3,7 @@
 class TER_3den_RscDisplay3denViewRPT
 {
 	idd = -1;
-	movingEnable = "true";
+	movingEnable = 1;
 	INIT_DISPLAY(TER_3den_RscDisplay3denViewRPT,TER)
 	class ControlsBackground
 	{
