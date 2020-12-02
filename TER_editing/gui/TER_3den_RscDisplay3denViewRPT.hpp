@@ -39,7 +39,7 @@ class TER_3den_RscDisplay3denViewRPT
 			h = DIALOG_H * CUI_GRID_H - CUI_GRID_H - 3/5 * CUI_GRID_H;
 			class Controls
 			{
-				class Content: ctrlEditMulti
+				class Content: ctrlStructuredText
 				{
 					idc = IDC_RSCDISPLAY3DENLASTRPT_CONTENT;
 					x = 0;
@@ -48,6 +48,13 @@ class TER_3den_RscDisplay3denViewRPT
 					h = DIALOG_H * CUI_GRID_H - CUI_GRID_H - 3/5 * CUI_GRID_H;
 					style = ST_NO_RECT + ST_MULTI;
 					canModify = 0;
+					size = 0.7 * CUI_GRID_H;
+					shadow = 0;
+					colorBackground[] = {0,0,0,0.8};
+					class Attributes
+					{
+						font = "EtelkaMonospacePro";
+					};
 				};
 			};
 		};
@@ -84,11 +91,17 @@ class TER_3den_RscDisplay3denViewRPT
 		{
 			idc = IDC_RSCDISPLAY3DENLASTRPT_RELOAD;
 			text = "Reload";
-			x = CUI_GRID_X - DIALOG_W / 2 * CUI_GRID_W;
+			x = CUI_GRID_X - DIALOG_W / 2 * CUI_GRID_W + 0.1 * CUI_GRID_W;
 			y = CUI_GRID_Y + DIALOG_H * CUI_GRID_H - 14.2 * CUI_GRID_H;
 			w = 5 * UI_GRID_W;
 			h = CUI_GRID_H;
 			//onButtonClick = "[_this # 0, 'reload'] execVM ""TER_Editing\gui\scripts\Rsc3DENViewRPT.sqf"";";
+		};
+		class Open: Reload
+		{
+			idc = -1;
+			text = "Open RPT";
+			x = CUI_GRID_X - DIALOG_W / 2 * CUI_GRID_W + 5.2 * CUI_GRID_W;
 		};
 		class Close: ctrlButtonClose
 		{
