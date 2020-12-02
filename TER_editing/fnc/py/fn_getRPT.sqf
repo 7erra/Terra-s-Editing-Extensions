@@ -24,7 +24,7 @@ if (count supportInfo "n:forceUnicode*" > 0) then {
 };
 _rptArray = uiNamespace getVariable "TER_3den_getRPT_RPTArray";
 _maxLines = [] call TER_fnc_countRPTLines;
-for "_i" from count _rptArray to _maxLines do {
-	_rptArray pushBack (_i call TER_fnc_loadRPTLine);
+for "_i" from (count _rptArray) to (_maxLines -1) do {
+	_rptArray pushBack ([_i, "rpt"] call TER_fnc_loadRPTLine);
 };
-_rptArray joinString endl
+_rptArray joinString "<br/>"
