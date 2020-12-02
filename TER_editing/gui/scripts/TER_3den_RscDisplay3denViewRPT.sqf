@@ -36,6 +36,7 @@ switch _mode do {
 		_params params ["_ctrlReload"];
 		_display = ctrlParent _ctrlReload;
 		_ctrlContent = _display displayCtrl IDC_RSCDISPLAY3DENLASTRPT_CONTENT;
+		_ctrlGroup = ctrlParentControlsGroup _ctrlContent;
 		_ctrlContent ctrlSetText "Please wait...";
 		_ctrlReload = _display displayCtrl IDC_RSCDISPLAY3DENLASTRPT_RELOAD;
 		_ctrlReload ctrlEnable false;
@@ -43,7 +44,7 @@ switch _mode do {
 		if (count _rpt == 0) exitWith {
 			_ctrlContent ctrlSetText "#INFO# No lines loaded. Maybe something went wrong?";
 		};
-		_rpt = _rpt + endl;
+		_rpt = _rpt + "<br/><br/>";
 		ctrlPosition ctrlParentControlsGroup _ctrlContent params [
 			"_xParent",
 			"_yParent",
@@ -55,16 +56,17 @@ switch _mode do {
 		});
 		_ctrlContent ctrlSetPositionW (_maxW max _wParent);
 		_ctrlContent ctrlCommit 0;
-		_ctrlContent ctrlSetText _rpt;
+		_ctrlContent ctrlSetStructuredText parseText _rpt;
 		_ctrlContent ctrlSetPosition [
 			0,
 			0,
 			_wParent max _maxW,
 			_hParent max ctrlTextHeight _ctrlContent
 		];
-		_ctrlContent ctrlSetText _rpt;
-		diag_log [_wParent, _hParent, _maxW];
 		_ctrlContent ctrlCommit 0;
+		_ctrlGroup spawn {
+			_this ctrlSetScrollValues [1,0];
+		};
 		_ctrlReload ctrlEnable true;
 	};
 
