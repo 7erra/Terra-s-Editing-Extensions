@@ -10,7 +10,9 @@ diag_mergeConfigFile [_cfg];
 	["TER_fnc_getRPT",
 	compile preprocessFileLineNumbers "p\TER_editing\fnc\py\fn_getRPT.sqf"],
 	["TER_fnc_loadRPTLine",
-	compile preprocessFileLineNumbers "p\TER_editing\fnc\py\fn_loadRPTLine.sqf"]
+	compile preprocessFileLineNumbers "p\TER_editing\fnc\py\fn_loadRPTLine.sqf"],
+	["TER_fnc_getLatestRPT",
+	compile preprocessFileLineNumbers "p\TER_editing\fnc\py\fn_getLatestRPT.sqf"]
 ];
 
 findDisplay 49 createDisplay "TER_3den_RscDisplay3denViewRPT";
