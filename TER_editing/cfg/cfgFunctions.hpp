@@ -34,6 +34,7 @@ class CfgFunctions
 			class loadRPTLine;
 			class countRPTLines;
 			class getRPT;
+			class getLatestRPT;
 		};
 	};
 	class DREAD
