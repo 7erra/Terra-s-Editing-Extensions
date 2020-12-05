@@ -1,5 +1,5 @@
 /*
-   Author: R3vo
+   Author: R3vo and Terra
 
    Date: 2020-11-02
 
@@ -8,7 +8,7 @@
 
    Parameter(s):
    0: DISPLAY or CONTROL
-   1: STRING - Mode, can be "onLoad" or "reload"
+   1: STRING - Mode, determines the functionality of the call
 
    Returns:
    NOTHING
@@ -31,6 +31,12 @@ switch _mode do {
 		_ctrlReload ctrlAddEventHandler ["ButtonClick",{
 			with uiNamespace do {["reload", _this] spawn SELF;};
 		}];
+		_rptFile = [] call (missionNamespace getVariable "TER_fnc_getLatestRPT");
+		_ctrlOpen = _display displayCtrl IDC_RSCDISPLAY3DENLASTRPT_OPEN;
+		_ctrlOpen ctrlEnable false;
+		_ctrlOpen ctrlSetTooltip "Available with Arma 3 v2.02";
+		//TODO: Implement with v2.02
+		//_ctrlOpen ctrlSetURL "file:///P:/buldozer.cfg";
 	};
 	case "reload":{
 		_params params ["_ctrlReload"];
@@ -40,20 +46,21 @@ switch _mode do {
 		_ctrlContent ctrlSetText "Please wait...";
 		_ctrlReload = _display displayCtrl IDC_RSCDISPLAY3DENLASTRPT_RELOAD;
 		_ctrlReload ctrlEnable false;
-		_rpt = [] call (missionNamespace getVariable "TER_fnc_getRPT");
+		private _rpt = [] call (missionNamespace getVariable "TER_fnc_getRPT");
 		if (count _rpt == 0) exitWith {
 			_ctrlContent ctrlSetText "#INFO# No lines loaded. Maybe something went wrong?";
 		};
-		_rpt = _rpt + "<br/><br/>";
 		ctrlPosition ctrlParentControlsGroup _ctrlContent params [
 			"_xParent",
 			"_yParent",
 			"_wParent",
 			"_hParent"
 		];
-		_maxW = selectMax ((_rpt splitString endl) apply {
+		_rptArray = _rpt splitString endl;
+		_maxW = selectMax (_rptArray apply {
 			_x getTextWidth ["RobotoCondensedLight",SIZEEX]
 		});
+		_rpt = _rptArray joinString "<br/>";
 		_ctrlContent ctrlSetPositionW (_maxW max _wParent);
 		_ctrlContent ctrlCommit 0;
 		_ctrlContent ctrlSetStructuredText parseText _rpt;
@@ -65,6 +72,7 @@ switch _mode do {
 		];
 		_ctrlContent ctrlCommit 0;
 		_ctrlGroup spawn {
+			//--- For some reason needs a little bit of delay
 			_this ctrlSetScrollValues [1,0];
 		};
 		_ctrlReload ctrlEnable true;
