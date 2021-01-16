@@ -4,7 +4,7 @@ class TER_3den_RscDisplay3denViewRPT
 {
 	idd = -1;
 	movingEnable = 1;
-	INIT_DISPLAY(TER_3den_RscDisplay3denViewRPT,TER)
+	INIT_DISPLAY(TER_3den_RscDisplay3denViewRPT,TER_Editing)
 	class ControlsBackground
 	{
 		class BackgroundDisable: ctrlStaticBackgroundDisable
@@ -43,10 +43,11 @@ class TER_3den_RscDisplay3denViewRPT
 				class Content: ctrlStructuredText
 				{
 					idc = IDC_RSCDISPLAY3DENLASTRPT_CONTENT;
+					text = "Loading RPT...";
 					x = 0;
 					y = 0;
-					w = DIALOG_W * CUI_GRID_W;
-					h = DIALOG_H * CUI_GRID_H - CUI_GRID_H - 3/5 * CUI_GRID_H;
+					w = (DIALOG_W - 0.2) * CUI_GRID_W;
+					h = DIALOG_H - 2.2 * CUI_GRID_H;
 					style = ST_NO_RECT + ST_MULTI;
 					canModify = 0;
 					size = 0.7 * CUI_GRID_H;
