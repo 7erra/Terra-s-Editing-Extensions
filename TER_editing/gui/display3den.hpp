@@ -44,9 +44,9 @@ class Display3DEN
 				{
 					text = "Show latest RPT";
 					picture = "";
-					ACT_DISPLAY(TER_3DENViewRPT);
+					ACT_DISPLAY(Display3denViewRPT);
 					opensNewWindow = 1;
-					shortcuts[] = {"0x1D+0x38+0x20"};
+					shortcuts[] = {};
 				};
 				class TER_3den_stxtEditor
 				{
