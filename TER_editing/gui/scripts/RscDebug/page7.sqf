@@ -21,10 +21,10 @@ switch (_mode) do {
 		_edRPTLines ctrlSetText str _setLines;
 		["loadRPT", _params] call SELF;
 		_btnRPTDiagLog ctrlAddEventHandler ["ButtonClick",{
-			with uiNamespace do {["log", _this] call SELF};
+			with uiNamespace do {["log", _this] spawn SELF};
 		}];
 		_btnRPTReload ctrlAddEventHandler ["ButtonClick",{
-			with uiNamespace do {["loadRPT"] call SELF};
+			with uiNamespace do {["loadRPT"] spawn SELF};
 		}];
 		//--- TODO: use ctrlSetScrollValues when implemented
 		_btnRPTTextSizePlus ctrlAddEventHandler ["ButtonClick", {
@@ -53,22 +53,33 @@ switch (_mode) do {
 		_params params ["_btnRPTDiagLog"];
 		_logText = ctrlText _edRPTDiagLogText;
 		diag_log (call compile _logText);
+		uiSleep 0.5;
 		["loadRPT"] call SELF;
 	};
 	case "loadRPT":{
-		private _rptContent = "";
-		with missionNamespace do {
-			_maxLines = [] call TER_fnc_countRPTLines;
-			_loadLines = parseNumber(ctrlText _edRPTLines);
-			_lineCounter = _maxLines - _loadLines;
-			for "_l" from _maxLines to _lineCounter step -1 do{
-				private _lcontent = [_l] call TER_fnc_loadRPTLine;
-				_rptContent = _lcontent + endl + _rptContent;
-			};
+		_grpRPTContent = ctrlParentControlsGroup _edRPTContent;
+		_rptContent = ["°"] call TER_fnc_getRPT;
+		if (isNull _grpRPTContent) exitWith {};
+		_maxLines = parseNumber ctrlText _edRPTLines;
+		_rptContent = _rptContent splitString "°";
+		if (_maxLines < 0) then {_maxLines = count _rptContent};
+		_rptContent = _rptContent select [count _rptContent -_maxLines, count _rptContent];
+		_maxW = 0;
+		_rptContent apply {
+			_maxW = _maxW max (str parseText _x getTextWidth ["EtelkaMonospacePro", 0.7 * GUI_GRID_H]);
 		};
-		_edRPTContent ctrlSetText _rptContent;
-		_edRPTContent ctrlSetPositionH (ctrlTextHeight _edRPTContent);
+		_maxW = (_maxW + 0.016) max ((ctrlPosition _grpRPTContent select 2) - 0.01);
+		_rptContent = _rptContent joinString "<br/>";
+		_hNormal = (ctrlPosition _grpRPTContent select 3) - (1 * GUI_GRID_H);
+		_maxH = 0.7 * (_maxLines +1) * GUI_GRID_H max _hNormal;
+		diag_log [_maxW, (ctrlPosition _grpRPTContent select 2) - 0.5];
+		_edRPTContent ctrlSetPositionW _maxW;
+		_edRPTContent ctrlSetStructuredText parseText _rptContent;
+		_edRPTContent ctrlSetPositionH _maxH;
 		_edRPTContent ctrlCommit 0;
+		_grpRPTContent spawn {
+			_this ctrlSetScrollValues [1,0];
+		};
 	};
 	case "unload":{
 		//--- save current settings

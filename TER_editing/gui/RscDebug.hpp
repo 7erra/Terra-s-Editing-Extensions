@@ -898,40 +898,6 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					w = W_BORDER;
 					h = 1 * GUI_GRID_H;
 				};
-				class RPTTextSizeText: RscStructuredText
-				{
-					idc = IDC_TXT_RPTTEXTSIZETEXT;
-					text = "Aa";
-					font = "EtelkaMonospacePro";
-					x = W_BORDER - 3.7 * GUI_GRID_W;
-					y = CUR_Y;
-					w = 1.5 * GUI_GRID_W;
-					h = 1 * GUI_GRID_H;
-					class Attributes
-					{
-						font = "RobotoCondensed";
-						color = "#ffffff";
-						colorLink = "#D09B43";
-						align = "center";
-						shadow = 1;
-						size = RPT_TEXT_SIZE * GUI_GRID_H;
-					};
-				};
-				class RPTTextSizePlus: RscButtonMenu
-				{
-					idc = IDC_BTN_RPTTEXTSIZEPLUS;
-					text = "+";
-					x = W_BORDER - 2.1 * GUI_GRID_W;
-					y = CUR_Y;
-					w = 1 * GUI_GRID_W;
-					h = 1 * GUI_GRID_H;
-				};
-				class RPTTextSizeMinus: RPTTextSizePlus
-				{
-					idc = IDC_BTN_RPTTEXTSIZEMINUS;
-					text = "-";
-					x = W_BORDER - 1 * GUI_GRID_W;
-				};
 				class RPTContentGroup: RscControlsGroup
 				{
 					x = 0.1 * GUI_GRID_W;
@@ -940,16 +906,22 @@ class TER_3den_debugConsole: RscControlsGroupNoScrollBars
 					h = H_BORDER - 3.3 * GUI_GRID_H;
 					class controls
 					{
-						class RPTContent: TER_3den_RscEditCodeOutput
+						class RPTContent: RscStructuredText
 						{
 							idc = IDC_ED_RPTCONTENT;
+							text = "Loading RPT...";
 							style = ST_LEFT + ST_MULTI;
-							canModify = 0;
-							sizeEx = RPT_TEXT_SIZE * GUI_GRID_H;
+							size = 0.7 * GUI_GRID_H;
 							x = pixelW;
 							y = pixelH;
 							w = W_BORDER - 4 * pixelW - 0.021;
 							h = H_BORDER - 3.2 * GUI_GRID_H;
+							colorBackground[] = {0,0,0,0.8};
+							class Attributes
+							{
+								font = "EtelkaMonospacePro";
+								size = 1;
+							};
 						};
 					};
 				};
