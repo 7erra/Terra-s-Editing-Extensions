@@ -58,7 +58,7 @@ switch _mode do {
 		];
 		_rptArray = _rpt splitString endl;
 		_maxW = selectMax (_rptArray apply {
-			_x getTextWidth ["RobotoCondensedLight",SIZEEX]
+			str parseText _x getTextWidth ["RobotoCondensedLight",SIZEEX]
 		});
 		_rpt = _rptArray joinString "<br/>";
 		_ctrlContent ctrlSetPositionW (_maxW max _wParent);
