@@ -6,7 +6,7 @@
 
 	Parameter(s):
 		0: NUMBER - Line number starting at 0.
-		1: STRING - Highlight syntax: rpt, TODO
+		1: STRING - Highlight syntax. Possible values: rpt
 
 	Returns:
 	STRING: The line in the .rpt.

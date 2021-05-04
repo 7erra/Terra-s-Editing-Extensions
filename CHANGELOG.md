@@ -1,13 +1,19 @@
 # Change Log
 
-## [Unreleased] - yyyy-mm-dd
+## [Unreleased] - 2021-05-04
 ### Added
 - RPT Viewer for 3den
 - Simple highlighting for RPT files
+- TER_fnc_getRPT
+- TER_fnc_getLatestRPT
 ### Changed
 - Config Viewer 73: Non favorited entries are now displayed as "--" in the favorite comobox
-- Debug Console: RPT page: Changed edit box to text box
+- Debug Console: RPT page: Changed edit box to text box to support highlighting
+- RPT page: more precise width for the rpt viewer
 ### Fixed
+- RPT page: diag_log button would not update rpt viewer
+### Removed
+- Changing of font sizes for the RPT page
 
 --------------------------------------------------------------------------------
 ## [2.6.5] - 2020-10-25
