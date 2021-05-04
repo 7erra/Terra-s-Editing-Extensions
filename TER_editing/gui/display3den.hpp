@@ -20,6 +20,7 @@ class Display3DEN
 					picture = "\a3\3DEN\Data\Displays\Display3DEN\ToolBar\open_ca.paa";
 					items[] = {
 						"TER_3den_ConfigViewer73",
+						"TER_3den_3DENViewRPT",
 						"TER_3den_stxtEditor",
 						"TER_3den_colorPicker",
 						"TER_3den_fontPicker",
@@ -38,6 +39,14 @@ class Display3DEN
 					ACT_DISPLAY(DisplayConfigViewer73);
 					opensNewWindow = 1;
 					shortcuts[] = {"1024+0x2E"}; // Left Shift + C
+				};
+				class TER_3den_3DENViewRPT
+				{
+					text = "Show latest RPT";
+					picture = "";
+					ACT_DISPLAY(Display3denViewRPT);
+					opensNewWindow = 1;
+					shortcuts[] = {};
 				};
 				class TER_3den_stxtEditor
 				{

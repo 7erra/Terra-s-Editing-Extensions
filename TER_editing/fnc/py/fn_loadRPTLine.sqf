@@ -6,9 +6,9 @@
 
 	Parameter(s):
 		0: NUMBER - Line number starting at 0.
+		1: STRING - Highlight syntax. Possible values: rpt
 
 	Returns:
 	STRING: The line in the .rpt.
 */
-params["_line"];
-["load_rpt_line", [_line]] call TER_fnc_pyTerEden;
+["load_rpt_line", _this] call TER_fnc_pyTerEden;

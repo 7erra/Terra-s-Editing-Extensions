@@ -3,19 +3,19 @@
 	// for the documentation about the tasks.json format
 	"version": "2.0.0",
 	"tasks": [
-		{
-			"label": "Build pbo",
-			"type": "shell",
-			"command": "${config:python.pythonPath}",
-			"args": [
-				".vscode/build.py"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
+        {
+            "label": "Build pbo",
+            "type": "shell",
+            "command": "${config:python.pythonPath}",
+            "args": [
+                ".vscode/build.py"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "Run Arma 3",
             "type": "process",
             "options": {
@@ -24,15 +24,15 @@
             "command": "arma3diag_x64",
             "args": [
                 "${workspaceFolder}\\TER_Editing_mission.vr\\mission.sqm",
-				"-skipIntro",
-				"-filePatching",
-				"-noSplash",
-				"-noSound",
+                "-skipIntro",
+                "-filePatching",
+                "-noSplash",
+                "-noSound",
                 "-showScriptErrors",
                 "-mod=!Workshop\\@3den Enhanced;!Workshop\\@CBA_A3;!Workshop\\@Pythia;P:\\Terra-s-Editing-Extensions\\@Terra's Editing Extensions",
                 "-window",
                 "-posX=-1795",
-                "-posY=146",
+                "-posY=146"
             ],
             "group": {
                 "kind": "test",
@@ -48,16 +48,17 @@
             "command": "arma3_x64",
             "args": [
                 "E:\\Documents\\Arma 3\\missions\\emptymission.VR\\mission.sqm",
-				"-skipIntro",
-				"-filePatching",
-				"-noSplash",
-				"-noSound",
+                "-skipIntro",
+                "-filePatching",
+                "-noSplash",
+                "-noSound",
                 "-showScriptErrors",
                 "-mod=!Workshop\\@3den Enhanced;!Workshop\\@CBA_A3;!Workshop\\@Pythia;P:\\Terra-s-Editing-Extensions\\@Terra's Editing Extensions",
                 "-window",
                 "-posX=-1795",
-                "-posY=146",
-            ]
+                "-posY=146"
+            ],
+            "problemMatcher": []
         },
         {
             "label": "Stop Arma 3",
@@ -69,5 +70,5 @@
                 "-Force"
             ]
         }
-	]
+    ]
 }

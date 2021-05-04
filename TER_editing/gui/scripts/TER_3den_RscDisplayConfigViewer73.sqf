@@ -771,14 +771,14 @@ switch _mode do {
 		_params params ["_lbFavorites","_ind"];
 		if (
 			!isNil {_lbFavorites getVariable "update"} OR
-			lbCurSel _lbFavorites == -1
+			lbCurSel _lbFavorites < 1
 		) exitWith {};
 		_display = ctrlParent _lbFavorites;
 		_edSearchConfigs = _display displayCtrl IDC_CONFIG_EDCONFIGSEARCH;
-		//_edSearchConfigs ctrlSetText "";
 		_lbConfigs = _display displayCtrl IDC_CONFIG_LBCONFIGS;
 		_cfgString = _lbFavorites lbText _ind;
 		_cfgArray = [_cfgString, []] call BIS_fnc_configPath;
+		diag_log [_cfgString, _ind, _cfgArray];
 		if (!isClass ([_cfgArray] call BIS_fnc_configPath)) exitWith {
 			["showError", [_display, "Favourite is not a class."]] call SELF;
 		};
@@ -842,14 +842,14 @@ switch _mode do {
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
 		_lbFavorites setVariable ["update",false];
 		_favInd = _currentFavorites find _cfgArray;
-		if (_favInd < 0) then {
+		/* if (_favInd < 0) then {
 			//--- Stupid workaround to select non existing favorite
 			lbClear _lbFavorites;
 			_lbFavorites lbSetCurSel _favInd;
 			["fillFavorites",[_display]] call SELF;
-		} else {
+		} else { */
 			_lbFavorites lbSetCurSel _favInd;
-		};
+		//};
 		_lbFavorites setVariable ["update",nil];
 		_favIcon = [
 			"\a3\ui_f\data\gui\rsc\rscdisplaymultiplayer\mp_serverempty_ca.paa",
@@ -920,10 +920,14 @@ switch _mode do {
 		_lbFavorites = _display displayCtrl IDC_CONFIG_LBFAVORITES;
 		//_lbFavorites lbAdd "";
 		lbClear _lbFavorites;
-		_currentFavorites = +(profileNamespace getVariable ["BIS_fnc_configviewer_bookmarks",[]]);
+		_currentFavorites = ["--"] +(profileNamespace getVariable ["BIS_fnc_configviewer_bookmarks",[]]);
 		_currentFavorites apply {
-			_path = _x#0;
-			_strPath = [_path, "STRING"] call BIS_fnc_configPath;
+			_strPath = if (_x isEqualType []) then {
+				_path = _x#0;
+				[_path, "STRING"] call BIS_fnc_configPath;
+			} else {
+				_x
+			};
 			_ind = _lbFavorites lbAdd _strPath;
 		};
 	};
