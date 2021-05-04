@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - 2021-05-04
+## [2.7.0] - 2021-05-04
 ### Added
 - RPT Viewer for 3den
 - Simple highlighting for RPT files
