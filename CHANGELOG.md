@@ -2,8 +2,11 @@
 
 ## [Unreleased] - yyyy-mm-dd
 ### Added
+- RPT Viewer for 3den
+- Simple highlighting for RPT files
 ### Changed
 - Config Viewer 73: Non favorited entries are now displayed as "--" in the favorite comobox
+- Debug Console: RPT page: Changed edit box to text box
 ### Fixed
 
 --------------------------------------------------------------------------------
